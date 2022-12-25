@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../../App.css';
 
-export default class LoginPage extends Component {
+export default class ManageUser extends Component {
     render() {
         return (
             <div className="App">
