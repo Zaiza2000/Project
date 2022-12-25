@@ -1,7 +1,8 @@
 const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
 //############User.js################//
@@ -33,6 +34,44 @@ exports.createUser = async (req, res) => {
     res.json({
       message: "Registor successfully",
     });
+  } catch (error) {
+    // console.log(Object.keys(error));
+    console.log(error.name);
+    console.log(error);
+    if (error.name == "SequelizeUniqueConstraintError") {
+      res.status(500).send("==MySQL Unique Error==");
+    } else {
+      res.status(500).send("==Server Error==");
+    }
+  }
+};
+
+exports.login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    var user = await User.findOne({
+      where: { username: username, password: password },
+    });
+    if (user) {
+      // console.log(user.username);
+      // console.log(username);
+      // res.send("Hello Login!");
+ 
+      //Payload
+      const payload = {
+        user: {
+          username: user.username,
+          role: user.role,
+        },
+      };
+      //Generate Token
+      jwt.sign(payload, "jwtSecret", { expiresIn: 3600 }, (error, token) => {
+        if (error) throw error;
+        res.json({ token, payload });
+      });
+    } else {
+      return res.status(400).send("User not found!!!");
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
@@ -67,7 +106,6 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-
 //############Category.js################//
 exports.listCategory = async (req, res) => {
   try {
@@ -82,7 +120,7 @@ exports.listCategory = async (req, res) => {
 exports.getCategory = async (req, res) => {
   try {
     const category = await Category.findAll({
-      where: { category_id: req.params.id},
+      where: { category_id: req.params.id },
     });
     res.json(category[0]);
   } catch (error) {
@@ -91,7 +129,7 @@ exports.getCategory = async (req, res) => {
   }
 };
 
-exports.createCategory  = async (req, res) => {
+exports.createCategory = async (req, res) => {
   try {
     await Category.create(req.body);
     res.json({
@@ -103,7 +141,7 @@ exports.createCategory  = async (req, res) => {
   }
 };
 
-exports.editCategory  = async (req, res) => {
+exports.editCategory = async (req, res) => {
   try {
     await Category.update(req.body, {
       where: { category_id: req.params.id },
@@ -117,7 +155,7 @@ exports.editCategory  = async (req, res) => {
   }
 };
 
-exports.deleteCategory  = async (req, res) => {
+exports.deleteCategory = async (req, res) => {
   try {
     await Category.destroy({
       where: { category_id: req.params.id },
@@ -130,7 +168,6 @@ exports.deleteCategory  = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
-
 
 //############Product.js################//
 exports.listProduct = async (req, res) => {
@@ -146,7 +183,7 @@ exports.listProduct = async (req, res) => {
 exports.getProduct = async (req, res) => {
   try {
     const product = await Product.findAll({
-      where: { product_id: req.params.id},
+      where: { product_id: req.params.id },
     });
     res.json(product[0]);
   } catch (error) {
@@ -155,7 +192,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-exports.createProduct  = async (req, res) => {
+exports.createProduct = async (req, res) => {
   try {
     await Product.create(req.body);
     res.json({
@@ -167,7 +204,7 @@ exports.createProduct  = async (req, res) => {
   }
 };
 
-exports.editProduct  = async (req, res) => {
+exports.editProduct = async (req, res) => {
   try {
     await Product.update(req.body, {
       where: { product_id: req.params.id },
@@ -181,7 +218,7 @@ exports.editProduct  = async (req, res) => {
   }
 };
 
-exports.deleteProduct  = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   try {
     await Product.destroy({
       where: { product_id: req.params.id },
@@ -194,4 +231,3 @@ exports.deleteProduct  = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
-

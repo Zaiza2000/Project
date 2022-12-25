@@ -4,16 +4,17 @@ const {
   deleteUser,
   listUser,
   editUser,
+  login,
   listCategory,
   getCategory,
-  createCategory, 
+  createCategory,
   editCategory,
   deleteCategory,
   listProduct,
   getProduct,
   editProduct,
   createProduct,
-  deleteProduct
+  deleteProduct,
 } = require("../controllers/auth.js");
 const express = require("express");
 
@@ -21,10 +22,15 @@ const router = express.Router();
 
 //@Enpoint    http://localhost:8000/api/listUser
 
+//Middleware
+const {auth} = require("../middleware/auth.js")
+
 //API User//
 router.get("/listUser", listUser);
 
 router.get("/getUser/:id", getUser);
+
+router.post("/login", login);
 
 router.post("/createUser", createUser);
 
@@ -43,7 +49,6 @@ router.put("/editCategory/:id", editCategory);
 
 router.delete("/deleteCategory/:id", deleteCategory);
 
-
 //API Product//
 router.get("/listProduct", listProduct);
 
@@ -57,6 +62,13 @@ router.delete("/deleteProduct/:id", deleteProduct);
 
 
 
+router.get("/1",auth, (req, res) => {
+  res.send("Hey 1");
+});
+
+router.get("/2",auth, (req, res) => {
+  res.send("Hey 2");
+});
 
 
-module.exports = router;  
+module.exports = router;
