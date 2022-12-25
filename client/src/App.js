@@ -20,6 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/home" element={<LandingPage />} />
           {/* <Route path="/" element={<LandingPage />}></Route> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />

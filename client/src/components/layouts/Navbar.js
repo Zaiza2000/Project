@@ -14,16 +14,18 @@ export default function Navbar() {
           <div className="flex items-center h-[58px]">
             <div className="flex flex-row w-full">
               {/* <img className="mb-5 mt-4 mr-2" src="/images/logo-none-bg.png" alt="logo" /> */}
-              <div className="flex-grow py-3">
+              <div className="flex-grow-1 py-3">
                 <a href="/" className="text-red-600 text-[28px] font-bold ">
                   ปรีชา
                 </a>
                 <a href="/" className="text-[#000000] text-[28px] font-bold ">
                   พานิชย์
                 </a>
+                
               </div>
 
               <div className="invisible md:visible">
+                
                 <div className="ml-10 space-x-4 flex flex-row mt-3">
                   <a
                     href="/login"
