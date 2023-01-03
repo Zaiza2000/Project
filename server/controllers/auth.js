@@ -49,14 +49,14 @@ exports.createUser = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    var user = await User.findOne({
+    var user = await User.findOneAndUpdate({
       where: { username: username, password: password },
     });
     if (user) {
       // console.log(user.username);
       // console.log(username);
       // res.send("Hello Login!");
- 
+
       //Payload
       const payload = {
         user: {
@@ -72,6 +72,21 @@ exports.login = async (req, res) => {
     } else {
       return res.status(400).send("User not found!!!");
     }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
+};
+
+exports.currentUser = async (req, res) => {
+  try {
+    console.log("currentUser", req.user);
+
+    const user = await User.findOne(req.body, {
+      where: { username: req.params.username },
+    });
+
+    res.send(user);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
