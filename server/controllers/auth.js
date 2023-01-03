@@ -49,7 +49,7 @@ exports.createUser = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    var user = await User.findOneAndUpdate({
+    var user = await User.findOne({
       where: { username: username, password: password },
     });
     if (user) {
