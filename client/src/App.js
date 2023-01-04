@@ -20,28 +20,29 @@ import { currentUser } from './components/functions/auth';
 
 //redux
 import { useDispatch } from 'react-redux';
+import NavbarLogin from './components/layouts/NavbarLogin';
 
 function App() {
-  const dispatch  = useDispatch()
+  const dispatch = useDispatch()
 
   //token
   const idtoken = localStorage.token;
-  if (idtoken){
+  if (idtoken) {
     currentUser(idtoken)
-    .then(res=>{
-      console.log(res.data);
-      dispatch({
-        type:'LOGIN',
-        payload: {
-          token:res.data.token,
-          username:res.data.username,
-          role:res.data.role
-        }
-      });
+      .then(res => {
+        console.log(res.data);
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            token: res.data.token,
+            username: res.data.username,
+            role: res.data.role
+          }
+        });
 
-    }).catch(error=>{
-      console.log(error);
-    })
+      }).catch(error => {
+        console.log(error);
+      })
 
   }
   return (
@@ -49,16 +50,17 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        {/* <NavbarLogin /> */}
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/home" element={<LandingPage />} />
           {/* <Route path="/" element={<LandingPage />}></Route> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          
+
           <Route path="/admin/index" element={<HomeAdmin />} />
           <Route path="/member/index" element={<HomeMember />} />
-          
+
         </Routes>
       </div>
     </Router>
