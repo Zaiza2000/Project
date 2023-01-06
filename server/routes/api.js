@@ -15,7 +15,8 @@ const {
   editProduct,
   createProduct,
   deleteProduct,
-  currentUser
+  currentUser,
+  changeRole
 } = require("../controllers/auth.js");
 const express = require("express");
 
@@ -26,14 +27,15 @@ const router = express.Router();
 //Middleware
 const { auth } = require("../middleware/auth.js");
 
-
 //API User//
-router.get("/listUser", listUser);
+router.get("/listUser", auth, listUser);
 router.get("/getUser/:id", getUser);
 router.post("/login", login);
 router.post("/createUser", createUser);
 router.put("/editUser/:id", editUser);
 router.delete("/deleteUser/:id", deleteUser);
+//Change User//
+router.post("/changeRole",auth, changeRole);
 
 //API Category//
 router.get("/listCategory", listCategory);
@@ -50,6 +52,6 @@ router.put("/editProduct/:id", editProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 
 //Current-User
-router.post("/current-user", auth ,currentUser);
+router.post("/current-user", auth, currentUser);
 
 module.exports = router;

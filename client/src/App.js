@@ -11,6 +11,7 @@ import Navbar from './components/layouts/Navbar';
 
 // Page Admin
 import HomeAdmin from './components/page/admin/HomeAdmin';
+import ManageUser from './components/page/admin/ManageUser';
 
 // Page Member
 import HomeMember from './components/page/member/HomeMember';
@@ -58,7 +59,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
 
-          <Route path="/admin/index" element={<HomeAdmin />} />
+          <Route path="/admin/index" element={<ManageUser />} />
+          
           <Route path="/member/index" element={<HomeMember />} />
 
         </Routes>

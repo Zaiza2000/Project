@@ -107,6 +107,18 @@ exports.editUser = async (req, res) => {
   }
 };
 
+exports.changeRole = async (req, res) => {
+  try {
+    const user = await User.update(req.body, {
+      where: { id: req.body.id ,role: req.body.role },
+    });
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
+};
+
 exports.deleteUser = async (req, res) => {
   try {
     await User.destroy({
@@ -120,6 +132,8 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
+
+
 
 //############Category.js################//
 exports.listCategory = async (req, res) => {
