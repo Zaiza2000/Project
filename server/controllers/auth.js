@@ -109,10 +109,16 @@ exports.editUser = async (req, res) => {
 
 exports.changeRole = async (req, res) => {
   try {
-    const user = await User.update(req.body, {
-      where: { id: req.body.id ,role: req.body.role },
+    console.log("Before req.body =>" ,req.body);
+    
+    const user = await User.update(req.body,{
+       where: { id: req.body.id ,role: req.body.role }
     });
-    res.send(user);
+    console.log("After req.body =>" ,req.body);
+    console.log("changeRole=>",user);
+    res.json(user);
+    //res.send(user);
+
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
@@ -121,12 +127,12 @@ exports.changeRole = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    await User.destroy({
-      where: { id: req.params.id },
+     await User.destroy({
+      where: { id : req.params.id},
     });
-    res.json({
-      message: "Delete User successfully",
-    });
+    //console.log("deleteUser" , user);
+    res.json("DeleteUser");
+
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

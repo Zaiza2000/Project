@@ -8,8 +8,8 @@ export const listUser = async (authtoken) => {
   });
 };
 
-export const changeRole = async (authtoken , value) => {
-    return await axios.post(process.env.REACT_APP_API + "/changeRole", value ,{
+export const changeRole = async (authtoken , values) => {
+    return await axios.post(process.env.REACT_APP_API + "/changeRole", values ,{
       headers: {
         authtoken,
       },

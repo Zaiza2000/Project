@@ -16,7 +16,7 @@ const {
   createProduct,
   deleteProduct,
   currentUser,
-  changeRole
+  changeRole,
 } = require("../controllers/auth.js");
 const express = require("express");
 
@@ -25,7 +25,7 @@ const router = express.Router();
 //@Enpoint    http://localhost:8000/api/listUser
 
 //Middleware
-const { auth } = require("../middleware/auth.js");
+const { auth, adminCheck } = require("../middleware/auth.js");
 
 //API User//
 router.get("/listUser", auth, listUser);
@@ -35,7 +35,7 @@ router.post("/createUser", createUser);
 router.put("/editUser/:id", editUser);
 router.delete("/deleteUser/:id", deleteUser);
 //Change User//
-router.post("/changeRole",auth, changeRole);
+router.post("/changeRole", auth, changeRole);
 
 //API Category//
 router.get("/listCategory", listCategory);
@@ -53,5 +53,8 @@ router.delete("/deleteProduct/:id", deleteProduct);
 
 //Current-User
 router.post("/current-user", auth, currentUser);
+
+//Current-Admin
+router.post("/current-admin", auth, adminCheck, currentUser);
 
 module.exports = router;
