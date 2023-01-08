@@ -4,6 +4,7 @@ import { Select } from "antd";
 
 //function
 import { listUser,changeRole, deleteUser } from "../../functions/user";
+import NavbarLogin from "../../layouts/NavbarLogin";
 
 export default function ManageUser() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -60,6 +61,7 @@ export default function ManageUser() {
 
   return (
     <div>
+      <NavbarLogin/>
       <h1>ManageUser</h1>
       <table className="min-w-full border-collapse block md:table">
         <thead className="block md:table-header-group">

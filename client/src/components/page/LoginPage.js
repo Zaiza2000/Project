@@ -5,6 +5,7 @@ import { login } from "../functions/auth.js";
 //redux
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../layouts/Navbar";
 
 export default function LoginPage() {
 
@@ -63,6 +64,7 @@ export default function LoginPage() {
   console.log(value);
   return (
     <div className="App">
+      <Navbar/>
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">

@@ -52,7 +52,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <NavbarLogin /> */}
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
