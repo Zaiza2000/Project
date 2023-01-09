@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import '../../App.css';
 
+
 export default class MenubarAdmin extends Component {
   render() {
     return (
@@ -14,7 +15,7 @@ export default class MenubarAdmin extends Component {
 
           <li className="nav-item">
             {/* <a href=""></a> */}
-            <Link to="/admin/manage-admin"> จัดการผู้ใช้งาน</Link>
+            <Link to="/admin/manage-user"> จัดการผู้ใช้งาน</Link>
           </li>
 
           <li className="nav-item">

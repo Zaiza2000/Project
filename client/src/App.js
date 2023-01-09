@@ -6,12 +6,17 @@ import LandingPage from "./components/page/LandingPage";
 import LoginPage from "./components/page/LoginPage";
 import SignUpPage from "./components/page/SignUpPage";
 import Navbar from "./components/layouts/Navbar";
+import ProductPage from "./components/page/ProductPage";
 
 // Layout
+
+
 
 // Page Admin
 import HomeAdmin from "./components/page/admin/HomeAdmin";
 import ManageUser from "./components/page/admin/ManageUser";
+import CreateCategory from "./components/page/admin/CreateCategory";
+import CreateProduct from "./components/page/admin/CreateProduct";
 
 // Page Member
 import HomeMember from "./components/page/member/HomeMember";
@@ -60,11 +65,18 @@ function App() {
           {/* <Route path="/" element={<LandingPage />}></Route> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/product" element={<ProductPage />} />
+
+          <Route path="/admin/manage-user" element={<ManageUser />} />
+          <Route path="/admin/create-category" element={<CreateCategory />} />
+          <Route path="/admin/create-product" element={<CreateProduct />} />
+          
+
 
           <Route path="/admin/index" 
           element={
             <AdminRoutes>
-          <ManageUser />
+          <HomeAdmin />
           </AdminRoutes>
           } />
 

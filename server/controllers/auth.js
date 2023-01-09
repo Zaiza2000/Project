@@ -207,8 +207,8 @@ exports.deleteCategory = async (req, res) => {
 //############Product.js################//
 exports.listProduct = async (req, res) => {
   try {
-    const product = await Product.findAll();
-    res.json(product);
+    const product = await Product.findAll()
+    res.send(product);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

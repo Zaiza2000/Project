@@ -3,10 +3,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../../App.css';
 import { Transition } from '@headlessui/react';
+//redux
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+
   return (
     <div>
       <nav className="bg-white-800 shadow-xl">

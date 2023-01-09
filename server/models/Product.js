@@ -3,8 +3,9 @@ const db = require("../database/db.js");
 // const category = require("Category.js");
 // const Category = require("./Category.js");
 
+// product_id: { type: DataTypes.INTEGER, primaryKey: true },
 const Product = db.define("products", {
-  product_id: { type: DataTypes.INTEGER, primaryKey: true },
+  
   product_name: { type: DataTypes.STRING },
   product_cost: { type: DataTypes.INTEGER },
   product_sale: { type: DataTypes.INTEGER },
