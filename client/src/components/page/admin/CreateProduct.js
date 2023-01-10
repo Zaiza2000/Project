@@ -23,6 +23,7 @@ export default function CreateProduct() {
       ...values,
       [e.target.name]: e.target.value,
     });
+    
   };
 
   const handleSubmit = (e) => {

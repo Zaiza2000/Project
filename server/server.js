@@ -8,10 +8,14 @@ require("dotenv").config();
 //const api = require('./routes/api.js')
 const db = require('./database/db.js')
 
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// db.categories.hasMany(db.products)
+// db.products.belongsToMany(db.categories)
 
 try {
   db.authenticate()

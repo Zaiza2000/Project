@@ -7,5 +7,10 @@ const Category = db.define("categories", {
   category_detail: { type: DataTypes.STRING },
 });
 
+Category.associate = models=> {
+  Category.hasOne(models.Product,
+  )
+}
+
 module.exports = Category;
 

@@ -3,9 +3,9 @@ const db = require("../database/db.js");
 // const category = require("Category.js");
 // const Category = require("./Category.js");
 
-// product_id: { type: DataTypes.INTEGER, primaryKey: true },
+
 const Product = db.define("products", {
-  
+  product_id : {type: DataTypes.INTEGER, autoIncrement: true,primaryKey: true},
   product_name: { type: DataTypes.STRING },
   product_cost: { type: DataTypes.INTEGER },
   product_sale: { type: DataTypes.INTEGER },
@@ -14,8 +14,13 @@ const Product = db.define("products", {
   product_num: { type: DataTypes.INTEGER },
   category_id: { type: DataTypes.INTEGER, foreignKey: true },
 });
+ Product.associste = module =>{
+  Product.belongsTo(module.Category, {
+    foreignKey : "category_id",
+  });
+ }
 
-// category.Category.hasOne(Product);
+// category.Category.belongsTo(Product);
 // Product.belongsTo(Category.Category, { foreignKey: "category_id" });
 
 module.exports = Product;
