@@ -14,9 +14,10 @@ const Product = db.define("products", {
   product_num: { type: DataTypes.INTEGER },
   category_id: { type: DataTypes.INTEGER, foreignKey: true },
 });
+
  Product.associste = module =>{
   Product.belongsTo(module.Category, {
-    foreignKey : "category_id",
+    foreignKey : {allowNull :false},
   });
  }
 

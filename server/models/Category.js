@@ -8,7 +8,10 @@ const Category = db.define("categories", {
 });
 
 Category.associate = models=> {
-  Category.hasOne(models.Product,
+  Category.hasMany(models.Product,{
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT'
+  }
   )
 }
 

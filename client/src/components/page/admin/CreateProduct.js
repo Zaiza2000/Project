@@ -8,7 +8,7 @@ const initialstate = {
   product_name: "",
   product_cost: "",
   product_sale: "",
-  product_photo: "",
+  product_photo: null,
   product_detail: "",
   product_num: "",
   category_id: "",
@@ -23,19 +23,16 @@ export default function CreateProduct() {
       ...values,
       [e.target.name]: e.target.value,
     });
-    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createProduct(user.token, values)
+    createProduct(values)
       .then((res) => {
-        console.log(res.data);
-        toast.success("Insert " + res.data.product_name + "success")
+        alert("Insert " + "Product " + "success");
       })
       .catch((error) => {
         console.log(error.response);
-        toast.error(error.response.data);
       });
   };
 

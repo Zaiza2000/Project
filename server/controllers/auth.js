@@ -109,16 +109,15 @@ exports.editUser = async (req, res) => {
 
 exports.changeRole = async (req, res) => {
   try {
-    console.log("Before req.body =>" ,req.body);
-    
-    const user = await User.update(req.body,{
-       where: { id: req.body.id ,role: req.body.role }
+    console.log("Before req.body =>", req.body);
+
+    const user = await User.update(req.body, {
+      where: { id: req.body.id, role: req.body.role },
     });
-    console.log("After req.body =>" ,req.body);
-    console.log("changeRole=>",user);
+    console.log("After req.body =>", req.body);
+    console.log("changeRole=>", user);
     res.json(user);
     //res.send(user);
-
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
@@ -127,19 +126,16 @@ exports.changeRole = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-     await User.destroy({
-      where: { id : req.params.id},
+    await User.destroy({
+      where: { id: req.params.id },
     });
     //console.log("deleteUser" , user);
     res.json("DeleteUser");
-
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
   }
 };
-
-
 
 //############Category.js################//
 exports.listCategory = async (req, res) => {
@@ -207,7 +203,7 @@ exports.deleteCategory = async (req, res) => {
 //############Product.js################//
 exports.listProduct = async (req, res) => {
   try {
-    const product = await Product.findAll()
+    const product = await Product.findAll();
     res.send(product);
   } catch (error) {
     console.log(error);
