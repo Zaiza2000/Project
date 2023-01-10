@@ -39,7 +39,7 @@ export default function Navbar() {
                   </a>
                   <a
                     href="/sign-up"
-                    className="bg-[#4060FF] text-[#ffffff] hover:bg-[#3951c7] px-5 py-[8px] rounded-[8px] text-[14px] font-medium">
+                    className="bg-red-600 text-[#ffffff] hover:bg-red-300 px-5 py-[8px] rounded-[8px] text-[14px] font-medium">
                     Sign Up
                   </a>
                 </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
                 </a>
                 <a
                   href="/sign-up"
-                  className="w-full bg-[#4060FF] text-[#ffffff] hover:bg-[#3951c7] px-5 py-[8px] rounded-[8px] text-[14px] font-medium">
+                  className="w-full bg-red-600 text-[#ffffff] hover:bg-red-300 px-5 py-[8px] rounded-[8px] text-[14px] font-medium">
                   SignUp
                 </a>
               </div>

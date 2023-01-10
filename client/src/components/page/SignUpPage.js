@@ -76,7 +76,7 @@ export default function SignUpPage() {
       <Navbar/>
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
-          <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
+          <h1 className="text-3xl font-semibold text-center text-red-700 uppercase">
             ลงทะเบียน
           </h1>
           <form className="w-full max-w-lg" onSubmit={handleSubmit}>
@@ -256,7 +256,7 @@ export default function SignUpPage() {
             </div>
 
             <div className="flex flex-wrap -mx-3 mb-2">
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-city"
@@ -272,34 +272,8 @@ export default function SignUpPage() {
                   onChange={handleChange}
                 />
               </div>
-              {/* <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-state"
-                >
-                  ตำบล
-                </label>
-                <div className="relative">
-                  <select
-                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state" 
-                  >
-                    <option>ศิลา</option>
-                    <option>ในเมือง</option>
-                    <option>โนนม่วง</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-                </div>
-              </div> */}
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-zip"
@@ -323,7 +297,7 @@ export default function SignUpPage() {
                             Forget Password?
                         </a> */}
             <div className="mt-6">
-              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
                 สมัครสมาชิก
               </button>
             </div>
@@ -334,7 +308,7 @@ export default function SignUpPage() {
             มีบัญชีผู้ใช้แล้ว{" "}
             <a
               href="/login"
-              className="font-medium text-purple-600 hover:underline"
+              className="font-medium text-red-600 hover:underline"
             >
               Login
             </a>
