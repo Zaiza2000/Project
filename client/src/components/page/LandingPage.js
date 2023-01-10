@@ -31,7 +31,7 @@ export default function LandingPage() {
                             <div className="mx-auto mb-10 max-w-[370px]">
                                 <div className="mb-8 overflow-hidden rounded">
                                     <img
-                                        src="https://cdn.tailgrids.com/2.0/image/application/images/blogs/blog-01/image-01.jpg"
+                                        src="https://static.wixstatic.com/media/3d8c2f_05784e76280949e3930b00d8ea894327~mv2.jpg/v1/fill/w_980,h_511,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/3d8c2f_05784e76280949e3930b00d8ea894327~mv2.jpg"
                                         alt="image"
                                         className="w-full"
                                     />
