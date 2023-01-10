@@ -8,6 +8,11 @@ export const listProduct = async (authtoken) => {
   });
 };
 
-
-export const createProduct = async (value) =>
-  await axios.post(process.env.REACT_APP_API + "/createProduct", value);
+export const createProduct = async (value) => {
+  console.log(value);
+  let result = await axios.post(
+    process.env.REACT_APP_API + "/createProduct",
+    value
+  );
+  return result;
+};

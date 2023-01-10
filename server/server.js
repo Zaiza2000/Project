@@ -4,18 +4,15 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const { readdirSync } = require("fs");
 require("dotenv").config();
+const Sequelize = require("sequelize");
 
-//const api = require('./routes/api.js')
+//database
 const db = require('./database/db.js')
-
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-// db.categories.hasMany(db.products)
-// db.products.belongsToMany(db.categories)
 
 try {
   db.authenticate()
