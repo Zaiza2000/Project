@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 //function
 import { createProduct } from "../../functions/product";
+import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 const initialstate = {
   product_name: "",
@@ -37,12 +38,13 @@ export default function CreateProduct() {
   };
 
   //console.log("USER===>", user);
-  return (
+  return (    
     <div>
       <h1>CreateProduct</h1>
+      {/* <MenubarAdmin/> */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Product Name</label>
+          <label>ชื่อสินค้า</label>
           <input
             className="form-control"
             type="text"
@@ -52,7 +54,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Product Cost:</label>
+          <label>จำนวนสินค้า</label>
           <input
             className="form-control"
             type="number"
@@ -62,7 +64,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Product Sale:</label>
+          <label>ราคาสินค้า</label>
           <input
             className="form-control"
             type="number"
@@ -72,7 +74,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Product Detail:</label>
+          <label>รายละเอียด:</label>
           <input
             className="form-control"
             type="text"
