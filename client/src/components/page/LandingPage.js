@@ -47,12 +47,11 @@ export default function LandingPage() {
                                             href="javascript:void(0)"
                                             className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
                                         >
-                                            Meet AutoManage, the best AI management tools
+                                            ร้านจัดจำหน่ายอะไหล่รถจักรยานยนต์ Honda
                                         </a>
                                     </h3>
                                     <p className="text-body-color text-base">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry.
+                                        ราคาเป็นมิตร
                                     </p>
                                 </div>
                             </div>
@@ -77,12 +76,11 @@ export default function LandingPage() {
                                             href=""
                                             className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
                                         >
-                                            How to earn more money as a wellness coach
+                                            สะดวก ปลอยภัย ไม่ต้องเดินทาง
                                         </a>
                                     </h3>
                                     <p className="text-body-color text-base">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry.
+                                        สั่งซื้อได้ทางออนไลน์
                                     </p>
                                 </div>
                             </div>
@@ -107,12 +105,11 @@ export default function LandingPage() {
                                             href="javascript:void(0)"
                                             className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
                                         >
-                                            The no-fuss guide to upselling and cross selling
+                                          สินค้ามีปัญหาเคลมได้
                                         </a>
                                     </h3>
                                     <p className="text-body-color text-base">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry.
+                                    หากลูกค้าซื้อสินค้ากับทางร้านแล้วมีปัญหา ลูกค้าสามารถนำสินค้าตัวนั้นมาเคลมกับทางร้านได้เลย (เงื่อนไขเป็นไปตามที่บริษัทกำหนด)
                                     </p>
                                 </div>
                             </div>
