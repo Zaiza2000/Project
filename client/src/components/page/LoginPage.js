@@ -40,8 +40,8 @@ export default function LoginPage() {
     //code
     login(value)
       .then((res) => {
-        console.log(res.data);
-        alert(res.data);
+        //console.log(res.data);
+        alert("WELLCOME");
         dispatch({
           type:'LOGIN',
           payload: {
@@ -61,7 +61,7 @@ export default function LoginPage() {
       });
   };
 
-  console.log(value);
+  //console.log(value);
   return (
     <div className="App">
       <Navbar/>

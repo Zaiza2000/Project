@@ -28,14 +28,14 @@ const router = express.Router();
 const { auth, adminCheck } = require("../middleware/auth.js");
 
 //API User//
-router.get("/listUser", auth, listUser);
+router.get("/listUser", listUser);
 router.get("/getUser/:id", getUser);
 router.post("/login", login);
 router.post("/createUser", createUser);
 router.put("/editUser/:id", editUser);
 router.delete("/deleteUser/:id", deleteUser);
 //Change User//
-router.post("/changeRole", auth, changeRole);
+router.post("/changeRole", changeRole);
 
 //API Category//
 router.get("/listCategory", listCategory);

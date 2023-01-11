@@ -13,11 +13,12 @@ export default function ManageUser() {
 
   //console.log("data", data);
   useEffect(() => {
-    loadData(user.token);
+    loadData();
+    
   }, []);
 
-  const loadData = (authtoken) => {
-    listUser(authtoken)
+  const loadData = () => {
+    listUser()
       .then((res) => {
         setData(res.data);
       })
@@ -34,24 +35,21 @@ export default function ManageUser() {
         role:e
     }
     //console.log("values" ,values)
-    changeRole(user.token, values)
+    changeRole(values)
     .then((res) => {
         console.log("res.data =>",res.data);
-        loadData(user.token);
+        loadData();
     }).catch((err) => {
         console.log(err.response);
     })
   }
-
   
-
-
   const handleDelete = (id) => {
     if(window.confirm("Are you sure to delete?")){
-      deleteUser(user.token, id)
+      deleteUser( id)
       .then((res) => {
         console.log(res);
-        loadData(user.token);
+        loadData();
       })
       .catch((err) => {
         console.log(err.response.data);
