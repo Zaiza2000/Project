@@ -6,7 +6,7 @@ import Navbar from "../layouts/Navbar";
 export default function LandingPage() {
     return (
         <div className="App">
-            <Navbar/>
+            <Navbar />
             <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
                 <div className="container mx-auto">
                     <div className="-mx-4 flex flex-wrap justify-center">
@@ -37,11 +37,7 @@ export default function LandingPage() {
                                     />
                                 </div>
                                 <div>
-                                    <span
-                                        className="bg-primary mb-5 inline-block rounded py-1 px-4 text-center text-xs font-semibold leading-loose text-white"
-                                    >
-                                        Dec 22, 2023
-                                    </span>
+
                                     <h3>
                                         <a
                                             href="javascript:void(0)"
@@ -66,11 +62,7 @@ export default function LandingPage() {
                                     />
                                 </div>
                                 <div>
-                                    <span
-                                        className="bg-primary mb-5 inline-block rounded py-1 px-4 text-center text-xs font-semibold leading-loose text-white"
-                                    >
-                                        Mar 15, 2023
-                                    </span>
+
                                     <h3>
                                         <a
                                             href=""
@@ -95,21 +87,17 @@ export default function LandingPage() {
                                     />
                                 </div>
                                 <div>
-                                    <span
-                                        className="bg-primary mb-5 inline-block rounded py-1 px-4 text-center text-xs font-semibold leading-loose text-white"
-                                    >
-                                        Jan 05, 2023
-                                    </span>
+
                                     <h3>
                                         <a
                                             href="javascript:void(0)"
                                             className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
                                         >
-                                          สินค้ามีปัญหาเคลมได้
+                                            สินค้ามีปัญหาเคลมได้
                                         </a>
                                     </h3>
                                     <p className="text-body-color text-base">
-                                    หากลูกค้าซื้อสินค้ากับทางร้านแล้วมีปัญหา ลูกค้าสามารถนำสินค้าตัวนั้นมาเคลมกับทางร้านได้เลย (เงื่อนไขเป็นไปตามที่บริษัทกำหนด)
+                                        หากลูกค้าซื้อสินค้ากับทางร้านแล้วมีปัญหา ลูกค้าสามารถนำสินค้าตัวนั้นมาเคลมกับทางร้านได้เลย (เงื่อนไขเป็นไปตามที่บริษัทกำหนด)
                                     </p>
                                 </div>
                             </div>
