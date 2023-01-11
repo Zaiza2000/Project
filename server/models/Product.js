@@ -12,6 +12,7 @@ const Product = db.define("products", {
   product_photo: { type: DataTypes.STRING },
   product_detail: { type: DataTypes.STRING },
   product_num: { type: DataTypes.INTEGER },
+  product_promotion : { type: DataTypes.STRING },
   category_id: { type: DataTypes.INTEGER, foreignKey: true },
 });
 

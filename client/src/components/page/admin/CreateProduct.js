@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 //function
 import { createProduct } from "../../functions/product";
-import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 const initialstate = {
   product_name: "",
@@ -12,11 +10,12 @@ const initialstate = {
   product_photo: null,
   product_detail: "",
   product_num: "",
+  product_promotion: "",
   category_id: "",
 };
 
 export default function CreateProduct() {
-  const { user } = useSelector((state) => ({ ...state }));
+  //const { user } = useSelector((state) => ({ ...state }));
   const [values, setValues] = useState(initialstate);
 
   const handleChange = (e) => {
@@ -30,7 +29,7 @@ export default function CreateProduct() {
     e.preventDefault();
     createProduct(values)
       .then((res) => {
-        alert("Insert " + "Product " + "success");
+        alert("Insert Product success");
       })
       .catch((error) => {
         console.log(error.response);
@@ -54,7 +53,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>จำนวนสินค้า</label>
+          <label>ราคาทุน</label>
           <input
             className="form-control"
             type="number"
@@ -64,7 +63,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>ราคาสินค้า</label>
+          <label>ราคาขาย</label>
           <input
             className="form-control"
             type="number"
@@ -84,7 +83,7 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Product num:</label>
+          <label>จำนวนสินค้า:</label>
           <input
             className="form-control"
             type="number"
@@ -94,7 +93,17 @@ export default function CreateProduct() {
           />
         </div>
         <div className="form-group">
-          <label>Category_id</label>
+          <label>promotion:</label>
+          <input
+            className="form-control"
+            type="text"
+            name="product_promotion"
+            value={values.product_promotion}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>รหัสประเภทของสินค้า</label>
           <input
             className="form-control"
             type="number"
