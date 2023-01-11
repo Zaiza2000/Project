@@ -109,15 +109,10 @@ exports.editUser = async (req, res) => {
 
 exports.changeRole = async (req, res) => {
   try {
-    console.log("Before req.body =>", req.body);
-
     const user = await User.update(req.body, {
-      where: { id: req.body.id, role: req.body.role },
+      where: { id: req.body.id },
     });
-    console.log("After req.body =>", req.body);
-    console.log("changeRole=>", user);
-    res.json(user);
-    //res.send(user);
+    res.send(user);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

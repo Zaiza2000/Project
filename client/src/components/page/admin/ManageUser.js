@@ -33,7 +33,7 @@ export default function ManageUser() {
         id:id,
         role:e
     }
-    console.log("values" ,values)
+    //console.log("values" ,values)
     changeRole(user.token, values)
     .then((res) => {
         console.log("res.data =>",res.data);
