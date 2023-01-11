@@ -16,3 +16,8 @@ export const createCategory = async (value) => {
     );
     return result;
   };
+
+export const deleteCategory = async (id) => {
+    return await axios.delete(process.env.REACT_APP_API + "/deleteCategory/" + id, 
+    );
+  };
