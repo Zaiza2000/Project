@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from "react";
 //function
-import { createCategory, listCategory , deleteCategory } from "../../functions/category";
+import { createProduct,listProduct,deleteProduct} from "../../../../components/functions/product";
 
 const initialstate = {
+  product_name: "",
+  product_cost: "",
+  product_sale: "",
+  product_photo: null,
+  product_detail: "",
+  product_num: "",
+  product_promotion: "",
   category_id: "",
-  category_name: "",
-  category_detail: "",
 };
 
-export default function CreateCategory() {
+export default function CreateProduct() {
   const [values, setValues] = useState(initialstate);
-  const [category, setCategory] = useState([]);
+  const [product , setProduct] = useState([]);
 
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = () => {
-    listCategory()
+    listProduct()
       .then((res) => {
-        setCategory(res.data);
+        setProduct(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  // console.log("data", category);
+
 
   const handleChange = (e) => {
     setValues({
@@ -36,7 +41,7 @@ export default function CreateCategory() {
 
   const handleDelete = (id) => {
     if(window.confirm("Are you sure to delete?")){
-      deleteCategory(id)
+      deleteProduct(id)
       .then((res) => {
         console.log(res);
         loadData();
@@ -49,21 +54,82 @@ export default function CreateCategory() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createCategory(values)
+    createProduct(values)
       .then((res) => {
-        alert("Insert Category success");
-        loadData()
+        alert("Insert Product success");
+        loadData();
       })
       .catch((error) => {
         console.log(error.response);
       });
   };
 
-  return (
+  //console.log("USER===>", user);
+  return (    
     <div>
-      <h1>CreateCategory</h1>
-
+      <h1>CreateProduct</h1>
+      {/* <MenubarAdmin/> */}
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>ชื่อสินค้า</label>
+          <input
+            className="form-control"
+            type="text"
+            name="product_name"
+            value={values.product_name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>ราคาทุน</label>
+          <input
+            className="form-control"
+            type="number"
+            name="product_cost"
+            value={values.product_cost}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>ราคาขาย</label>
+          <input
+            className="form-control"
+            type="number"
+            name="product_sale"
+            value={values.product_sale}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>รายละเอียด:</label>
+          <input
+            className="form-control"
+            type="text"
+            name="product_detail"
+            value={values.product_detail}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>จำนวนสินค้า:</label>
+          <input
+            className="form-control"
+            type="number"
+            name="product_num"
+            value={values.product_num}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>promotion:</label>
+          <input
+            className="form-control"
+            type="text"
+            name="product_promotion"
+            value={values.product_promotion}
+            onChange={handleChange}
+          />
+        </div>
         <div className="form-group">
           <label>รหัสประเภทของสินค้า</label>
           <input
@@ -74,49 +140,36 @@ export default function CreateCategory() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
-          <label>ชื่อประเภทของสินค้า</label>
-          <input
-            className="form-control"
-            type="text"
-            name="category_name"
-            value={values.category_name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>รายละเอียดประเภทสินค้า</label>
-          <input
-            className="form-control"
-            type="text"
-            name="category_detail"
-            value={values.category_detail}
-            onChange={handleChange}
-          />
-        </div>
 
         <button type="submit" className="btn btn-primary">
           submit
         </button>
       </form>
+
       <div className="table" >
         <table className="min-w-full border-collapse block md:table">
           <thead className="block md:table-header-group">
             <tr className="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
               <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                Category ID
+                Product ID
               </th>
               <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                 Name
               </th>
               <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                Cost
+              </th>
+              <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                Sale
+              </th>
+              <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                Quantity
+              </th>
+              <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                 Detail
               </th>
               <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                CreatedAt
-              </th>
-              <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                UpdateAt
+                Promotion
               </th>
               <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                 Actions
@@ -124,30 +177,40 @@ export default function CreateCategory() {
             </tr>
           </thead>
           <tbody className="block md:table-row-group">
-            {category.map((item) => (
+            {product.map((item) => (
               
               <tr className="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                  {item.category_id}
+                  {item.product_id}
                 </td>
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                  {item.category_name}
+                  {item.product_name}
                 </td>
 
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                  {item.category_detail}
+                  {item.product_cost}
                 </td>
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                  {item.createdAt}
+                  {item.product_sale}
                 </td>
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                  {item.updatedAt}
+                  {item.product_num}
                 </td>
+                <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden font-bold"></span>
+                  {item.product_detail}
+                </td>
+                <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden font-bold"></span>
+                  {item.product_promotion}
+                </td>
+                
+                
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold">
                     Actions
@@ -155,7 +218,7 @@ export default function CreateCategory() {
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">
                     Edit
                   </button>
-                  <button onClick={()=> handleDelete(item.category_id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">
+                  <button onClick={()=> handleDelete(item.product_id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">
                     Delete
                   </button>
                 </td>

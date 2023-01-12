@@ -15,8 +15,12 @@ import ProductPage from "./components/page/ProductPage";
 // Page Admin
 import HomeAdmin from "./components/page/admin/HomeAdmin";
 import ManageUser from "./components/page/admin/ManageUser";
-import CreateCategory from "./components/page/admin/CreateCategory";
-import CreateProduct from "./components/page/admin/CreateProduct";
+//Category
+import CreateCategory from "./components/page/admin/category/CreateCategory";
+import UpdateCategory from "./components/page/admin/category/UpdateCategory";
+//Product
+import CreateProduct from "./components/page/admin/product/CreateProduct";
+import UpdateProduct from "./components/page/admin/product/UpdateProduct";
 
 // Page Member
 import HomeMember from "./components/page/member/HomeMember";
@@ -69,7 +73,9 @@ function App() {
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/create-category" element={<CreateCategory />} />
+          <Route path="/admin/update-category/:id" element={<UpdateCategory />} />
           <Route path="/admin/create-product" element={<CreateProduct />} />
+          <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
           
 
 

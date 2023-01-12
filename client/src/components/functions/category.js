@@ -1,5 +1,10 @@
 import axios from "axios";
 
+export const getCategory = async (id) => {
+  return await axios.get(process.env.REACT_APP_API + "/getCategory/" + id 
+  );
+};
+
 export const listCategory = async (authtoken) => {
     return await axios.get(process.env.REACT_APP_API + "/listCategory", {
       headers: {
@@ -15,6 +20,11 @@ export const createCategory = async (value) => {
       value
     );
     return result;
+  };
+
+  export const editCategory = async (id,value) => {
+    return await axios.put(process.env.REACT_APP_API + "/editCategory/" + id, value 
+    );
   };
 
 export const deleteCategory = async (id) => {
