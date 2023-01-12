@@ -39,6 +39,18 @@ export default function CreateCategory() {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createCategory(values)
+      .then((res) => {
+        alert("Insert Category success");
+        loadData();
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+
   const handleDelete = (id) => {
     if (window.confirm("Are you sure to delete?")) {
       deleteCategory(id)
@@ -50,18 +62,6 @@ export default function CreateCategory() {
           console.log(err.response.data);
         });
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createCategory(values)
-      .then((res) => {
-        alert("Insert Category success");
-        loadData();
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
   };
 
   return (

@@ -22,8 +22,8 @@ export const createCategory = async (value) => {
     return result;
   };
 
-  export const editCategory = async (id,value) => {
-    return await axios.put(process.env.REACT_APP_API + "/editCategory/" + id, value 
+  export const editCategory = async (id,value,category) => {
+    return await axios.put(process.env.REACT_APP_API + "/editCategory/" + id, value,category 
     );
   };
 
