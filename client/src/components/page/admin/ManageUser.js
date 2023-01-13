@@ -123,7 +123,7 @@ export default function ManageUser() {
                 </button>
                 <button
                     onClick={()=> handleDelete(item.id)}
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded"
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded ml-5"
                 >
                   Delete
                 </button>

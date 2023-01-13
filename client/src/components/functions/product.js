@@ -1,5 +1,10 @@
 import axios from "axios";
 
+export const getProduct = async (id) => {
+  return await axios.get(process.env.REACT_APP_API + "/getProduct/" + id 
+  );
+};
+
 export const listProduct = async (authtoken) => {
   return await axios.get(process.env.REACT_APP_API + "/listProduct", {
     headers: {
@@ -15,6 +20,11 @@ export const createProduct = async (value) => {
     value
   );
   return result;
+};
+
+export const editProduct = async (id,value,product) => {
+  return await axios.put(process.env.REACT_APP_API + "/editProduct/" + id, value,product 
+  );
 };
 
 export const deleteProduct = async (id) => {
