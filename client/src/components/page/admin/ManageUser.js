@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Select } from "antd";
 
 //function
@@ -8,7 +8,7 @@ import NavbarLogin from "../../layouts/NavbarLogin";
 import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 export default function ManageUser() {
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
   const [data, setData] = useState([]);
 
   //console.log("data", data);
@@ -61,31 +61,31 @@ export default function ManageUser() {
   return (
     <div>
       <NavbarLogin/>
-      <h1>ManageUser</h1>
-      {/* <MenubarAdmin/> */}
-      <table className="min-w-full border-collapse block md:table">
-        <thead className="block md:table-header-group">
-          <tr className="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-            <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+      <MenubarAdmin/>
+      <div className="mr-[1%] ml-[14%] mt-[-12%] rounded-xl bg-white p-6 ring ring-indigo-100 sm:p-8">
+            <table className="mt-10 w-full text-l text-left text-gray-900 dark:text-gray-600">
+              <thead className="text-l text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-600">
+          <tr>
+                  <th scope="col" class="px-6 py-3">
               Username
             </th>
-            <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                  <th scope="col" class="px-6 py-3">
               Role
             </th>
-            <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                  <th scope="col" class="px-6 py-3">
               CreatedAt
             </th>
-            <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                  <th scope="col" class="px-6 py-3">
               UpdateAt
             </th>
-            <th className="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                  <th scope="col" class="px-6 py-3">
               Actions
             </th>
           </tr>
         </thead>
         <tbody className="block md:table-row-group">
           {data.map((item, index) => (
-            <tr className="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                 <span className="inline-block w-1/3 md:hidden font-bold"></span>
                 {item.username}
@@ -132,6 +132,8 @@ export default function ManageUser() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
+    
   );
 }
