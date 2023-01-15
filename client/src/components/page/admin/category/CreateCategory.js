@@ -148,8 +148,8 @@ export default function CreateCategory() {
             </div>
           </form>
           <div className=" ">
-            <table className="mt-10 w-full text-l text-left text-gray-900 dark:text-gray-600">
-              <thead className="text-l text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-600">
+            <table className="mt-10 w-full text-l text-left text-gray-900 ">
+              <thead className="text-l text-gray-700 uppercase bg-blue-200 ">
                 <tr>
                   <th scope="col" class="px-10 py-3">
                     Category ID
@@ -178,7 +178,7 @@ export default function CreateCategory() {
               </thead>
               <tbody className="block md:table-row-group">
                 {category.map((item) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr class="bg-white border-b hover:bg-gray-50 ">
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>
                       {item.category_id}

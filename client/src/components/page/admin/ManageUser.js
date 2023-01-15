@@ -63,8 +63,8 @@ export default function ManageUser() {
       <NavbarLogin/>
       <MenubarAdmin/>
       <div className="mr-[1%] ml-[14%] mt-[-12%] rounded-xl bg-white p-6 ring ring-indigo-100 sm:p-8">
-            <table className="mt-10 w-full text-l text-left text-gray-900 dark:text-gray-600">
-              <thead className="text-l text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-600">
+            <table className="mt-10 w-full text-l text-left text-gray-900 ">
+              <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
           <tr>
                   <th scope="col" class="px-6 py-3">
               Username
@@ -85,7 +85,7 @@ export default function ManageUser() {
         </thead>
         <tbody className="block md:table-row-group">
           {data.map((item, index) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr class="bg-white border-b  hover:bg-gray-50 ">
               <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                 <span className="inline-block w-1/3 md:hidden font-bold"></span>
                 {item.username}
