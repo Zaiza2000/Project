@@ -170,7 +170,7 @@ export default function CreateCategory() {
                     {" "}
                     UpdateAt
                   </th>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" class="px-16 py-3">
                     {" "}
                     Actions
                   </th>
