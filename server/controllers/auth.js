@@ -5,7 +5,7 @@ const Product = require("../models/Product.js");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
-//############User.js################//
+//############ User.js ################//
 exports.listUser = async (req, res) => {
   try {
     const user = await User.findAll();
@@ -132,7 +132,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-//############Category.js################//
+//############ Category.js ################//
 exports.listCategory = async (req, res) => {
   try {
     const category = await Category.findAll();
@@ -195,7 +195,7 @@ exports.deleteCategory = async (req, res) => {
   }
 };
 
-//############Product.js################//
+//############ Product.js ################//
 exports.listProduct = async (req, res) => {
   try {
     const product = await Product.findAll();
@@ -257,3 +257,18 @@ exports.deleteProduct = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
+
+//############ Search ################//
+
+const handleQuery = async (req, res, query) => {
+  let product = await Product.findOne( {$text:{ $search: query} }) 
+  res.send(product);
+}
+
+exports.searchFilters = async (req, res) => {
+  const {query} = req.body;
+  if(query){
+    console.log("Query=>" ,query);
+    await handleQuery(req, res, query);
+  }
+}

@@ -1,6 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+//Card
+import Search from "./components/card/Search";
 // Page
 import LandingPage from "./components/page/LandingPage";
 import LoginPage from "./components/page/LoginPage";
@@ -70,6 +72,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/product" element={<ProductPage />} />
+          <Route path="/search" element={<Search />} />
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/create-category" element={<CreateCategory />} />

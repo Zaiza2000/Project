@@ -17,15 +17,22 @@ const {
   deleteProduct,
   currentUser,
   changeRole,
+  searchFilters,
 } = require("../controllers/auth.js");
 const express = require("express");
 
 const router = express.Router();
 
-//@Enpoint    http://localhost:8000/api/listUser
+//@Enpoint    http://localhost:8000/api
 
 //Middleware
 const { auth, adminCheck } = require("../middleware/auth.js");
+
+//Current-User
+router.post("/current-user", auth, currentUser);
+
+//Current-Admin
+router.post("/current-admin", auth, adminCheck, currentUser);
 
 //API User//
 router.get("/listUser", listUser);
@@ -51,10 +58,9 @@ router.post("/createProduct", createProduct);
 router.put("/editProduct/:id", editProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 
-//Current-User
-router.post("/current-user", auth, currentUser);
+//API Search//
+router.post("/search/filters" , searchFilters);
 
-//Current-Admin
-router.post("/current-admin", auth, adminCheck, currentUser);
+
 
 module.exports = router;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+//Card
+import Search from "../../.././card/Search";
 
 //page
 import MenubarAdmin from "../../../layouts/MenubarAdmin";
@@ -72,7 +74,6 @@ export default function CreateProduct() {
       });
   };
 
-  //console.log("USER===>", user);
   return (
     <div>
       <NavbarLogin />
@@ -227,40 +228,43 @@ export default function CreateProduct() {
               </div>
             </div>
           </form>
+          <div>
+            <Search />
+          </div>
 
           <div className="">
             <table className="mt-10 w-full text-l text-left text-gray-900 dark:text-gray-600 ">
               <thead className="text-l text-gray-700 uppercase bg-blue-200 dark:bg-gray-700 dark:text-gray-600 ">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Product ID
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Name
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Cost
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Sale
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Quantity
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Detail
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Promotion
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody className="block md:table-row-group">
                 {product.map((item) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>
                       {item.product_id}
