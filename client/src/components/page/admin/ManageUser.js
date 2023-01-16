@@ -62,7 +62,7 @@ export default function ManageUser() {
     <div>
       <NavbarLogin/>
       <MenubarAdmin/>
-      <div className="mr-[1%] ml-[14%] mt-[-12%] rounded-xl bg-white p-6 ring ring-indigo-100 sm:p-8">
+      <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-100 sm:p-8">
             <table className="mt-10 w-full text-l text-left text-gray-900 ">
               <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
           <tr>
