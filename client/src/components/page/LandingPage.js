@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { json, Link } from "react-router-dom";
+// import { json, Link } from "react-router-dom";
 import "../../App.css";
 import Navbar from "../layouts/Navbar";
 import CardProduct from "../card/CardProduct";
@@ -125,11 +125,11 @@ export default function LandingPage() {
       </div>
 
       <div className="flex justify-center mb-10">
-        {/* {loading ? <h1>Loading.....</h1> : <div className="flex justify-center"><h1>สินค้าภายในร้าน</h1></div>} */}
+        {loading ? <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1> : <div className="flex justify-center"><h1></h1></div>}
 
         <div className=" grid grid-cols-4 gap-8 content-start">
-          {product.map((item) => (
-            <div className="">
+          {product.map((item , index) => (
+            <div key={index} className="">
               <CardProduct product={item} />
             </div>
           ))}

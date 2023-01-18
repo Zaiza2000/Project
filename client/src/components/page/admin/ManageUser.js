@@ -118,9 +118,9 @@ export default function ManageUser() {
                 <span className="inline-block w-1/3 md:hidden font-bold">
                   Actions
                 </span>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">
+                {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">
                   Edit
-                </button>
+                </button> */}
                 <button
                     onClick={()=> handleDelete(item.id)}
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded ml-5"
