@@ -103,13 +103,11 @@ export default function LandingPage() {
                     />
                   </div>
                   <div>
-                    <h3>
-                      <a
-                        href="javascript:void(0)"
-                        className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
-                      >
+                    <h3 className="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
+                  >
+                      
                         สินค้ามีปัญหาเคลมได้
-                      </a>
+                      
                     </h3>
                     <p className="text-body-color text-base">
                       หากลูกค้าซื้อสินค้ากับทางร้านแล้วมีปัญหา
@@ -125,7 +123,7 @@ export default function LandingPage() {
       </div>
 
       <div className="flex justify-center mb-10">
-        {loading ? <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1> : <div className="flex justify-center"><h1></h1></div>}
+        {loading ? <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1> : <div className="flex justify-center"><h1> </h1></div>}
 
         <div className=" grid grid-cols-4 gap-8 content-start">
           {product.map((item , index) => (

@@ -4,7 +4,7 @@ import NavbarLogin from "../../layouts/NavbarLogin";
 export default function HomeMember() {
     return (
         <div >
-            <NavbarLogin/>
+            <NavbarLogin />
             <MenubarMember />
 
             <h1>Home User</h1>
