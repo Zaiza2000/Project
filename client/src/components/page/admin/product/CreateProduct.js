@@ -20,7 +20,6 @@ const initialstate = {
   product_photo: null,
   product_detail: "",
   product_num: "",
-  product_promotion: "",
   category_id: "",
 };
 
@@ -183,15 +182,15 @@ export default function CreateProduct() {
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
                   for="inline-full-name"
                 >
-                  promotion
+                  Photo (URL)
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
-                  name="product_promotion"
-                  value={values.product_promotion}
+                  name="product_photo"
+                  value={values.product_photo}
                   onChange={handleChange}
                 />
               </div>
@@ -228,9 +227,7 @@ export default function CreateProduct() {
               </div>
             </div>
           </form>
-          <div>
-            <Search />
-          </div>
+         
 
           <div className="">
             <table className="mt-10 w-full text-l text-left text-gray-900  ">
@@ -255,7 +252,7 @@ export default function CreateProduct() {
                     Detail
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Promotion
+                    Photo
                   </th>
                   <th scope="col" className="px-14 py-3">
                     Actions
@@ -292,7 +289,11 @@ export default function CreateProduct() {
                     </td>
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_promotion}
+                      <img
+                        className="rounded-t-lg h-32 w-32"
+                        src={item.product_photo}
+                        alt=""
+                      />
                     </td>
 
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
