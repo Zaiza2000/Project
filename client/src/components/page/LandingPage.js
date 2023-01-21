@@ -39,9 +39,21 @@ export default function LandingPage() {
     <div className="App">
       <Navbar />
       <div >
-        <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20 ">
+        <div
+          className="mx-auto max-w-screen-xl  py-12 "
+        >
+          <div className="mx-auto  text-center bg-white">
+            <h1 className="text-3xl font-extrabold text-red-700 sm:text-4xl">
+            จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
+              {/* <strong className="font-extrabold text-red-700 sm:block">
+              จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
+              </strong> */}
+            </h1>
+          </div>
+
+        </div>
+        <section className="pb-5  lg:pb-20 ">
           <div className="container mx-auto">
-           
             <Swiper
               spaceBetween={30}
               centeredSlides={true}
