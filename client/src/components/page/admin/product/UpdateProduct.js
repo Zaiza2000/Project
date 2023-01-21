@@ -59,7 +59,7 @@ export default function UpdateProduct() {
 
   return (
     <div>
-      <NavbarLogin />
+      {/* <NavbarLogin /> */}
       <MenubarAdmin />
       <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8 ">
         <h3 className="text-4xl font-bold text-purple-600">แก้ไขสินค้า</h3>

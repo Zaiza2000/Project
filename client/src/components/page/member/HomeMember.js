@@ -5,7 +5,7 @@ import Shop from "../../page/member/Shop";
 export default function HomeMember() {
     return (
         <div >
-            <NavbarLogin />
+            {/* <NavbarLogin /> */}
             <MenubarMember />
 
             <Shop />

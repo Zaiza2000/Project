@@ -69,7 +69,7 @@ export default function CreateCategory() {
 
   return (
     <div>
-      <NavbarLogin />
+      {/* <NavbarLogin /> */}
       <MenubarAdmin />
       <div className="">
         <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8">

@@ -36,6 +36,7 @@ export default function Shop() {
         <MenubarMember />
         <h1>Shop</h1>
       </div> */}
+      
       <div className="">
         {loading ? (
           <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1>

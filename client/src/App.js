@@ -5,9 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./components/card/Search";
 // Page
 import LandingPage from "./components/page/LandingPage";
+import Home from "./components/page/Home";
 import LoginPage from "./components/page/LoginPage";
 import SignUpPage from "./components/page/SignUpPage";
 import Navbar from "./components/layouts/Navbar";
+import Product from "./components/page/Product";
+import Cart from "./components/page/Cart";
 // import ProductPage from "./components/page/ProductPage";
 
 // Layout
@@ -39,6 +42,8 @@ import NavbarLogin from "./components/layouts/NavbarLogin";
 import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
 
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -64,19 +69,19 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Navbar /> */}
+        <Navbar />
         {/* <NavbarLogin /> */}
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/home" element={<LandingPage />} />
-          {/* <Route path="/" element={<LandingPage />}></Route> */}
+          
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/home" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           {/* <Route path="/product-page" element={<ProductPage />} /> */}
           <Route path="/search" element={<Search />} />
 
-
-
+          <Route path="/product/:product_id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
 
 

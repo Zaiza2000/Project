@@ -25,7 +25,7 @@ export default function HomeAdmin() {
     
     return (
         <div>
-            <NavbarLogin />
+            {/* <NavbarLogin /> */}
             <h1>HomeAdmin</h1>
             <MenubarAdmin />
             

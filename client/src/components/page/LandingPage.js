@@ -37,7 +37,6 @@ export default function LandingPage() {
 
   return (
     <div className="App">
-      <Navbar />
       <div >
         <div
           className="mx-auto max-w-screen-xl  py-12 "
@@ -45,9 +44,7 @@ export default function LandingPage() {
           <div className="mx-auto  text-center bg-white">
             <h1 className="text-3xl font-extrabold text-red-700 sm:text-4xl">
             จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
-              {/* <strong className="font-extrabold text-red-700 sm:block">
-              จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
-              </strong> */}
+              
             </h1>
           </div>
 
