@@ -22,29 +22,13 @@ export default function HomeAdmin() {
         product_num: "",
         category_id: "",
     });
-    // useEffect(() => {
-    //     loadData();
-    //   }, []);
     
-    //   const loadData = () => {
-    //     listCategory()
-    //       .then((res) => {
-    //         setCategory(res.data);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   };
     return (
         <div>
             <NavbarLogin />
             <h1>HomeAdmin</h1>
             <MenubarAdmin />
-            {/* {
-                product_photo.map((item) => (
-                    <AdminProductCard />
-                ))
-            } */}
+            
 
         </div>
 

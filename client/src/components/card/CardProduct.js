@@ -3,6 +3,7 @@ import React from "react";
 export default function CardProduct({ product }) {
   //console.log(product);
   const { product_name, product_sale, product_photo, product_detail } = product;
+  
 
   return (
     <div>

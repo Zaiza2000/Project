@@ -10,15 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  
+
 
   return (
     <div>
       <nav className="bg-white-800 shadow-xl">
         <div className="mx-auto py-0 px-4 sm:px-6 lg:px-8 ">
           <div className="flex items-center h-[60px]">
-            <div className="flex flex-row w-full">
-              <img className="mb-5 mt-6 mr-2 h-[28px]" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGDv4YojGq2t5flr31AGZPPldJkmPskw76V0mSY-yTDvqYvewIVrSWu9z-1uVpCymZL1MGkBWld5k5IM5H99BnN&_nc_ohc=aO9RmexlAc0AX_uOHfp&tn=WFq8HKQEynlLiRDA&_nc_ht=scontent.fkkc3-1.fna&oh=00_AfBqPEjJFn4BfPEbPLquoEdyZ7XtdKP1BnU45kfHNPddBw&oe=63C19005" alt="logo" />
+            <div className="flex flex-row w-full justify-between">
+              {/* <img className="mb-5 mt-6 mr-2 h-[28px]" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGDv4YojGq2t5flr31AGZPPldJkmPskw76V0mSY-yTDvqYvewIVrSWu9z-1uVpCymZL1MGkBWld5k5IM5H99BnN&_nc_ohc=aO9RmexlAc0AX_uOHfp&tn=WFq8HKQEynlLiRDA&_nc_ht=scontent.fkkc3-1.fna&oh=00_AfBqPEjJFn4BfPEbPLquoEdyZ7XtdKP1BnU45kfHNPddBw&oe=63C19005" alt="logo" /> */}
               <div className="flex-grow-1 py-3">
                 <a href="/" className="text-red-600 text-[28px] font-bold ">
                   ปรีชา
@@ -26,10 +26,39 @@ export default function Navbar() {
                 <a href="/" className="text-[#000000] text-[28px] font-bold ">
                   พานิชย์
                 </a>
-                
               </div>
+              <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4">
+                <ul className="pr-4 hover:text-red-500">
+                  <li>
+                    <Link to="/"> หน้าหลัก </Link>
+                  </li>
+                </ul>
+                <ul className="pr-4 hover:text-red-500">
+                  <li>
+                    <Link to="/login"> ล็อกอิน </Link>
+                  </li>
+                </ul>
+                {/* <ul>
+                  <li>
+                    <Link to="/sign-up">Sign Up</Link>
+                  </li>
+                </ul> */}
+                <ul className="pr-4 ">
+                  <li>
+                    <Link to="/cart">
+                      <svg aria-hidden="true"
+                        className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.49.598l-1 5a.5.5 0 01-.465.401l-9.397.472L4.415 11H13a.5.5 0 010 1H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 100 4 2 2 0 000-4zm7 0a2 2 0 100 4 2 2 0 000-4zm-7 1a1 1 0 110 2 1 1 0 010-2zm7 0a1 1 0 110 2 1 1 0 010-2z" />
+                      </svg>
 
-              <div className="invisible md:visible">
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              {/* <div className="invisible md:visible">
                 
                 <div className="ml-10 space-x-4 flex flex-row mt-3">
                   <a
@@ -43,7 +72,7 @@ export default function Navbar() {
                     Sign Up
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="-mr-2 flex md:hidden">
               <button
