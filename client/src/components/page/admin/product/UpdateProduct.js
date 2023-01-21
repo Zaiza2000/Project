@@ -13,7 +13,6 @@ const initialstate = {
   product_photo: null,
   product_detail: "",
   product_num: "",
-  product_promotion: "",
   category_id: "",
 };
 
@@ -166,15 +165,16 @@ export default function UpdateProduct() {
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
                 for="inline-full-name"
               >
-                promotion
+                
+                Photo (URL)
               </label>
             </div>
             <div className="md:w-2/3">
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
-                name="product_promotion"
-                value={values.product_promotion}
+                name="product_photo"
+                value={values.product_photo}
                 onChange={handleChange}
               />
             </div>
