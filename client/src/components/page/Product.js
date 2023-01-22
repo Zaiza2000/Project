@@ -3,27 +3,27 @@ import { useParams } from "react-router-dom"
 import SingleProductCard from '../card/SingleProductCard'
 
 //funtion
-import { readProduct } from '../functions/product'
+import { listProduct } from '../functions/product'
 
 export default function Product() {
-    // const param = useParams()
-    // const [product, setProduct] = useState([])
+    const param = useParams()
+    const [product, setProduct] = useState([])
 
-    // useEffect(()=>{
-    //     //code
-    //     loadData()
-    // },[])
+    useEffect(()=>{
+        //code
+        loadData()
+    },[])
 
-    // const loadData = ()=>{
-    //     readProduct(param.id)
-    //     .then(res=>{
-    //         //code
-    //         setProduct(res.data)
-    //     }).catch(err=>{
-    //         //err
-    //         console.log(err.response.data)
-    //     })
-    // }
+    const loadData = ()=>{
+        listProduct(param.id)
+        .then(res=>{
+            //code
+            setProduct(res.data)
+        }).catch(err=>{
+            //err
+            console.log(err.response.data)
+        })
+    }
 
 
     return(
@@ -31,12 +31,12 @@ export default function Product() {
 
             <div className="row pt-4">
                 <SingleProductCard 
-                // product={product}
+                product={product}
                 />
             </div>
 
             <div className="row">
-                {/* {JSON.stringify(product)} */}
+                {JSON.stringify(product)}
 
             </div>
         </div>

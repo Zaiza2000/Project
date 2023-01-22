@@ -5,16 +5,20 @@ import ProductTableInCart from "../card/ProductTableInCart";
 
 export default function Cart() {
     const dispatch = useDispatch()
-    const { cart, user } = useSelector((state) => ({ ...state }));
+    // const { cart, user } = useSelector((state) => ({ ...state }));
 
-
+// console.log("Cart=>" ,cart);
     return (
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
                 <div class="max-w-3xl mx-auto">
+
                     <header class="text-center">
                         <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
                     </header>
+                    <div>Cart 
+                        
+                    </div>
                     <div class="mt-8">
                         <ul class="space-y-4">
                             <li class="flex items-center">
