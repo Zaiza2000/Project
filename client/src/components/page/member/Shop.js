@@ -36,18 +36,21 @@ export default function Shop() {
         <MenubarMember />
         <h1>Shop</h1>
       </div> */}
-      
+
       <div className="">
         {loading ? (
           <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1>
         ) : (
-          <h1>Product</h1>
+          <h1 className="text-3xl font-extrabold text-red-700 sm:text-4xl mt-4">
+            สินค้าทั้งหมด
+
+          </h1>
         )}
 
-            {product.length < 1 && <p>No Product </p> }
+        {product.length < 1 && <p>No Product </p>}
 
         <div className=" grid grid-cols-5 gap-4">
-          {product.map((item,index) => (
+          {product.map((item, index) => (
             <div key={index} className="">
               <CardProductMember product={item} />
             </div>

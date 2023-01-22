@@ -1,7 +1,7 @@
 // rafce
 import React, { useState } from "react";
 import '../../App.css';
-import { Menu, Badge } from "antd";
+import { Badge } from "antd";
 import { Transition } from '@headlessui/react';
 //redux
 
@@ -16,14 +16,15 @@ import {
   LogoutOutlined,
   DownOutlined,
   ShoppingOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 // Router
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../card/Search";
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  
+  // const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ export default function Navbar() {
                 </a>
               </div>
               <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4">
-                <ul className="pr-4 hover:text-red-500">
+                <ul className="pr-5 hover:text-red-500">
                   <li>
                     <Link to="/"> หน้าหลัก </Link>
                   </li>
@@ -71,10 +72,14 @@ export default function Navbar() {
                   </li>
                 </ul> */}
 
-                <ul className="pr-4 ">
+                <ul className="pl-4 pt-1 ">
                   <li>
                     <Link to="/cart">
-                      <Badge >
+                      <Badge
+                        count={5}
+                      // count={cart.length} 
+                      // offset={[9, 0]}
+                      >
                         <svg aria-hidden="true"
                           className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
                           fill="currentColor"
@@ -93,10 +98,10 @@ export default function Navbar() {
                 <>
                   <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4" title={user.username} icon={<DownOutlined />}>
                     {
-                      user.role = "admin" ? (
-                        <Link to="/admin/index">Dashboard</Link>
+                      user.role === "admin" ? (
+                        <Link to="/admin/index"><UserOutlined /></Link>
                       ) : (
-                        <Link to="/member/index">Dashboard</Link>
+                        <Link to="/member/index"><UserOutlined /></Link>
                       )
                     }
                     <div onClick={logout}>
@@ -107,19 +112,19 @@ export default function Navbar() {
               )}
               {!user && (
                 <>
-                  <div className="invisible md:visible text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row pt-4" icon={<LoginOutlined />}>
-                    <Link to="/login">Login</Link>
+                  <div className=" text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row pt-4" >
+                    <UserOutlined className="pt-1" /><Link to="/login"> Login</Link>
                   </div>
-                  <div className="invisible md:visible text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row pt-4" icon={<UserAddOutlined />}>
+                  {/* <div className="invisible md:visible text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row pt-4" icon={<UserAddOutlined />}>
                     <Link to="/sign-up">Sign Up</Link>
-                  </div>
+                  </div> */}
                 </>
               )}
               {/* <span className="p-1" style={{ float: "right" }}>
                 <Search />
               </span> */}
-               
-               {/* <div className="invisible md:visible">
+
+              {/* <div className="invisible md:visible">
                 <div className="ml-10 space-x-4 flex flex-row mt-3">
                   <a
                     href="/login"
