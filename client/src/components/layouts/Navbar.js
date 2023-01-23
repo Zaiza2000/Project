@@ -45,9 +45,9 @@ export default function Navbar() {
       <nav className="bg-white-800 shadow-xl">
         <div className="mx-auto py-0 px-4 sm:px-6 lg:px-8 ">
           <div className="flex items-center h-[60px]">
-            <div className="flex flex-row w-full justify-items-start">
+            <div className="flex flex-row w-full justify-between ">
               {/* <img className="mb-5 mt-6 mr-2 h-[28px]" src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGDv4YojGq2t5flr31AGZPPldJkmPskw76V0mSY-yTDvqYvewIVrSWu9z-1uVpCymZL1MGkBWld5k5IM5H99BnN&_nc_ohc=aO9RmexlAc0AX_uOHfp&tn=WFq8HKQEynlLiRDA&_nc_ht=scontent.fkkc3-1.fna&oh=00_AfBqPEjJFn4BfPEbPLquoEdyZ7XtdKP1BnU45kfHNPddBw&oe=63C19005" alt="logo" /> */}
-              <div className="flex-grow-1 py-3">
+              <div className="flex-grow-1 py-3 ">
                 <a href="/" className="text-red-600 text-[28px] font-bold ">
                   ปรีชา
                 </a>
@@ -55,7 +55,7 @@ export default function Navbar() {
                   พานิชย์
                 </a>
               </div>
-              <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4">
+              <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4 ">
                 <ul className="pr-5 hover:text-red-500">
                   <li>
                     <Link to="/"> หน้าหลัก </Link>
@@ -87,30 +87,31 @@ export default function Navbar() {
                     </Link>
                   </li>
                 </ul>
-              </div>
-              {user && (
-                <>
-                  <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4" title={user.username} icon={<DownOutlined />}>
-                    {
-                      user.role === "admin" ? (
-                        <Link to="/admin/index"><UserOutlined /></Link>
-                      ) : (
-                        <Link to="/member/index"><UserOutlined /></Link>
-                      )
-                    }
-                    <div onClick={logout}>
-                      Logout
+                {user && (
+                  <>
+                    <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4" title={user.username} icon={<DownOutlined />}>
+                      {
+                        user.role === "admin" ? (
+                          <Link to="/admin/index"><UserOutlined /></Link>
+                        ) : (
+                          <Link to="/member/index"><UserOutlined /></Link>
+                        )
+                      }
+                      <div onClick={logout}>
+                        Logout
+                      </div>
                     </div>
-                  </div>
-                </>
-              )}
-              {!user && (
-                <>
-                  <div className=" text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row pt-4" >
-                    <UserOutlined className="pt-1" /><Link to="/login"> Login</Link>
-                  </div>
-                </>
-              )}
+                  </>
+                )}
+                {!user && (
+                  <>
+                    <div className=" text-[#000000] hover:text-red-500 text-[20px]  pl-[40px] flex flex-row " >
+                      <UserOutlined className="pt-1" /><Link to="/login"> Login</Link>
+                    </div>
+                  </>
+                )}
+              </div>
+
             </div>
           </div>
         </div>
