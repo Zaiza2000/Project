@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import '../../App.css';
 import { Badge } from "antd";
-import { Transition } from '@headlessui/react';
 //redux
 
 import {
@@ -21,14 +20,14 @@ import {
 // Router
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Search from "../card/Search";
+
 
 export default function Navbar() {
   // const [isOpen, setIsOpen] = useState(false);
-
+const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, cart } = useSelector((state) => ({ ...state }));
+  
   console.log("user Navbar", user);
 
   const logout = () => {

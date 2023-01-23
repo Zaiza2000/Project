@@ -48,7 +48,7 @@ function App() {
   const dispatch = useDispatch();
 
   //token
-  const idtoken = localStorage.token;
+  const idtoken = window.localStorage.token;
   if (idtoken) {
     currentUser(idtoken)
       .then((res) => {

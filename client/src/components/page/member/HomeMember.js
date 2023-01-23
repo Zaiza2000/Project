@@ -1,6 +1,5 @@
 import MenubarMember from "../../layouts/MenubarMember";
-import NavbarLogin from "../../layouts/NavbarLogin";
-import Shop from "../../page/member/Shop";
+
 
 export default function HomeMember() {
     return (
@@ -8,7 +7,7 @@ export default function HomeMember() {
             {/* <NavbarLogin /> */}
             <MenubarMember />
 
-            <Shop />
+            {/* <Shop /> */}
 
         </div>
     )
