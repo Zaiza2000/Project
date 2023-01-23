@@ -19,7 +19,7 @@ const initialstate = {
   product_sale: "",
   product_photo: null,
   product_detail: "",
-  product_num: "",
+  product_quantity: "",
   category_id: "",
 };
 
@@ -170,8 +170,8 @@ export default function CreateProduct() {
                 <input
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
-                  name="product_num"
-                  value={values.product_num}
+                  name="product_quantity"
+                  value={values.product_quantity}
                   onChange={handleChange}
                 />
               </div>
@@ -281,7 +281,7 @@ export default function CreateProduct() {
                     </td>
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_num}
+                      {item.product_quantity}
                     </td>
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>

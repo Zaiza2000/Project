@@ -11,7 +11,7 @@ const Product = db.define("products", {
   product_sale: { type: DataTypes.INTEGER },
   product_photo: { type: DataTypes.STRING },
   product_detail: { type: DataTypes.STRING },
-  product_num: { type: DataTypes.INTEGER },
+  product_quantity: { type: DataTypes.INTEGER },
   category_id: { type: DataTypes.INTEGER, foreignKey: true },
 });
 

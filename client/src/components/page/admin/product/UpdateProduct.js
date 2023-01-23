@@ -12,7 +12,7 @@ const initialstate = {
   product_sale: "",
   product_photo: null,
   product_detail: "",
-  product_num: "",
+  product_quantity: "",
   category_id: "",
 };
 
@@ -75,11 +75,12 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 name="product_name"
                 value={values.product_name}
                 onChange={handleChange}
+                disabled
               />
             </div>
           </div>
@@ -94,11 +95,12 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_cost"
                 value={values.product_cost}
                 onChange={handleChange}
+                disabled
               />
             </div>
           </div>
@@ -113,11 +115,33 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_sale"
                 value={values.product_sale}
                 onChange={handleChange}
+                disabled
+              />
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6 ">
+            <div className="md:w-1/3">
+              <label
+                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
+                for="inline-full-name"
+              >
+                รหัสประเภทของสินค้า
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                type="number"
+                name="category_id"
+                value={values.category_id}
+                onChange={handleChange}
+                disabled
+                
               />
             </div>
           </div>
@@ -153,8 +177,8 @@ export default function UpdateProduct() {
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
-                name="product_num"
-                value={values.product_num}
+                name="product_quantity"
+                value={values.product_quantity}
                 onChange={handleChange}
               />
             </div>
@@ -179,25 +203,7 @@ export default function UpdateProduct() {
               />
             </div>
           </div>
-          <div className="md:flex md:items-center mb-6 ">
-            <div className="md:w-1/3">
-              <label
-                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                for="inline-full-name"
-              >
-                รหัสประเภทของสินค้า
-              </label>
-            </div>
-            <div className="md:w-2/3">
-              <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                type="number"
-                name="category_id"
-                value={values.category_id}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+          
 
           <div className="md:flex md:items-center">
             <div className="md:w-1/3"></div>
