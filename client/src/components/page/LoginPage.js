@@ -115,7 +115,7 @@ export default function LoginPage() {
             {" "}
             ไม่มีบัญชีผู้ใช้{" "}
             <a href="/sign-up" className="font-medium text-red-600 hover:underline">
-              Sign up
+              ลงทะเบียน
             </a>
           </p>
         </div>

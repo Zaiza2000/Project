@@ -284,7 +284,7 @@ export default function SignUpPage() {
                   id="grid-zip"
                   type="text"
                   name="zipcode"
-                  placeholder="90210"
+                  placeholder="40000"
                   onChange={handleChange}
                 />
               </div>
