@@ -69,7 +69,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+       <Navbar/>
         {/* <NavbarLogin /> */}
         <Routes>
           
@@ -95,6 +95,7 @@ function App() {
 
           <Route path="/admin/index" 
           element={
+            
             <AdminRoutes>
           <HomeAdmin />
           </AdminRoutes>
