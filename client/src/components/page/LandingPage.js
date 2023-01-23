@@ -73,14 +73,6 @@ export default function LandingPage() {
                   alt="image slide 1"
                 />
               </SwiperSlide>
-              {/* <SwiperSlide>
-                <img
-                  className="object-fill w-full h-96"
-                  src="https://drive.google.com/uc?id=1fR1VGx3T8R3PVl8WmjDEAFwx0q1Awpq3"
-                  aria-hidden
-                  alt="image slide 2"
-                />
-              </SwiperSlide> */}
               <SwiperSlide>
                 <img
                   className="object-fill w-full "
