@@ -43,8 +43,8 @@ export default function LandingPage() {
         >
           <div className="mx-auto  text-center bg-white">
             <h1 className="text-3xl font-extrabold text-red-700 sm:text-4xl">
-            จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
-              
+              จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
+
             </h1>
           </div>
 
@@ -86,8 +86,12 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mx-auto text-left">
+        <h1 className="text-3xl font-extrabold sm:text-5xl">
+          สินค้าทั้งหมด
+        </h1>
+      </div>
+      <div className="flex justify-center mb-10 pt-32">
         {loading ? <h1 className="text-4xl font-bold text-purple-600">Loading.....</h1> : <div className="flex justify-center"><h1> </h1></div>}
 
         <div className=" grid grid-cols-4 gap-8 content-start">

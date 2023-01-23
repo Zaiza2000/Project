@@ -49,7 +49,7 @@ export default function Shop() {
 
         {product.length < 1 && <p>No Product </p>}
 
-        <div className=" grid grid-cols-5 gap-4">
+        <div className=" grid grid-cols-3 gap-4">
           {product.map((item, index) => (
             <div key={index} className="">
               <CardProductMember product={item} />
