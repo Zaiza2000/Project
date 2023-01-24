@@ -88,7 +88,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
                 </ul>
                 {user && (
                   <>
-                    <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4" title={user.username} icon={<DownOutlined />}>
+                    <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row " title={user.username} icon={<DownOutlined />}>
                       {
                         user.role === "admin" ? (
                           <Link to="/admin/index"><UserOutlined /></Link>
