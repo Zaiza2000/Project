@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //function
 import { sighUp } from "../functions/auth";
 import Navbar from "../layouts/Navbar";
+import { Link } from "react-router-dom";
 
 // import axios from "axios";
 
@@ -297,7 +298,7 @@ export default function SignUpPage() {
                         </a> */}
             <div className="mt-6">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
-                สมัครสมาชิก
+                <Link to="/login">สมัครสมาชิก</Link>
               </button>
             </div>
           </form>

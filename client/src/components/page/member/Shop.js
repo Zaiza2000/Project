@@ -4,11 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CardProductMember from "../../card/CardProductMember";
 //function
 import { listProduct } from "../../functions/product";
-import {
-  List,
-  ListItem,
-  Range,
-} from 'konsta/react';
+
 export default function Shop() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
@@ -39,41 +35,31 @@ export default function Shop() {
       <div className="grid grid-rows-4 grid-flow-col gap-4">
         <div className="text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">กรองตาม
           <label className="block mb-2 text-2xl text-left pt-20">ราคา {price} ฿</label>
-          {/* <input type="range" min="0" max="10" value="5" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"></input> */}
-          <div className="flex space-x-4">
-            <span className="text-2xl">0฿</span>
-            <Range
-                    className="bg-black"
-                    value={price}
-                    step={1}
-                    min={0}
-                    max={1000}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
-            <span className="text-2xl ">1000฿</span>
+          <input type="range"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            value={price}
+            step={1}
+            min={0}
+            max={1000}
+            onChange={(e) => setPrice(e.target.value)} >
+          </input>
+          <div className="flex justify-between">
+            <div className="text-2xl">0฿</div>
+            <div className="text-2xl ">1000฿</div>
           </div>
+          {/* <div className="flex space-x-4">
+          <span className="text-2xl">0฿</span>
+          <Range
+            className="bg-black range range-secondary"
+            value={price}
+            step={1}
+            min={0}
+            max={1000}
+            onChange={(e) => setPrice(e.target.value)}
+          />
+          <span className="text-2xl ">1000฿</span> */}
+          {/* </div> */}
 
-
-          {/* <List strong insetMaterial outlineIos >
-            <ListItem
-            
-              innerClassName="flex space-x-4"
-              innerChildren={
-                <>
-                  <span className="text-2xl ">0฿</span>
-                  <Range
-                    className="bg-red-200"
-                    value={price}
-                    step={1}
-                    min={0}
-                    max={1000}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
-                  <span className="text-2xl ">1000฿</span>
-                </>
-              }
-            />
-          </List> */}
           <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
           <div class="flex items-center mb-4">
             <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
@@ -107,6 +93,6 @@ export default function Shop() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

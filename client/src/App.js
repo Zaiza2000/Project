@@ -41,6 +41,7 @@ import NavbarLogin from "./components/layouts/NavbarLogin";
 //Routes
 import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
+import CheckOut from "./components/page/CheckOut";
 
 
 
@@ -69,11 +70,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-       <Navbar/>
+        <Navbar />
         {/* <NavbarLogin /> */}
         <Routes>
-          
-          <Route exact path="/" element={<Home/>} />
+
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/home" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
@@ -90,22 +91,30 @@ function App() {
           <Route path="/admin/update-category/:id" element={<UpdateCategory />} />
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
-          
 
 
-          <Route path="/admin/index" 
-          element={
-            
-            <AdminRoutes>
-          <HomeAdmin />
-          </AdminRoutes>
-          } />
+
+          <Route path="/admin/index"
+            element={
+
+              <AdminRoutes>
+                <HomeAdmin />
+              </AdminRoutes>
+            } />
 
           <Route
             path="/member/index"
             element={
               <UserRoutes>
                 <HomeMember />
+              </UserRoutes>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <UserRoutes>
+                <CheckOut />
               </UserRoutes>
             }
           />
