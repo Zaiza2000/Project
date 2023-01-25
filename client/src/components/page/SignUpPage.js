@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //function
 import { sighUp } from "../functions/auth";
 import Navbar from "../layouts/Navbar";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 // import axios from "axios";
 
@@ -22,7 +22,8 @@ export default function SignUpPage() {
     province: "",
     zipcode: "",
   });
-
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setValue({
       ...value,
@@ -58,10 +59,13 @@ export default function SignUpPage() {
     } else if (!value.zipcode) {
       alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
     } else {
+
       sighUp(value)
         .then((res) => {
           console.log(res.data);
+          navigate("/login")
         })
+
         .catch((error) => {
           console.log(error.response.data);
           alert(error.response.data);

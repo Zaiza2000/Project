@@ -84,7 +84,7 @@ function App() {
           <Route path="/product/:product_id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
-
+          <Route path="/checkout" element={<CheckOut />} />
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/create-category" element={<CreateCategory />} />
@@ -107,14 +107,6 @@ function App() {
             element={
               <UserRoutes>
                 <HomeMember />
-              </UserRoutes>
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <UserRoutes>
-                <CheckOut />
               </UserRoutes>
             }
           />
