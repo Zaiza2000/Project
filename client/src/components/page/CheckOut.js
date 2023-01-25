@@ -8,20 +8,20 @@ export default function CheckOut() {
                 สั่งซื้อสินค้า
             </h1>
             <div className="flex space-x-10 m-20">
-                <div id="checkout" className="flex-1 w-26 ">
+                <div id="checkout" className="flex-1 w-32 ">
                     ที่อยู่สำหรับจัดส่งสินค้า
-                    <div class="flex ">
+                    <div className="flex ">
                         <div>
-                            <div class="form-check">
-                                <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault10" checked></input>
+                            <div className="form-check">
+                                <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault10" checked></input>
                                 <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
                                     ใช้ที่อยู่เดียวกับที่อยู่ของสมาชิก
                                 </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault20"></input>
+                            <div className="form-check">
+                                <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault20"></input>
                                 <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
-                                    ใช่ที่อยู่ใหม่
+                                    ใช้ที่อยู่ใหม่
                                     <form className="mt-6">
                                         <div className="mb-2">
                                             <label
@@ -50,10 +50,122 @@ export default function CheckOut() {
                                             >
                                                 ที่อยู่
                                             </label>
+                                            <textarea
+                                                type="text"
+                                                name="address"
+                                                placeholder="เลขที่ 85/8 หมู่ 13 ต.ในเมือง "
+                                                className="block w-full px-2 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                for="telephone"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                อำเภอ/เขต
+                                            </label>
                                             <input
                                                 type="text"
                                                 name="address"
-                                                placeholder=" "
+                                                placeholder="เมือง"
+                                                className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                for="telephone"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                จังหวัด
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="address"
+                                                placeholder="ขอนแก่น"
+                                                className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                for="telephone"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                รหัสไปรษณีย์
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="address"
+                                                placeholder="40000"
+                                                className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                for="telephone"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                เบอร์โทรศัพท์
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="tel"
+                                                placeholder="098-888-8888"
+                                                className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="checkout" className="flex-1 w-32 ">
+                    ที่อยู่ในการออกใบเสร็จ
+                    <div className="flex ">
+                        <div>
+                            <div className="form-check">
+                                <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault10" checked></input>
+                                <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
+                                    ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault20"></input>
+                                <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault2">
+                                    ใช้ที่อยู่ใหม่
+                                    <form className="mt-6">
+                                        <div className="mb-2">
+                                            <label
+                                                for="text"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                ชื่อ
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="firstname"
+                                                placeholder="ชื่อ"
+                                                className="block w-full px-4 py-2 mt-2 text-red-600 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                            <input
+                                                type="text"
+                                                name="lastname"
+                                                placeholder="นามสกุล"
+                                                className="block w-full px-4 py-2 mt-2 text-red-600 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            />
+                                        </div>
+                                        <div className="mb-2">
+                                            <label
+                                                for="telephone"
+                                                className="block text-sm font-semibold text-gray-800"
+                                            >
+                                                ที่อยู่
+                                            </label>
+                                            <textarea
+                                                type="text"
+                                                name="address"
+                                                placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8 ต.ในเมือง"
                                                 className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             />
                                         </div>
@@ -95,7 +207,7 @@ export default function CheckOut() {
                                             <input
                                                 type="text"
                                                 name="address"
-                                                placeholder=" "
+                                                placeholder="40000"
                                                 className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             />
                                         </div>
@@ -109,7 +221,7 @@ export default function CheckOut() {
                                             <input
                                                 type="text"
                                                 name="tel"
-                                                placeholder=""
+                                                placeholder="098-888-8888"
                                                 className="block w-full px-4 py-2 mt-2 text-red-700 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             />
                                         </div>
@@ -120,10 +232,11 @@ export default function CheckOut() {
                     </div>
 
                 </div>
+
                 <div id="checkout" className="flex-1 w-32 ">
                     การชำระเงิน
                     <div class="form-check">
-                        <input class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault10"></input>
+                        <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault10"></input>
                         <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
                             โอนเงิน
                         </label>
