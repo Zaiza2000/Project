@@ -15,8 +15,6 @@ import Cart from "./components/page/Cart";
 
 // Layout
 
-
-
 // Page Admin
 import HomeAdmin from "./components/page/admin/HomeAdmin";
 import ManageUser from "./components/page/admin/ManageUser";
@@ -43,13 +41,11 @@ import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
 import CheckOut from "./components/page/CheckOut";
 
-
-
 function App() {
   const dispatch = useDispatch();
 
   //token
-  const idtoken = window.localStorage.token;
+  const idtoken = localStorage.token;
   if (idtoken) {
     currentUser(idtoken)
       .then((res) => {
@@ -57,7 +53,7 @@ function App() {
         dispatch({
           type: "LOGIN",
           payload: {
-            token: res.data.token,
+            token: idtoken,
             username: res.data.username,
             role: res.data.role,
           },
@@ -73,7 +69,6 @@ function App() {
         <Navbar />
         {/* <NavbarLogin /> */}
         <Routes>
-
           <Route exact path="/" element={<Home />} />
           <Route exact path="/home" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
@@ -84,23 +79,26 @@ function App() {
           <Route path="/product/:product_id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
+
           <Route path="/checkout" element={<CheckOut />} />
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/create-category" element={<CreateCategory />} />
-          <Route path="/admin/update-category/:id" element={<UpdateCategory />} />
+          <Route
+            path="/admin/update-category/:id"
+            element={<UpdateCategory />}
+          />
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
 
-
-
-          <Route path="/admin/index"
+          <Route
+            path="/admin/index"
             element={
-
               <AdminRoutes>
                 <HomeAdmin />
               </AdminRoutes>
-            } />
+            }
+          />
 
           <Route
             path="/member/index"
