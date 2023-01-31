@@ -208,13 +208,18 @@ export default function CreateProduct() {
                 </label>
               </div>
               <div className="md:w-2/3">
-                <input
+                <select
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  type="number"
                   name="category_id"
                   value={values.category_id}
                   onChange={handleChange}
-                />
+                >
+                  <option value="1">[1] ชุดแต่งH2C</option>
+                  <option value="2">[2] แบตเตอรี่</option>
+                  <option value="3">[3] ไส้กรอง</option>
+                  <option value="4">[4] หัวเทียน</option>
+                  <option value="5">[5] โซ่สเตอร์</option>
+                </select>
               </div>
             </div>
 
