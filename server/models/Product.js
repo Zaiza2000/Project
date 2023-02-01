@@ -1,7 +1,6 @@
 const DataTypes = require("sequelize");
 const db = require("../database/db.js");
-// const category = require("Category.js");
-// const Category = require("./Category.js");
+
 
 
 const Product = db.define("products", {
