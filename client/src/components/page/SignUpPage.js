@@ -1,13 +1,19 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 //function
 import { sighUp } from "../functions/auth";
-import Navbar from "../layouts/Navbar";
-import { Link,useNavigate } from "react-router-dom";
+import { listProvince, listAmphure, listDistrict } from "../functions/location";
 
 // import axios from "axios";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+  const [province, setProvince] = useState([]);
+  const [amphure, setAmphure] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [zipcode, setZipcode] = useState([]);
+
   const [value, setValue] = useState({
     firstname: "",
     lastname: "",
@@ -19,11 +25,17 @@ export default function SignUpPage() {
     confirmPassword: "",
     address: "",
     district: "",
+    amphure: "",
     province: "",
     zipcode: "",
+    role: "",
   });
-  const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    //code
+    loadData();
+  }, []);
+
   const handleChange = (e) => {
     setValue({
       ...value,
@@ -31,9 +43,69 @@ export default function SignUpPage() {
     });
   };
 
+  //Locations
+  const loadData = () => {
+    listProvince()
+      .then((res) => {
+        setProvince(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const onChangeProvince = (e) => {
+    let index = e.nativeEvent.target.selectedIndex;
+    let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: lable,
+    });
+
+    listAmphure(e.target.value)
+      .then((res) => {
+        setAmphure(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const onChangeAmphure = (e) => {
+    let index = e.nativeEvent.target.selectedIndex;
+    let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: lable,
+    });
+
+    listDistrict(e.target.value)
+      .then((res) => {
+        setDistrict(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const onChangeDistrict = (e) => {
+    const filterDistrict = district.filter((item) => {
+      return e.target.value === item.id;
+    });
+    // // let index = e.nativeEvent.target.selectedIndex;
+    // // let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: filterDistrict[0].name_th,
+      zipcode: filterDistrict[0].zip_code,
+    });
+  };
+
+  /////////////////////////////////////////////////
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    //console.log(value);
     if (value.password !== value.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
     } else if (!value.email) {
@@ -55,15 +127,17 @@ export default function SignUpPage() {
     } else if (!value.province) {
       alert("กรุณากรอกข้อมูลจังหวัด");
     } else if (!value.district) {
+      alert("กรุณากรอกข้อมูลตำบล");
+    } else if (!value.amphure) {
       alert("กรุณากรอกข้อมูลอำเภอ");
     } else if (!value.zipcode) {
       alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
     } else {
-
       sighUp(value)
         .then((res) => {
           console.log(res.data);
-          navigate("/login")
+          alert("ลงทะเบียนสำเร็จ");
+          navigate("/login");
         })
 
         .catch((error) => {
@@ -73,9 +147,6 @@ export default function SignUpPage() {
     }
   };
 
-  // const listProvince = async ()=>{
-  //     await axios.get(process.env.REACT_APP_API + '/province')
-  // }
   return (
     <div className="App">
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -98,7 +169,7 @@ export default function SignUpPage() {
                   type="text"
                   name="firstname"
                   placeholder="สมหญิง"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
@@ -116,7 +187,7 @@ export default function SignUpPage() {
                   type="text"
                   name="lastname"
                   placeholder="วาเลนติโน"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -133,7 +204,7 @@ export default function SignUpPage() {
                   id="grid-birthdate"
                   name="birthdate"
                   type="date"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
@@ -150,7 +221,7 @@ export default function SignUpPage() {
                   name="tel"
                   type="text"
                   placeholder="098-765xxxx"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -167,7 +238,7 @@ export default function SignUpPage() {
                   id="email"
                   type="email"
                   name="email"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -184,7 +255,7 @@ export default function SignUpPage() {
                   id="username"
                   type="text"
                   name="username"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -201,7 +272,7 @@ export default function SignUpPage() {
                   id="grid-password"
                   type="password"
                   name="password"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 {/* <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> */}
               </div>
@@ -219,13 +290,13 @@ export default function SignUpPage() {
                   id="grid-confirmpassword"
                   type="password"
                   name="confirmPassword"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
                 {/* <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> */}
               </div>
             </div>
             <div className="flex flex-wrap -mx-3 mb-2">
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-password"
@@ -237,10 +308,12 @@ export default function SignUpPage() {
                   id="address-text"
                   type="text"
                   name="address"
-                  placeholder="88/8 หมู่ 8 ตำบล ศิลา"
-                  onChange={handleChange}
+                  placeholder="88/8 หมู่ 8 "
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -248,14 +321,38 @@ export default function SignUpPage() {
                 >
                   จังหวัด
                 </label>
-                <input
+                <select
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="address-province"
-                  type="text"
                   name="province"
-                  placeholder="ขอนแก่น"
-                  onChange={handleChange}
-                />
+                  onChange={(e) => onChangeProvince(e)}
+                >
+                  {province.map((item, index) => (
+                    <option key={index} value={item.id}>
+                      {item.name_th}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-wrap -mx-3 mb-2">
+                <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    for="grid-zip"
+                  >
+                    อำเภอ
+                  </label>
+                  <select
+                    className="appearance-none block w-64 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    name="amphure"
+                    onChange={(e) => onChangeAmphure(e)}
+                  >
+                    {amphure.map((item, index) => (
+                      <option key={index} value={item.id}>
+                        {item.name_th}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -263,37 +360,42 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-city"
-                >
-                  อำเภอ
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-district"
-                  type="text"
-                  name="district"
-                  placeholder="เมือง"
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-zip"
                 >
-                  รหัสไปรษณีย์
+                  ตำบล
                 </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-zip"
-                  type="text"
-                  name="zipcode"
-                  placeholder="40000"
-                  onChange={handleChange}
-                />
+                <select
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  name="district"
+                  onChange={(e) => onChangeDistrict(e)}
+                >
+                  {district.map((item, index) => (
+                    <option key={index} value={item.id}>
+                      {item.name_th}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-wrap -mx-3 mb-2">
+                <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    for="grid-zip"
+                  >
+                    รหัสไปรษณีย์
+                  </label>
+                  <input
+                    className="appearance-none block w-64 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-zip"
+                    type="text"
+                    name="zipcode"
+                    value={value.zipcode}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
               </div>
             </div>
+
             {/* <a
                             href="#"
                             className="text-xs text-purple-600 hover:underline"

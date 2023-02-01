@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //Card
 import Search from "./components/card/Search";
+
 // Page
 import LandingPage from "./components/page/LandingPage";
 import Home from "./components/page/Home";
@@ -79,6 +80,7 @@ function App() {
           <Route path="/product/:product_id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
+          
 
           <Route path="/checkout" element={<CheckOut />} />
 

@@ -12,6 +12,7 @@ const User = db.define("users", {
   password: { type: DataTypes.STRING },
   address: { type: DataTypes.STRING },
   district: { type: DataTypes.STRING },
+  amphure: { type: DataTypes.STRING },
   province: { type: DataTypes.STRING },
   zipcode: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING },

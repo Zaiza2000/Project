@@ -20,7 +20,7 @@ const {
   searchFilters,
 } = require("../controllers/auth.js");
 
-const { listProvince,listAmphure,listDistrict } = require("../controllers/location.js")
+const { listProvince,listAmphure,listDistrict,createlocation } = require("../controllers/location.js")
 const express = require("express");
 
 const router = express.Router();
@@ -67,7 +67,6 @@ router.post("/search/filters" , searchFilters);
 router.get("/province", listProvince);
 router.get("/province/:id/amphure", listAmphure);
 router.get("/amphure/:id", listDistrict);
-
 
 
 module.exports = router;
