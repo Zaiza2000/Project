@@ -40,7 +40,7 @@ export default function LoginPage() {
     //code
     login(value)
       .then((res) => {
-        console.log("res.data=>" , res.data);
+        console.log("res.data=>" , res.data.token);
         alert("WELLCOME");
         dispatch({
           type:'LOGIN',
@@ -51,10 +51,10 @@ export default function LoginPage() {
           }
         });
         
-        localStorage.setItem('token',res.data.token)
+        localStorage.setItem('token',JSON.stringify(res.data))
         roleBaseRedirect(res.data.payload.user.role)
         
-        console.log("localStorage=>",localStorage.setItem('token',res.data.token));
+        console.log("localStorage=>",localStorage.setItem('token',JSON.stringify(res.data.payload)));
         console.log("roleBaseRedirect=>",roleBaseRedirect(res.data.payload.user.role));
 
       })

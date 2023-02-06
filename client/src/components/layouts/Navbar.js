@@ -28,7 +28,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  console.log("user Navbar", user);
+  // console.log("user Navbar", user);
 
   const logout = () => {
     dispatch({
@@ -69,8 +69,8 @@ const { user, cart } = useSelector((state) => ({ ...state }));
                   <li>
                     <Link to="/cart">
                       <Badge
-                        count={5}
-                      // count={cart.length} 
+                        //count={5}
+                      count={cart.length} 
                       // offset={[9, 0]}
                       >
                         <svg aria-hidden="true"
