@@ -3,15 +3,19 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //function
 import { sighUp } from "../functions/auth";
-import { listProvince, listAmphure, listDistrict } from "../functions/location";
+import {
+  listProvince,
+  listDistrict,
+  listSubDistrict,
+} from "../functions/location";
 
 // import axios from "axios";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
   const [province, setProvince] = useState([]);
-  const [amphure, setAmphure] = useState([]);
   const [district, setDistrict] = useState([]);
+  const [sub_district, setSubDistrict] = useState([]);
   const [zipcode, setZipcode] = useState([]);
 
   const [value, setValue] = useState({
@@ -24,8 +28,8 @@ export default function SignUpPage() {
     password: "",
     confirmPassword: "",
     address: "",
+    sub_district: "",
     district: "",
-    amphure: "",
     province: "",
     zipcode: "",
     role: "",
@@ -62,23 +66,6 @@ export default function SignUpPage() {
       [e.target.name]: lable,
     });
 
-    listAmphure(e.target.value)
-      .then((res) => {
-        setAmphure(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
-  };
-
-  const onChangeAmphure = (e) => {
-    let index = e.nativeEvent.target.selectedIndex;
-    let lable = e.nativeEvent.target[index].text;
-    setValue({
-      ...value,
-      [e.target.name]: lable,
-    });
-
     listDistrict(e.target.value)
       .then((res) => {
         setDistrict(res.data);
@@ -89,7 +76,24 @@ export default function SignUpPage() {
   };
 
   const onChangeDistrict = (e) => {
-    const filterDistrict = district.filter((item) => {
+    let index = e.nativeEvent.target.selectedIndex;
+    let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: lable,
+    });
+
+    listSubDistrict(e.target.value)
+      .then((res) => {
+        setSubDistrict(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const onChangeSubDistrict = (e) => {
+    const filterDistrict = sub_district.filter((item) => {
       return e.target.value === item.id;
     });
     // // let index = e.nativeEvent.target.selectedIndex;
@@ -126,9 +130,9 @@ export default function SignUpPage() {
       alert("กรุณากรอกข้อมูลที่อยู่");
     } else if (!value.province) {
       alert("กรุณากรอกข้อมูลจังหวัด");
-    } else if (!value.district) {
+    } else if (!value.sub_district) {
       alert("กรุณากรอกข้อมูลตำบล");
-    } else if (!value.amphure) {
+    } else if (!value.district) {
       alert("กรุณากรอกข้อมูลอำเภอ");
     } else if (!value.zipcode) {
       alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
@@ -146,6 +150,7 @@ export default function SignUpPage() {
         });
     }
   };
+
 
   return (
     <div className="App">
@@ -343,10 +348,10 @@ export default function SignUpPage() {
                   </label>
                   <select
                     className="appearance-none block w-64 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    name="amphure"
-                    onChange={(e) => onChangeAmphure(e)}
+                    name="district"
+                    onChange={(e) => onChangeDistrict(e)}
                   >
-                    {amphure.map((item, index) => (
+                    {district.map((item, index) => (
                       <option key={index} value={item.id}>
                         {item.name_th}
                       </option>
@@ -366,10 +371,10 @@ export default function SignUpPage() {
                 </label>
                 <select
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  name="district"
-                  onChange={(e) => onChangeDistrict(e)}
+                  name="sub_district"
+                  onChange={(e) => onChangeSubDistrict(e)}
                 >
-                  {district.map((item, index) => (
+                  {sub_district.map((item, index) => (
                     <option key={index} value={item.id}>
                       {item.name_th}
                     </option>

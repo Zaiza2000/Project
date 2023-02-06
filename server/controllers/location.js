@@ -1,6 +1,6 @@
 const Province = require("../models/Province.js");
-const Amphure = require("../models/Amphure.js");
 const District = require("../models/District.js");
+const SubDistrict = require("../models/SubDistrict.js");
 
 exports.listProvince = async (req, res) => {
   try {
@@ -12,24 +12,24 @@ exports.listProvince = async (req, res) => {
   }
 };
 
-exports.listAmphure = async (req, res) => {
+exports.listDistrict = async (req, res) => {
   try {
-    const dataAmphure = await Amphure.findAll({
+    const dataDistrict = await District.findAll({
       where: { province_id: req.params.id },
     });
-    res.json(dataAmphure);
+    res.json(dataDistrict);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
   }
 };
 
-exports.listDistrict = async (req, res) => {
+exports.listSubDistrict = async (req, res) => {
   try {
-    const dataDistrict = await District.findAll({
-      where: { amphure_id: req.params.id },
+    const dataSubDistrict = await SubDistrict.findAll({
+      where: { district_id: req.params.id },
     });
-    res.json(dataDistrict);
+    res.json(dataSubDistrict);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

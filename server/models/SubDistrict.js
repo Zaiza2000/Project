@@ -1,12 +1,12 @@
 const DataTypes = require("sequelize");
 const db = require("../database/db.js");
 
-const Amphure = db.define("amphures", {
+const SubDistrict = db.define("sub_districts", {
   id: { type: DataTypes.INTEGER, primaryKey: true },
-  code: { type: DataTypes.STRING },
+  zip_code: { type: DataTypes.INTEGER },
   name_th: { type: DataTypes.STRING },
   name_en: { type: DataTypes.STRING },
-  province_id: { type: DataTypes.INTEGER }
+  district_id: { type: DataTypes.INTEGER }
 });
 
-module.exports = Amphure;
+module.exports = SubDistrict;
