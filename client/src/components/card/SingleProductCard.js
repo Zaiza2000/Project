@@ -1,6 +1,6 @@
 // rafce
 import React from "react";
-import { Tabs } from "antd";
+import { Card, Tabs } from "antd";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -10,10 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 // lodash
 import _ from "lodash";
-// function
-// import { addToWishList } from '../functions/users'
-
 import { toast } from "react-toastify";
+import { addToWishList } from "../functions/user";
+const { TabPane } = Tabs;
+const { Meta } = Card;
 
 export default function SingleProductCard({ product }) {
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ export default function SingleProductCard({ product }) {
     sold,
     product_num,
     category_id,
+    category_name,
   } = product;
 
   const handleAddToCart = () => {
@@ -54,21 +55,21 @@ export default function SingleProductCard({ product }) {
     });
   };
 
-  //   const handleAddToWishList = (e) => {
-  //     console.log(user)
-  //     if (user) {
-  //       addToWishList(user.token, product_id)
-  //         .then(res => {
-  //           console.log(res.data)
-  //           toast.success('Add to wishlist Success')
-  //         }).catch((err) => {
-  //           console.log(err)
-  //         })
-  //     } else {
-  //       toast.error('Go to Login')
-  //     }
+  const handleAddToWishList = (e) => {
+    console.log(user)
+    if (user) {
+      addToWishList(user.token, product_id)
+        .then(res => {
+          console.log(res.data)
+          toast.success('Add to wishlist Success')
+        }).catch((err) => {
+          console.log(err)
+        })
+    } else {
+      toast.error('Go to Login')
+    }
 
-  //   }
+  }
 
   return (
     <div>
@@ -79,37 +80,37 @@ export default function SingleProductCard({ product }) {
               <img src={item.url} key={item.public_id} />
             ))}
         </Carousel>
-        {/* 
-                <Tabs>
-                    <TabPane tab="Description" key="1">
-                        {product_detail}
-                    </TabPane>
-                    <TabPane tab="More..." key="2">
-                        More...
-                    </TabPane>
-                </Tabs> */}
+
+        <Tabs>
+          <TabPane tab="Description" key="1">
+            {product_detail}
+          </TabPane>
+          <TabPane tab="More..." key="2">
+            More...
+          </TabPane>
+        </Tabs>
       </div>
 
       <div className="col-md-5">
         <h1 className="bg-info p-3">{product_name}</h1>
-        {/* <div>
-                    actions={[
-                        <a onClick={handleAddToWishList}>
-                            <HeartOutlined className="text-info" />
-                            <br />
-                            Add to wishlist
-                        </a>,
+        <div
+          actions={[
+            <a onClick={handleAddToWishList}>
+              <HeartOutlined className="text-info" />
+              <br />
+              Add to wishlist
+            </a>,
 
+            <a onClick={handleAddToCart}>
+              <ShoppingCartOutlined
+                className="text-danger" />
+              <br />
+              Add to cart
+            </a>
 
-                        <a onClick={handleAddToCart}>
-                            <ShoppingCartOutlined
-                                className="text-danger" />
-                            <br />
-                            Add to cart
-                        </a>
-
-                    ]}
-                </div> */}
+          ]}
+        >
+          </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             Price
@@ -124,10 +125,10 @@ export default function SingleProductCard({ product }) {
             <span className="float-end">{sold}</span>
           </li>
 
-          {category_id && (
+          {category_name && (
             <li className="list-group-item">
               Category
-              <span className="float-end">{category_id.name}</span>
+              {/* <span className="float-end">{category_name.name}</span> */}
             </li>
           )}
         </ul>

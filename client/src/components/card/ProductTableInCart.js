@@ -4,15 +4,15 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { DeleteOutlined } from '@ant-design/icons'
 
-const ProductTableInCart = ({ item }) => {
+export default function ProductTableInCart({ item }) {
   const dispatch = useDispatch();
 
   const handleChangeCount = (e) => {
     const count = e.target.value < 1 ? 1 : e.target.value;
 
-    if( count > item.product_num){
-        toast.error('Max avialable Quantity: '+item.product_num)
-        return;
+    if (count > item.product_num) {
+      toast.error('Max avialable Quantity: ' + item.product_num)
+      return;
     }
 
     let cart = [];
@@ -33,7 +33,7 @@ const ProductTableInCart = ({ item }) => {
     });
   };
 
-  const handleRemove = ()=>{
+  const handleRemove = () => {
     let cart = [];
     if (localStorage.getItem("cart")) {
       cart = JSON.parse(localStorage.getItem("cart"));
@@ -41,7 +41,7 @@ const ProductTableInCart = ({ item }) => {
 
     cart.map((product, i) => {
       if (product.product_id == item.product_id) {
-        cart.splice(i,1)
+        cart.splice(i, 1)
       }
     });
 
@@ -51,6 +51,7 @@ const ProductTableInCart = ({ item }) => {
       payload: cart,
     });
   }
+
   return (
     <tbody>
       <tr>
@@ -70,13 +71,13 @@ const ProductTableInCart = ({ item }) => {
         </td>
 
         <td>
-          <DeleteOutlined 
-          onClick={handleRemove}
-        className="text-danger"/>
+          <DeleteOutlined
+            onClick={handleRemove}
+            className="text-danger" />
         </td>
       </tr>
     </tbody>
   );
-};
 
-export default ProductTableInCart;
+}
+
