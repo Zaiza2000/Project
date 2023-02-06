@@ -47,18 +47,6 @@ export default function Shop() {
             <div className="text-2xl">0฿</div>
             <div className="text-2xl ">1000฿</div>
           </div>
-          {/* <div className="flex space-x-4">
-          <span className="text-2xl">0฿</span>
-          <Range
-            className="bg-black range range-secondary"
-            value={price}
-            step={1}
-            min={0}
-            max={1000}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <span className="text-2xl ">1000฿</span> */}
-          {/* </div> */}
 
           <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
           <div class="flex items-center mb-4">
