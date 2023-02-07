@@ -40,7 +40,7 @@ export default function Cart() {
           <th>Remove</th>
         </tr>
         {cart.map((item) => (
-          <ProductTableInCart key={item._id} item={item} />
+          <ProductTableInCart key={item.product_id} item={item} />
         ))}
       </thead>
     </table>
