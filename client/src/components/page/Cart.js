@@ -11,10 +11,9 @@ export default function Cart() {
   const dispatch = useDispatch();
   const { cart, user } = useSelector((state) => ({ ...state }));
 
-
   const getTotal = () => {
     return cart.reduce((currenValue, nextValue) => {
-      return currenValue + nextValue.count * nextValue.product_sale
+      return currenValue + nextValue.count * nextValue.product_sale;
     }, 0);
   };
   const handleSaveOrder = () => {
@@ -29,28 +28,31 @@ export default function Cart() {
         console.log(err);
       });
   };
-  // const showCartItem = () => (
-  //   <table >
-  //     <tr>
-  //       <td>Image</td>
-  //       <td>Title</td>
-  //       <td>Price</td>
-  //       <td>Count</td>
-  //       <td>Remove</td>
-  //     </tr>
-  //     {cart.map((item) => (
-  //       <ProductTableInCart key={item._id} item={item} />
-  //     ))}
-  //   </table>
-  // );
+
+  const showCartItem = () => (
+    <table className="table-auto">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Count</th>
+          <th>Remove</th>
+        </tr>
+        {cart.map((item) => (
+          <ProductTableInCart key={item._id} item={item} />
+        ))}
+      </thead>
+    </table>
+  );
 
   return (
     <div className="container-fluid">
       <div className="row">
-        {/* <div className="col-md-8">
+        <div className="">
           <h4> Cart / {cart.length} product</h4>
           {!cart.length ? <p>No Product in Cart</p> : showCartItem()}
-        </div> */}
+        </div>
 
         <div className="col-md-4">
           <h4>Summary</h4>
@@ -82,18 +84,5 @@ export default function Cart() {
         </div>
       </div>
     </div>
-
-    //         <div>
-    //           <h1>Summary</h1>
-    //           <hr />
-    //           {cart.map((item, index) => (
-    //             <p key={index}>
-    //               {item.product_name} x {item.count} ={" "}
-    //               {item.product_sale * item.count}
-    //             </p>
-    //           ))}
-    //           <hr />
-    //           Total : {getTotal()}
-    //   </div> 
   );
 }

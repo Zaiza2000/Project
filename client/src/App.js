@@ -12,7 +12,7 @@ import SignUpPage from "./components/page/SignUpPage";
 import Navbar from "./components/layouts/Navbar";
 import Product from "./components/page/Product";
 import Cart from "./components/page/Cart";
-// import ProductPage from "./components/page/ProductPage";
+
 
 // Layout
 
@@ -80,6 +80,7 @@ function App() {
           <Route path="/product/:product_id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/checkOut" element={<CheckOut />} />
           
 
           <Route path="/checkout" element={<CheckOut />} />

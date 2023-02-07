@@ -4,27 +4,31 @@ import "../../App.css";
 import { login } from "../functions/auth.js";
 //redux
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../layouts/Navbar";
 
 export default function LoginPage() {
-
-  const dispatch  = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [value, setValue] = useState({
     username: "",
     password: "",
   });
 
-  const roleBaseRedirect = (role) =>{
-    if (role === "admin"){
-      navigate("/admin/index");
-
-    }else {
-      navigate("/member/index");
+  const roleBaseRedirect = (role) => {
+    let intended = location.state;
+    if (intended) {
+      navigate("../" + intended);
+    } else {
+      if (role === "admin") {
+        navigate("/admin/index");
+      } else {
+        navigate("/member/index");
+      }
     }
-  }
+  };
 
   const handleChange = (e) => {
     setValue({
@@ -35,28 +39,33 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("value" , value);
+    console.log("value", value);
 
     //code
     login(value)
       .then((res) => {
-        console.log("res.data=>" , res.data.token);
+        console.log("res.data=>", res.data.token);
         alert("WELLCOME");
         dispatch({
-          type:'LOGIN',
+          type: "LOGIN",
           payload: {
-            token:res.data.token,
-            username:res.data.payload.user.username,
-            role:res.data.payload.user.role
-          }
+            token: res.data.token,
+            username: res.data.payload.user.username,
+            role: res.data.payload.user.role,
+          },
         });
-        
-        localStorage.setItem('token',JSON.stringify(res.data))
-        roleBaseRedirect(res.data.payload.user.role)
-        
-        console.log("localStorage=>",localStorage.setItem('token',JSON.stringify(res.data.payload)));
-        console.log("roleBaseRedirect=>",roleBaseRedirect(res.data.payload.user.role));
 
+        localStorage.setItem("token", JSON.stringify(res.data));
+        roleBaseRedirect(res.data.payload.user.role);
+
+        // console.log(
+        //   "localStorage=>",
+        //   localStorage.setItem("token", JSON.stringify(res.data.payload))
+        // );
+        // console.log(
+        //   "roleBaseRedirect=>",
+        //   roleBaseRedirect(res.data.payload.user.role)
+        // );
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -117,7 +126,10 @@ export default function LoginPage() {
           <p className="mt-8 text-xs font-light text-center text-gray-700">
             {" "}
             ไม่มีบัญชีผู้ใช้{" "}
-            <a href="/sign-up" className="font-medium text-red-600 hover:underline">
+            <a
+              href="/sign-up"
+              className="font-medium text-red-600 hover:underline"
+            >
               ลงทะเบียน
             </a>
           </p>
