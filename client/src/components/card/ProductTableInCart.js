@@ -81,7 +81,7 @@ export default function ProductTableInCart({ item }) {
       </table> */}
 {/*---------------------------*/}
 {/*---------------- version น้องซาย -----------*/}
-      <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
+      <div className="max-w-screen-xl px-4 mx-auto ">
         <div className="max-w-3xl mx-auto">
           <div className="mt-8">
             <ul className="space-y-4">
@@ -89,7 +89,6 @@ export default function ProductTableInCart({ item }) {
                 <img className="w-36 h-36" alt="" src={item.product_photo} />
                 <div className="ml-4">
                   <h3 className="text-sm text-gray-900">{item.product_name}</h3>
-
                   <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                     <div>
                       <dt className="inline" >ราคา {item.product_sale} บาท</dt>
