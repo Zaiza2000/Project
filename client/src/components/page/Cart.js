@@ -50,8 +50,8 @@ export default function Cart() {
     <div className="container-fluid">
       <div className="row">
         <div className="">
-          <h4> Cart / {cart.length} product</h4>
-          {!cart.length ? <p>No Product in Cart</p> : showCartItem()}
+          <h1 className="text-xl font-bold text-gray-900 sm:text-3xl p-10"> ตะกร้าของคุณมี {cart.length} สินค้า</h1>
+          {!cart.length ? <p>ไม่มีสินค้าในตะกร้า</p> : showCartItem()}
         </div>
 
         <div className="col-md-4">
