@@ -88,8 +88,8 @@ export default function ProductTableInCart({ item }) {
               <li className="flex items-center">
                 <img className="w-36 h-36" alt="" src={item.product_photo} />
                 <div className="ml-4">
-                  <h3 className="text-sm text-gray-900">{item.product_name}</h3>
-                  <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                  <h3 className="text-m text-gray-900">{item.product_name}</h3>
+                  <dl className="mt-0.5 space-y-px text-sm text-gray-600">
                     <div>
                       <dt className="inline" >ราคา {item.product_sale} บาท</dt>
                     </div>
