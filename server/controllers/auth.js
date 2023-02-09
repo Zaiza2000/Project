@@ -1,6 +1,9 @@
+//Models
 const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
+const OrderDetail = require("../models/OrderDetail.js");
+
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
@@ -134,6 +137,8 @@ exports.deleteUser = async (req, res) => {
 
 exports.userCart = async (req, res) => {
   try {
+    const {cart} =req.body;
+    console.log(cart);
     console.log(req.body);
    res.json('user cart OKEY.')
   } catch (error) {

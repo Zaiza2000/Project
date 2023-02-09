@@ -20,6 +20,14 @@ const Product = db.define("products", {
   });
  }
 
+ Product.associate = models=> {
+  User.hasMany(models.OrderDetail,{
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT'
+  }
+  )
+}
+
 // category.Category.belongsTo(Product);
 // Product.belongsTo(Category.Category, { foreignKey: "category_id" });
 
