@@ -68,7 +68,7 @@ export default function CardProductMember({ product }) {
           </div>
         </div>
       </div>
-      <div></div>
+      
     </div>
   );
 }

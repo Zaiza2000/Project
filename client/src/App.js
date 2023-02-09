@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./components/card/Search";
 
 // Page
-import LandingPage from "./components/page/LandingPage";
 import Home from "./components/page/Home";
 import LoginPage from "./components/page/LoginPage";
 import SignUpPage from "./components/page/SignUpPage";
@@ -35,7 +34,6 @@ import { currentUser } from "./components/functions/auth";
 
 //redux
 import { useDispatch } from "react-redux";
-import NavbarLogin from "./components/layouts/NavbarLogin";
 
 //Routes
 import UserRoutes from "./components/routes/UserRoutes";
@@ -77,7 +75,7 @@ function App() {
           {/* <Route path="/product-page" element={<ProductPage />} /> */}
           <Route path="/search" element={<Search />} />
 
-          <Route path="/product/:product_id" element={<Product />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkOut" element={<CheckOut />} />

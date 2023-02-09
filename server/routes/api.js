@@ -11,6 +11,7 @@ const {
   editCategory,
   deleteCategory,
   listProduct,
+  // readProduct,
   getProduct,
   editProduct,
   createProduct,
@@ -62,6 +63,7 @@ router.delete("/deleteCategory/:id", deleteCategory);
 
 //API Product//
 router.get("/listProduct", listProduct);
+// router.get("/readProduct/:id", readProduct);
 router.get("/getProduct/:id", getProduct);
 router.post("/createProduct", createProduct);
 router.put("/editProduct/:id", editProduct);
