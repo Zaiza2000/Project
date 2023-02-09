@@ -18,6 +18,7 @@ const {
   currentUser,
   changeRole,
   searchFilters,
+  userCart
 } = require("../controllers/auth.js");
 
 const {
@@ -49,6 +50,8 @@ router.put("/editUser/:id", editUser);
 router.delete("/deleteUser/:id", deleteUser);
 //Change User//
 router.post("/changeRole", changeRole);
+//User Cart//
+router.post("/user/cart", auth, userCart);
 
 //API Category//
 router.get("/listCategory", listCategory);

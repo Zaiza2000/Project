@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ProductTableInCart from "../card/ProductTableInCart";
-import { userCart } from "../functions/user";
 // function
-// import { userCart } from "./functions/users";
+import { userCart } from "../functions/user";
+
 
 export default function Cart() {
   const navigate = useNavigate();

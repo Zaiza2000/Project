@@ -132,6 +132,16 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+exports.userCart = async (req, res) => {
+  try {
+    console.log(req.body);
+   res.json('user cart OKEY.')
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==userCart Server Error==");
+  }
+};
+
 //############ Category.js ################//
 exports.listCategory = async (req, res) => {
   try {
@@ -272,3 +282,6 @@ exports.searchFilters = async (req, res) => {
     await handleQuery(req, res, query);
   }
 }
+
+
+
