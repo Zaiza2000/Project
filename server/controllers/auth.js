@@ -276,14 +276,15 @@ exports.deleteProduct = async (req, res) => {
 //############ Search ################//
 
 const handleQuery = async (req, res, query) => {
-  let product = await Product.findOne( {$text:{ $search: query} }) 
+  let product = await Product.find({$text:{ $search:query}})
+  // .populate("category", "product_id", "product_name")
   res.send(product);
 }
 
 exports.searchFilters = async (req, res) => {
   const {query} = req.body;
   if(query){
-    console.log("Query=>" ,query);
+    console.log("Query" ,query);
     await handleQuery(req, res, query);
   }
 }

@@ -1,14 +1,22 @@
+// import Search from "antd/es/transfer/search";
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //Card
 import CardProductMember from "../../card/CardProductMember";
+import Search from "../../card/Search";
 //function
-import { listProduct } from "../../functions/product";
+import { listProduct, searchFilters } from "../../functions/product";
 
 export default function Shop() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
   const [price, setPrice] = useState(150);
+  const { search } = useSelector((state) => ({ ...state }))
+  // console.log(search)
+  const { text } = search
+//text
+
   useEffect(() => {
     loadData();
   }, []);
@@ -26,6 +34,23 @@ export default function Shop() {
       });
   };
 
+  // // load data on user filter
+  // useEffect(() => {
+  //   const delay = setTimeout(() => {
+  //     fetchDataFilter({ query: text });
+  //     if (!text) {
+  //       loadData();
+  //     }
+  //   }, 300);
+  //   return () => clearTimeout(delay);
+  // }, [text]);
+
+  // //Filter
+  // const fetchDataFilter = (arg) => {
+  //   searchFilters(arg).then((res) => {
+  //     setProduct(res.data)
+  //   });
+  // };
   return (
     <div >
       <h1 className="text-6xl font-extrabold sm:text-6xl m-20  text-left ">
@@ -33,7 +58,8 @@ export default function Shop() {
       </h1>
 
       <div className="grid grid-rows-4 grid-flow-col gap-4">
-        <div className="text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">กรองตาม
+        <div className="text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">ค้นหาสินค้า
+          <Search />
           <label className="block mb-2 text-2xl text-left pt-20">ราคา {price} ฿</label>
           <input type="range"
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"

@@ -20,6 +20,7 @@ import {
 // Router
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Search from "../card/Search";
 
 
 export default function Navbar() {
@@ -109,8 +110,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
                     </div>
                   </>
                 )}
-              </div>
-
+              </div>        
             </div>
           </div>
         </div>

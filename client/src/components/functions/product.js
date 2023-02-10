@@ -11,10 +11,6 @@ export const listProduct = async (authtoken) => {
     },
   });
 };
-export const readProduct = async (id) =>{
-  return await axios.get(process.env.REACT_APP_API + "/readProduct/" + id);
-
-};
 export const createProduct = async (value) => {
   console.log(value);
   let result = await axios.post(

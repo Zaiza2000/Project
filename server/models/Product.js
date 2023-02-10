@@ -5,11 +5,11 @@ const db = require("../database/db.js");
 
 const Product = db.define("products", {
   product_id : {type: DataTypes.INTEGER, autoIncrement: true,primaryKey: true},
-  product_name: { type: DataTypes.STRING },
+  product_name: { type: DataTypes.STRING ,text:true},
   product_cost: { type: DataTypes.INTEGER },
   product_sale: { type: DataTypes.INTEGER },
   product_photo: { type: DataTypes.STRING },
-  product_detail: { type: DataTypes.STRING },
+  product_detail: { type: DataTypes.STRING, text:true},
   product_quantity: { type: DataTypes.INTEGER },
   category_id: { type: DataTypes.INTEGER, foreignKey: true },
 });

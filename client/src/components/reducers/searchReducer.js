@@ -1,4 +1,4 @@
-export default function searchReducer(state = {text: "Hi Search*"}, action) {
+export default function searchReducer(state = {text: ""}, action) {
   switch (action.type) {
     case "SEARCH_QUERY":
       return {...state, ...action.payload};
