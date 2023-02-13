@@ -275,6 +275,21 @@ exports.deleteProduct = async (req, res) => {
 
 //############ Search ################//
 
+
+exports.getSearchCategory = async (req, res) => {
+  try {
+    const category_name = req.body
+    console.log("category_name : " , category_name);
+    const category = await Category.findAll({
+      where: { category_name: category_name },
+    });
+    res.json(category);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
+};
+
 const handleQuery = async (req, res, query) => {
   let product = await Product.find({$text:{ $search:query}})
   // .populate("category", "product_id", "product_name")

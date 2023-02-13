@@ -18,6 +18,7 @@ const {
   currentUser,
   changeRole,
   searchFilters,
+  getSearchCategory,
   userCart
 } = require("../controllers/auth.js");
 
@@ -56,6 +57,7 @@ router.post("/user/cart", auth, userCart);
 //API Category//
 router.get("/listCategory", listCategory);
 router.get("/getCategory/:id", getCategory);
+router.get("/getCategory/:category_name", getSearchCategory);
 router.post("/createCategory", createCategory);
 router.put("/editCategory/:id", editCategory);
 router.delete("/deleteCategory/:id", deleteCategory);
