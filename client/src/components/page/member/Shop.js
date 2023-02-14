@@ -1,5 +1,5 @@
 // import Search from "antd/es/transfer/search";
-
+import MultiRangeSlider from "multi-range-slider-react";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //Card
@@ -11,11 +11,13 @@ import { listProduct, searchFilters } from "../../functions/product";
 export default function Shop() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
-  const [price, setPrice] = useState(150);
+  const [price, setPrice] = useState([0, 0]);
   const { search } = useSelector((state) => ({ ...state }))
-  // console.log(search)
+  const [ok, setOk] = useState(false);
+
+  console.log(search)
   const { text } = search
-//text
+  //text
 
   useEffect(() => {
     loadData();
@@ -34,7 +36,7 @@ export default function Shop() {
       });
   };
 
-  // // load data on user filter
+  // ########## load data on user filter ##########
   // useEffect(() => {
   //   const delay = setTimeout(() => {
   //     fetchDataFilter({ query: text });
@@ -45,12 +47,27 @@ export default function Shop() {
   //   return () => clearTimeout(delay);
   // }, [text]);
 
-  // //Filter
-  // const fetchDataFilter = (arg) => {
-  //   searchFilters(arg).then((res) => {
-  //     setProduct(res.data)
-  //   });
+  //Filter
+  const fetchDataFilter = (arg) => {
+    searchFilters(arg).then((res) => {
+      setProduct(res.data)
+    });
+  };
+
+  // ########## Load on Slider ##########
+  // useEffect(() => {
+  //   fetchDataFilter({ price }); // [0,0]
+  // }, [ok]);
+
+  // const handlePrice = (value) => {
+  //   setPrice(value);
+
+  //   setTimeout(() => {
+  //     setOk(!ok);
+  //   }, 300);
   // };
+  // ########## Load on Slider ##########
+
   return (
     <div >
       <h1 className="text-6xl font-extrabold sm:text-6xl m-20  text-left ">
@@ -60,19 +77,18 @@ export default function Shop() {
       <div className="grid grid-rows-4 grid-flow-col gap-4">
         <div className="text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">ค้นหาสินค้า
           <Search />
-          <label className="block mb-2 text-2xl text-left pt-20">ราคา {price} ฿</label>
-          <input type="range"
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          <label className="block mb-2 text-2xl text-left pt-20">
+            ราคา 
+            {/* {price} ฿ */}
+            </label>
+        
+          <MultiRangeSlider
+            className="w-3/4 h-2 bg-white  appearance-none cursor-pointer"
             value={price}
-            step={1}
             min={0}
             max={1000}
-            onChange={(e) => setPrice(e.target.value)} >
-          </input>
-          <div className="flex justify-between">
-            <div className="text-2xl">0฿</div>
-            <div className="text-2xl ">1000฿</div>
-          </div>
+            onChange={(e) => setPrice(e.target.value)}
+          />
 
           <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
           <div class="flex items-center mb-4">

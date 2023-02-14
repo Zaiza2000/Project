@@ -298,17 +298,33 @@ exports.getSearchCategory = async (req, res) => {
   }
 };
 
+
+//############ Search by Roitai ################//
 const handleQuery = async (req, res, query) => {
-  let product = await Product.find({$text:{ $search:query}})
-  // .populate("category", "product_id", "product_name")
-  res.send(product);
+  let products = await Product.find({ $text: { $search: query } })
+  .populate("category_name", "product_id product_name product_detail")
+  res.send(products);
+}
+const handlePrice = async (req, res, price) => {
+  let products = await Product.find({
+    price:{
+      $gte:price[0],
+      $lte:price[1]
+    }
+  })
+  .populate("category_name", "product_id product_name")
+  res.send(products);
 }
 
 exports.searchFilters = async (req, res) => {
-  const {query} = req.body;
+  const {query, price} = req.body;
   if(query){
     console.log("Query" ,query);
     await handleQuery(req, res, query);
+  }
+  if (price !== undefined) {
+    console.log("price---->", price);
+    await handlePrice(req, res, price);
   }
 }
 
