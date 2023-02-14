@@ -65,6 +65,11 @@ exports.login = async (req, res) => {
         user: {
           username: user.username,
           role: user.role,
+          address: user.address,
+          sub_district: user.sub_district,
+          district : user.district,
+          province: user.province,
+          zipcode: user.zipcode
         },
       };
       //Generate Token

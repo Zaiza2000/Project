@@ -39,12 +39,12 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("value", value);
+    //console.log("value", value);
 
     //code
     login(value)
       .then((res) => {
-        console.log("res.data=>", res.data.token);
+        //console.log("res.data=>", res.data.token);
         alert("WELLCOME");
         dispatch({
           type: "LOGIN",
@@ -52,20 +52,16 @@ export default function LoginPage() {
             token: res.data.token,
             username: res.data.payload.user.username,
             role: res.data.payload.user.role,
+            address: res.data.payload.user.address,
+            sub_district: res.data.payload.user.sub_district,
+            district: res.data.payload.user.district,
+            province: res.data.payload.user.province,
+            zipcode: res.data.payload.user.zipcode,
           },
         });
 
         localStorage.setItem("token", JSON.stringify(res.data));
         roleBaseRedirect(res.data.payload.user.role);
-
-        // console.log(
-        //   "localStorage=>",
-        //   localStorage.setItem("token", JSON.stringify(res.data.payload))
-        // );
-        // console.log(
-        //   "roleBaseRedirect=>",
-        //   roleBaseRedirect(res.data.payload.user.role)
-        // );
       })
       .catch((error) => {
         console.log(error.response.data);
