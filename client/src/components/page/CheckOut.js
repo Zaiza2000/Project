@@ -1,12 +1,24 @@
+import React, { useState } from "react";
 import { Fragment } from "react";
 import { Radio } from "@material-tailwind/react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export default function CheckOut() {
+    const { user } = useSelector((state) => ({ ...state }));
+   
     return (
         <div >
             <h1 className="text-4xl font-extrabold sm:text-6xl m-20 ">
                 สั่งซื้อสินค้า
-            </h1>
+            </h1> 
+            <h2>{user.firstname}</h2>
+            <h2>{user.lastname}</h2>
+            <h2>{user.address}</h2>
+            <h2>{user.sub_district}</h2>
+            <h2>{user.district}</h2>
+            <h2>{user.province}</h2>
+            <h2>{user.zipcode}</h2>
             <div className="flex space-x-10 m-20">
                 <div id="checkout" className="flex-1 w-32 ">
                     ที่อยู่สำหรับจัดส่งสินค้า
@@ -17,6 +29,7 @@ export default function CheckOut() {
                                 <label className="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
                                     ใช้ที่อยู่เดียวกับที่อยู่ของสมาชิก
                                 </label>
+                               
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault20"></input>
@@ -30,7 +43,8 @@ export default function CheckOut() {
                                             >
                                                 ชื่อ
                                             </label>
-                                            <input
+                                            <input 
+                                            
                                                 type="text"
                                                 name="firstname"
                                                 placeholder="ชื่อ"

@@ -52,6 +52,8 @@ export default function LoginPage() {
             token: res.data.token,
             username: res.data.payload.user.username,
             role: res.data.payload.user.role,
+            firstname: res.data.payload.user.firstname,
+            lastname: res.data.payload.user.lastname,
             address: res.data.payload.user.address,
             sub_district: res.data.payload.user.sub_district,
             district: res.data.payload.user.district,
