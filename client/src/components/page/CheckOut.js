@@ -19,6 +19,7 @@ export default function CheckOut() {
             <h2>{user.district}</h2>
             <h2>{user.province}</h2>
             <h2>{user.zipcode}</h2>
+            <h2>{user.tel}</h2>
             <div className="flex space-x-10 m-20">
                 <div id="checkout" className="flex-1 w-32 ">
                     ที่อยู่สำหรับจัดส่งสินค้า

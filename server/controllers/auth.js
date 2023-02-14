@@ -71,7 +71,8 @@ exports.login = async (req, res) => {
           sub_district: user.sub_district,
           district : user.district,
           province: user.province,
-          zipcode: user.zipcode
+          zipcode: user.zipcode,
+          tel: user.tel
         },
       };
       //Generate Token

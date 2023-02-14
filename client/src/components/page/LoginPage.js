@@ -59,6 +59,7 @@ export default function LoginPage() {
             district: res.data.payload.user.district,
             province: res.data.payload.user.province,
             zipcode: res.data.payload.user.zipcode,
+            tel: res.data.payload.user.tel,
           },
         });
 
