@@ -29,6 +29,8 @@ const {
 } = require("../controllers/location.js");
 const express = require("express");
 
+const {listOrder,getOrderbyUser,getOrder,CreateOrder} = require("../controllers/order.js");
+
 const router = express.Router();
 
 //@Enpoint    http://localhost:8000/api
@@ -72,9 +74,12 @@ router.delete("/deleteProduct/:id", deleteProduct);
 //API Search//
 router.post("/search/filters", searchFilters);
 
-//API Location//
+//API Location => location.js//
 router.get("/province", listProvince);
 router.get("/province/:id/district", listDistrict);
 router.get("/district/:id", listSubDistrict);
+
+//API Order => order.js//
+router.post("/create-order", CreateOrder);
 
 module.exports = router;

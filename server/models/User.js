@@ -1,4 +1,3 @@
-
 const DataTypes = require("sequelize");
 const db = require("../database/db.js");
 
@@ -18,12 +17,18 @@ const User = db.define("users", {
   role: { type: DataTypes.STRING },
 });
 
-User.associate = models=> {
-  User.hasMany(models.OrderDetail,{
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
-  }
-  )
-}
+User.associate = (models) => {
+  User.hasMany(models.OrderDetail, {
+    onDelete: "RESTRICT",
+    onUpdate: "RESTRICT",
+  });
+};
+
+User.associate = (models) => {
+  User.hasMany(models.Order, {
+    onDelete: "RESTRICT",
+    onUpdate: "RESTRICT",
+  });
+};
 
 module.exports = User;
