@@ -5,22 +5,28 @@ const {
   listUser,
   editUser,
   login,
+  currentUser,
+  changeRole,
+  searchFilters,
+  getSearchCategory,
+  userCart,
+} = require("../controllers/auth.js");
+
+const {
   listCategory,
   getCategory,
   createCategory,
   editCategory,
   deleteCategory,
+} = require("../controllers/category.js");
+
+const {
   listProduct,
   getProduct,
   editProduct,
   createProduct,
   deleteProduct,
-  currentUser,
-  changeRole,
-  searchFilters,
-  getSearchCategory,
-  userCart
-} = require("../controllers/auth.js");
+} = require("../controllers/product.js");
 
 const {
   listProvince,
@@ -29,7 +35,12 @@ const {
 } = require("../controllers/location.js");
 const express = require("express");
 
-const {listOrder,getOrderbyUser,getOrder,CreateOrder} = require("../controllers/order.js");
+const {
+  listOrder,
+  getOrderbyUser,
+  getOrder,
+  CreateOrder,
+} = require("../controllers/order.js");
 
 const router = express.Router();
 
