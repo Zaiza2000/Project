@@ -32,6 +32,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
   // console.log("user Navbar", user);
 
   const logout = () => {
+    localStorage.clear();
     dispatch({
       type: "LOGOUT",
       payload: null,

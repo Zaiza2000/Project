@@ -11,7 +11,7 @@ import SignUpPage from "./components/page/SignUpPage";
 import Navbar from "./components/layouts/Navbar";
 import Product from "./components/page/Product";
 import Cart from "./components/page/Cart";
-
+import Requisition from "./components/page/admin/Requisition";
 
 // Layout
 
@@ -79,11 +79,11 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkOut" element={<CheckOut />} />
-          
 
           <Route path="/checkout" element={<CheckOut />} />
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
+          <Route path="/admin/requisition" element={<Requisition />} />
           <Route path="/admin/create-category" element={<CreateCategory />} />
           <Route
             path="/admin/update-category/:id"
