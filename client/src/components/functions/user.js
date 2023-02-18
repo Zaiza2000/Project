@@ -28,6 +28,17 @@ export const userCart = async (authtoken, cart) => {
     }
   );
 };
+export const adminCart = async (authtoken, cartAdmin) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/admin/cart",
+    { cartAdmin },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
 export const addToWishList = async (authtoken, productId) => {
   return await axios.post(
     process.env.REACT_APP_API + "/user/wishlist",

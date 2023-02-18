@@ -18,6 +18,7 @@ import Requisition from "./components/page/admin/Requisition";
 // Page Admin
 import HomeAdmin from "./components/page/admin/HomeAdmin";
 import ManageUser from "./components/page/admin/ManageUser";
+
 //Category
 import CreateCategory from "./components/page/admin/category/CreateCategory";
 import UpdateCategory from "./components/page/admin/category/UpdateCategory";
@@ -84,6 +85,7 @@ function App() {
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/requisition" element={<Requisition />} />
+         
           <Route path="/admin/create-category" element={<CreateCategory />} />
           <Route
             path="/admin/update-category/:id"

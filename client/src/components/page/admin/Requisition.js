@@ -1,110 +1,88 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
+//Card
+import AdminProductCard from "../../card/AdminProductCard";
 //function
 import { listProduct } from "../../functions/product";
+
 //Page
 import MenubarAdmin from "../../layouts/MenubarAdmin";
 
-
 export default function Requisition() {
-    const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState([]);
 
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = () => {
+    setLoading(true);
     listProduct()
       .then((res) => {
         setProduct(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   };
 
   return (
+    
     <div>
-        <MenubarAdmin />
-      <h1>Requisition</h1>
-      <div className="">
-            <table className="mt-10 w-full text-l text-left text-gray-900  ">
-              <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Product ID
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Cost
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Sale
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Quantity
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Detail
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Photo
-                  </th>
-                  <th scope="col" className="px-14 py-3">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="block md:table-row-group">
-                {product.map((item) => (
-                  <tr className="bg-white border-b  hover:bg-gray-50 ">
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_id}
-                    </td>
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_name}
-                    </td>
+      <MenubarAdmin />
+      <div className="block md:table-row-group">
+        {loading ? (
+          <h1 className="text-4xl font-bold text-purple-600 ">Loading.....</h1>
+        ) : (
+          <h1>.</h1>
+        )}
 
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_cost}
-                    </td>
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_sale}
-                    </td>
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_quantity}
-                    </td>
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      {item.product_detail}
-                    </td>
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-                      <img
-                        className="rounded-t-lg h-32 w-32"
-                        src={item.product_photo}
-                        alt=""
-                      />
-                    </td>
+        {product.length < 1 && <p>No Product </p>}
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Product ID
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Cost
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Sale
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Quantity
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Detail
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Photo
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Action
+              </th>
+              
+            </tr>
+          </thead>
+        </table>
 
-                    <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden font-bold">
-                        Actions
-                      </span>
-                      
-                      
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+       
+          <tbody >
+            {product.map((item, index) => (
+              <div key={index} className="">
+                <AdminProductCard product={item} />
+              </div>
+            ))}
+          </tbody>
+       
+      </div>
     </div>
   );
 }

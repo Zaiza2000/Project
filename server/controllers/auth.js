@@ -154,6 +154,17 @@ exports.userCart = async (req, res) => {
     res.status(500).send("==userCart Server Error==");
   }
 };
+exports.adminCart = async (req, res) => {
+  try {
+    const {cartAdmin} =req.body;
+    console.log(cartAdmin);
+    console.log(req.body);
+   res.json('Admin cart OKEY.')
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==userCart Server Error==");
+  }
+};
 
 
 

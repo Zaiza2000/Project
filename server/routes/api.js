@@ -10,6 +10,7 @@ const {
   searchFilters,
   getSearchCategory,
   userCart,
+  adminCart
 } = require("../controllers/auth.js");
 
 const {
@@ -54,7 +55,7 @@ router.post("/current-user", auth, currentUser);
 
 //Current-Admin
 router.post("/current-admin", auth, adminCheck, currentUser);
-
+router.post("/admin/cart", auth, adminCart);
 //API User//
 router.get("/listUser", listUser);
 router.get("/getUser/:id", getUser);
@@ -66,6 +67,7 @@ router.delete("/deleteUser/:id", deleteUser);
 router.post("/changeRole", changeRole);
 //User Cart//
 router.post("/user/cart", auth, userCart);
+
 
 //API Category//
 router.get("/listCategory", listCategory);
