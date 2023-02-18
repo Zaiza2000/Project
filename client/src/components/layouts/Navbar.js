@@ -5,16 +5,7 @@ import { Badge } from "antd";
 //redux
 
 import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-  ShoppingCartOutlined,
-  HomeOutlined,
-  UserAddOutlined,
-  LoginOutlined,
-  LogoutOutlined,
   DownOutlined,
-  ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 // Router
@@ -25,10 +16,10 @@ import Search from "../card/Search";
 
 export default function Navbar() {
   // const [isOpen, setIsOpen] = useState(false);
-const { user, cart } = useSelector((state) => ({ ...state }));
+  const { user, cart } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   // console.log("user Navbar", user);
 
   const logout = () => {
@@ -39,7 +30,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
     });
     navigate("/");
   };
-
+  // const auth = localStorage.getItem('user');
   return (
 
     <div>
@@ -62,38 +53,76 @@ const { user, cart } = useSelector((state) => ({ ...state }));
                     <Link to="/"> หน้าหลัก </Link>
                   </li>
                 </ul>
-                <ul className="pr-4 hover:text-red-500">
-                  <li>
-                    <Link to="/shop">Shop</Link>
-                  </li>
-                </ul>
-                <ul className="pl-4 pt-1 ">
-                  <li>
-                    <Link to="/cart">
-                      <Badge
-                        //count={5}
-                      count={cart.length} 
-                      // offset={[9, 0]}
-                      >
-                        <svg aria-hidden="true"
-                          className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.49.598l-1 5a.5.5 0 01-.465.401l-9.397.472L4.415 11H13a.5.5 0 010 1H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 100 4 2 2 0 000-4zm7 0a2 2 0 100 4 2 2 0 000-4zm-7 1a1 1 0 110 2 1 1 0 010-2zm7 0a1 1 0 110 2 1 1 0 010-2z" />
-                        </svg>
+                {user && (
+                  <>
+                    {
+                      user.role === "admin" ? (
+                        <Link to="/"></Link>
+                      ) : (
+                        <div className="flex flex-row">
+                          <ul className="pr-4 hover:text-red-500">
+                            <li>
+                              <Link to="/shop">Shop</Link>
+                            </li>
+                          </ul>
+                          <ul className="pl-4 pt-2">
+                            <li>
+                              <Link to="/cart">
+                                <Badge count={cart.length}>
+                                  <svg aria-hidden="true"
+                                    className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.49.598l-1 5a.5.5 0 01-.465.401l-9.397.472L4.415 11H13a.5.5 0 010 1H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 100 4 2 2 0 000-4zm7 0a2 2 0 100 4 2 2 0 000-4zm-7 1a1 1 0 110 2 1 1 0 010-2zm7 0a1 1 0 110 2 1 1 0 010-2z" />
+                                  </svg>
 
-                      </Badge>
+                                </Badge>
 
-                    </Link>
-                  </li>
-                </ul>
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      )
+                    }
+                  </>
+                )}
+                {!user && (
+                  <>
+                    <div className="flex flex-row">
+                      <ul className="pr-4 hover:text-red-500">
+                        <li>
+                          <Link to="/shop">Shop</Link>
+                        </li>
+                      </ul>
+                      <ul className="pl-4 pt-2">
+                        <li>
+                          <Link to="/cart">
+                            <Badge count={cart.length}>
+                              <svg aria-hidden="true"
+                                className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.49.598l-1 5a.5.5 0 01-.465.401l-9.397.472L4.415 11H13a.5.5 0 010 1H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 100 4 2 2 0 000-4zm7 0a2 2 0 100 4 2 2 0 000-4zm-7 1a1 1 0 110 2 1 1 0 010-2zm7 0a1 1 0 110 2 1 1 0 010-2z" />
+                              </svg>
+
+                            </Badge>
+
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
+                )}
                 {user && (
                   <>
                     <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row " title={user.username} icon={<DownOutlined />}>
                       {
+
                         user.role === "admin" ? (
                           <Link to="/admin/index"><UserOutlined /></Link>
+
                         ) : (
                           <Link to="/member/index"><UserOutlined /></Link>
                         )
@@ -111,7 +140,7 @@ const { user, cart } = useSelector((state) => ({ ...state }));
                     </div>
                   </>
                 )}
-              </div>        
+              </div>
             </div>
           </div>
         </div>
