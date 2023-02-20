@@ -241,25 +241,25 @@ export default function CreateProduct() {
               <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
                 <tr>
                   <th scope="col" className="px-6 py-3">
-                    Product ID
+                    รหัสสินค้า
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Name
+                    ชื่อสินค้า
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Cost
+                    ราคาต้นทุน
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Sale
+                    ราคาขาย
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Quantity
+                    จำนวนสินค้า
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Detail
+                    รายระเอียด
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Photo
+                    
                   </th>
                   <th scope="col" className="px-14 py-3">
                     Actions

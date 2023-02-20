@@ -21,7 +21,7 @@ export default function AdminProductCard({ product }) {
   const handleAddToCart = () => {
     let cartAdmin = [];
     if (localStorage.getItem("cartAdmin")) {
-        cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
+      cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
     }
     cartAdmin.push({
       ...product,
@@ -41,56 +41,45 @@ export default function AdminProductCard({ product }) {
     });
   };
   return (
-    <div>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td
-          scope="row"
-          class="p-2 md:border md:border-grey-500 text-left block md:table-cell"
-        >
-          {" "}
-          <span className="inline-block w-1/3 md:hidden font-bold"></span>
-          {product_id}
-        </td>
-        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-          {product_name}
-        </td>
-        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-          {product_cost}
-        </td>
-        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-          {product_sale}
-        </td>
-        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-          {product_quantity}
-        </td>
-        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-          {product_detail}
-        </td>
-      </tr>
-      <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-      <span className="inline-block w-1/3 md:hidden font-bold"></span>
-
-        <img className="rounded-t-lg h-32 w-32" src={product_photo} alt="" />
-      </td>
-      <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-        <button
-          className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
+    <div className="">
+      <ul className="divide-gray-200 dark:divide-gray-700">
+        <li className="">
+          <div className="flex items-center ">
+            <div className="flex-initial w-64">
+              <img className="w-24 h-24 rounded-full" src={product_photo} />
+            </div>
+            <div className="flex-initial w-64 min-w-0">
+              <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                {product_id}
+              </p>
+              <p className="text-sm text-gray-900 truncate dark:text-gray-400">
+                {product_name}
+              </p>
+            </div>
+            <div className="flex-initial w-64 text-base font-semibold text-gray-900 dark:text-white">
+              {product_cost}
+            </div>
+            <div className="flex-initial w-64 text-base font-semibold text-gray-900 dark:text-white">
+              {product_sale}
+            </div>
+            <div className="flex-initial w-64 text-base font-semibold text-gray-900 dark:text-white">
+              {product_quantity}
+            </div>
+            <div className="flex-initial w-64 text-base font-semibold text-gray-900 dark:text-white">
+              {product_detail}
+            </div>
+            <div className="flex-initial w-64 text-base font-semibold text-gray-900 dark:text-white">
+            <button
+          className="flex-initial w-32 bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
           onClick={handleAddToCart}
         >
           เบิกสินค้า
         </button>
-      </td>
+            </div>
+           
+          </div> <hr />
+        </li>
+      </ul>
     </div>
-
   );
 }
