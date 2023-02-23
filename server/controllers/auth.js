@@ -2,7 +2,8 @@
 const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
-const OrderDetail = require("../models/OrderDetail.js");
+// const OrderDetail = require("../models/OrderDetail.js");
+const Order_Detail = require("../models/Order_Detail.js");
 
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -143,17 +144,8 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-exports.userCart = async (req, res) => {
-  try {
-    const {cart} =req.body;
-    console.log(cart);
-    console.log(req.body);
-   res.json('user cart OKEY.')
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("==userCart Server Error==");
-  }
-};
+
+
 exports.adminCart = async (req, res) => {
   try {
     const {cartAdmin} =req.body;
@@ -167,6 +159,58 @@ exports.adminCart = async (req, res) => {
 };
 
 
+//############ cart ################//
+
+// exports.userCart = async (req, res) => {
+//   try {
+//     const {cart} =req.body;
+//     console.log("cart =>" ,cart);
+    
+//    res.json('user cart OKEY.')
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("==userCart Server Error==");
+//   }
+// };
+
+//############ cart ################//
+
+exports.userCart = async (req, res) => {
+  try {
+    const { cart } = req.body;
+
+    let user = await User.findOne(req.body, {
+      where: { username: req.params.username },
+    })
+    let products = []; 
+    for(let i = 0; i < cart.length; i++) {
+      let object = {};
+      object.product = cart[i].product_id;
+      object.count = cart[i].count;
+      object.price = cart[i].product_sale;
+
+      products.push(object)
+    }
+    let cartTotal = 0;
+    for( let i = 0; i < products.length; i++){
+      cartTotal = cartTotal + products[i].product_sale * products[i]
+    }
+    
+ 
+    let newCart = await new Order_Detail({
+      products,
+      cartTotal,
+
+
+    }).save()
+    
+    res.json("user cart OKEY.");
+    console.log("newCart" , newCart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==userCart Server Error==");
+  }
+};
 
 //############ Search ################//
 // exports.getSearchCategory = async (req, res) => {
