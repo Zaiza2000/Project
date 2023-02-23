@@ -7,8 +7,8 @@ const {
   login,
   currentUser,
   changeRole,
-  searchFilters,
-  getSearchCategory,
+  
+  // getSearchCategory,
   userCart,
   adminCart
 } = require("../controllers/auth.js");
@@ -27,6 +27,7 @@ const {
   editProduct,
   createProduct,
   deleteProduct,
+  searchFilters,
 } = require("../controllers/product.js");
 
 const {
@@ -72,7 +73,7 @@ router.post("/user/cart", auth, userCart);
 //API Category//
 router.get("/listCategory", listCategory);
 router.get("/getCategory/:id", getCategory);
-router.get("/getCategory/:category_name", getSearchCategory);
+// router.get("/getCategory/:category_name", getSearchCategory);
 router.post("/createCategory", createCategory);
 router.put("/editCategory/:id", editCategory);
 router.delete("/deleteCategory/:id", deleteCategory);
@@ -84,6 +85,7 @@ router.post("/createProduct", createProduct);
 router.put("/editProduct/:id", editProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 
+// http://localhost:8000/api/search/filters
 //API Search//
 router.post("/search/filters", searchFilters);
 

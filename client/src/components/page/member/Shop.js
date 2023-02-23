@@ -2,6 +2,7 @@
 import MultiRangeSlider from "multi-range-slider-react";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 //Card
 import CardProductMember from "../../card/CardProductMember";
 import Search from "../../card/Search";
@@ -37,17 +38,18 @@ export default function Shop() {
   };
 
   // ########## load data on user filter ##########
-  // useEffect(() => {
-  //   const delay = setTimeout(() => {
-  //     fetchDataFilter({ query: text });
-  //     if (!text) {
-  //       loadData();
-  //     }
-  //   }, 300);
-  //   return () => clearTimeout(delay);
-  // }, [text]);
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      fetchDataFilter({ query: text });
+      if (!text) {
+        loadData();
+      }
+    }, 300);
+    return () => clearTimeout(delay);
+  }, [text]);
 
-  //Filter
+  //****Filter*****
+
   const fetchDataFilter = (arg) => {
     searchFilters(arg).then((res) => {
       setProduct(res.data)
