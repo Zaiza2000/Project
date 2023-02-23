@@ -64,16 +64,17 @@ exports.login = async (req, res) => {
       //Payload
       const payload = {
         user: {
+          id : user.id,
           username: user.username,
           role: user.role,
           firstname: user.firstname,
           lastname: user.lastname,
           address: user.address,
           sub_district: user.sub_district,
-          district : user.district,
+          district: user.district,
           province: user.province,
           zipcode: user.zipcode,
-          tel: user.tel
+          tel: user.tel,
         },
       };
       //Generate Token
@@ -144,20 +145,17 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-
-
 exports.adminCart = async (req, res) => {
   try {
-    const {cartAdmin} =req.body;
+    const { cartAdmin } = req.body;
     console.log(cartAdmin);
     console.log(req.body);
-   res.json('Admin cart OKEY.')
+    res.json("Admin cart OKEY.");
   } catch (error) {
     console.log(error);
     res.status(500).send("==userCart Server Error==");
   }
 };
-
 
 //############ cart ################//
 
@@ -165,7 +163,7 @@ exports.adminCart = async (req, res) => {
 //   try {
 //     const {cart} =req.body;
 //     console.log("cart =>" ,cart);
-    
+
 //    res.json('user cart OKEY.')
 //   } catch (error) {
 //     console.log(error);
@@ -179,33 +177,37 @@ exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
 
-    let user = await User.findOne(req.body, {
+    let users = await User.findOne(req.body, {
       where: { username: req.params.username },
-    })
-    let products = []; 
-    for(let i = 0; i < cart.length; i++) {
+    });
+    let products = [];
+    // let cartOld = await Order_Detail.findOne({
+    //   where: { id: users.id },
+    // });
+    // if (cartOld) {
+    //   cartOld.remove();
+    // }
+    for (let i = 0; i < cart.length; i++) {
       let object = {};
       object.product = cart[i].product_id;
       object.count = cart[i].count;
       object.price = cart[i].product_sale;
 
-      products.push(object)
+      products.push(object);
     }
     let cartTotal = 0;
-    for( let i = 0; i < products.length; i++){
-      cartTotal = cartTotal + products[i].product_sale * products[i]
+    for (let i = 0; i < products.length; i++) {
+      cartTotal = cartTotal + products[i].product_sale * products[i];
     }
-    
- 
+
     let newCart = await new Order_Detail({
       products,
       cartTotal,
+      id:users.id
+    }).save();
 
-
-    }).save()
-    
     res.json("user cart OKEY.");
-    console.log("newCart" , newCart);
+    console.log("newCart", newCart);
   } catch (error) {
     console.log(error);
     res.status(500).send("==userCart Server Error==");
@@ -226,7 +228,6 @@ exports.userCart = async (req, res) => {
 //     res.status(500).send("==Server Error==");
 //   }
 // };
-
 
 //############ Search by Roitai ################//
 // const handleQuery = async (req, res, query) => {
@@ -256,6 +257,3 @@ exports.userCart = async (req, res) => {
 //     await handlePrice(req, res, price);
 //   }
 // }
-
-
-

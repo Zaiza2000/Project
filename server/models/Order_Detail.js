@@ -1,7 +1,7 @@
 const DataTypes = require("sequelize");
 const db = require("../database/db.js");
 
-const Order_Detail = db.define("order_details_1s", {
+const Order_Detail = db.define("order_details", {
   order_detail_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -23,9 +23,10 @@ const Order_Detail = db.define("order_details_1s", {
   cartTotal: {
     type: DataTypes.INTEGER,
   },
-  // orderBy : {
-  //   type: DataTypes.INTEGER
-  // }
+  id : {
+    type: DataTypes.INTEGER,
+    ref: "users"
+  }
 });
 
 module.exports = Order_Detail;
