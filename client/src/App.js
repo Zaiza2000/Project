@@ -94,7 +94,7 @@ function App() {
           />
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
-          <Route path="/admin/order" element={<Order/>}/>
+          <Route path="/order" element={<Order/>}/>
           <Route
             path="/admin/index"
             element={
