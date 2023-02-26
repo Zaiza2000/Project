@@ -48,21 +48,39 @@ export default function Navbar() {
                 </a>
               </div>
               <div className="invisible md:visible text-[#000000]  text-[20px]  pl-[40px] flex flex-row pt-4 ">
-                <ul className="pr-5 hover:text-red-500">
-                  <li>
-                    <Link to="/"> หน้าหลัก </Link>
-                  </li>
-                </ul>
+
                 {user && (
                   <>
                     {
                       user.role === "admin" ? (
-                        <Link to="/"></Link>
+                        <div className="flex flex-row">
+                          <ul className="pr-5 hover:text-red-500">
+                            <li>
+                              <Link to="/admin/index"> หน้าหลัก </Link>
+                            </li>
+                          </ul>
+                          <ul className="pl-4 pt-2">
+                            <li>
+                              <Link to="/order">
+                                <Badge count={cart.length}>
+                                  <svg
+                                    className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
+                                    viewBox="0 0 1024 1024"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M480 580H372a8 8 0 00-8 8v48a8 8 0 008 8h108v108a8 8 0 008 8h48a8 8 0 008-8V644h108a8 8 0 008-8v-48a8 8 0 00-8-8H544V472a8 8 0 00-8-8h-48a8 8 0 00-8 8v108zm374.6-291.3c6 6 9.4 14.1 9.4 22.6V928c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32h424.7c8.5 0 16.7 3.4 22.7 9.4l215.2 215.3zM790.2 326L602 137.8V326h188.2z" />
+                                  </svg>
+                                </Badge>
+
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
                       ) : (
                         <div className="flex flex-row">
-                          <ul className="pr-4 hover:text-red-500">
+                          <ul className="pr-5 hover:text-red-500">
                             <li>
-                              <Link to="/shop">Shop</Link>
+                              <Link to="/"> หน้าหลัก </Link>
                             </li>
                           </ul>
                           <ul className="pl-4 pt-2">

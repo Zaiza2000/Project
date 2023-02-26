@@ -44,35 +44,6 @@ export default function Cart() {
           <h1 className="text-xl font-bold text-gray-900 sm:text-3xl p-10"> ตะกร้าของคุณมี {cart.length} สินค้า</h1>
           {!cart.length ? <p>ไม่มีสินค้าในตะกร้า</p> : showCartItem()}
         </div>
-
-        {/* <div className="col-md-4">
-          <h4>Summary</h4>
-          <hr />
-          {cart.map((item, index) => (
-            <p key={index}>
-              {item.product_name} x {item.count} ={" "}
-              {item.product_sale * item.count}
-            </p>
-          ))}
-          <hr />
-          Total : <b> {getTotal()} </b>
-          <hr />
-          {user ? (
-            <button
-              className="btn btn-success"
-              onClick={handleSaveOrder}
-              disabled={!cart.length}
-            >
-              Check Out
-            </button>
-          ) : (
-            <button className="btn btn-danger">
-              <Link to="/login" state="cart">
-                Login to CheckOut
-              </Link>
-            </button>
-          )}
-        </div>*/}
       </div> 
       <div className="flex justify-center p-10 pt-8 mt-8 border-t border-gray-100">
         <div className="w-screen max-w-lg space-y-4 ">

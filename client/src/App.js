@@ -40,6 +40,7 @@ import { useDispatch } from "react-redux";
 import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
 import CheckOut from "./components/page/CheckOut";
+import Order from "./components/page/admin/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -93,7 +94,7 @@ function App() {
           />
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
-
+          <Route path="/admin/order" element={<Order/>}/>
           <Route
             path="/admin/index"
             element={
