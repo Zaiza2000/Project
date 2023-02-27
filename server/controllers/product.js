@@ -1,11 +1,15 @@
-const Product = require("../models/Product.js")
+const Product = require("../models/Product.js");
 const Category = require("../models/Category.js");
+const { get_latest_order_id } = require("../utils/order_utiils");
 
 //############ Product.js ################//
 exports.listProduct = async (req, res) => {
   try {
     const product = await Product.findAll();
     res.send(product);
+    // TODO: Remove this on production
+    const order_id = get_latest_order_id();
+    console.log(order_id);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
@@ -67,15 +71,17 @@ exports.deleteProduct = async (req, res) => {
 //############ Search by Roitai ################
 
 const handleQuery = async (req, res, query) => {
-  let products = await Product.find({ $text: { $search: query } })
-  .populate("category_name", "product_id product_name product_detail")
+  let products = await Product.find({ $text: { $search: query } }).populate(
+    "category_name",
+    "product_id product_name product_detail"
+  );
   res.send(products);
-}
+};
 
 exports.searchFilters = async (req, res) => {
-  const { query} = req.body;
+  const { query } = req.body;
   if (query) {
     console.log("query", query);
     await handleQuery(req, res, query);
   }
-}
+};

@@ -9,6 +9,9 @@ const Order_Detail = require("../models/Order_Detail.js");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
+// Import our utils
+// const { get_latest_order_id } = require("../utils/order_utiils");
+
 //############ User.js ################//
 exports.listUser = async (req, res) => {
   try {
@@ -64,7 +67,7 @@ exports.login = async (req, res) => {
       //Payload
       const payload = {
         user: {
-          id : user.id,
+          id: user.id,
           username: user.username,
           role: user.role,
           firstname: user.firstname,
@@ -204,7 +207,7 @@ exports.userCart = async (req, res) => {
     let newCart = await new Order_Detail({
       products,
       cartTotal,
-      id:users.id
+      id: users.id,
     }).save();
 
     res.json("user cart OKEY.");
