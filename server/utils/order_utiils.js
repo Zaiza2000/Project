@@ -44,7 +44,8 @@ function get_tail(order_list) {
 }
 
 function parse_order_id(number) {
-  prefix = "ORD";
+  // TODO: If you wanna change prefix name
+  prefix = "OID";
   order_id = number.toLocaleString("en-US", {
     minimumIntegerDigits: 6,
     useGrouping: false,

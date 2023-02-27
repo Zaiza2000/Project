@@ -4,13 +4,14 @@ const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
 // const OrderDetail = require("../models/OrderDetail.js");
 const Order_Detail = require("../models/Order_Detail.js");
+const Order_Detail_3 = require("../models/Order_Detail_3.js");
 
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
 // Import our utils
-// const { get_latest_order_id } = require("../utils/order_utiils");
+const { get_latest_order_id } = require("../utils/order_utiils");
 
 //############ User.js ################//
 exports.listUser = async (req, res) => {
@@ -162,56 +163,74 @@ exports.adminCart = async (req, res) => {
 
 //############ cart ################//
 
+//############ cart ################//
+
 // exports.userCart = async (req, res) => {
 //   try {
-//     const {cart} =req.body;
-//     console.log("cart =>" ,cart);
+//     const { cart } = req.body;
+//     let users = await User.findOne(req.body, {
+//       where: { username: req.params.username },
+//     });
+//     let products = [];
+//     // let cartOld = await Order_Detail.findOne({
+//     //   where: { id: users.id },
+//     // });
+//     // if (cartOld) {
+//     //   cartOld.remove();
+//     // }
+//     for (let i = 0; i < cart.length; i++) {
+//       let object = {};
+//       object.product = cart[i].product_id;
+//       object.count = cart[i].count;
+//       object.price = cart[i].product_sale;
 
-//    res.json('user cart OKEY.')
+//       products.push(object);
+//     }
+//     console.log("products", products);
+//     let cartTotal = 0;
+//     for (let i = 0; i < products.length; i++) {
+//       cartTotal = cartTotal + products[i].price * products[i];
+//     }
+
+//     let newCart = await new Order_Detail({
+//       products,
+//       cartTotal,
+//       id: users.id,
+//     }).save();
+
+//     res.json("user cart OKEY.");
+//     console.log("newCart", newCart);
 //   } catch (error) {
 //     console.log(error);
 //     res.status(500).send("==userCart Server Error==");
 //   }
 // };
 
-//############ cart ################//
-
 exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
-
+    // console.log("req.body=>" , req);
+    console.log(">>>>> Res.user => ", req.user.id);
     let users = await User.findOne(req.body, {
-      where: { username: req.params.username },
+      where: { id: req.params.id },
     });
-    let products = [];
-    // let cartOld = await Order_Detail.findOne({
-    //   where: { id: users.id },
-    // });
-    // if (cartOld) {
-    //   cartOld.remove();
-    // }
+
+    console.log(">>>>>>>> users >>>>>>", users);
+
+    const new_order_id = get_latest_order_id();
+
     for (let i = 0; i < cart.length; i++) {
-      let object = {};
-      object.product = cart[i].product_id;
-      object.count = cart[i].count;
-      object.price = cart[i].product_sale;
-
-      products.push(object);
+      let newCart = await new Order_Detail_3({
+        OID: new_order_id,
+        product_id: cart[i].product_id,
+        quantity: cart[i].count,
+        price: cart[i].product_sale,
+        id: req.user.id,
+      }).save();
+      console.log("newCart", newCart);
     }
-    console.log("products", products);
-    let cartTotal = 0;
-    for (let i = 0; i < products.length; i++) {
-      cartTotal = cartTotal + products[i].price * products[i];
-    }
-
-    let newCart = await new Order_Detail({
-      products,
-      cartTotal,
-      id: users.id,
-    }).save();
 
     res.json("user cart OKEY.");
-    console.log("newCart", newCart);
   } catch (error) {
     console.log(error);
     res.status(500).send("==userCart Server Error==");
