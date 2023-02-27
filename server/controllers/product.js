@@ -1,15 +1,12 @@
 const Product = require("../models/Product.js");
 const Category = require("../models/Category.js");
-const { get_latest_order_id } = require("../utils/order_utiils");
+
 
 //############ Product.js ################//
 exports.listProduct = async (req, res) => {
   try {
     const product = await Product.findAll();
     res.send(product);
-    // TODO: Remove this on production
-    const order_id = get_latest_order_id();
-    console.log(order_id);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

@@ -2,9 +2,7 @@
 const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
-// const OrderDetail = require("../models/OrderDetail.js");
 const Order_Detail = require("../models/Order_Detail.js");
-const Order_Detail_3 = require("../models/Order_Detail_3.js");
 
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -163,49 +161,6 @@ exports.adminCart = async (req, res) => {
 
 //############ cart ################//
 
-//############ cart ################//
-
-// exports.userCart = async (req, res) => {
-//   try {
-//     const { cart } = req.body;
-//     let users = await User.findOne(req.body, {
-//       where: { username: req.params.username },
-//     });
-//     let products = [];
-//     // let cartOld = await Order_Detail.findOne({
-//     //   where: { id: users.id },
-//     // });
-//     // if (cartOld) {
-//     //   cartOld.remove();
-//     // }
-//     for (let i = 0; i < cart.length; i++) {
-//       let object = {};
-//       object.product = cart[i].product_id;
-//       object.count = cart[i].count;
-//       object.price = cart[i].product_sale;
-
-//       products.push(object);
-//     }
-//     console.log("products", products);
-//     let cartTotal = 0;
-//     for (let i = 0; i < products.length; i++) {
-//       cartTotal = cartTotal + products[i].price * products[i];
-//     }
-
-//     let newCart = await new Order_Detail({
-//       products,
-//       cartTotal,
-//       id: users.id,
-//     }).save();
-
-//     res.json("user cart OKEY.");
-//     console.log("newCart", newCart);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("==userCart Server Error==");
-//   }
-// };
-
 exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
@@ -220,7 +175,7 @@ exports.userCart = async (req, res) => {
     const new_order_id = get_latest_order_id();
 
     for (let i = 0; i < cart.length; i++) {
-      let newCart = await new Order_Detail_3({
+      let newCart = await new Order_Detail({
         OID: new_order_id,
         product_id: cart[i].product_id,
         quantity: cart[i].count,
