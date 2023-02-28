@@ -14,7 +14,7 @@ export default function RequisitionDetails() {
 
     const getTotal = () => {
         return cartAdmin.reduce((currenValue, nextValue) => {
-            return currenValue + nextValue.count * nextValue.product_sale;
+            return currenValue + nextValue.count * nextValue.product_cost;
         }, 0);
     };
     const handleSaveOrder = () => {
@@ -63,7 +63,7 @@ export default function RequisitionDetails() {
                             ))}</dt>
                             <dd>{cartAdmin.map((item, index) => (
                                 <div key={index}>
-                                    {item.product_sale * item.count}
+                                    {item.product_cost * item.count}
                                 </div>
                             ))}</dd>
                         </div>

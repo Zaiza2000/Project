@@ -3,13 +3,14 @@ const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
 const Order_Detail = require("../models/Order_Detail.js");
-
+const Requisition_Detail = require("../models/Requisition_Detail.js");
 // const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
 // Import our utils
 const { get_latest_order_id } = require("../utils/order_utiils");
+const {get_latest_requisition_id} = require("../utils/requisition_utiils");
 
 //############ User.js ################//
 exports.listUser = async (req, res) => {
@@ -147,17 +148,6 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-exports.adminCart = async (req, res) => {
-  try {
-    const { cartAdmin } = req.body;
-    console.log(cartAdmin);
-    console.log(req.body);
-    res.json("Admin cart OKEY.");
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("==userCart Server Error==");
-  }
-};
 
 //############ cart ################//
 
@@ -191,6 +181,41 @@ exports.userCart = async (req, res) => {
     res.status(500).send("==userCart Server Error==");
   }
 };
+
+
+exports.adminCart = async (req, res) => {
+  try {
+    const { cartAdmin } = req.body;
+    // console.log("req.body=>" , req);
+    console.log(">>>>> Res.user => ", req.user.id);
+    let users = await User.findOne(req.body, {
+      where: { id: req.params.id },
+    });
+
+    console.log(">>>>>>>> users >>>>>>", users);
+
+    const new_requisition_id = get_latest_requisition_id();
+
+    for (let i = 0; i < cartAdmin.length; i++) {
+      let newAdminCart = await new Requisition_Detail({
+        RID: new_requisition_id,
+        product_id: cartAdmin[i].product_id,
+        quantity: cartAdmin[i].count,
+        price: cartAdmin[i].product_cost,
+        id: req.user.id,
+      }).save();
+      console.log("newAdminCart", newAdminCart);
+    }
+
+    res.json("AdminCart cart OKEY.");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==userCart Server Error==");
+  }
+};
+
+
+
 
 //############ Search ################//
 // exports.getSearchCategory = async (req, res) => {

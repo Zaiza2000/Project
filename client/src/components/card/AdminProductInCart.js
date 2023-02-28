@@ -57,7 +57,7 @@ export default function AdminProductInCart({ item }) {
                   <h3 className="text-m text-gray-900">{item.product_name}</h3>
                   <dl className="mt-0.5 space-y-px text-sm text-gray-600">
                     <div>
-                      <dt className="inline" >ราคา {item.product_sale} บาท</dt>
+                      <dt className="inline" >ราคา {item.product_cost} บาท</dt>
                     </div>
                   </dl>
                 </div>
