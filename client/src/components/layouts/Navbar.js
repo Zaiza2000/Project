@@ -16,7 +16,7 @@ import Search from "../card/Search";
 
 export default function Navbar() {
   // const [isOpen, setIsOpen] = useState(false);
-  const { user, cart } = useSelector((state) => ({ ...state }));
+  const { user, cart, cartAdmin } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ export default function Navbar() {
                           <ul className="pl-4 pt-2">
                             <li>
                               <Link to="/order">
-                                <Badge count={cart.length}>
+                                <Badge count={cartAdmin.length}>
                                   <svg
                                     className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
                                     viewBox="0 0 1024 1024"

@@ -2,7 +2,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-export default function ProductTableInCart({ item }) {
+export default function AdminProductInCart({ item }) {
   const dispatch = useDispatch();
 
   const handleChangeCount = (e) => {
@@ -13,40 +13,40 @@ export default function ProductTableInCart({ item }) {
       return;
     }
 
-    let cart = [];
-    if (localStorage.getItem("cart")) {
-      cart = JSON.parse(localStorage.getItem("cart"));
+    let cartAdmin = [];
+    if (localStorage.getItem("cartAdmin")) {
+      cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
     }
 
-    cart.map((product, i) => {
+    cartAdmin.map((product, i) => {
       if (product.product_id === item.product_id) {
-        cart[i].count = count;
+        cartAdmin[i].count = count;
       }
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cartAdmin", JSON.stringify(cartAdmin));
     dispatch({
       type: "ADD_TO_CART",
-      payload: cart,
+      payload: cartAdmin,
     });
   };
 
   const handleRemove = () => {
-    let cart = [];
-    if (localStorage.getItem("cart")) {
-      cart = JSON.parse(localStorage.getItem("cart"));
+    let cartAdmin = [];
+    if (localStorage.getItem("cartAdmin")) {
+      cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
     }
 
-    cart.map((product, i) => {
+    cartAdmin.map((product, i) => {
       if (product.product_id === item.product_id) {
-        cart.splice(i, 1)
+        cartAdmin.splice(i, 1)
       }
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cartAdmin", JSON.stringify(cartAdmin));
     dispatch({
       type: "ADD_TO_CART",
-      payload: cart,
+      payload: cartAdmin,
     });
   }
 

@@ -46,7 +46,7 @@ export default function AdminProductCard({ product }) {
         <li className="">
           <div className="flex items-center ">
             <div className="flex-initial w-64">
-              <img className="w-24 h-24 rounded-full" src={product_photo} alt=""/>
+              <img className="w-24 h-24 rounded-full" src={product_photo} alt="" />
             </div>
             <div className="flex-initial w-64 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate ">
@@ -69,15 +69,14 @@ export default function AdminProductCard({ product }) {
               {product_detail}
             </div>
             <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
-            <button
-          className="flex-initial w-32 bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
-          onClick={handleAddToCart}
-        >
-          เบิกสินค้า
-        </button>
+              <button
+                className="flex-initial w-32 bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
+                onClick={handleAddToCart}
+              >
+                เบิกสินค้า
+              </button>
             </div>
-           
-          </div> <hr />
+          </div>
         </li>
       </ul>
     </div>
