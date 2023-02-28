@@ -44,14 +44,14 @@ export default function Requisition() {
         )}
 
         {/* Show Product Cart */}
-        <div className="">
+        {/* <div className="">
           {cartAdmin.map((item, index) => (
             <div key={index} className="">
               {item.product_name} x {item.count}
               <hr />
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Data Product */}
         <div>

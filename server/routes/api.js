@@ -56,7 +56,10 @@ router.post("/current-user", auth, currentUser);
 
 //Current-Admin
 router.post("/current-admin", auth, adminCheck, currentUser);
+
+//Admin Cart//
 router.post("/admin/cart", auth, adminCart);
+
 //API User//
 router.get("/listUser", listUser);
 router.get("/getUser/:id", getUser);

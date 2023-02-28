@@ -11,14 +11,14 @@ import SignUpPage from "./components/page/SignUpPage";
 import Navbar from "./components/layouts/Navbar";
 import Product from "./components/page/Product";
 import Cart from "./components/page/Cart";
-import Requisition from "./components/page/admin/Requisition";
 
 // Layout
 
 // Page Admin
 import HomeAdmin from "./components/page/admin/HomeAdmin";
 import ManageUser from "./components/page/admin/ManageUser";
-
+import Requisition from "./components/page/admin/Requisition";
+import RequisitionDetails from "./components/page/admin/RequisitionDetails";
 //Category
 import CreateCategory from "./components/page/admin/category/CreateCategory";
 import UpdateCategory from "./components/page/admin/category/UpdateCategory";
@@ -40,7 +40,6 @@ import { useDispatch } from "react-redux";
 import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
 import CheckOut from "./components/page/CheckOut";
-import Order from "./components/page/admin/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,7 +85,7 @@ function App() {
 
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/requisition" element={<Requisition />} />
-         
+
           <Route path="/admin/create-category" element={<CreateCategory />} />
           <Route
             path="/admin/update-category/:id"
@@ -94,7 +93,7 @@ function App() {
           />
           <Route path="/admin/create-product" element={<CreateProduct />} />
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
-          <Route path="/order" element={<Order/>}/>
+          <Route path="/requisitionDetails" element={<RequisitionDetails />} />
           <Route
             path="/admin/index"
             element={

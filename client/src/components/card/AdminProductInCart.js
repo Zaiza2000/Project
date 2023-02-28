@@ -8,11 +8,6 @@ export default function AdminProductInCart({ item }) {
   const handleChangeCount = (e) => {
     const count = e.target.value < 1 ? 1 : e.target.value;
 
-    if (count > item.product_quantity) {
-      alert('Max avialable Quantity: ' + item.product_quantity)
-      return;
-    }
-
     let cartAdmin = [];
     if (localStorage.getItem("cartAdmin")) {
       cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
@@ -26,7 +21,7 @@ export default function AdminProductInCart({ item }) {
 
     localStorage.setItem("cartAdmin", JSON.stringify(cartAdmin));
     dispatch({
-      type: "ADD_TO_CART",
+      type: "ADD_PRODUCT",
       payload: cartAdmin,
     });
   };
@@ -45,7 +40,7 @@ export default function AdminProductInCart({ item }) {
 
     localStorage.setItem("cartAdmin", JSON.stringify(cartAdmin));
     dispatch({
-      type: "ADD_TO_CART",
+      type: "ADD_PRODUCT",
       payload: cartAdmin,
     });
   }

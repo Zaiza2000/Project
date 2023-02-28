@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import AdminProductInCart from "../../card/AdminProductInCart";
 
 // function
-import { userCart } from "../../functions/user";
+import { adminCart } from "../../functions/user";
 
 
-export default function Order() {
+export default function RequisitionDetails() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { cartAdmin, user } = useSelector((state) => ({ ...state }));
@@ -20,7 +20,7 @@ export default function Order() {
     const handleSaveOrder = () => {
         // code
         alert("CheckOut Order");
-        userCart(user.token, cartAdmin)
+        adminCart(user.token, cartAdmin)
             .then((res) => {
                 console.log(res);
                 navigate("/checkout");

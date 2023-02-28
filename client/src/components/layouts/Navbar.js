@@ -61,7 +61,7 @@ export default function Navbar() {
                           </ul>
                           <ul className="pl-4 pt-2">
                             <li>
-                              <Link to="/order">
+                              <Link to="/requisitionDetails">
                                 <Badge count={cartAdmin.length}>
                                   <svg
                                     className="flex-shrink-0 w-6 h-6 text-black transition duration-75  hover:text-red-500 "
