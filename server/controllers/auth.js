@@ -155,12 +155,12 @@ exports.userCart = async (req, res) => {
   try {
     const { cart } = req.body;
     // console.log("req.body=>" , req);
-    console.log(">>>>> Res.user => ", req.user.id);
+    // console.log(">>>>> Res.user => ", req.user.id);
     let users = await User.findOne(req.body, {
       where: { id: req.params.id },
     });
 
-    console.log(">>>>>>>> users >>>>>>", users);
+    // console.log(">>>>>>>> users >>>>>>", users);
 
     const new_order_id = get_latest_order_id();
 
@@ -174,6 +174,12 @@ exports.userCart = async (req, res) => {
       }).save();
       console.log("newCart", newCart);
     }
+
+    let cartTotal = 0;
+    for(let i = 0; i <  cart.length; i++){
+      cartTotal = cartTotal + cart[i].product_sale * cart[i].count
+    }
+    console.log(">>>>>>>cartTotal>>>>>>>>", cartTotal);
 
     res.json("user cart OKEY.");
   } catch (error) {
