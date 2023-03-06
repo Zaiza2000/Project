@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { json, Link } from "react-router-dom";
 import "../../App.css";
 import Navbar from "../layouts/Navbar";
-import CardProduct from "../card/CardProduct";
+import CardProductMember from "../card/CardProductMember";
 //function
 import { listProduct } from "../functions/product";
 // Import Swiper React components
@@ -97,7 +97,7 @@ export default function LandingPage() {
         <div className=" grid grid-cols-4 gap-8 content-start">
           {product.map((item, index) => (
             <div key={index} className="">
-              <CardProduct product={item} />
+              <CardProductMember product={item} />
             </div>
           ))}
         </div>

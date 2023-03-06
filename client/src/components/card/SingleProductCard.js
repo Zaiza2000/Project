@@ -1,36 +1,24 @@
 // rafce
 import React from "react";
-import { Card, Tabs } from "antd";
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { userCart } from "../functions/user";
 // lodash
 import _ from "lodash";
-import { toast } from "react-toastify";
-import { addToWishList } from "../functions/user";
-const { TabPane } = Tabs;
-const { Meta } = Card;
+
 
 export default function SingleProductCard({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {  cart, user } = useSelector((state) => ({ ...state }));
+  const { cart, user } = useSelector((state) => ({ ...state }));
 
   console.log(product);
   const {
-    product_id,
     product_name,
     product_detail,
     product_photo,
     product_sale,
-    sold,
-    product_num,
-    category_id,
-    category_name,
   } = product;
 
   const handleAddToCart = () => {
@@ -54,6 +42,16 @@ export default function SingleProductCard({ product }) {
       type: "SET_VISIBLE",
       payload: true,
     });
+
+
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: unique,
+    });
+    dispatch({
+      type: "SET_VISIBLE",
+      payload: true,
+    });
   };
   const handleSaveOrder = () => {
     // code
@@ -67,21 +65,6 @@ export default function SingleProductCard({ product }) {
         console.log(err);
       });
   };
-  // const handleAddToWishList = (e) => {
-  //   console.log(user)
-  //   if (user) {
-  //     addToWishList(user.token, product_id)
-  //       .then(res => {
-  //         console.log(res.data)
-  //         toast.success('Add to wishlist Success')
-  //       }).catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     toast.error('Go to Login')
-  //   }
-
-  // }
 
   return (
     <div className="flex p-20">
@@ -116,15 +99,15 @@ export default function SingleProductCard({ product }) {
           <div>
             {user ? (
               <button
-              className="bg-gray-700 hover:bg-gray-400 text-white font-bold py-1 w-3/4 border rounded"
-              onClick={handleSaveOrder}
+                className="bg-gray-700 hover:bg-gray-400 text-white font-bold py-1 w-3/4 border rounded"
+                onClick={handleSaveOrder}
                 disabled={!cart.length}
               >
                 ชำระเงิน
               </button>
             ) : (
               <button className="bg-gray-700 hover:bg-gray-400 text-white font-bold py-1 w-3/4 border rounded">
-              <Link to="/login" state="shop">
+                <Link to="/login" state="shop">
                   เข้าสู่ระบบเพื่อสั่งสินค้า
                 </Link>
               </button>

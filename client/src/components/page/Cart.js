@@ -67,7 +67,7 @@ export default function Cart() {
               ))}</dd>
             </div>
             <div className="flex justify-between !text-base font-medium">
-              <dt>Total</dt>
+              <dt>รวม</dt>
               <dd>{getTotal()}</dd>
             </div>
           </dl>

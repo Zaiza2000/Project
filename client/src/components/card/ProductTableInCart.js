@@ -43,11 +43,6 @@ export default function ProductTableInCart({ item }) {
       }
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: cart,
-    });
   }
 
   return (
@@ -76,7 +71,8 @@ export default function ProductTableInCart({ item }) {
                       value={item.count}
                       type="number"
                       id="Line3Qty"
-                      className="form-control h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none "
+                      className="form-control h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center 
+                      text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none "
                     />
                   </form>
 

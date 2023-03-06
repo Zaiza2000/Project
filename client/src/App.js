@@ -40,6 +40,8 @@ import { useDispatch } from "react-redux";
 import UserRoutes from "./components/routes/UserRoutes";
 import AdminRoutes from "./components/routes/AdminRoutes";
 import CheckOut from "./components/page/CheckOut";
+// Drawer
+import SideDrawer from "./components/drawer/SideDrawer";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +69,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        <SideDrawer/>
         {/* <NavbarLogin /> */}
         <Routes>
           <Route exact path="/" element={<Home />} />
