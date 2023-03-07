@@ -322,7 +322,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-password"
+                  for=""
                 >
                   จังหวัด
                 </label>
@@ -342,7 +342,7 @@ export default function SignUpPage() {
                 <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-zip"
+                    for=""
                   >
                     อำเภอ
                   </label>
@@ -365,7 +365,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
+                  for=""
                 >
                   ตำบล
                 </label>
@@ -385,7 +385,7 @@ export default function SignUpPage() {
                 <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-zip"
+                    for=""
                   >
                     รหัสไปรษณีย์
                   </label>

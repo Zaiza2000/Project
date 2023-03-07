@@ -98,6 +98,7 @@ router.get("/province/:id/district", listDistrict);
 router.get("/district/:id", listSubDistrict);
 
 //API Order => order.js//
-router.post("/create-order", CreateOrder);
+router.post("/createOrder", CreateOrder);
+router.get("/listOrder", listOrder);
 
 module.exports = router;
