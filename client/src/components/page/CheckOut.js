@@ -13,10 +13,14 @@ import {
 } from "../functions/location";
 
 export default function CheckOut() {
-  const [province, setProvince] = useState([]);
-  const [district, setDistrict] = useState([]);
-  const [sub_district, setSubDistrict] = useState([]);
-  const [zipcode, setZipcode] = useState([]);
+  const [province_shipping, setProvince_shipping] = useState([]);
+  const [district_shipping, setDistrict_shipping] = useState([]);
+  const [sub_district_shipping, setSubDistrict_shipping] = useState([]);
+  const [zipcode_shipping, setZipcode_shipping] = useState([]);
+  const [province_billing, setProvince_billing] = useState([]);
+  const [district_billing, setDistrict_billing] = useState([]);
+  const [sub_district_billing, setSubDistrict_billing] = useState([]);
+  const [zipcode_billing, setZipcode_billing] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
 
@@ -57,14 +61,15 @@ export default function CheckOut() {
   const loadData = () => {
     listProvince()
       .then((res) => {
-        setProvince(res.data);
+        setProvince_shipping(res.data);
+        setProvince_billing(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
 
-  const onChangeProvince = (e) => {
+  const onChangeProvince_shipping = (e) => {
     let index = e.nativeEvent.target.selectedIndex;
     let lable = e.nativeEvent.target[index].text;
     setValue({
@@ -74,14 +79,32 @@ export default function CheckOut() {
 
     listDistrict(e.target.value)
       .then((res) => {
-        setDistrict(res.data);
+        setDistrict_shipping(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
 
-  const onChangeDistrict = (e) => {
+  const onChangeProvince_billing = (e) => {
+    let index = e.nativeEvent.target.selectedIndex;
+    let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: lable,
+    });
+
+    listDistrict(e.target.value)
+      .then((res) => {
+        setDistrict_billing(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+
+  const onChangeDistrict_shipping = (e) => {
     let index = e.nativeEvent.target.selectedIndex;
     let lable = e.nativeEvent.target[index].text;
     setValue({
@@ -91,30 +114,56 @@ export default function CheckOut() {
 
     listSubDistrict(e.target.value)
       .then((res) => {
-        setSubDistrict(res.data);
+        setSubDistrict_shipping(res.data);
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
 
-  const onChangeSubDistrict = (e) => {
-    const filterDistrict = sub_district.filter((item) => {
+  const onChangeDistrict_billing = (e) => {
+    let index = e.nativeEvent.target.selectedIndex;
+    let lable = e.nativeEvent.target[index].text;
+    setValue({
+      ...value,
+      [e.target.name]: lable,
+    });
+
+    listSubDistrict(e.target.value)
+      .then((res) => {
+        setSubDistrict_billing(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  const onChangeSubDistrict_shipping = (e) => {
+    const filterDistrict = sub_district_shipping.filter((item) => {
       return e.target.value === item.id;
     });
-    // // let index = e.nativeEvent.target.selectedIndex;
-    // // let lable = e.nativeEvent.target[index].text;
+
     setValue({
       ...value,
       [e.target.name]: filterDistrict[0].name_th,
-      zipcode: filterDistrict[0].zip_code,
+      zipcode_shipping: filterDistrict[0].zip_code,
+    });
+  };
+  const onChangeSubDistrict_billing = (e) => {
+    const filterDistrict = sub_district_billing.filter((item) => {
+      return e.target.value === item.id;
+    });
+    setValue({
+      ...value,
+      [e.target.name]: filterDistrict[0].name_th,
+      zipcode_billing: filterDistrict[0].zip_code,
     });
   };
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(value);
+    // console.log(value);
     CreateOrder(value)
       .then((res) => {
         console.log(res.data);
@@ -127,6 +176,8 @@ export default function CheckOut() {
         alert(error.response.data);
       });
   };
+
+  console.log("value>>>>" , value);
 
   return (
     <div>
@@ -142,6 +193,7 @@ export default function CheckOut() {
       <h2>{user.zipcode}</h2>
       <h2>{user.tel}</h2>
       <div className="flex space-x-10 m-20">
+        
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Shipping   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/}
 
         <div id="checkout" className="flex-1 w-32 ">
@@ -187,12 +239,14 @@ export default function CheckOut() {
                         type="text"
                         name="shipping_firstname"
                         placeholder="ชื่อ"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       <input
                         type="text"
                         name="shipping_lastname"
                         placeholder="นามสกุล"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -207,6 +261,7 @@ export default function CheckOut() {
                         type="text"
                         name="shipping_address"
                         placeholder="เลขที่ 85/8 หมู่ 13 ต.ในเมือง "
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-2 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -221,9 +276,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="shipping_province"
-                          onChange={(e) => onChangeProvince(e)}
+                          onChange={(e) => onChangeProvince_shipping(e)}
                         >
-                          {province.map((item, index) => (
+                          {province_shipping.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -242,9 +297,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="shipping_district"
-                          onChange={(e) => onChangeDistrict(e)}
+                          onChange={(e) => onChangeDistrict_shipping(e)}
                         >
-                          {district.map((item, index) => (
+                          {district_shipping.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -264,9 +319,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="shipping_sub_district"
-                          onChange={(e) => onChangeSubDistrict(e)}
+                          onChange={(e) => onChangeSubDistrict_shipping(e)}
                         >
-                          {sub_district.map((item, index) => (
+                          {sub_district_shipping.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -287,7 +342,7 @@ export default function CheckOut() {
                           id="grid-zip"
                           type="text"
                           name="shipping_zipcode"
-                          value={value.zipcode}
+                          value={value.zipcode_shipping}
                           onChange={(e) => handleChange(e)}
                         />
                       </div>
@@ -303,6 +358,7 @@ export default function CheckOut() {
                         type="text"
                         name="shipping_tel"
                         placeholder="098-888-8888"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -356,12 +412,14 @@ export default function CheckOut() {
                         type="text"
                         name="billing_firstname"
                         placeholder="ชื่อ"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       <input
                         type="text"
                         name="billing_lastname"
                         placeholder="นามสกุล"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -376,6 +434,7 @@ export default function CheckOut() {
                         type="text"
                         name="billing_address"
                         placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8 ต.ในเมือง"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -390,9 +449,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="billing_province"
-                          onChange={(e) => onChangeProvince(e)}
+                          onChange={(e) => onChangeProvince_billing(e)}
                         >
-                          {province.map((item, index) => (
+                          {province_billing.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -411,9 +470,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="billing_district"
-                          onChange={(e) => onChangeDistrict(e)}
+                          onChange={(e) => onChangeDistrict_billing(e)}
                         >
-                          {district.map((item, index) => (
+                          {district_billing.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -433,9 +492,9 @@ export default function CheckOut() {
                         <select
                           className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           name="billing_sub_district"
-                          onChange={(e) => onChangeSubDistrict(e)}
+                          onChange={(e) => onChangeSubDistrict_billing(e)}
                         >
-                          {sub_district.map((item, index) => (
+                          {sub_district_billing.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name_th}
                             </option>
@@ -456,7 +515,7 @@ export default function CheckOut() {
                           id="grid-zip"
                           type="text"
                           name="billing_zipcode"
-                          value={value.zipcode}
+                          value={value.zipcode_billing}
                           onChange={(e) => handleChange(e)}
                         />
                       </div>
@@ -472,6 +531,7 @@ export default function CheckOut() {
                         type="text"
                         name="billing_tel"
                         placeholder="098-888-8888"
+                        onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
@@ -506,6 +566,11 @@ export default function CheckOut() {
         <div id="checkout" className="flex-1 w-32 ">
           ยืนยันการสั่งซื้อ
         </div>
+        <button onSubmit={handleSubmit}  type="button" class="w-32 h-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+
+        
+          ยืนยันการสั่งซื้อ
+        </button>
       </div>
     </div>
   );
