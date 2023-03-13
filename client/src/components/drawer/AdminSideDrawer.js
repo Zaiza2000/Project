@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import {  Drawer } from 'antd';
+import { Button, Drawer } from 'antd';
 import { userCart } from "../functions/user";
 
-export default function SideDrawer(item) {
+export default function AdminSideDrawer(item) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { cart, drawer, user } = useSelector((state) => ({ ...state }))
 
     const onCloseDrawer = () => {
         dispatch({
-            type: "SET_VISIBLE",
+            type: "SET_VISIBLE_ADMIN",
             payload: false,
         });
     }
@@ -36,39 +36,39 @@ export default function SideDrawer(item) {
     const handleChangeCount = (e) => {
         const count = e.target.value < 1 ? 1 : e.target.value;
 
-        let cart = [];
-    if (localStorage.getItem("cart")) {
-      cart = JSON.parse(localStorage.getItem("cart"));
+        let cartAdmin = [];
+    if (localStorage.getItem("cartAdmin")) {
+      cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
     }
 
-    cart.map((product, i) => {
+    cartAdmin.map((product, i) => {
       if (product.product_id === item.product_id) {
-        cart[i].count = count;
+        cartAdmin[i].count = count;
       }
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cartAdmin", JSON.stringify(cartAdmin));
     dispatch({
-      type: "ADD_TO_CART",
-      payload: cart,
+      type: "ADD_PRODUCT",
+      payload: cartAdmin,
     });
         
     };
     const handleRemove = () => {
-        let cart = [];
-        if (localStorage.getItem("cart")) {
-            cart = JSON.parse(localStorage.getItem("cart"));
+        let cartAdmin = [];
+        if (localStorage.getItem("cartAdmin")) {
+            cartAdmin = JSON.parse(localStorage.getItem("cartAdmin"));
         }
 
-        cart.map((product, i) => {
+        cartAdmin.map((product, i) => {
             if (product.product_id === item.product_id) {
-                cart.splice(i, 1)
+                cartAdmin.splice(i, 1)
             }
         });
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("cartAdmin", JSON.stringify(cart));
         dispatch({
-            type: "ADD_TO_CART",
-            payload: cart,
+            type: "ADD_PRODUCT",
+            payload: cartAdmin,
         });
     }
     return (

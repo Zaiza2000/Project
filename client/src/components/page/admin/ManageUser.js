@@ -4,7 +4,6 @@ import { Select } from "antd";
 
 //function
 import { listUser,changeRole, deleteUser } from "../../functions/user";
-import NavbarLogin from "../../layouts/NavbarLogin";
 import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 export default function ManageUser() {
