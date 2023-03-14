@@ -42,11 +42,13 @@ export default function ProductTableInCart({ item }) {
         cart.splice(i, 1)
       }
     });
+
     localStorage.setItem("cart", JSON.stringify(cart));
     dispatch({
       type: "ADD_TO_CART",
       payload: cart,
     });
+
   }
 
   return (

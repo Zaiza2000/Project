@@ -42,7 +42,7 @@ export default function CheckOut() {
     billing_province: "",
     billing_zipcode: "",
     tax_id: "",
-    id: "",
+    id: null,
   });
 
   useEffect(() => {
@@ -103,7 +103,6 @@ export default function CheckOut() {
       });
   };
 
-
   const onChangeDistrict_shipping = (e) => {
     let index = e.nativeEvent.target.selectedIndex;
     let lable = e.nativeEvent.target[index].text;
@@ -163,21 +162,35 @@ export default function CheckOut() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(value);
-    CreateOrder(value)
-      .then((res) => {
-        console.log(res.data);
-        alert("CreateOrder Successful");
-        navigate("/login");
-      })
+    if (!value.shipping_firstname) {
+      alert("กรุณากรอกชื่อ");
+    } else if (!value.shipping_lastname) {
+      alert("กรุณากรอกนามสกุล");
+    } else if (!value.shipping_address) {
+      alert("กรุณากรอกที่อยู่จัดส่ง");
+    } else if (!value.shipping_province) {
+      alert("กรุณากรอกจังหวัดที่อยู่จัดส่ง");
+    } else if (!value.shipping_district) {
+      alert("กรุณากรอกอำเภอที่อยู่จัดส่ง");
+    } else if (!value.shipping_sub_district) {
+      alert("กรุณากรอกตำบลที่อยู่จัดส่ง");
+    } else if (!value.shipping_tel) {
+      alert("กรุณากรอกเบอร์โทร");
+    } else {
+      CreateOrder(value)
+        .then((res) => {
+          console.log(res.data);
+          alert("CreateOrder Successful");
+        })
 
-      .catch((error) => {
-        console.log(error.response.data);
-        alert(error.response.data);
-      });
+        .catch((error) => {
+          console.log(error.response.data);
+          alert(error.response.data);
+        });
+    }
   };
 
-  console.log("value>>>>" , value);
+  console.log("value>>>>", value);
 
   return (
     <div>
@@ -193,7 +206,6 @@ export default function CheckOut() {
       <h2>{user.zipcode}</h2>
       <h2>{user.tel}</h2>
       <div className="flex space-x-10 m-20">
-        
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Shipping   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/}
 
         <div id="checkout" className="flex-1 w-32 ">
@@ -227,7 +239,7 @@ export default function CheckOut() {
                   for="flexRadioDefault2"
                 >
                   ใช้ที่อยู่ใหม่
-                  <form className="mt-6">
+                  <form className="mt-6" onSubmit={handleSubmit}>
                     <div className="mb-2">
                       <label
                         for="text"
@@ -251,10 +263,7 @@ export default function CheckOut() {
                       />
                     </div>
                     <div className="mb-2">
-                      <label
-                        
-                        className="block text-sm font-semibold text-gray-800"
-                      >
+                      <label className="block text-sm font-semibold text-gray-800">
                         ที่อยู่
                       </label>
                       <textarea
@@ -267,10 +276,7 @@ export default function CheckOut() {
                     </div>
                     <div className="flex flex-wrap -mx-3 mb-2">
                       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label
-                          className="block text-sm font-semibold text-gray-800"
-                          
-                        >
+                        <label className="block text-sm font-semibold text-gray-800">
                           จังหวัด
                         </label>
                         <select
@@ -361,6 +367,11 @@ export default function CheckOut() {
                         onChange={(e) => handleChange(e)}
                         className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
+                    </div>
+                    <div className="mt-6">
+                      <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
+                        ยื่นยันข้อมูล
+                      </button>
                     </div>
                   </form>
                 </label>
@@ -566,11 +577,6 @@ export default function CheckOut() {
         <div id="checkout" className="flex-1 w-32 ">
           ยืนยันการสั่งซื้อ
         </div>
-        <button onSubmit={handleSubmit}  type="button" class="w-32 h-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-
-        
-          ยืนยันการสั่งซื้อ
-        </button>
       </div>
     </div>
   );
