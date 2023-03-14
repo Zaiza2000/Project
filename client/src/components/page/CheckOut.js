@@ -213,7 +213,7 @@ export default function CheckOut() {
           ที่อยู่สำหรับจัดส่งสินค้า
           <div className="flex ">
             <div>
-              <div className="form-check">
+              {/* <div className="form-check">
                 <input
                   className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="radio"
@@ -227,19 +227,19 @@ export default function CheckOut() {
                 >
                   ใช้ที่อยู่เดียวกับที่อยู่ของสมาชิก
                 </label>
-              </div>
+              </div> */}
               <div className="form-check">
-                <input
+                {/* <input
                   className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault20"
-                ></input>
+                ></input> */}
                 <label
                   className="form-check-label inline-block text-gray-800"
                   for="flexRadioDefault2"
                 >
-                  ใช้ที่อยู่ใหม่
+                  {/* ใช้ที่อยู่ใหม่ */}
                   <form className="mt-6" onSubmit={handleSubmit}>
                     <div className="mb-2">
                       <label
@@ -386,32 +386,32 @@ export default function CheckOut() {
           <div className="flex ">
             <div>
               <div className="form-check">
-                <input
+                {/* <input
                   className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault10"
                   checked
-                ></input>
+                ></input> */}
                 <label
                   className="form-check-label inline-block text-gray-800"
                   for="flexRadioDefault1"
                 >
-                  ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
+                  {/* ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง */}
                 </label>
               </div>
               <div class="form-check">
-                <input
+                {/* <input
                   class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault20"
-                ></input>
+                ></input> */}
                 <label
                   className="form-check-label inline-block text-gray-800"
                   for="flexRadioDefault2"
                 >
-                  ใช้ที่อยู่ใหม่
+                  {/* ใช้ที่อยู่ใหม่ */}
                   <form className="mt-6">
                     <div className="mb-2">
                       <label
