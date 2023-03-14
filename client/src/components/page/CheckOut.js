@@ -11,6 +11,7 @@ import {
   listDistrict,
   listSubDistrict,
 } from "../functions/location";
+import UploadImage from "../card/UploadImage";
 
 export default function CheckOut() {
   const [province_shipping, setProvince_shipping] = useState([]);
@@ -562,16 +563,21 @@ export default function CheckOut() {
               name="flexRadioDefault"
               id="flexRadioDefault10"
             ></input>
-            <label
+            {/* <label
               className="form-check-label inline-block text-gray-800"
               for="flexRadioDefault1"
             >
               โอนเงิน
-            </label>
+            </label> */}
             <div>
               ธนาคารกสิกร
               <p>ปรีชาพานิชย์ 043-3-77946-0</p>
+              
             </div>
+            <div>
+              อัปโหลดรูปภาพหลักฐานการโอน
+              <UploadImage/>
+              </div>
           </div>
         </div>
         <div id="checkout" className="flex-1 w-32 ">

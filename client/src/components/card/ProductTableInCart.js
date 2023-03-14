@@ -70,7 +70,7 @@ export default function ProductTableInCart({ item }) {
 
                 <div className="flex items-center justify-end flex-1 gap-2">
                   <form>
-                    <label for="Line3Qty" class="sr-only"> Quantity </label>
+                    <label for="Line3Qty" className="sr-only"> Quantity </label>
 
                     <input
                       onChange={handleChangeCount}

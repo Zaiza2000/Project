@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import {  Drawer } from 'antd';
+import { Drawer } from 'antd';
 import { userCart } from "../functions/user";
 
-export default function SideDrawer(item) {
+export default function SideDrawer({ item }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { cart, drawer, user } = useSelector((state) => ({ ...state }))
@@ -36,23 +36,27 @@ export default function SideDrawer(item) {
     const handleChangeCount = (e) => {
         const count = e.target.value < 1 ? 1 : e.target.value;
 
+        if (count > item.product_quantity) {
+            alert('Max avialable Quantity: ' + item.product_quantity)
+            return;
+        }
+
         let cart = [];
-    if (localStorage.getItem("cart")) {
-      cart = JSON.parse(localStorage.getItem("cart"));
-    }
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart"));
+        }
 
-    cart.map((product, i) => {
-      if (product.product_id === item.product_id) {
-        cart[i].count = count;
-      }
-    });
+        cart.map((product, i) => {
+            if (product.product_id === item.product_id) {
+                cart[i].count = count;
+            }
+        });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: cart,
-    });
-        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: cart,
+        });
     };
     const handleRemove = () => {
         let cart = [];
@@ -65,12 +69,15 @@ export default function SideDrawer(item) {
                 cart.splice(i, 1)
             }
         });
+
         localStorage.setItem("cart", JSON.stringify(cart));
         dispatch({
             type: "ADD_TO_CART",
             payload: cart,
         });
+
     }
+
     return (
 
         <div>
@@ -102,7 +109,7 @@ export default function SideDrawer(item) {
                                             {/* <p className="text-gray-500"> {item.count} ชิ้น </p> */}
                                             <div className="flex items-center justify-end flex-1 gap-2">
                                                 <form>
-                                                    <label for="Line3Qty" class="sr-only"> Quantity </label>
+                                                    <label for="Line3Qty" className="sr-only"> Quantity </label>
 
                                                     <input
                                                         onChange={handleChangeCount}
@@ -177,14 +184,15 @@ export default function SideDrawer(item) {
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
-                            or
+                            or 
                             <button
                                 type="button"
                                 className="font-medium text-indigo-600 hover:text-indigo-500"
 
                             >
-                                Continue Shopping
-                                <span aria-hidden="true"> &rarr;</span>
+                                <Link to="/shop" state="cart">
+                                     เลือกสินค้าต่อ
+                                </Link>
                             </button>
                         </p>
                     </div>
