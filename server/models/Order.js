@@ -20,6 +20,7 @@ const Order = db.define("orders", {
   billing_province: { type: DataTypes.STRING },
   billing_zipcode: { type: DataTypes.STRING },
   tax_id: { type: DataTypes.STRING },
+  payment_photo: { type: DataTypes.STRING },
   id: { type: DataTypes.INTEGER, foreignKey: true },
 });
 

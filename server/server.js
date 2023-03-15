@@ -14,6 +14,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//upload photo
+app.use(express.static(__dirname + '/public'))
+
 try {
   db.authenticate()
     console.log('Connection to database successfully.');

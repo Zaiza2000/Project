@@ -52,6 +52,7 @@ const router = express.Router();
 
 //*************Middleware*************//
 const { auth, adminCheck } = require("../middleware/auth.js");
+const { upload } = require("../middleware/uploadfile.js");
 
 //*************Current-User***********//
 router.post("/current-user", auth, currentUser);
@@ -99,7 +100,8 @@ router.get("/province/:id/district", listDistrict);
 router.get("/district/:id", listSubDistrict);
 
 //API Order => order.js//
-router.post("/createOrder", CreateOrder);
+router.post("/createOrder", upload, CreateOrder);
+
 router.get("/listOrder", listOrder);
 
 //API Requisition => requisition_detail.js//

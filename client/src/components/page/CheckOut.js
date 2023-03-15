@@ -22,6 +22,8 @@ export default function CheckOut() {
   const [district_billing, setDistrict_billing] = useState([]);
   const [sub_district_billing, setSubDistrict_billing] = useState([]);
   const [zipcode_billing, setZipcode_billing] = useState([]);
+  const [file, setFile] = useState([]);
+  const [filename, setfilename] = useState("Choose File");
   const { user } = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
 
@@ -43,6 +45,8 @@ export default function CheckOut() {
     billing_province: "",
     billing_zipcode: "",
     tax_id: "",
+    payment_photo: "",
+    file: null,
     id: null,
   });
 
@@ -52,6 +56,7 @@ export default function CheckOut() {
   }, []);
 
   const handleChange = (e) => {
+    console.log(e.target.name);
     setValue({
       ...value,
       [e.target.name]: e.target.value,
@@ -191,21 +196,21 @@ export default function CheckOut() {
     }
   };
 
-  console.log("value>>>>", value);
+  // console.log("value>>>>", value);
 
   return (
     <div>
       <h1 className="text-4xl font-extrabold sm:text-6xl m-20 ">
         สั่งซื้อสินค้า
       </h1>
-      <h2>{user.firstname}</h2>
+      {/* <h2>{user.firstname}</h2>
       <h2>{user.lastname}</h2>
       <h2>{user.address}</h2>
       <h2>{user.sub_district}</h2>
       <h2>{user.district}</h2>
       <h2>{user.province}</h2>
       <h2>{user.zipcode}</h2>
-      <h2>{user.tel}</h2>
+      <h2>{user.tel}</h2> */}
       <div className="flex space-x-10 m-20">
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Shipping   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/}
 
@@ -572,12 +577,19 @@ export default function CheckOut() {
             <div>
               ธนาคารกสิกร
               <p>ปรีชาพานิชย์ 043-3-77946-0</p>
-              
             </div>
             <div>
+              <input
+                type="file"
+                name="payment_photo"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <lable htmlFor="customfile">{filename}</lable>
+            </div>
+            {/* <div>
               อัปโหลดรูปภาพหลักฐานการโอน
               <UploadImage/>
-              </div>
+              </div> */}
           </div>
         </div>
         <div id="checkout" className="flex-1 w-32 ">
