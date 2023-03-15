@@ -90,16 +90,23 @@ exports.deleteProduct = async (req, res) => {
 // };
 const handleQuery = async (req, res) => {
   try {
-  const product_name = req.body
-  // console.log("product_name : " , product_name);
-  const product = await Product.findAll({
-    where: { product_name: product_name.query }
-  });
-  res.json(product);
-} catch (error) {
-  console.log(error);
-  res.status(500).send("==Server Error==");
-}
+    const product_name = req.body;
+    // const { Op } = app.Sequelize;
+    // console.log("product_name : " , product_name);
+    const products = await Product.findAll({
+      // where: {
+      //   product_name: {
+      //     [Op.substring]: product_name.query
+      //   }
+      // }
+
+       where: { product_name: product_name.query }
+    });
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
 };
 exports.searchFilters = async (req, res) => {
   const { query } = req.body;
