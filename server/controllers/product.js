@@ -67,14 +67,40 @@ exports.deleteProduct = async (req, res) => {
 
 //############ Search by Roitai ################
 
-const handleQuery = async (req, res, query) => {
-  let products = await Product.find({ $text: { $search: query } }).populate(
-    "category_name",
-    "product_id product_name product_detail"
-  );
-  res.send(products);
-};
+// const handleQuery = async (req, res, query) => {
+//   let products = await Product.find({ $text: { $search: query } }).populate(
+//     "category_name",
+//     "product_id product_name product_detail"
+//   );
+//   res.send(products);
+// };
 
+// const getSearchCategory = async (req, res) => {
+//     try {
+//     const category_name = req.body
+//     console.log("category_name : " , category_name);
+//     const category = await Category.findAll({
+//       query: { category_name },
+//     });
+//     res.json(category);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("==Server Error==");
+//   }
+// };
+const handleQuery = async (req, res) => {
+  try {
+  const product_name = req.body
+  // console.log("product_name : " , product_name);
+  const product = await Product.findAll({
+    where: { product_name: product_name.query }
+  });
+  res.json(product);
+} catch (error) {
+  console.log(error);
+  res.status(500).send("==Server Error==");
+}
+};
 exports.searchFilters = async (req, res) => {
   const { query } = req.body;
   if (query) {

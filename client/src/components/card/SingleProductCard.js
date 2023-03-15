@@ -43,15 +43,6 @@ export default function SingleProductCard({ product }) {
       payload: true,
     });
 
-
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: unique,
-    });
-    dispatch({
-      type: "SET_VISIBLE",
-      payload: true,
-    });
   };
   const handleSaveOrder = () => {
     // code

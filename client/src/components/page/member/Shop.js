@@ -14,8 +14,7 @@ export default function Shop() {
   const [loading, setLoading] = useState([]);
   const [price, setPrice] = useState([0, 0]);
   const { search } = useSelector((state) => ({ ...state }))
-  const [ok, setOk] = useState(false);
-
+ 
   console.log(search)
   const { text } = search
   //text
@@ -38,37 +37,23 @@ export default function Shop() {
   };
 
   // ########## load data on user filter ##########
-  useEffect(() => {
-    const delay = setTimeout(() => {
-      fetchDataFilter({ query: text });
-      if (!text) {
-        loadData();
-      }
-    }, 300);
-    return () => clearTimeout(delay);
-  }, [text]);
+  // useEffect(() => {
+  //   const delay = setTimeout(() => {
+  //     fetchDataFilter({ query: text });
+  //     if (!text) {
+  //       loadData();
+  //     }
+  //   }, 300);
+  //   return () => clearTimeout(delay);
+  // }, [text]);
 
   //****Filter*****
 
-  const fetchDataFilter = (arg) => {
-    searchFilters(arg).then((res) => {
-      setProduct(res.data)
-    });
-  };
-
-  // ########## Load on Slider ##########
-  // useEffect(() => {
-  //   fetchDataFilter({ price }); // [0,0]
-  // }, [ok]);
-
-  // const handlePrice = (value) => {
-  //   setPrice(value);
-
-  //   setTimeout(() => {
-  //     setOk(!ok);
-  //   }, 300);
+  // const fetchDataFilter = (arg) => {
+  //   searchFilters(arg).then((res) => {
+  //     setProduct(res.data)
+  //   });
   // };
-  // ########## Load on Slider ##########
 
   return (
     <div >
