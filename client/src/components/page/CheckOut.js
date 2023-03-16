@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { Radio } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,7 +46,6 @@ export default function CheckOut() {
     billing_zipcode: "",
     tax_id: "",
     payment_photo: "",
-    file: null,
     id: null,
   });
 
@@ -559,39 +558,45 @@ export default function CheckOut() {
           </div>
         </div>
 
-        <div id="checkout" className="flex-1 w-32 ">
-          การชำระเงิน
-          <div class="form-check">
-            <input
-              className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault10"
-            ></input>
-            {/* <label
-              className="form-check-label inline-block text-gray-800"
-              for="flexRadioDefault1"
-            >
-              โอนเงิน
-            </label> */}
-            <div>
-              ธนาคารกสิกร
-              <p>ปรีชาพานิชย์ 043-3-77946-0</p>
-            </div>
-            <div>
+        <form class="mt-6">
+          <div id="checkout" className="flex-1 w-32 ">
+            การชำระเงิน
+            <div class="form-check">
               <input
-                type="file"
-                name="payment_photo"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-              <lable htmlFor="customfile">{filename}</lable>
+                className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault10"
+              ></input>
+              {/* <label
+                className="form-check-label inline-block text-gray-800"
+                for="flexRadioDefault1"
+              >
+                โอนเงิน
+              </label> */}
+              <div>
+                ธนาคารกสิกร
+                <p>ปรีชาพานิชย์ 043-3-77946-0</p>
+              </div>
+              <div>
+                <input
+                  id="photo"
+                  type="file"
+                  name="file"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                  }}
+                />
+                <lable htmlFor="customfile">{filename}</lable>
+              </div>
+              {/* <div>
+                อัปโหลดรูปภาพหลักฐานการโอน
+                <UploadImage/>
+                </div> */}
             </div>
-            {/* <div>
-              อัปโหลดรูปภาพหลักฐานการโอน
-              <UploadImage/>
-              </div> */}
           </div>
-        </div>
+        </form>
+
         <div id="checkout" className="flex-1 w-32 ">
           ยืนยันการสั่งซื้อ
         </div>

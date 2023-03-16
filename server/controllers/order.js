@@ -36,6 +36,7 @@ exports.getOrder = async (req, res) => {
 
 exports.CreateOrder = async (req, res) => {
   try {
+    console.log(">>> req on order.js: ", req);
     const fileObj = req.file;
     const fileStorage = {
       destination: "./public/uploads",
