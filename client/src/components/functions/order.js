@@ -7,7 +7,7 @@ export const listOrder = async (authtoken) => {
     },
   });
 };
-export const CreateOrder = async (values) => {
+export const CreateOrder = async (authtoken, values) => {
   // console.log(value);
   const file = document.querySelector("#photo").files[0];
   const formData = new FormData();
@@ -17,9 +17,15 @@ export const CreateOrder = async (values) => {
     formData.append(key, value);
   }
 
+  console.log(">>>> Auth: ", authtoken);
   let result = await axios.post(
     process.env.REACT_APP_API + "/createOrder",
-    formData
+    formData,
+    {
+      headers: {
+        authtoken: authtoken,
+      },
+    }
   );
   return result;
 };

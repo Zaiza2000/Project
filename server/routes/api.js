@@ -100,7 +100,7 @@ router.get("/province/:id/district", listDistrict);
 router.get("/district/:id", listSubDistrict);
 
 //API Order => order.js//
-router.post("/createOrder", upload, CreateOrder);
+router.post("/createOrder", auth, upload, CreateOrder);
 
 router.get("/listOrder", listOrder);
 

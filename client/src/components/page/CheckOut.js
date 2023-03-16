@@ -3,6 +3,7 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { Radio } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
+
 // import img2 from "../../uploads/file-1678978441539.jpg";
 
 //function
@@ -183,7 +184,8 @@ export default function CheckOut() {
     } else if (!value.shipping_tel) {
       alert("กรุณากรอกเบอร์โทร");
     } else {
-      CreateOrder(value)
+      const authtoken = user.token;
+      CreateOrder(authtoken, value)
         .then((res) => {
           console.log(res.data);
           alert("CreateOrder Successful");
