@@ -593,10 +593,24 @@ export default function CheckOut() {
                 />
                 <lable htmlFor="customfile">{filename}</lable>
               </div>
-              {/* <div>
-                อัปโหลดรูปภาพหลักฐานการโอน
-                <UploadImage/>
-                </div> */}
+              <div>
+              <div className="mb-2">
+                      <label
+                        for="text"
+                        className="block text-sm font-semibold text-gray-800"
+                      >
+                        หมายเลขประจำตัวผู้เสียภาษี
+                      </label>
+                      <input
+                        type="text"
+                        name="tax_id"
+                        placeholder="1234567890111"
+                        onChange={(e) => handleChange(e)}
+                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                      />
+                    </div>
+              
+              </div>
             </div>
           </div>
         </form>
