@@ -3,6 +3,7 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { Radio } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
+// import img2 from "../../uploads/file-1678978441539.jpg";
 
 //function
 import { CreateOrder } from "../functions/order";
@@ -579,6 +580,7 @@ export default function CheckOut() {
                 <p>ปรีชาพานิชย์ 043-3-77946-0</p>
               </div>
               <div>
+                {/* <img src={require("../../uploads/file-1678978441539.jpg")} /> */}
                 <input
                   id="photo"
                   type="file"

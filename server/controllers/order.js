@@ -36,32 +36,19 @@ exports.getOrder = async (req, res) => {
 
 exports.CreateOrder = async (req, res) => {
   try {
-    console.log(">>> req on order.js: ", req);
     const fileObj = req.file;
-    const fileStorage = {
-      destination: "./public/uploads",
-      file: fileObj,
-      filename:
-        "file-" +
-        Date.now() +
-        "." +
-        fileObj.originalname.split(".")[
-          fileObj.originalname.split(".").length - 1
-        ],
+    const orderObj = {
+      ...req.body,
+      payment_photo: fileObj.destination + "/" + fileObj.filename,
     };
 
-    // console.log(file);
-    console.log("Server Body: ", req.body);
+    console.log("Server Body: ", orderObj);
     console.log("Server File: ", fileObj);
-    fs.writeFileSync(
-      fileStorage.destination + "/" + fileStorage.filename,
-      fileStorage.file.buffer
-    );
-    console.log(fileStorage.filename + " Created!!");
     // await Order.create(req.body)
-    res.json({
-      message: "Order created successfully",
-    });
+    // res.json({
+    //   message: "Order created successfully",
+    // });
+    res.json(orderObj);
   } catch (err) {
     console.log(err);
     res
