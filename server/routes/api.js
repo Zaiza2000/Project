@@ -7,10 +7,6 @@ const {
   login,
   currentUser,
   changeRole,
-
-  // getSearchCategory,
-  userCart,
-  adminCart,
 } = require("../controllers/auth.js");
 
 const {
@@ -42,6 +38,9 @@ const {
   getOrder,
   CreateOrder,
 } = require("../controllers/order.js");
+
+const {userCart,
+  adminCart} = require("../controllers/cart.js");
 
 const { listRequisition ,getRequisition } = require("../controllers/requisition_detail");
 
