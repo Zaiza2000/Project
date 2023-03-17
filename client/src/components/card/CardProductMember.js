@@ -45,7 +45,7 @@ export default function CardProductMember({ product }) {
         <div className="w-80 h-[30rem] max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
           <Link to={"/product/" + product_id}>
             <img
-              className="rounded-t-lg h-64 w-80"
+              className="rounded-t-lg h-64 w-80 hover:scale-110"
               src={product_photo && product_photo.length ? product_photo : ""}
               alt=""
             />

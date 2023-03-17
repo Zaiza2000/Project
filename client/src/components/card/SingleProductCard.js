@@ -62,7 +62,7 @@ export default function SingleProductCard({ product }) {
       <div className="flex-1 w-64">
         <div className="p-6 ">
           <img
-            className="h-80 w-80"
+            className="h-80 w-80 hover:scale-110"
             src={product_photo && product_photo.length ? product_photo : ""}
             alt=""
           />

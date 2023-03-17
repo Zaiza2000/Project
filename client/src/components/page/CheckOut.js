@@ -391,192 +391,172 @@ export default function CheckOut() {
         <div id="checkout" className="flex-1 w-32 ">
           ที่อยู่ในการออกใบเสร็จ
           <div className="flex ">
-            <div>
-              <div className="form-check">
-                {/* <input
-                  className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault10"
-                  checked
-                ></input> */}
-                <label
-                  className="form-check-label inline-block text-gray-800"
-                  for="flexRadioDefault1"
-                >
-                  {/* ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง */}
-                </label>
-              </div>
-              <div class="form-check">
-                {/* <input
-                  class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault20"
-                ></input> */}
-                <label
-                  className="form-check-label inline-block text-gray-800"
-                  for="flexRadioDefault2"
-                >
-                  {/* ใช้ที่อยู่ใหม่ */}
-                  <form className="mt-6">
-                    <div className="mb-2">
+            <div className="form-check ">
+              <label
+                className="form-check-label inline-block text-gray-800"
+                for="flexRadioDefault1"
+              >
+                {/* ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง */}
+              </label>
+            </div>
+            <div className="form-check">
+           
+              <label
+                className="form-check-label inline-block text-gray-800"
+                for="flexRadioDefault2"
+              >
+                {/* ใช้ที่อยู่ใหม่ */}
+                <form className="mt-6">
+                  <div className="mb-2">
+                    <label
+                      for="text"
+                      className="block text-sm font-semibold text-gray-800"
+                    >
+                      ชื่อ
+                    </label>
+                    <input
+                      type="text"
+                      name="billing_firstname"
+                      placeholder="ชื่อ"
+                      onChange={(e) => handleChange(e)}
+                      className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <input
+                      type="text"
+                      name="billing_lastname"
+                      placeholder="นามสกุล"
+                      onChange={(e) => handleChange(e)}
+                      className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <label
+                      for=""
+                      className="block text-sm font-semibold text-gray-800"
+                    >
+                      ที่อยู่
+                    </label>
+                    <textarea
+                      type="text"
+                      name="billing_address"
+                      placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8 ต.ในเมือง"
+                      onChange={(e) => handleChange(e)}
+                      className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
+                  <div className="flex flex-wrap -mx-3 mb-2">
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
-                        for="text"
                         className="block text-sm font-semibold text-gray-800"
-                      >
-                        ชื่อ
-                      </label>
-                      <input
-                        type="text"
-                        name="billing_firstname"
-                        placeholder="ชื่อ"
-                        onChange={(e) => handleChange(e)}
-                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                      <input
-                        type="text"
-                        name="billing_lastname"
-                        placeholder="นามสกุล"
-                        onChange={(e) => handleChange(e)}
-                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                    </div>
-                    <div className="mb-2">
-                      <label
                         for=""
-                        className="block text-sm font-semibold text-gray-800"
                       >
-                        ที่อยู่
+                        จังหวัด
                       </label>
-                      <textarea
-                        type="text"
-                        name="billing_address"
-                        placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8 ต.ในเมือง"
-                        onChange={(e) => handleChange(e)}
-                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-2">
-                      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label
-                          className="block text-sm font-semibold text-gray-800"
-                          for=""
-                        >
-                          จังหวัด
-                        </label>
-                        <select
-                          className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                          name="billing_province"
-                          onChange={(e) => onChangeProvince_billing(e)}
-                        >
-                          {province_billing.map((item, index) => (
-                            <option key={index} value={item.id}>
-                              {item.name_th}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-2">
-                      <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label
-                          className="block text-sm font-semibold text-gray-800"
-                          for=""
-                        >
-                          อำเภอ
-                        </label>
-                        <select
-                          className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                          name="billing_district"
-                          onChange={(e) => onChangeDistrict_billing(e)}
-                        >
-                          {district_billing.map((item, index) => (
-                            <option key={index} value={item.id}>
-                              {item.name_th}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap -mx-3 mb-2">
-                      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label
-                          className="block text-sm font-semibold text-gray-800"
-                          for=""
-                        >
-                          ตำบล
-                        </label>
-                        <select
-                          className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                          name="billing_sub_district"
-                          onChange={(e) => onChangeSubDistrict_billing(e)}
-                        >
-                          {sub_district_billing.map((item, index) => (
-                            <option key={index} value={item.id}>
-                              {item.name_th}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-2">
-                      <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label
-                          className="block text-sm font-semibold text-gray-800"
-                          for=""
-                        >
-                          รหัสไปรษณีย์
-                        </label>
-                        <input
-                          className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                          id="grid-zip"
-                          type="text"
-                          name="billing_zipcode"
-                          value={value.zipcode_billing}
-                          onChange={(e) => handleChange(e)}
-                        />
-                      </div>
-                    </div>
-                    <div className="mb-2">
-                      <label
-                        for="telephone"
-                        className="block text-sm font-semibold text-gray-800"
+                      <select
+                        className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        name="billing_province"
+                        onChange={(e) => onChangeProvince_billing(e)}
                       >
-                        เบอร์โทรศัพท์
+                        {province_billing.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name_th}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap -mx-3 mb-2">
+                    <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
+                      <label
+                        className="block text-sm font-semibold text-gray-800"
+                        for=""
+                      >
+                        อำเภอ
+                      </label>
+                      <select
+                        className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        name="billing_district"
+                        onChange={(e) => onChangeDistrict_billing(e)}
+                      >
+                        {district_billing.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name_th}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap -mx-3 mb-2">
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <label
+                        className="block text-sm font-semibold text-gray-800"
+                        for=""
+                      >
+                        ตำบล
+                      </label>
+                      <select
+                        className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        name="billing_sub_district"
+                        onChange={(e) => onChangeSubDistrict_billing(e)}
+                      >
+                        {sub_district_billing.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name_th}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap -mx-3 mb-2">
+                    <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
+                      <label
+                        className="block text-sm font-semibold text-gray-800"
+                        for=""
+                      >
+                        รหัสไปรษณีย์
                       </label>
                       <input
+                        className="block w-64 px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        id="grid-zip"
                         type="text"
-                        name="billing_tel"
-                        placeholder="098-888-8888"
+                        name="billing_zipcode"
+                        value={value.zipcode_billing}
                         onChange={(e) => handleChange(e)}
-                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
-                  </form>
-                </label>
-              </div>
+                  </div>
+                  <div className="mb-2">
+                    <label
+                      for="telephone"
+                      className="block text-sm font-semibold text-gray-800"
+                    >
+                      เบอร์โทรศัพท์
+                    </label>
+                    <input
+                      type="text"
+                      name="billing_tel"
+                      placeholder="098-888-8888"
+                      onChange={(e) => handleChange(e)}
+                      className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                  </div>
+                </form>
+              </label>
             </div>
           </div>
         </div>
 
-        <form class="mt-6">
-          <div id="checkout" className="flex-1 w-32 ">
+        <form className="flex-1 w-32 ">
+          <div id="checkout" className="">
             การชำระเงิน
-            <div class="form-check">
-              <input
-                className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault10"
-              ></input>
-              {/* <label
+            <div className="form-check">
+              <label
                 className="form-check-label inline-block text-gray-800"
                 for="flexRadioDefault1"
               >
-                โอนเงิน
-              </label> */}
+                ลูกค้าต้องการโอนเงิน พร้อมอัปโหลดรูปภาพหลักฐานการโอนเงิน
+              </label>
               <div>
                 ธนาคารกสิกร
                 <p>ปรีชาพานิชย์ 043-3-77946-0</p>
@@ -594,22 +574,22 @@ export default function CheckOut() {
                 <lable htmlFor="customfile">{filename}</lable>
               </div>
               <div>
-              <div className="mb-2">
-                      <label
-                        for="text"
-                        className="block text-sm font-semibold text-gray-800"
-                      >
-                        หมายเลขประจำตัวผู้เสียภาษี
-                      </label>
-                      <input
-                        type="text"
-                        name="tax_id"
-                        placeholder="1234567890111"
-                        onChange={(e) => handleChange(e)}
-                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                      />
-                    </div>
-              
+                <div className="mb-2">
+                  <label
+                    for="text"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    หมายเลขประจำตัวผู้เสียภาษี
+                  </label>
+                  <input
+                    type="text"
+                    name="tax_id"
+                    placeholder="1234567890111"
+                    onChange={(e) => handleChange(e)}
+                    className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+
               </div>
             </div>
           </div>
