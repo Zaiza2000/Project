@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import img2 from "../../uploads/file-1678978441539.jpg";
 
 //function
+import { userCart } from "../functions/user";
 import { CreateOrder } from "../functions/order";
 import {
   listProvince,
@@ -183,10 +184,29 @@ export default function CheckOut() {
     } else if (!value.shipping_tel) {
       alert("กรุณากรอกเบอร์โทร");
     } else {
+      console.log("Starting");
       const authtoken = user.token;
-      CreateOrder(authtoken, value)
+
+      const orderResponse = CreateOrder(authtoken, value).then((response) => {
+        var orderDict = {};
+        for (const [key, value] of Object.entries(response.data)) {
+          orderDict[key] = value;
+        }
+        return orderDict;
+      });
+
+      const cart_with_orderID = {
+        ...cart,
+        orderDict: orderResponse,
+        order_id: orderResponse.then((response) => response.order_id),
+      };
+
+      // TODO: DELETE
+      console.log("orderResponse: ", cart_with_orderID);
+
+      userCart(authtoken, cart_with_orderID)
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
           alert("CreateOrder Successful");
         })
 

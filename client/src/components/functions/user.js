@@ -9,18 +9,18 @@ export const listUser = async (authtoken) => {
 };
 
 export const changeRole = async (values) => {
-    return await axios.post(process.env.REACT_APP_API + "/changeRole", values 
-      );
-  };
+  return await axios.post(process.env.REACT_APP_API + "/changeRole", values);
+};
 
-export const deleteUser = async ( id) => {
-  return await axios.delete(process.env.REACT_APP_API + "/deleteUser/" + id
-    );
+export const deleteUser = async (id) => {
+  return await axios.delete(process.env.REACT_APP_API + "/deleteUser/" + id);
 };
 export const userCart = async (authtoken, cart) => {
+  // TODO: Delete
+  console.log("userCart - user.js:", cart);
   return await axios.post(
     process.env.REACT_APP_API + "/user/cart",
-    { cart },
+    { cart: cart, order_id: cart.order_id },
     {
       headers: {
         authtoken,
