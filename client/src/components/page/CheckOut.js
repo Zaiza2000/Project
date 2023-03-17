@@ -540,7 +540,7 @@ export default function CheckOut() {
             </label>
           </div>
         </div>
-        
+
         <div id="checkout" className="flex-1 w-64 ">
           การชำระเงิน
           <form>
@@ -620,15 +620,15 @@ export default function CheckOut() {
                 </div>
               </dl>
             </div>
-            
+
           </div>
           <div className="mt-6">
-                  <button className="w-full px-4 py-2 mt-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
-                    ยืนยัน
-                  </button>
-                </div>
+            <button className="w-full px-4 py-2 mt-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
+              ยืนยัน
+            </button>
+          </div>
         </div>
-        
+
       </div>
     </div>
   );
