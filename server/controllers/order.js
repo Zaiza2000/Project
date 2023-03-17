@@ -44,13 +44,16 @@ exports.CreateOrder = async (req, res) => {
       payment_photo: fileObj.destination + "/" + fileObj.filename,
     };
 
-    console.log("Server Body: ", orderObj);
-    console.log("Server File: ", fileObj);
-    await Order.create(orderObj);
+    // console.log("Server Body: ", orderObj);
+    // console.log("Server File: ", fileObj);
+    const orderDBObj = await Order.create(orderObj);
+    // console.log("\n\n\n", ">>>> Order DB: ", orderDBObj, "\n\n\n");
     res.json({
       api_value: orderObj,
       message: "Order created successfully",
+      order_id: orderDBObj.dataValues.order_id,
     });
+
     // res.json(orderObj);
   } catch (err) {
     console.log(err);
