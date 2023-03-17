@@ -14,7 +14,7 @@ export default function Shop() {
   const [loading, setLoading] = useState([]);
   const [price, setPrice] = useState([0, 0]);
   const { search } = useSelector((state) => ({ ...state }))
- 
+
   console.log(search)
   const { text } = search
   //text
@@ -61,37 +61,39 @@ export default function Shop() {
         สินค้าทั้งหมด
       </h1>
 
-      <div className="grid grid-rows-4 grid-flow-col gap-4">
-        <div className="text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">ค้นหาสินค้า
-          <Search />
-          <label className="block mb-2 text-2xl text-left pt-20">
-            ราคา 
-            {/* {price} ฿ */}
+      <div className="flex ">
+        <div className="flex-1 w-32">
+          <div className="w-14 h-14 text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">ค้นหาสินค้า
+            <Search />
+            <label className="block mb-2 text-2xl text-left pt-20">
+              ราคา
+              {/* {price} ฿ */}
             </label>
-        
-          <MultiRangeSlider
-            className="w-3/4 h-2 bg-white  appearance-none cursor-pointer"
-            value={price}
-            min={0}
-            max={1000}
-            onChange={(e) => setPrice(e.target.value)}
-          />
 
-          <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
-          <div class="flex items-center mb-4">
-            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
-            <label for="default-checkbox" className="ml-2 text-xl">แบตเตอรี่</label>
-          </div>
-          <div class="flex items-center mb-4">
-            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
-            <label for="default-checkbox" className="ml-2 text-xl">H2C</label>
+            <MultiRangeSlider
+              className="w-3/4 h-2 bg-white  appearance-none cursor-pointer"
+              value={price}
+              min={0}
+              max={1000}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+
+            <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
+            <div className="flex items-center mb-4">
+              <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
+              <label for="default-checkbox" className="ml-2 text-xl">แบตเตอรี่</label>
+            </div>
+            <div class="flex items-center mb-4">
+              <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
+              <label for="default-checkbox" className="ml-2 text-xl">H2C</label>
+            </div>
           </div>
         </div>
-        <div className="row-span-2 col-span-2 ">
+        {/* <div className="row-span-2 col-span-2 ">
 
-        </div>
+        </div> */}
 
-        <div className="row-span-3">
+        <div className="">
           {loading ? (
             <h1 className="text-4xl font-bold text-purple-600 ">Loading.....</h1>
           ) : (

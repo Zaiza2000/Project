@@ -561,11 +561,15 @@ export default function CheckOut() {
                   id="photo"
                   type="file"
                   name="file"
+                  className="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
                   onChange={(e) => {
                     setFile(e.target.files[0]);
                   }}
                 />
-                <lable htmlFor="customfile">{filename}</lable>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  for="large_size"
+                  htmlFor="customfile">{filename}</label>
+                {/* <lable htmlFor="customfile">{filename}</lable> */}
               </div>
 
               <div className="mt-15">
