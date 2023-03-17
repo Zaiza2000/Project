@@ -36,7 +36,7 @@ export default function Requisition() {
     <div>
       <MenubarAdmin />
 
-      <div className="">
+      <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8">
         {loading ? (
           <h1 className="text-4xl font-bold text-purple-600 ">Loading.....</h1>
         ) : (
@@ -55,36 +55,36 @@ export default function Requisition() {
 
         {/* Data Product */}
         <div>
+          <h3 className="text-4xl font-bold text-purple-600">สั่งสินค้า</h3>
           {product.length < 1 && <p>No Product </p>}
 
-          
-          <table class="w-full text-sm text-left text-gray-500 ">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-            <tr>
-              
-              <th scope="col" class="flex-initial pl-[20%] py-3">
-                ชื่อสินค้า
-              </th>
-              <th scope="col" class="flex-initial pl-[19%]  py-3">
-                ราคาต้นทุน
-              </th>
-              <th scope="col" class="flex-initial pl-[14%] py-3">
-                ราคาขาย
-              </th>
-              <th scope="col" class="flex-initial pl-[11%] py-3">
-                จำนวนสินค้า
-              </th>
-              <th scope="col" class="flex-initial pl-[5%] py-3">
-                รายระเอียด
-              </th>
-             
-              <th scope="col" class="flex-initial pl-[1%] py-3">
-                Action
-              </th>
-              
-            </tr>
-          </thead>
-        </table>
+          <table className="mt-10 w-full text-l text-left text-gray-900">
+            <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
+              <tr>
+
+                <th scope="col" className="flex-initial pl-[20%] py-3">
+                  ชื่อสินค้า
+                </th>
+                <th scope="col" className="flex-initial pl-[19%]  py-3">
+                  ราคาต้นทุน
+                </th>
+                <th scope="col" className="flex-initial pl-[16%] py-3">
+                  ราคาขาย
+                </th>
+                <th scope="col" className="flex-initial pl-[13%] py-3">
+                  จำนวนสินค้า
+                </th>
+                <th scope="col" className="flex-initial pl-[8%] py-3">
+                  รายระเอียด
+                </th>
+
+                <th scope="col" className="flex-initial pl-[5%] py-3">
+                  Action
+                </th>
+
+              </tr>
+            </thead>
+          </table>
         </div>
         {product.map((item, index) => (
           <div key={index} className="">

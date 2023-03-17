@@ -237,8 +237,8 @@ export default function CreateProduct() {
           </form>
 
           <div className="">
-            <table className="mt-10 w-full text-l text-left text-gray-900  ">
-              <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
+            <table className="mt-10 w-full text-l text-left text-gray-900">
+              <thead className="text-l text-gray-700 uppercase bg-blue-200">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     รหัสสินค้า
