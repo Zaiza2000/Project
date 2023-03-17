@@ -41,7 +41,7 @@ export default function LandingPage() {
         <div
           className="mx-auto max-w-screen-xl  py-12 "
         >
-          <div className="mx-auto  text-center bg-white">
+          <div className="mx-auto  text-center ">
             <h1 className="text-3xl font-extrabold text-red-700 sm:text-4xl">
               จำหน่ายอะไหล่รถจักรยานยนต์ฮอนด้า
 

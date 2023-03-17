@@ -249,7 +249,7 @@ export default function CheckOut() {
                 <div className="mb-2">
                   <label
                     for="text"
-                    className="block text-sm font-semibold text-gray-800"
+                    className="block  font-semibold text-gray-800"
                   >
                     ชื่อ
                   </label>
@@ -269,7 +269,7 @@ export default function CheckOut() {
                   />
                 </div>
                 <div className="mb-2">
-                  <label className="block text-sm font-semibold text-gray-800">
+                  <label className="block  font-semibold text-gray-800">
                     ที่อยู่
                   </label>
                   <textarea
@@ -282,7 +282,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
-                    <label className="block text-sm font-semibold text-gray-800">
+                    <label className="block  font-semibold text-gray-800">
                       จังหวัด
                     </label>
                     <select
@@ -301,7 +301,7 @@ export default function CheckOut() {
                 <div className=" -mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block  font-semibold text-gray-800"
                       for=""
                     >
                       อำเภอ
@@ -323,7 +323,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block  font-semibold text-gray-800"
                       for=""
                     >
                       ตำบล
@@ -344,7 +344,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block font-semibold text-gray-800"
                       for=""
                     >
                       รหัสไปรษณีย์
@@ -362,7 +362,7 @@ export default function CheckOut() {
                 <div className="mb-2">
                   <label
                     for="telephone"
-                    className="block text-sm font-semibold text-gray-800"
+                    className="block font-semibold text-gray-800"
                   >
                     เบอร์โทรศัพท์
                   </label>
@@ -405,7 +405,7 @@ export default function CheckOut() {
                 <div className="mb-2">
                   <label
                     for="text"
-                    className="block text-sm font-semibold text-gray-800"
+                    className="block  font-semibold text-gray-800"
                   >
                     ชื่อ
                   </label>
@@ -427,7 +427,7 @@ export default function CheckOut() {
                 <div className="mb-2">
                   <label
                     for=""
-                    className="block text-sm font-semibold text-gray-800"
+                    className="block  font-semibold text-gray-800"
                   >
                     ที่อยู่
                   </label>
@@ -442,7 +442,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block font-semibold text-gray-800"
                       for=""
                     >
                       จังหวัด
@@ -463,7 +463,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block font-semibold text-gray-800"
                       for=""
                     >
                       อำเภอ
@@ -485,7 +485,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block font-semibold text-gray-800"
                       for=""
                     >
                       ตำบล
@@ -506,7 +506,7 @@ export default function CheckOut() {
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                      className="block text-sm font-semibold text-gray-800"
+                      className="block  font-semibold text-gray-800"
                       for=""
                     >
                       รหัสไปรษณีย์
@@ -524,7 +524,7 @@ export default function CheckOut() {
                 <div className="mb-2">
                   <label
                     for="telephone"
-                    className="block text-sm font-semibold text-gray-800"
+                    className="block  font-semibold text-gray-800"
                   >
                     เบอร์โทรศัพท์
                   </label>
@@ -546,16 +546,15 @@ export default function CheckOut() {
           <form>
             <div className="form-check">
               <label
-                className="form-check-label inline-block text-gray-800"
+                className="form-check-label inline-block font-semibold text-gray-700"
                 for="flexRadioDefault1"
               >
-                ลูกค้าต้องการโอนเงิน พร้อมอัปโหลดรูปภาพหลักฐานการโอนเงิน
+                ลูกค้าต้องทำการโอนเงิน พร้อมอัปโหลดรูปภาพหลักฐานการโอนเงิน
               </label>
-              <div>
+              <div className="border-t border-gray-100 mt-10">
                 ธนาคารกสิกร
                 <p>ปรีชาพานิชย์ 043-3-77946-0</p>
               </div>
-
               <div>
                 {/* <img src={require("../../uploads/file-1678978441539.jpg")} /> */}
                 <input
@@ -569,12 +568,13 @@ export default function CheckOut() {
                 <lable htmlFor="customfile">{filename}</lable>
               </div>
 
-              <div className="">
+              <div className="mt-15">
                 <label
                   for="text"
-                  className="block text-sm font-semibold text-gray-800"
+                  className="block font-semibold text-gray-800"
                 >
                   หมายเลขประจำตัวผู้เสียภาษี
+                  <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
                 </label>
                 <input
                   type="text"
@@ -591,7 +591,7 @@ export default function CheckOut() {
 
         <div id="checkout" className="flex-1 w-64 ">
           ยืนยันการสั่งซื้อ
-          <div className="flex justify-center pt-8 mt-8 border-t border-gray-100">
+          <div className="flex justify-center pt-8  border-t border-gray-100">
             <div className="w-screen max-w-lg space-y-4 ">
               <dl className="space-y-0.5 text-sm text-gray-700 ">
                 <div className="flex justify-between !text-base font-extrabold text-left">
