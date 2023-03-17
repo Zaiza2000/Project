@@ -13,9 +13,9 @@ import {
   listDistrict,
   listSubDistrict,
 } from "../functions/location";
-import UploadImage from "../card/UploadImage";
 
 export default function CheckOut() {
+  const { cart, user } = useSelector((state) => ({ ...state }));
   const [province_shipping, setProvince_shipping] = useState([]);
   const [district_shipping, setDistrict_shipping] = useState([]);
   const [sub_district_shipping, setSubDistrict_shipping] = useState([]);
@@ -26,9 +26,9 @@ export default function CheckOut() {
   const [zipcode_billing, setZipcode_billing] = useState([]);
   const [file, setFile] = useState([]);
   const [filename, setfilename] = useState("Choose File");
-  const { user } = useSelector((state) => ({ ...state }));
   const navigate = useNavigate();
 
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
   const [value, setValue] = useState({
     shipping_firstname: "",
     shipping_lastname: "",
@@ -165,7 +165,6 @@ export default function CheckOut() {
       zipcode_billing: filterDistrict[0].zip_code,
     });
   };
-  ///////////////////////////////////////////////////////////////////////////////////////
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -198,7 +197,12 @@ export default function CheckOut() {
     }
   };
 
-  // console.log("value>>>>", value);
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order_detail <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+  const getTotal = () => {
+    return cart.reduce((currenValue, nextValue) => {
+      return currenValue + nextValue.count * nextValue.product_sale;
+    }, 0);
+  };
 
   return (
     <div>
@@ -218,13 +222,8 @@ export default function CheckOut() {
 
         <div id="checkout" className="flex-1 w-64 ">
           ที่อยู่สำหรับจัดส่งสินค้า
-
           <div className="form-check">
-
-            <label
-              className="form-check text-gray-800"
-              for="flexRadioDefault2"
-            >
+            <label className="form-check text-gray-800" for="flexRadioDefault2">
               {/* ใช้ที่อยู่ใหม่ */}
               <form className="mt-6" onSubmit={handleSubmit}>
                 <div className="mb-2">
@@ -377,7 +376,6 @@ export default function CheckOut() {
               </label>
             </div>
             <div className="form-check">
-
               <label
                 className="form-check-label inline-block text-gray-800"
                 for="flexRadioDefault2"
@@ -566,7 +564,6 @@ export default function CheckOut() {
                     className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-
               </div>
             </div>
           </div>
@@ -574,12 +571,36 @@ export default function CheckOut() {
 
         <div id="checkout" className="flex-1 w-32 ">
           ยืนยันการสั่งซื้อ
-          <label
-            for="text"
-            className="block text-sm font-semibold text-gray-800"
-          >
-            หมายเลขประจำตัวผู้เสียภาษี
-          </label>
+          <div className="flex justify-center pt-8 mt-8 border-t border-gray-100">
+            <div className="w-screen max-w-lg space-y-4 ">
+              <dl className="space-y-0.5 text-sm text-gray-700 ">
+                <div className="flex justify-between !text-base font-extrabold text-left">
+                  <dt>รายการสินค้า</dt>
+                  <dd>ราคา</dd>
+                </div>
+
+                <div className="flex justify-between ">
+                  <dt>
+                    {cart.map((item, index) => (
+                      <div key={index} className="text-left">
+                        {item.product_name} x {item.count}
+                      </div>
+                    ))}
+                  </dt>
+                  <dd>
+                    {cart.map((item, index) => (
+                      <div key={index}>{item.product_sale * item.count}</div>
+                    ))}
+                  </dd>
+                </div>
+                <hr />
+                <div className="flex justify-between !text-base font-medium">
+                  <dt>รวม</dt>
+                  <dd>{getTotal()}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
       </div>
     </div>
