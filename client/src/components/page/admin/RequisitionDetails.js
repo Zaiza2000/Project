@@ -22,7 +22,7 @@ export default function RequisitionDetails() {
     adminCart(user.token, cartAdmin)
       .then((res) => {
         console.log(res);
-        navigate("/login");
+        navigate("/HistoryRequisition");
       })
       .catch((err) => {
         console.log(err);

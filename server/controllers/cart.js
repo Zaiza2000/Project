@@ -49,6 +49,7 @@ exports.userCart = async (req, res) => {
 exports.adminCart = async (req, res) => {
   try {
     const { cartAdmin } = req.body;
+    console.log("================cartAdmin==========",cartAdmin);
 
     let users = await User.findOne(req.body, {
       where: { id: req.params.id },
@@ -60,6 +61,7 @@ exports.adminCart = async (req, res) => {
       let newAdminCart = await new Requisition_Detail({
         RID: new_requisition_id,
         product_id: cartAdmin[i].product_id,
+        product_name: cartAdmin[i].product_name,
         quantity: cartAdmin[i].count,
         price: cartAdmin[i].product_cost,
         id: req.user.id,

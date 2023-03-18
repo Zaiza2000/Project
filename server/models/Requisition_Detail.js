@@ -16,6 +16,9 @@ const Requisition_Detail = db.define(
       type: DataTypes.INTEGER,
       foreignKey: true,
     },
+    product_name: {
+      type: DataTypes.STRING,
+    },
     quantity: {
       type: DataTypes.INTEGER,
     },
