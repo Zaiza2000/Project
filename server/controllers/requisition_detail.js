@@ -1,5 +1,5 @@
 const Requisition_Detail = require("../models/Requisition_Detail");
-const {Op} = require("sequelize");
+const { Op } = require("sequelize");
 
 exports.listRequisition = async (req, res) => {
   try {
@@ -12,14 +12,14 @@ exports.listRequisition = async (req, res) => {
 };
 
 exports.getRequisition = async (req, res) => {
-    try {
-        console.log(req.params);
-      const requisition = await Requisition_Detail.findAll({
-         where: { RID :  "RID000001" },
-      });
-      res.json(requisition);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send("==Server Error (getRequisition) ==");
-    }
-  };
+  try {
+    console.log(req.params);
+    const requisition = await Requisition_Detail.findAll({
+      where: { RID: { [Op.like]: req.params.id } },
+    });
+    res.json(requisition);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error (getRequisition) ==");
+  }
+};
