@@ -57,21 +57,21 @@ export default function Shop() {
 
   return (
     <div >
-      <h1 className="text-6xl font-extrabold sm:text-6xl m-20  text-left ">
+      <h1 className="text-4xl font-extrabold sm:text-4xl m-20  text-left ">
         สินค้าทั้งหมด
       </h1>
 
-      <div className="flex ">
-        <div className="flex-1 w-32">
-          <div className="w-14 h-14 text-3xl sm:text-4xl col-span-2 pl-36 text-left pr-20">ค้นหาสินค้า
+      <div className="grid grid-cols-3 gap-4">
+        <div className="">
+          <div className="h-14 text-3xl col-span-2 pl-20 pr-20 text-left">ค้นหาสินค้า
             <Search />
-            <label className="block mb-2 text-2xl text-left pt-20">
+            <label className="block mb-2 text-2xl text-left">
               ราคา
               {/* {price} ฿ */}
             </label>
 
             <MultiRangeSlider
-              className="w-3/4 h-2 bg-white  appearance-none cursor-pointer"
+              className=" h-2 appearance-none cursor-pointer"
               value={price}
               min={0}
               max={1000}
@@ -93,7 +93,7 @@ export default function Shop() {
 
         </div> */}
 
-        <div className="">
+        <div className="col-span-2">
           {loading ? (
             <h1 className="text-4xl font-bold text-purple-600 ">Loading.....</h1>
           ) : (

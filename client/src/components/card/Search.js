@@ -25,7 +25,7 @@ export default function Search() {
   return (
     <div>
       <div className="">
-        <div className="xl:w-96 mt-6 ">
+        <div className="mt-6 ">
           
           <div className="input-group relative items-stretch w-full mb-4">
             <input
