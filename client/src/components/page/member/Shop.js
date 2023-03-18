@@ -19,9 +19,9 @@ export default function Shop() {
   // Category
   const [category, setCategory] = useState([]);
   const [categorySelect, setCategorySelect] = useState([]);
-
   const { search } = useSelector((state) => ({ ...state }))
-  console.log(search)
+
+  //  console.log(search)
   const { text } = search
   //text
 
@@ -44,23 +44,23 @@ export default function Shop() {
   };
 
   // ########## load data on user filter ##########
-  // useEffect(() => {
-  //   const delay = setTimeout(() => {
-  //     fetchDataFilter({ query: text });
-  //     if (!text) {
-  //       loadData();
-  //     }
-  //   }, 300);
-  //   return () => clearTimeout(delay);
-  // }, [text]);
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      fetchDataFilter({ query: text });
+      if (!text) {
+        loadData();
+      }
+    }, 300);
+    return () => clearTimeout(delay);
+  }, [text]);
 
   //****Filter*****
-
   const fetchDataFilter = (arg) => {
     searchFilters(arg).then((res) => {
       setProduct(res.data)
     });
   };
+
   const handleCheck = (e) => {
     // ค่าปัจจุบันที่ Check 
     let inCheck = e.target.value

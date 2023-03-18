@@ -93,7 +93,6 @@ const handleQuery = async (req, res) => {
     const product_name = req.body;
     const product_detail = req.body;
     const { Op } = require("sequelize");
-    // console.log("product_name : " , product_name);
     const products = await Product.findAll({
       where: {
         [Op.or]: [
@@ -109,8 +108,6 @@ const handleQuery = async (req, res) => {
           }
         ]
       }
-
-      //  where: { product_name: product_name.query }
     });
     res.json(products);
   } catch (error) {
