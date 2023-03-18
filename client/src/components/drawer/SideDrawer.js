@@ -75,7 +75,6 @@ export default function SideDrawer({ item }) {
             type: "ADD_TO_CART",
             payload: cart,
         });
-
     }
 
     return (
@@ -94,7 +93,7 @@ export default function SideDrawer({ item }) {
                                 <li className="flex py-6">
                                     <div>
                                         <img
-                                            className="h-75% w-75% object-cover object-center"
+                                            className="h-48 w-50 object-cover object-center"
                                             src={item.product_photo}
                                             alt=""
                                         />
@@ -105,9 +104,9 @@ export default function SideDrawer({ item }) {
                                                 <h3>{item.product_name}</h3>
                                             </div>
                                         </div>
-                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                            {/* <p className="text-gray-500"> {item.count} ชิ้น </p> */}
-                                            <div className="flex items-center justify-end flex-1 gap-2">
+                                        {/* <div className="flex flex-1 items-end justify-between text-sm"> */}
+                                        {/* <p className="text-gray-500"> {item.count} ชิ้น </p> */}
+                                        {/* <div className="flex items-center justify-end flex-1 gap-2">
                                                 <form>
                                                     <label for="Line3Qty" className="sr-only"> Quantity </label>
 
@@ -141,15 +140,13 @@ export default function SideDrawer({ item }) {
                                                         />
                                                     </svg>
                                                 </button>
-                                            </div>
+                                            </div> 
 
-                                        </div>
+                                        </div>*/}
                                         <div className="">
-                                            <p
-                                                className="font-medium "
-                                            >
-                                                {item.product_sale * item.count} บาท
-                                            </p>
+
+                                            {item.product_sale * item.count} บาท
+
                                         </div>
                                     </div>
                                 </li>
@@ -164,40 +161,38 @@ export default function SideDrawer({ item }) {
                         <p>{getTotal()} บาท</p>
                     </div>
                     {/* <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p> */}
-                    <div className="mt-6">
-                        {user ? (
-                            <button
-                                className="block px-5 py-3 text-sm text-gray-100 transition bg-gray-700 rounded hover:bg-gray-600"
-                                onClick={handleSaveOrder}
-                                disabled={!cart.length}
-                            >
-                                ชำระเงิน
-                            </button>
-                        ) : (
-                            <button className="block px-5 py-3 text-sm text-gray-100 transition bg-red-500 rounded hover:bg-gray-600">
-                                <Link to="/login" state="cart">
-                                    เข้าสู่ระบบเพื่อสั่งสินค้า
-                                </Link>
-                            </button>
-                        )}
 
-                    </div>
-                    <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                            or 
-                            <button
-                                type="button"
-                                className="font-medium text-indigo-600 hover:text-indigo-500"
-
-                            >
-                                <Link to="/shop" state="cart">
-                                     เลือกสินค้าต่อ
-                                </Link>
-                            </button>
-                        </p>
-                    </div>
+                </div>
+                <div className="mt-6 flex justify-center ">
+                    {user ? (
+                        <button
+                            className="block px-5 py-3 text-sm text-gray-100 transition bg-gray-700 rounded hover:bg-gray-600"
+                            onClick={handleSaveOrder}
+                            disabled={!cart.length}
+                        >
+                            ชำระเงิน
+                        </button>
+                    ) : (
+                        <button className="block px-5 py-3 text-sm text-gray-100 transition bg-red-500 rounded hover:bg-gray-600">
+                            <Link to="/login" state="cart">
+                                เข้าสู่ระบบเพื่อสั่งสินค้า
+                            </Link>
+                        </button>
+                    )}
                 </div>
 
+                <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                    <button
+                        type="button"
+                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                        onClose={onCloseDrawer}
+                    >
+                        <Link to="/cart" state="cart" >
+                            ไปที่ตะกร้า
+                        </Link>
+                    </button>
+
+                </div>
             </Drawer>
         </div>
 
