@@ -107,13 +107,13 @@ const handleQuery = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
-const handleCategory = async (req, res) =>{
+const handleCategory = async (req, res, category) =>{
   try {
     const category_id = req.body;
-    const category = await Category.findAll({   
+    const products = await Product.findAll({   
        where: { category_id: category_id.category }
     });
-    res.json(category);
+    res.json(products);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
