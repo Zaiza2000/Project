@@ -2,25 +2,32 @@
 import MultiRangeSlider from "multi-range-slider-react";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// antd
+import { Checkbox } from "antd";
 
 //Card
 import CardProductMember from "../../card/CardProductMember";
 import Search from "../../card/Search";
 //function
 import { listProduct, searchFilters } from "../../functions/product";
+import { listCategory } from "../../functions/category"
 
 export default function Shop() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
   const [price, setPrice] = useState([0, 0]);
-  const { search } = useSelector((state) => ({ ...state }))
+  // Category
+  const [category, setCategory] = useState([]);
+  const [categorySelect, setCategorySelect] = useState([]);
 
+  const { search } = useSelector((state) => ({ ...state }))
   console.log(search)
   const { text } = search
   //text
 
   useEffect(() => {
     loadData();
+    listCategory().then(res => setCategory(res.data))
   }, []);
 
   const loadData = () => {
@@ -49,12 +56,30 @@ export default function Shop() {
 
   //****Filter*****
 
-  // const fetchDataFilter = (arg) => {
-  //   searchFilters(arg).then((res) => {
-  //     setProduct(res.data)
-  //   });
-  // };
+  const fetchDataFilter = (arg) => {
+    searchFilters(arg).then((res) => {
+      setProduct(res.data)
+    });
+  };
+  const handleCheck = (e) => {
+    // ค่าปัจจุบันที่ Check 
+    let inCheck = e.target.value
+    // ค่าเดิมของ Check 
+    let inState = [...categorySelect]
 
+    let findCheck = inState.indexOf(inCheck)
+    if(findCheck === -1) {
+      inState.push(inCheck)
+    }else{
+      inState.splice(findCheck, 1)
+    }
+    setCategorySelect(inState)
+    fetchDataFilter({category:inState})
+    if(inState.length < 1){
+      loadData()
+
+    }
+  }
   return (
     <div >
       <h1 className="text-4xl font-extrabold sm:text-4xl m-20  text-left ">
@@ -77,16 +102,25 @@ export default function Shop() {
               max={1000}
               onChange={(e) => setPrice(e.target.value)}
             />
+            <hr />
+            <h4 className="text-2xl text-left pt-20 pb-5">ค้นหาตามหมวดหมู่สินค้า</h4>
+            <div className="items-center mb-4">
+              {category.map((item,index) =>
+                <Checkbox
+                  onChange={handleCheck}
+                  value={item.category_id}
+                  className="w-4 h-4 m-10  bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2">
+                  <div className="ml-2 text-xl">
+                    {item.category_name}
+                  </div>
+                </Checkbox>
+              )}
 
-            <h4 className="text-2xl text-left pt-20 pb-5">ประเภทสินค้า</h4>
-            <div className="flex items-center mb-4">
-              <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
-              <label for="default-checkbox" className="ml-2 text-xl">แบตเตอรี่</label>
             </div>
-            <div class="flex items-center mb-4">
+            {/* <div className="flex items-center mb-4">
               <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2  "></input>
               <label for="default-checkbox" className="ml-2 text-xl">H2C</label>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* <div className="row-span-2 col-span-2 ">

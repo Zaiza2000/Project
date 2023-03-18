@@ -99,7 +99,6 @@ const handleQuery = async (req, res) => {
       //     [Op.substring]: product_name.query
       //   }
       // }
-
        where: { product_name: product_name.query }
     });
     res.json(products);
@@ -108,10 +107,26 @@ const handleQuery = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
+const handleCategory = async (req, res) =>{
+  try {
+    const category_id = req.body;
+    const category = await Category.findAll({   
+       where: { category_id: category_id.category }
+    });
+    res.json(category);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
+};
 exports.searchFilters = async (req, res) => {
-  const { query } = req.body;
+  const { query,category } = req.body;
   if (query) {
     console.log("query", query);
     await handleQuery(req, res, query);
+  }
+  if (category) {
+    console.log("category", category);
+    await handleCategory(req, res, category);
   }
 };
