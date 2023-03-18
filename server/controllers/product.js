@@ -91,15 +91,26 @@ exports.deleteProduct = async (req, res) => {
 const handleQuery = async (req, res) => {
   try {
     const product_name = req.body;
-    // const { Op } = app.Sequelize;
+    const product_detail = req.body;
+    const { Op } = require("sequelize");
     // console.log("product_name : " , product_name);
     const products = await Product.findAll({
-      // where: {
-      //   product_name: {
-      //     [Op.substring]: product_name.query
-      //   }
-      // }
-       where: { product_name: product_name.query }
+      where: {
+        [Op.or]: [
+          {
+            product_name: {
+              [Op.substring]: [product_name.query]
+            }
+          },
+          {
+            product_detail: {
+              [Op.substring]: [product_detail.query]
+            }
+          }
+        ]
+      }
+
+      //  where: { product_name: product_name.query }
     });
     res.json(products);
   } catch (error) {
@@ -107,11 +118,11 @@ const handleQuery = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
-const handleCategory = async (req, res, category) =>{
+const handleCategory = async (req, res, category) => {
   try {
     const category_id = req.body;
-    const products = await Product.findAll({   
-       where: { category_id: category_id.category }
+    const products = await Product.findAll({
+      where: { category_id: category_id.category }
     });
     res.json(products);
   } catch (error) {
@@ -120,7 +131,7 @@ const handleCategory = async (req, res, category) =>{
   }
 };
 exports.searchFilters = async (req, res) => {
-  const { query,category } = req.body;
+  const { query, category } = req.body;
   if (query) {
     console.log("query", query);
     await handleQuery(req, res, query);
