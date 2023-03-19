@@ -18,7 +18,7 @@ export default function RequisitionDetails() {
   };
   const handleSaveOrder = () => {
     // code
-    alert("CheckOut Order");
+    alert("HistoryRequisitio");
     adminCart(user.token, cartAdmin)
       .then((res) => {
         console.log(res);
