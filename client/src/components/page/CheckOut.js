@@ -226,7 +226,7 @@ export default function CheckOut() {
 
   return (
     <div>
-      <h1 className="text-4xl font-extrabold sm:text-6xl m-20 ">
+      <h1 className="text-4xl font-extrabold sm:text-4xl m-20 ">
         สั่งซื้อสินค้า
       </h1>
       {/* <h2>{user.firstname}</h2>
@@ -244,7 +244,17 @@ export default function CheckOut() {
           ที่อยู่สำหรับจัดส่งสินค้า
           <div className="form-check">
             <label className="form-check text-gray-800" for="flexRadioDefault2">
-              {/* ใช้ที่อยู่ใหม่ */}
+              <div>
+                <input type="radio"></input>
+                ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
+                <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
+
+                <h3>ที่อยู่: {user.address} {user.sub_district} {user.district} {user.province} {user.zipcode}</h3>
+
+                <h3>เบอร์โทร {user.tel}</h3>
+              </div>
+
+              ใช้ที่อยู่ใหม่
               <form className="mt-6" onSubmit={handleSubmit}>
                 <div className="mb-2">
                   <label
@@ -275,7 +285,7 @@ export default function CheckOut() {
                   <textarea
                     type="text"
                     name="shipping_address"
-                    placeholder="เลขที่ 85/8 หมู่ 13 ต.ในเมือง "
+                    placeholder="เลขที่ 85/8 หมู่ 13 "
                     onChange={(e) => handleChange(e)}
                     className="block  w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
@@ -386,7 +396,12 @@ export default function CheckOut() {
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Billing   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,<<<<<<<<<<<<<<<<<<*/}
         <div id="checkout" className="flex-1 w-64 ">
           ที่อยู่ในการออกใบเสร็จ
-
+          <label
+            for="text"
+            className="block font-semibold text-gray-800"
+          >
+            <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
+          </label>
           {/* <div className="form-check ">
             <label
               className="form-check-label inline-block text-gray-800"
@@ -434,7 +449,7 @@ export default function CheckOut() {
                   <textarea
                     type="text"
                     name="billing_address"
-                    placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8 ต.ในเมือง"
+                    placeholder="บริษัท เคลย์ จำกัด เลขที่ 8/8 หมู่ 8"
                     onChange={(e) => handleChange(e)}
                     className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />

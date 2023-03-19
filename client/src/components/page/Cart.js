@@ -7,7 +7,7 @@ import ProductTableInCart from "../card/ProductTableInCart";
 
 export default function Cart() {
   const navigate = useNavigate();
-  
+
   const { cart, user } = useSelector((state) => ({ ...state }));
 
   const getTotal = () => {
@@ -49,6 +49,7 @@ export default function Cart() {
             ตะกร้าของคุณมี {cart.length} สินค้า
           </h1>
           {!cart.length ? <p>ไม่มีสินค้าในตะกร้า</p> : showCartItem()}
+          <hr/>
         </div>
       </div>
       <div className="flex justify-center p-10 pt-8 mt-8 border-t border-gray-100">
@@ -73,6 +74,12 @@ export default function Cart() {
                 ))}
               </dd>
             </div>
+            <hr/>
+            <div className="flex justify-between !text-base ">
+              <dt>ค่าส่ง</dt>
+              <dd>0</dd>
+            </div>
+            <hr/>
             <div className="flex justify-between !text-base font-medium">
               <dt>รวม</dt>
               <dd>{getTotal()}</dd>
