@@ -65,29 +65,9 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
-//############ Search by Roitai ################
+//############ Search  ################
 
-// const handleQuery = async (req, res, query) => {
-//   let products = await Product.find({ $text: { $search: query } }).populate(
-//     "category_name",
-//     "product_id product_name product_detail"
-//   );
-//   res.send(products);
-// };
 
-// const getSearchCategory = async (req, res) => {
-//     try {
-//     const category_name = req.body
-//     console.log("category_name : " , category_name);
-//     const category = await Category.findAll({
-//       query: { category_name },
-//     });
-//     res.json(category);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("==Server Error==");
-//   }
-// };
 const handleQuery = async (req, res) => {
   try {
     const product_name = req.body;
@@ -115,6 +95,24 @@ const handleQuery = async (req, res) => {
     res.status(500).send("==Server Error==");
   }
 };
+const handlePrice = async (req, res, price) => {
+  try {
+    const product_sale = req.body;
+    const { Op } = require("sequelize");
+    const products = await Product.findAll({
+      where: {
+        product_sale: {
+          [Op.gte]: product_sale.price[0],
+          [Op.lte]: product_sale.price[1],
+        }
+      }
+    });
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error==");
+  }
+}
 const handleCategory = async (req, res, category) => {
   try {
     const category_id = req.body;
@@ -128,10 +126,15 @@ const handleCategory = async (req, res, category) => {
   }
 };
 exports.searchFilters = async (req, res) => {
-  const { query, category } = req.body;
+  const { query, price, category } = req.body;
   if (query) {
     console.log("query", query);
     await handleQuery(req, res, query);
+  }
+  // price [0, 200]
+  if (price !== undefined) {
+    console.log("price----->", price);
+    await handlePrice(req, res, price);
   }
   if (category) {
     console.log("category", category);
