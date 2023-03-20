@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import {
   getRequisition,
   listRequisition,
+  listRequisitionByRID,
 } from "../../functions/requisition.js";
 
 export default function HistoryRequisition() {
@@ -15,7 +16,9 @@ export default function HistoryRequisition() {
   }, []);
 
   const loadData = () => {
+    // TODO: Backup before Chonsawat Break
     listRequisition().then((res) => {
+      console.log(res);
       setRequisition(res.data);
     });
   };

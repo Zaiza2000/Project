@@ -42,7 +42,7 @@ const {
 const {userCart,
   adminCart} = require("../controllers/cart.js");
 
-const { listRequisition ,getRequisition } = require("../controllers/requisition_detail");
+const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
 
 const express = require("express");
 const router = express.Router();
@@ -105,6 +105,7 @@ router.get("/listOrder", listOrder);
 
 //API Requisition => requisition_detail.js//
 router.get("/listRequisition", listRequisition);
+router.get("/listRequisitionByRID", listRequisitionByRID);
 router.get("/getRequisition/:id", getRequisition);
 
 module.exports = router;
