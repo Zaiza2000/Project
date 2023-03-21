@@ -1,5 +1,5 @@
-import { Item } from "rc-menu";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, render } from "react";
 
 //function
 import {
@@ -10,27 +10,61 @@ import {
 
 export default function HistoryRequisition() {
   const [requisition, setRequisition] = useState([]);
-  const [requisitionListOfRID, setRequisitionListOfRID] = useState([]);
 
   useEffect(() => {
-    loadData();
+
+    function get_has_run_status() {
+      return !localStorage.getItem('hasRun');
+    }
+    
+    const loadData = async() => {
+      await listRequisitionByRID().then((res) => {
+        setRequisition(res.data);
+        console.log("res.data => ", res.data);
+        console.log("requisition inner => ", requisition);
+        res.data.map((item, index) => {
+          loadListRIDData(item);
+        });
+      });
+    };
+
+    const loadListRIDData = async(item) => {
+      await getRequisition(item.RID).then((res) => {
+        item.listOfRID = res.data;
+        localStorage.setItem(item.RID, JSON.stringify(item.listOfRID))
+      });
+    }
+
+    async function get_loadData(){
+      if (get_has_run_status()) {
+        localStorage.setItem('hasRun', true);
+        await loadData();
+        setTimeout(function(){
+          window.location.reload();
+       }, 200); // 0.2 seconds
+      } else {
+        await loadData();
+      }
+    }
+
+    console.log("requisition => ", requisition);
+    show_log();
+    get_loadData();
   }, []);
 
-  const loadListRIDData = (item) => {
-    getRequisition(item.RID).then((res) => {
-      item.listOfRID = res.data;
-      localStorage.setItem(item.RID, JSON.stringify(item.listOfRID))
-    });
+  // TODO: Logging datae time to console
+  function show_log() {
+    var m = new Date();
+    var dateString =
+        m.getFullYear() + "/" +
+        ("0" + (m.getMonth()+1)).slice(-2) + "/" +
+        ("0" + m.getDate()).slice(-2) + " " +
+        ("0" + m.getHours()).slice(-2) + ":" +
+        ("0" + m.getMinutes()).slice(-2) + ":" +
+        ("0" + m.getSeconds()).slice(-2);
+    
+    console.log("\n".repeat(5) + "======".repeat(5) + `\t${dateString}\t` + "======".repeat(5) + "\n".repeat(5));
   }
-
-  const loadData = () => {
-    listRequisitionByRID().then((res) => {
-      setRequisition(res.data);
-      requisition.map((item, index) => {
-        loadListRIDData(item);
-      });
-    });
-  };
 
   const tableHead = (
     <thead class="text-xs text-black uppercase bg-gray-50 dark:bg-red-700 dark:text-white">
@@ -82,6 +116,7 @@ export default function HistoryRequisition() {
   return (
     <div>
       <h1>HistoryRequisition</h1>
+      
       {requisition.map((item, index) => (
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-black dark:text-black">
@@ -89,6 +124,7 @@ export default function HistoryRequisition() {
             {tableData(item)}
           </table>
           <br></br>
+      
         </div>
       ))}
     </div>

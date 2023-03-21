@@ -11,10 +11,12 @@ export default function LoadingToRedirect(){
         },1000)
 
         //Redirect
-        count === 0 && navigate("/")
+        if (count === 0) {
+            navigate("/")
+        }
         return () => clearInterval(interval)
 
-    },[count])
+    },[count, navigate])
 
     return (
         <div>
