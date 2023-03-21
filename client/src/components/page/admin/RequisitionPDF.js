@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Document, Page, Text, View, StyleSheet ,PDFDownloadLink,Font } from '@react-pdf/renderer';
-import fontDev from "./angsana.ttc"
+import fontDev from "./THSarabun.ttf"
 
   // Register font
-Font.register({ family: 'Roboto', src: fontDev });
+Font.register({ family: 'THSarabun', src: fontDev });
 
 const styles = StyleSheet.create({
     page: {
@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
       padding: 10,
       flexGrow: 1
     },
-    title: {fontFamily: 'Roboto',
-    
-  }
+    header: {
+    fontFamily: 'THSarabun',
+    fontSize: 12,
+    },
   });
 
 
@@ -32,9 +33,10 @@ export default function RequisitionPDF({requisition}){
               <Page size="A4" style={styles.page}>
                 <View style={styles.section}>
                   <Text>Section #1 {requisition.RID}</Text>
+                  <Text style={styles.header}> {requisition.product_name}</Text>
                 </View>
                 <View style={styles.section}>
-                  <Text>เมษิณี</Text>
+                  <Text style={styles.header}>เมษิณี</Text>
                   <Text>Mesinee</Text>
                   <Text>tong</Text>
                 </View>
