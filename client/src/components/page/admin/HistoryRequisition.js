@@ -12,7 +12,7 @@ import {
 } from "../../functions/requisition.js";
 
 //page
-import Invoice from "./Invoice.js";
+import RequisitionPDF from "./RequisitionPDF.js";
 
 
 export default function HistoryRequisition() {
@@ -141,9 +141,9 @@ export default function HistoryRequisition() {
         <div>
             <PDFDownloadLink 
             document={
-              <Invoice requisition={item} />
+              <RequisitionPDF requisition={item} />
             }
-            fileName="invoice.pdf">
+            fileName="RequisitionPDF.pdf">
               PDF Download
             </PDFDownloadLink>
           </div>

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Document, Page, Text, View, StyleSheet ,PDFDownloadLink } from '@react-pdf/renderer';
-//function
-import {
-  getRequisition,
-  listRequisition,
-  listRequisitionByRID,
-} from "../../functions/requisition.js";
+import { Document, Page, Text, View, StyleSheet ,PDFDownloadLink,Font } from '@react-pdf/renderer';
+import fontDev from "./angsana.ttc"
+
+  // Register font
+Font.register({ family: 'Roboto', src: fontDev });
 
 const styles = StyleSheet.create({
     page: {
@@ -16,10 +14,16 @@ const styles = StyleSheet.create({
       margin: 10,
       padding: 10,
       flexGrow: 1
-    }
+    },
+    title: {fontFamily: 'Roboto',
+    
+  }
   });
 
-export default function Invoice({requisition}){
+
+
+
+export default function RequisitionPDF({requisition}){
    
 
 
@@ -30,7 +34,9 @@ export default function Invoice({requisition}){
                   <Text>Section #1 {requisition.RID}</Text>
                 </View>
                 <View style={styles.section}>
-                  <Text>Section #2</Text>
+                  <Text>เมษิณี</Text>
+                  <Text>Mesinee</Text>
+                  <Text>tong</Text>
                 </View>
               </Page>
             </Document>

@@ -20,7 +20,7 @@ import ManageUser from "./components/page/admin/ManageUser";
 import Requisition from "./components/page/admin/Requisition";
 import RequisitionDetails from "./components/page/admin/RequisitionDetails";
 import HistoryRequisition from "./components/page/admin/HistoryRequisition";
-import Invoice from "./components/page/admin/Invoice";
+import RequisitionPDF from "./components/page/admin/RequisitionPDF";
 
 
 //Category
@@ -103,7 +103,7 @@ function App() {
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
           <Route path="/requisitionDetails" element={<RequisitionDetails />} />
           <Route path="/HistoryRequisition" element={<HistoryRequisition />} />
-          <Route path="/Invoice" element={<Invoice />} />
+          <Route path="/RequisitionPDF" element={<RequisitionPDF />} />
           <Route
             path="/admin/index"
             element={
