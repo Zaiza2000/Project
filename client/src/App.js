@@ -20,6 +20,9 @@ import ManageUser from "./components/page/admin/ManageUser";
 import Requisition from "./components/page/admin/Requisition";
 import RequisitionDetails from "./components/page/admin/RequisitionDetails";
 import HistoryRequisition from "./components/page/admin/HistoryRequisition";
+import Invoice from "./components/page/admin/Invoice";
+
+
 //Category
 import CreateCategory from "./components/page/admin/category/CreateCategory";
 import UpdateCategory from "./components/page/admin/category/UpdateCategory";
@@ -100,6 +103,7 @@ function App() {
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
           <Route path="/requisitionDetails" element={<RequisitionDetails />} />
           <Route path="/HistoryRequisition" element={<HistoryRequisition />} />
+          <Route path="/Invoice" element={<Invoice />} />
           <Route
             path="/admin/index"
             element={

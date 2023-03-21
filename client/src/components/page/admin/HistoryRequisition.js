@@ -1,6 +1,9 @@
 
-import React, { useEffect, useState, render } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Document, Page, Text, View, StyleSheet ,PDFDownloadLink } from '@react-pdf/renderer';
+// lodash
+import _ from "lodash";
 //function
 import {
   getRequisition,
@@ -8,8 +11,13 @@ import {
   listRequisitionByRID,
 } from "../../functions/requisition.js";
 
+//page
+import Invoice from "./Invoice.js";
+
+
 export default function HistoryRequisition() {
   const [requisition, setRequisition] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
@@ -29,9 +37,14 @@ export default function HistoryRequisition() {
     };
 
     const loadListRIDData = async(item) => {
+      let data =[];
       await getRequisition(item.RID).then((res) => {
         item.listOfRID = res.data;
         localStorage.setItem(item.RID, JSON.stringify(item.listOfRID))
+        
+        dispatch({
+          type: "SET_REQUISITION"
+        })
       });
     }
 
@@ -41,13 +54,13 @@ export default function HistoryRequisition() {
         await loadData();
         setTimeout(function(){
           window.location.reload();
-       }, 200); // 0.2 seconds
+       }, 1000); // 1 seconds
       } else {
         await loadData();
       }
     }
 
-    console.log("requisition => ", requisition);
+    //console.log("requisition => ", requisition);
     show_log();
     get_loadData();
   }, []);
@@ -81,9 +94,9 @@ export default function HistoryRequisition() {
                 <th scope="col" class="px-6 py-3">
                   ราคาต้นทุน
                 </th>
-                <th scope="col" class="px-6 py-3">
+                {/* <th scope="col" class="px-6 py-3">
                   Action
-                </th>
+                </th> */}
               </tr>
             </thead>
   )
@@ -101,14 +114,14 @@ export default function HistoryRequisition() {
         <td class="px-6 py-4">{inner_item.product_name}</td>
         <td class="px-6 py-4">{inner_item.quantity}</td>
         <td class="px-6 py-4">{inner_item.price}</td>
-        <td class="px-6 py-4">
+        {/* <td class="px-6 py-4">
           <button
             type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             พิมพ์ใบเบิก
           </button>
-        </td>
+        </td> */}
       </tr>
     </tbody>
   ))}
@@ -116,6 +129,7 @@ export default function HistoryRequisition() {
   return (
     <div>
       <h1>HistoryRequisition</h1>
+     
       
       {requisition.map((item, index) => (
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -123,6 +137,16 @@ export default function HistoryRequisition() {
             {tableHead}
             {tableData(item)}
           </table>
+          <br></br>
+        <div>
+            <PDFDownloadLink 
+            document={
+              <Invoice requisition={item} />
+            }
+            fileName="invoice.pdf">
+              PDF Download
+            </PDFDownloadLink>
+          </div>
           <br></br>
       
         </div>
