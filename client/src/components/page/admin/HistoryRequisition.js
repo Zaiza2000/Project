@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
 
 //function
 import {
@@ -48,7 +48,7 @@ export default function HistoryRequisition() {
         await loadData();
         setTimeout(function(){
           window.location.reload();
-       }, 1000); // 1 seconds
+       }, 3000); // 3 seconds
       } else {
         await loadData();
       }
@@ -124,6 +124,7 @@ export default function HistoryRequisition() {
           </table>
           <br></br>
         <div>
+          
             <PDFDownloadLink 
             document={
               <RequisitionPDF requisition_pdf={item} localStorage_items={JSON.parse(localStorage.getItem(item.RID))}/>
