@@ -69,7 +69,16 @@ export default function ManageUser() {
           <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
             <tr>
               <th scope="col" className="px-6 py-3">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Username
+              </th>
+              <th scope="col" className="px-6 py-3">
+                First Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Last Name
               </th>
               <th scope="col" className="px-6 py-3">
                 Role
@@ -90,7 +99,19 @@ export default function ManageUser() {
               <tr className="bg-white border-b  hover:bg-gray-50 ">
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>
+                  {item.id}
+                </td>
+                <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden font-bold"></span>
                   {item.username}
+                </td>
+                <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden font-bold"></span>
+                  {item.firstname}
+                </td>
+                <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden font-bold"></span>
+                  {item.lastname}
                 </td>
                 <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                   <span className="inline-block w-1/3 md:hidden font-bold"></span>

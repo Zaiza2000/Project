@@ -207,7 +207,7 @@ export default function CreateProduct() {
                 </label>
               </div>
               <div className="md:w-2/3">
-                <select
+                {/* <select
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   name="category_id"
                   value={values.category_id}
@@ -218,7 +218,16 @@ export default function CreateProduct() {
                   <option value="3">[3] ไส้กรอง</option>
                   <option value="4">[4] หัวเทียน</option>
                   <option value="5">[5] โซ่สเตอร์</option>
-                </select>
+                </select> */}
+
+<input
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  type="number"
+                  min="1"
+                  name="category_id"
+                  value={values.category_id}
+                  onChange={handleChange}
+                />
               </div>
             </div>
 
