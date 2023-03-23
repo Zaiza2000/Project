@@ -72,28 +72,28 @@ export default function HistoryOrder() {
   }
 
   const tableHead = (
-    <thead class="text-xs text-black uppercase bg-gray-50 dark:bg-red-700 dark:text-white">
+    <thead className="text-xs text-black uppercase ">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   OID
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   รหัสลูกค้า
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   สินค้า
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   รายละเอียด
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   จำนวน
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   ราคาขาย
                 </th>
             
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   ราคาต้นทุน
                 </th>
                 
@@ -105,19 +105,19 @@ export default function HistoryOrder() {
   const tableData = (item) => {
     return JSON.parse(localStorage.getItem(item.OID)).map( (inner_item) => (
     <tbody>
-      <tr class="bg-gray-200 border-b dark:bg-g00 dark:border-gray-700">
+      <tr className="bg-white border-b ">
         <th
           scope="row"
-          class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black"
+          className="px-6 py-4 font-medium text-black whitespace-nowrap "
         >
           {inner_item.OID}
         </th>
-        <td class="px-6 py-4">{inner_item.id}</td>
-        <td class="px-6 py-4">{inner_item.product_name}</td>
-        <td class="px-6 py-4">{inner_item.product_detail}</td>
-        <td class="px-6 py-4">{inner_item.quantity}</td>
-        <td class="px-6 py-4">{inner_item.price}</td>
-        <td class="px-6 py-4">{inner_item.cost}</td>
+        <td className="px-6 py-4">{inner_item.id}</td>
+        <td className="px-6 py-4">{inner_item.product_name}</td>
+        <td className="px-6 py-4">{inner_item.product_detail}</td>
+        <td className="px-6 py-4">{inner_item.quantity}</td>
+        <td className="px-6 py-4">{inner_item.price}</td>
+        <td className="px-6 py-4">{inner_item.cost}</td>
 
       </tr>
     </tbody>
@@ -125,14 +125,15 @@ export default function HistoryOrder() {
 
   
   return (
-    <div>
-      <h1>History Order</h1>
+    <div className="flex flex-row">
       <MenubarAdmin />
      
-      
+      <div  className="pr-16">
+       <h3 className="text-4xl p-10 font-bold text-purple-600">ประวัติการสั่งซื้อของลูกค้า</h3>
+
       {orderDetail.map((item, index) => (
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-black dark:text-black">
+        <div className="">
+          <table className="w-full text-sm text-left text-black bg-blue-400 ">
             {tableHead}
             {tableData(item)}
           </table>
@@ -152,6 +153,7 @@ export default function HistoryOrder() {
       
         </div>
       ))}
+      </div>
     </div>
   );
 }

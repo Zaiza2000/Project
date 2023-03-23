@@ -77,24 +77,24 @@ export default function HistoryRequisition() {
   }
 
   const tableHead = (
-    <thead className="text-xs text-black uppercase bg-blue-400 ">
+    <thead className="text-xs text-black uppercase ">
       <tr>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           RID
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           รหัสสินค้า
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           สินค้า
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           รายละเอียด
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           จำนวน
         </th>
-        <th scope="col" class="px-6 py-3">
+        <th scope="col" className="px-6 py-3">
           ราคาต้นทุน
         </th>
 
@@ -105,7 +105,7 @@ export default function HistoryRequisition() {
   const tableData = (item) => {
     return JSON.parse(localStorage.getItem(item.RID)).map((inner_item) => (
       <tbody>
-        <tr className="bg-gray-100 border-b ">
+        <tr className="bg-white border-b ">
           <th
             scope="row"
             className="px-6 py-4 font-medium text-black whitespace-nowrap "
