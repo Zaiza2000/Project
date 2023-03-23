@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import img2 from "../../uploads/file-1678978441539.jpg";
 
 //function
-import { userCart } from "../functions/user";
+import { userCart ,CartUpdateToProduct } from "../functions/user";
 import { CreateOrder } from "../functions/order";
 import {
   listProvince,
@@ -187,24 +187,26 @@ export default function CheckOut() {
       console.log("Starting");
       const authtoken = user.token;
 
-      const orderResponse = CreateOrder(authtoken, value).then((response) => {
-        var orderDict = {};
-        for (const [key, value] of Object.entries(response.data)) {
-          orderDict[key] = value;
-        }
-        return orderDict;
-      });
+      // const orderResponse = CreateOrder(authtoken, value).then((response) => {
+      //   var orderDict = {};
+      //   for (const [key, value] of Object.entries(response.data)) {
+      //     orderDict[key] = value;
+      //   }
+      //   return orderDict;
+      // });
 
-      const cart_with_orderID = {
-        ...cart,
-        orderDict: orderResponse,
-        order_id: orderResponse.then((response) => response.order_id),
-      };
+      // const cart_with_orderID = {
+      //   ...cart,
+      //   orderDict: orderResponse,
+      //   order_id: orderResponse.then((response) => response.order_id),
+      // };
 
       // TODO: DELETE
-      console.log("orderResponse: ", cart_with_orderID);
+      // console.log("orderResponse: ", cart_with_orderID);
 
-      userCart(authtoken, cart_with_orderID)
+      CreateOrder(authtoken, value)
+      userCart(authtoken, cart)
+      CartUpdateToProduct(authtoken, cart)
         .then((res) => {
           console.log(res);
           alert("Successfully")

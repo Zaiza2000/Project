@@ -2,9 +2,41 @@
 const Order_Detail = require("../models/Order_Detail.js");
 const Requisition_Detail = require("../models/Requisition_Detail.js");
 const User = require("../models/User.js");
+const Product = require("../models/Product.js");
 // Import our utils
 const { get_latest_order_id } = require("../utils/order_utiils");
 const { get_latest_requisition_id } = require("../utils/requisition_utiils");
+
+
+exports.CartUpdateToProduct = async (req,res) =>{
+  try {
+    const carts = req.body.cart;
+    console.log("\n\n>>> CartUpdateToProduct: ", carts, "\n\n");
+
+    carts.map((item )=>{
+      console.log("====>>>>> product id" , item.product_id);
+      const product =  Product.findByPk(item.product_id)
+      product.then((productItem) => {
+        productItem.update({"product_quantity" : productItem.product_quantity - item.count})
+      })
+      console.log("====>>>>> product After") 
+      product.then((res) => {
+        console.log("Previous: ", res._previousDataValues);
+        console.log("Current: ", res.dataValues);
+      });
+
+    })
+    
+
+    res.json({ 
+      message: "CartUpdateToProduct",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==CartUpdateToProduct Server Error==");
+  }
+};
+
 
 exports.userCart = async (req, res) => {
   try {
@@ -12,11 +44,12 @@ exports.userCart = async (req, res) => {
     const { cart } = req.body;
     console.log("\n\n>>> Cart: ", cart, "\n\n");
 
-    let users = await User.findOne(req.body, {
-      where: { id: req.params.id },
-    });
+    // let users = await User.findOne(req.body, {
+    //   where: { id: req.params.id },
+    // });
 
     const new_order_id = get_latest_order_id();
+
 
     for (let i = 0; i < cart.length; i++) {
       console.log("Cart[", i, "] = ", cart[i]);
@@ -34,12 +67,27 @@ exports.userCart = async (req, res) => {
       console.log("newCart", newCart);
     }
 
-    let cartTotal = 0;
-    for (let i = 0; i < cart.length; i++) {
-      cartTotal = cartTotal + cart[i].product_sale * cart[i].count;
-    }
+    //รวมราคา
+    // let cartTotal = 0;
+    // for (let i = 0; i < cart.length; i++) {
+    //   cartTotal = cartTotal + cart[i].product_sale * cart[i].count;
+    // }
+
+    //ตัดสต๊อกสินค้า
+    // let bulkOption = newCart.map((item) => {
+    // return {
+    //   updateOne :{
+    //     filter : {product_id : item.product_id},
+    //     update : { product_quantity : -item.count }
+    //   }
+    // }
+    // })
+
+    // let product = await Product.bulkWrite(bulkOption, {})
+
 
     res.json({
+     
       api_values: newCart,
       message: "user cart OKEY.",
     });

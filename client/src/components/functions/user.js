@@ -20,7 +20,20 @@ export const userCart = async (authtoken, cart) => {
   console.log("userCart - user.js:", cart);
   return await axios.post(
     process.env.REACT_APP_API + "/user/cart",
-    { cart: cart, order_id: cart.order_id },
+    { cart: cart },
+    {
+      headers: {
+        authtoken,
+      },
+    }
+  );
+};
+export const CartUpdateToProduct = async (authtoken, cart) => {
+  // TODO: FIXME
+  console.log("userCart - user.js:", cart);
+  return await axios.put(
+    process.env.REACT_APP_API + "/user/CartUpdateToProduct",
+    { cart: cart },
     {
       headers: {
         authtoken,

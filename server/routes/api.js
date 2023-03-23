@@ -39,7 +39,7 @@ const {
   CreateOrder,
 } = require("../controllers/order.js");
 
-const {userCart,
+const {CartUpdateToProduct,userCart,
   adminCart} = require("../controllers/cart.js");
 
 const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
@@ -74,6 +74,7 @@ router.delete("/deleteUser/:id", deleteUser);
 router.post("/changeRole", changeRole);
 //**************** User Cart *************//
 router.post("/user/cart", auth, userCart);
+router.put("/user/CartUpdateToProduct", auth, CartUpdateToProduct);
 
 //***************** API Category *************//
 router.get("/listCategory", listCategory);
