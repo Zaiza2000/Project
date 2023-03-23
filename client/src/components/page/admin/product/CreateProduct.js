@@ -74,11 +74,11 @@ export default function CreateProduct() {
   };
 
   return (
-    <div>
+    <div className="flex flex-row">
       {/* <NavbarLogin /> */}
       <MenubarAdmin />
       <div className="">
-        <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8">
+        <div className=" pt-6 ">
           <h3 className="text-4xl font-bold text-purple-600">เพิ่มสินค้า</h3>
           <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
             <div className="md:flex md:items-center mb-6 ">

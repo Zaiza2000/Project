@@ -57,13 +57,13 @@ export default function UpdateCategory() {
   };
 
   return (
-    <div>
+    <div className="flex flex-row">
       <MenubarAdmin />
-      <div className="mr-[1%] ml-[14%] mt-[-9%] rounded-xl bg-white p-6 ring ring-indigo-50 sm:p-8 ">
+      <div className="pt-6">
         <h3 className="text-4xl font-bold text-purple-600">
           แก้ไขประเภทสินค้า
         </h3>
-        <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
+        <form onSubmit={handleSubmit} className="pt-6 ">
           <div className="md:flex md:items-center mb-6 ">
             <div className="md:w-1/3">
               <label
@@ -124,8 +124,7 @@ export default function UpdateCategory() {
           </div>
 
           <div className="md:flex md:items-center">
-            <div className="md:w-1/3"></div>
-            <div className="md:w-2/3">
+            <div className="">
               <button
                 className="ml-[79%] shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-20 rounded"
                 type="submit"

@@ -35,50 +35,74 @@ export default function AdminProductCard({ product }) {
       type: "ADD_PRODUCT",
       payload: unique,
     });
-    dispatch({
-      type: "SET_VISIBLE",
-      payload: true,
-    });
+
   };
   return (
     <div className="">
-      <ul className="divide-gray-200 ">
-        <li className="">
-          <div className="flex items-center ">
-            <div className="flex-initial w-64">
+      <table className="mt-10 w-full text-l text-left text-gray-900 ">
+        {/* <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
+          <tr>
+            <th scope="col" className="px-6 py-3 ">
+              รูปภาพสินค้า
+            </th>
+            <th scope="col" className="px-6 py-3 ">
+              ชื่อสินค้า
+            </th>
+            <th scope="col" className="px-6 py-3">
+              ราคาต้นทุน
+            </th>
+            <th scope="col" className="px-6 py-3">
+              ราคาขาย
+            </th>
+            <th scope="col" className="px-6 py-3">
+              จำนวนสินค้า
+            </th>
+            <th scope="col" className="px-6 py-3">
+              รายระเอียด
+            </th>
+
+            <th scope="col" className="px-6 py-3 ">
+              Action
+            </th>
+
+          </tr>
+        </thead> */}
+        <tbody className="">
+          <tr className="bg-white border-b  hover:bg-gray-50 ">
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               <img className="w-24 h-24 rounded-full" src={product_photo} alt="" />
-            </div>
-            <div className="flex-initial w-64 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate ">
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+              <span className="text-sm font-medium inline-block text-gray-900 truncate ">
                 {product_id}
-              </p>
-              <p className="text-sm text-gray-900 truncate ">
+              </span>
+              <span className="text-sm text-gray-900 truncate inline-block">
                 {product_name}
-              </p>
-            </div>
-            <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
+              </span>
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               {product_cost}
-            </div>
-            <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               {product_sale}
-            </div>
-            <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               {product_quantity}
-            </div>
-            <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               {product_detail}
-            </div>
-            <div className="flex-initial w-64 text-base font-semibold text-gray-900 ">
+            </td>
+            <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
               <button
-                className="flex-initial w-32 bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
+                className=" bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
                 onClick={handleAddToCart}
               >
                 เบิกสินค้า
               </button>
-            </div>
-          </div>
-        </li>
-      </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
