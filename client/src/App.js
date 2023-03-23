@@ -93,10 +93,6 @@ function App() {
 
           <Route path="/checkout" element={<CheckOut />} />
 
-         
-
-
-
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/requisition" element={<Requisition />} />
 

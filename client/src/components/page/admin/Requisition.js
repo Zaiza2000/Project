@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import AdminProductCard from "../../card/AdminProductCard";
 //function
 import { listProduct } from "../../functions/product";
-//Page
+//layout
 import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 export default function Requisition() {

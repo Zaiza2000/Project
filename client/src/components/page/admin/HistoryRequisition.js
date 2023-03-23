@@ -9,6 +9,9 @@ import {
   listRequisitionByRID,
 } from "../../functions/requisition.js";
 
+//layout
+import MenubarAdmin from "../../layouts/MenubarAdmin";
+
 //page -> PDF
 import RequisitionPDF from "./RequisitionPDF.js";
 
@@ -114,6 +117,7 @@ export default function HistoryRequisition() {
   return (
     <div>
       <h1>HistoryRequisition</h1>
+      <MenubarAdmin />
      
       
       {requisition.map((item, index) => (

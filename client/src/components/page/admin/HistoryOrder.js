@@ -5,6 +5,8 @@ import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
 //function
 import { listOrderDetail, listOrderDetailByOID,getOrderDetail } from "../../functions/order_detail.js";
 
+//layout
+import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 //page -> PDF
 
@@ -77,6 +79,9 @@ export default function HistoryOrder() {
                   OID
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  รหัสลูกค้า
+                </th>
+                <th scope="col" class="px-6 py-3">
                   สินค้า
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -86,10 +91,15 @@ export default function HistoryOrder() {
                   ราคา
                 </th>
             
+                <th scope="col" class="px-6 py-3">
+                  ราคาต้นทุน
+                </th>
+                
               </tr>
             </thead>
   )
 
+  
   const tableData = (item) => {
     return JSON.parse(localStorage.getItem(item.OID)).map( (inner_item) => (
     <tbody>
@@ -100,17 +110,21 @@ export default function HistoryOrder() {
         >
           {inner_item.OID}
         </th>
+        <td class="px-6 py-4">{inner_item.id}</td>
         <td class="px-6 py-4">{inner_item.product_name}</td>
         <td class="px-6 py-4">{inner_item.quantity}</td>
         <td class="px-6 py-4">{inner_item.price}</td>
-        
+        <td class="px-6 py-4">{inner_item.cost}</td>
+
       </tr>
     </tbody>
    ))}
 
+  
   return (
     <div>
       <h1>History Order</h1>
+      <MenubarAdmin />
      
       
       {orderDetail.map((item, index) => (
@@ -121,6 +135,7 @@ export default function HistoryOrder() {
           </table>
           <br></br>
         <div>
+          
           
             {/* <PDFDownloadLink 
             document={
