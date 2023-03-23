@@ -33,6 +33,9 @@ const Order_Detail = db.define(
     product_name: {
       type: DataTypes.STRING,
     },
+    product_detail: {
+      type: DataTypes.STRING,
+    },
     cost: {
       type: DataTypes.INTEGER,
     },

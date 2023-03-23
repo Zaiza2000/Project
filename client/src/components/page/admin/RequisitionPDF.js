@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     }, 
 
     tableCol: { 
-      width: "25%", 
+      width: "18%", 
       borderStyle: "solid", 
       borderWidth: 0.5, 
      
@@ -70,7 +70,13 @@ export default function RequisitionPDF({requisition_pdf, localStorage_items}){
     return localStorage_items.map( (inner_item) => (
       <View style={styles.tableRow}> 
         <View style={styles.tableCol}> 
+          <Text style={styles.tableCell}>{inner_item.product_id}</Text> 
+        </View> 
+        <View style={styles.tableCol}> 
           <Text style={styles.tableCell}>{inner_item.product_name}</Text> 
+        </View> 
+        <View style={styles.tableCol}> 
+          <Text style={styles.tableCell}>{inner_item.product_detail}</Text> 
         </View> 
         <View style={styles.tableCol}> 
           <Text style={styles.tableCell}>{inner_item.price}</Text> 
@@ -95,7 +101,13 @@ export default function RequisitionPDF({requisition_pdf, localStorage_items}){
                 <View style={styles.table}> 
                     <View style={styles.tableRow}> 
                       <View style={styles.tableCol}> 
+                          <Text style={styles.tableCell}>รหัสสินค้า</Text> 
+                      </View> 
+                      <View style={styles.tableCol}> 
                           <Text style={styles.tableCell}>สินค้า</Text> 
+                      </View> 
+                      <View style={styles.tableCol}> 
+                          <Text style={styles.tableCell}>รายละเอียด</Text> 
                       </View> 
                       <View style={styles.tableCol}> 
                           <Text style={styles.tableCell}>ราคาต้นทุน</Text> 

@@ -83,7 +83,13 @@ export default function HistoryRequisition() {
                   RID
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  รหัสสินค้า
+                </th>
+                <th scope="col" class="px-6 py-3">
                   สินค้า
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  รายละเอียด
                 </th>
                 <th scope="col" class="px-6 py-3">
                   จำนวน
@@ -106,7 +112,9 @@ export default function HistoryRequisition() {
         >
           {inner_item.RID}
         </th>
+        <td class="px-6 py-4">{inner_item.product_id}</td>
         <td class="px-6 py-4">{inner_item.product_name}</td>
+        <td class="px-6 py-4">{inner_item.product_detail}</td>
         <td class="px-6 py-4">{inner_item.quantity}</td>
         <td class="px-6 py-4">{inner_item.price}</td>
         

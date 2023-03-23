@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
+// import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
 
 //function
 import { listOrderDetail, listOrderDetailByOID,getOrderDetail } from "../../functions/order_detail.js";
@@ -8,7 +8,6 @@ import { listOrderDetail, listOrderDetailByOID,getOrderDetail } from "../../func
 //layout
 import MenubarAdmin from "../../layouts/MenubarAdmin";
 
-//page -> PDF
 
 
 
@@ -85,10 +84,13 @@ export default function HistoryOrder() {
                   สินค้า
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  รายละเอียด
+                </th>
+                <th scope="col" class="px-6 py-3">
                   จำนวน
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  ราคา
+                  ราคาขาย
                 </th>
             
                 <th scope="col" class="px-6 py-3">
@@ -112,6 +114,7 @@ export default function HistoryOrder() {
         </th>
         <td class="px-6 py-4">{inner_item.id}</td>
         <td class="px-6 py-4">{inner_item.product_name}</td>
+        <td class="px-6 py-4">{inner_item.product_detail}</td>
         <td class="px-6 py-4">{inner_item.quantity}</td>
         <td class="px-6 py-4">{inner_item.price}</td>
         <td class="px-6 py-4">{inner_item.cost}</td>

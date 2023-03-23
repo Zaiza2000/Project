@@ -18,13 +18,14 @@ exports.listRequisitionByRID = async (req, res) => {
         "RID",
         "product_id",
         "product_name",
+        "product_detail",
         "price",
         "quantity",
         [Sequelize.fn("count", Sequelize.col("RID")), "count"],
       ],
       raw: true,
       group: ["requisition_detail.RID"],
-      order: ["RID", "product_id", "product_name", "price", "quantity"],
+      order: ["RID", "product_id", "product_name", "price", "quantity","product_detail"],
     });
     res.send(requisition);
   } catch (err) {

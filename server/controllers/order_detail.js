@@ -19,6 +19,7 @@ exports.listOrderDetail = async (req, res) => {
           "OID",
           "product_id",
           "product_name",
+          "product_detail",
           "price",
           "quantity",
           "cost",
@@ -26,7 +27,7 @@ exports.listOrderDetail = async (req, res) => {
         ],
         raw: true,
         group: ["order_detail.OID"],
-        order: ["OID", "product_id", "product_name", "price", "quantity", "cost"],
+        order: ["OID", "product_id", "product_name", "price", "quantity", "cost","product_detail",],
       });
       res.send(orderDetail);
     } catch (err) {
