@@ -25,10 +25,12 @@ exports.listRequisitionByRID = async (req, res) => {
       ],
       raw: true,
       group: ["requisition_detail.RID"],
-      order: ["RID", "product_id", "product_name", "price", "quantity","product_detail"],
+      order: ["RID", "product_id", "product_name", "price", "quantity", "product_detail"],
     });
+    // res.send({ "status": "Done" })
     res.send(requisition);
   } catch (err) {
+    console.log("\n\n\n Server: ")
     console.log(err);
     res.status(500).send("==Server Error (listRequisitionByRID) ==");
   }

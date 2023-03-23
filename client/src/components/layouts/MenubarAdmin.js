@@ -7,7 +7,7 @@ import '../../App.css';
 export default function MenubarAdmin() {
 
   return (
-    <aside className=" top-auto left-0 w-12 md:w-96 h-full" aria-label="Sidebar">
+    <aside className=" top-auto left-0 w-12 w-96 h-full" aria-label="Sidebar">
       <div className="overflow-y-auto overflow-x-hidden flex  justify-between flex-grow">
         <div className=" py-4 px-5 rounded bg-gray-200 group-hover:selection:bg-gray-600">
           <ul className="space-y-2">
