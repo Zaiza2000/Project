@@ -132,7 +132,7 @@ export default function HistoryRequisition() {
 
         {requisition.map((item, index) => (
           <div className="">
-            <table className="w-full text-sm text-left text-black ">
+            <table className="w-full text-sm text-left text-black bg-blue-400  ">
               {tableHead}
               {tableData(item)}
             </table>
