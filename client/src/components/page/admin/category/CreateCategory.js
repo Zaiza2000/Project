@@ -73,7 +73,7 @@ export default function CreateCategory() {
       <MenubarAdmin />
       <div className="">
        
-        <div className="pt-6">
+        <div className="p-6">
           <h3 className="text-4xl font-bold text-purple-600">
             เพิ่มประเภทของสินค้า
           </h3>

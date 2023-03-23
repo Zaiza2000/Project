@@ -61,7 +61,7 @@ export default function UpdateProduct() {
     <div className="flex flex-row">
       {/* <NavbarLogin /> */}
       <MenubarAdmin />
-      <div className="pt-6">
+      <div className="p-6">
         <h3 className="text-4xl font-bold text-purple-600">แก้ไขสินค้า</h3>
         <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
           <div className="md:flex md:items-center mb-6 ">

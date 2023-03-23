@@ -32,11 +32,19 @@ export default function Requisition() {
       });
   };
 
+  const tableData = () => (
+    product.map((item, index) => (
+      // <div key={index} className="">
+      <AdminProductCard product={item} />
+      // </div>
+    ))
+  )
+
   return (
     <div className="flex flex-row">
       <MenubarAdmin />
 
-      <div className="pt-6">
+      <div className="pr-16">
         {loading ? (
           <h1 className="text-4xl font-bold text-purple-600 ">Loading.....</h1>
         ) : (
@@ -54,11 +62,11 @@ export default function Requisition() {
         </div> */}
 
         {/* Data Product */}
-        <div>
+        <div className="">
           <h3 className="text-4xl font-bold text-purple-600">เบิกสินค้า</h3>
           {product.length < 1 && <p>No Product </p>}
 
-          <table className="mt-10 w-full text-l text-left text-gray-900 ">
+          <table className="mt-10 pr-15 w-full text-l text-left text-gray-900 ">
             <thead className="text-l text-gray-700 uppercase bg-blue-200  ">
               <tr>
                 <th scope="col" className="px-6 py-3 ">
@@ -96,16 +104,13 @@ export default function Requisition() {
 
               ))}
             </tbody> */}
+            {tableData()}
           </table>
         </div>
-        <div className="block md:table-row-group"> 
-           {product.map((item, index) => (
-          <div key={index} className="bg-white border-b  hover:bg-gray-50">
-            <AdminProductCard product={item} className="p-2 md:border md:border-grey-500 text-left block md:table-cell"/>
-          </div>
-        ))}
+        <div>
+
         </div>
-       
+
       </div>
     </div>
   );

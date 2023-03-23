@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //Card
-import Search from "../../.././card/Search";
 
 //page
 import MenubarAdmin from "../../../layouts/MenubarAdmin";
-import NavbarLogin from "../../../layouts/NavbarLogin";
+
 //function
 import {
   createProduct,
@@ -78,7 +77,7 @@ export default function CreateProduct() {
       {/* <NavbarLogin /> */}
       <MenubarAdmin />
       <div className="">
-        <div className=" pt-6 ">
+        <div className=" p-6 ">
           <h3 className="text-4xl font-bold text-purple-600">เพิ่มสินค้า</h3>
           <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
             <div className="md:flex md:items-center mb-6 ">

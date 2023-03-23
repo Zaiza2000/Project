@@ -8,7 +8,7 @@ export default function MenubarAdmin() {
 
   return (
     <aside className=" top-auto left-0 w-96 h-full" aria-label="Sidebar">
-      <div className="overflow-y-auto overflow-x-hidden flex  flex-grow">
+      <div className=" flex  justify-between flex-grow">
         <div className=" py-4 px-5 rounded bg-gray-200 group-hover:selection:bg-gray-600">
           <ul className="space-y-2">
             <li className="flex flex-row">
@@ -29,7 +29,7 @@ export default function MenubarAdmin() {
             </li>
             <li className="flex flex-row">
               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
-              <Link to="/admin/requisition" className="ml-3"> เบิกสินค้า</Link>
+              <Link to="/admin/requisition" className="ml-3"> ใบเบิกสินค้า</Link>
             </li>
             <li className="flex flex-row">
               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
