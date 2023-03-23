@@ -207,7 +207,7 @@ export default function CheckOut() {
       userCart(authtoken, cart_with_orderID)
         .then((res) => {
           console.log(res);
-          alert("CreateOrder Successful");
+          alert("Successfully")
         })
 
         .catch((error) => {

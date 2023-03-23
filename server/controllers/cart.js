@@ -23,7 +23,9 @@ exports.userCart = async (req, res) => {
       var newCart = await new Order_Detail({
         OID: new_order_id,
         product_id: cart[i].product_id,
+        product_name: cart[i].product_name,
         quantity: cart[i].count,
+        cost: cart[i].product_cost,
         price: cart[i].product_sale,
         id: req.user.id,
         order_id: cart.order_id,

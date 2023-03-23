@@ -3,18 +3,15 @@ import React, { useEffect, useState } from "react";
 import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
 
 //function
-import {
-  getRequisition,
-  listRequisition,
-  listRequisitionByRID,
-} from "../../functions/requisition.js";
+import { listOrderDetail, listOrderDetailByOID,getOrderDetail } from "../../functions/order_detail.js";
+
 
 //page -> PDF
-import RequisitionPDF from "./RequisitionPDF.js";
 
 
-export default function HistoryRequisition() {
-  const [requisition, setRequisition] = useState([]);
+
+export default function HistoryOrder() {
+  const [orderDetail, setOrderDetail] = useState([]);
 
   useEffect(() => {
 
@@ -23,21 +20,21 @@ export default function HistoryRequisition() {
     }
     
     const loadData = async() => {
-      await listRequisitionByRID().then((res) => {
-        setRequisition(res.data);
+      await listOrderDetailByOID().then((res) => {
+        setOrderDetail(res.data);
         console.log("res.data => ", res.data);
-        console.log("requisition inner => ", requisition);
+        console.log("orderDetail inner => ", orderDetail);
         res.data.map((item, index) => {
-          loadListRIDData(item);
+          loadListOIDData(item);
         });
       });
     };
 
-    const loadListRIDData = async(item) => {
+    const loadListOIDData = async(item) => {
      
-      await getRequisition(item.RID).then((res) => {
-        item.listOfRID = res.data;
-        localStorage.setItem(item.RID, JSON.stringify(item.listOfRID))
+      await getOrderDetail(item.OID).then((res) => {
+        item.listOfOID = res.data;
+        localStorage.setItem(item.OID, JSON.stringify(item.listOfOID))
         
       });
     }
@@ -77,7 +74,7 @@ export default function HistoryRequisition() {
     <thead class="text-xs text-black uppercase bg-gray-50 dark:bg-red-700 dark:text-white">
               <tr>
                 <th scope="col" class="px-6 py-3">
-                  RID
+                  OID
                 </th>
                 <th scope="col" class="px-6 py-3">
                   สินค้า
@@ -86,7 +83,7 @@ export default function HistoryRequisition() {
                   จำนวน
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  ราคาต้นทุน
+                  ราคา
                 </th>
             
               </tr>
@@ -94,14 +91,14 @@ export default function HistoryRequisition() {
   )
 
   const tableData = (item) => {
-    return JSON.parse(localStorage.getItem(item.RID)).map( (inner_item) => (
+    return JSON.parse(localStorage.getItem(item.OID)).map( (inner_item) => (
     <tbody>
       <tr class="bg-gray-200 border-b dark:bg-g00 dark:border-gray-700">
         <th
           scope="row"
           class="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black"
         >
-          {inner_item.RID}
+          {inner_item.OID}
         </th>
         <td class="px-6 py-4">{inner_item.product_name}</td>
         <td class="px-6 py-4">{inner_item.quantity}</td>
@@ -109,14 +106,14 @@ export default function HistoryRequisition() {
         
       </tr>
     </tbody>
-  ))}
+   ))}
 
   return (
     <div>
-      <h1>HistoryRequisition</h1>
+      <h1>History Order</h1>
      
       
-      {requisition.map((item, index) => (
+      {orderDetail.map((item, index) => (
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-black dark:text-black">
             {tableHead}
@@ -125,13 +122,13 @@ export default function HistoryRequisition() {
           <br></br>
         <div>
           
-            <PDFDownloadLink 
+            {/* <PDFDownloadLink 
             document={
               <RequisitionPDF requisition_pdf={item} localStorage_items={JSON.parse(localStorage.getItem(item.RID))}/>
             }
             fileName="RequisitionPDF.pdf">
               PDF Download
-            </PDFDownloadLink>
+            </PDFDownloadLink> */}
           </div>
           <br></br>
       

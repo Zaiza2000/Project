@@ -20,6 +20,7 @@ import ManageUser from "./components/page/admin/ManageUser";
 import Requisition from "./components/page/admin/Requisition";
 import RequisitionDetails from "./components/page/admin/RequisitionDetails";
 import HistoryRequisition from "./components/page/admin/HistoryRequisition";
+import HistoryOrder from "./components/page/admin/HistoryOrder";
 import RequisitionPDF from "./components/page/admin/RequisitionPDF";
 
 
@@ -33,6 +34,7 @@ import UpdateProduct from "./components/page/admin/product/UpdateProduct";
 // Page Member
 import HomeMember from "./components/page/member/HomeMember";
 import Shop from "./components/page/member/Shop";
+
 
 //functions
 import { currentUser } from "./components/functions/auth";
@@ -91,6 +93,10 @@ function App() {
 
           <Route path="/checkout" element={<CheckOut />} />
 
+         
+
+
+
           <Route path="/admin/manage-user" element={<ManageUser />} />
           <Route path="/admin/requisition" element={<Requisition />} />
 
@@ -103,7 +109,9 @@ function App() {
           <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
           <Route path="/requisitionDetails" element={<RequisitionDetails />} />
           <Route path="/HistoryRequisition" element={<HistoryRequisition />} />
-          <Route path="/RequisitionPDF" element={<RequisitionPDF />} />
+          <Route path="/RequisitionPDF" element={<RequisitionPDF />} /> 
+          <Route path="/HistoryOrder" element={<HistoryOrder />} />
+          
           <Route
             path="/admin/index"
             element={

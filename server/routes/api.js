@@ -43,6 +43,7 @@ const {userCart,
   adminCart} = require("../controllers/cart.js");
 
 const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
+const { listOrderDetail,getOrderDetail,listOrderDetailByOID } = require("../controllers/order_detail");
 
 const express = require("express");
 const router = express.Router();
@@ -107,5 +108,10 @@ router.get("/listOrder", listOrder);
 router.get("/listRequisition", listRequisition);
 router.get("/listRequisitionByRID", listRequisitionByRID);
 router.get("/getRequisition/:id", getRequisition);
+
+//API order_detail => order_detail.js//
+router.get("/listOrderDetail", listOrderDetail);
+router.get("/listOrderDetailByOID", listOrderDetailByOID);
+router.get("/getOrderDetail/:id", getOrderDetail);
 
 module.exports = router;

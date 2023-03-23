@@ -33,17 +33,7 @@ exports.listRequisitionByRID = async (req, res) => {
   }
 };
 
-// exports.listRequisitionByRID = async (req, res) => {
-//   try {
-//     const requisition = await Requisition_Detail.findAndCountAll({
-//       where: { RID: { [Op.like]: "RID000001" } },
-//     });
-//     res.send(requisition);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).send("==Server Error (listRequisitionByRID) ==");
-//   }
-// };
+
 
 exports.getRequisition = async (req, res) => {
   try {
