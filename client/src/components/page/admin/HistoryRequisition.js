@@ -140,7 +140,7 @@ export default function HistoryRequisition() {
             <div >
               <PDFDownloadLink
 
-                className="bg-gray-200 hover:bg-blue-300 py-3 px-2"
+                className="bg-blue-200 hover:bg-gray-300 py-3 px-2"
                 document={
                   <RequisitionPDF requisition_pdf={item} localStorage_items={JSON.parse(localStorage.getItem(item.RID))}
                   />
@@ -148,7 +148,7 @@ export default function HistoryRequisition() {
                 }
                 fileName="RequisitionPDF.pdf">
                 <button >
-                  PDF Download
+                  ดาวน์โหลดข้อมูลเป็น PDF
                 </button>
 
               </PDFDownloadLink>
