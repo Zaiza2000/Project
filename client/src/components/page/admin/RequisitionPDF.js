@@ -8,7 +8,7 @@ Font.register({ family: 'THSarabun', src: fontDev });
 
 const styles = StyleSheet.create({
     page: {
-      backgroundColor: '#E4E4E4'
+      backgroundColor: 'white'
     },
     section: {
       margin: 10,
