@@ -8,6 +8,7 @@ export const listOrder = async (authtoken) => {
   });
 };
 export const CreateOrder = async (authtoken, values) => {
+  console.log("CreateOrder - order.js: ", values);
   const file = document.querySelector("#photo").files[0];
   const formData = new FormData();
   formData.append("file", file);

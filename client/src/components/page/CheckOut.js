@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 // import img2 from "../../uploads/file-1678978441539.jpg";
 
 //function
-import { userCart ,CartUpdateToProduct } from "../functions/user";
+import { userCart, CartUpdateToProduct } from "../functions/user";
 import { CreateOrder } from "../functions/order";
 import {
   listProvince,
   listDistrict,
   listSubDistrict,
 } from "../functions/location";
+import { Col } from "antd";
 
 export default function CheckOut() {
   const { cart, user } = useSelector((state) => ({ ...state }));
@@ -235,12 +236,94 @@ export default function CheckOut() {
     }, 0);
   };
 
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Update Address Infomation
+  // TODO: Now
+  const update_address = () => {
+
+    console.log("Use same address !");
+    console.log(user);
+    console.log(value);
+
+    value["shipping_firstname"] = user.firstname;
+    value["shipping_lastname"] = user.lastname;
+    value["shipping_address"] = user.address;
+    value["shipping_sub_district"] = user.sub_district;
+    value["shipping_district"] = user.district;
+    value["shipping_province"] = user.province;
+    value["shipping_zipcode"] = user.zipcode;
+    setValue({ ...value, shipping_tel: user.tel })
+
+    console.log("After upadte address !");
+    console.log(value);
+  }
+
+  const reset_address = () => {
+    setValue({
+      shipping_firstname: "",
+      shipping_lastname: "",
+      shipping_tel: "",
+      shipping_address: "",
+      shipping_sub_district: "",
+      shipping_district: "",
+      shipping_province: "",
+      shipping_zipcode: "",
+      billing_firstname: "",
+      billing_lastname: "",
+      billing_tel: "",
+      billing_address: "",
+      billing_sub_district: "",
+      billing_district: "",
+      billing_province: "",
+      billing_zipcode: "",
+      tax_id: "",
+      payment_photo: "",
+      id: null,
+    })
+  }
+
+  const selected_option = (item, index, option) => {
+    if (item.name_th === option["saved_data"]) {
+      if (option["function"]) { option["function"](item.id) }
+      return (
+        <option key={index} value={item.id} selected>
+          {item.name_th}
+        </option>
+      )
+    } else {
+      return (
+        <option key={index} value={item.id}>
+          {item.name_th}
+        </option>
+      )
+    }
+  }
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Update List Options
+  const onChangeProvince_shipping_selected = (province_id) => {
+    // console.log("onChangeProvince_shipping_selected: Done");
+    listDistrict(province_id)
+      .then((res) => {
+        setDistrict_shipping(res.data);
+      })
+  };
+
+
+  const onChangeDistrict_shipping_selected = (district_id) => {
+    // console.log("onChangeDistrict_shipping_selected: Done");
+    listSubDistrict(district_id)
+      .then((res) => {
+        setSubDistrict_shipping(res.data);
+      })
+  };
+
+
   return (
     <form onSubmit={handleSubmit}>
       <h1 className="text-4xl font-extrabold sm:text-4xl m-20 ">
         สั่งซื้อสินค้า
       </h1>
-      
+
       <div className="flex space-x-10 m-20">
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Shipping   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/}
 
@@ -249,7 +332,9 @@ export default function CheckOut() {
           <div className="form-check">
             <label className="form-check text-gray-800" for="flexRadioDefault2">
               <div>
-                <input type="radio" value="address_old" name="address" checked/>
+                <input type="radio" value="address_old" name="address"
+                  onClick={() => { update_address() }}
+                />
                 ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
                 <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
 
@@ -257,7 +342,7 @@ export default function CheckOut() {
 
                 <h3>เบอร์โทร {user.tel}</h3>
               </div>
-              <input type="radio" value="address_new" name="address" checked/>
+              <input type="radio" value="address_new" name="address" onClick={reset_address} />
               ใช้ที่อยู่ใหม่
               <div className="mt-6" >
                 <div className="mb-2">
@@ -272,6 +357,7 @@ export default function CheckOut() {
                     name="shipping_firstname"
                     placeholder="ชื่อ"
                     onChange={(e) => handleChange(e)}
+                    value={value.shipping_firstname} // TODO: Copy This Code to another
                     className="block  w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                   <input
@@ -279,6 +365,7 @@ export default function CheckOut() {
                     name="shipping_lastname"
                     placeholder="นามสกุล"
                     onChange={(e) => handleChange(e)}
+                    value={value.shipping_lastname}
                     className="block  w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -291,6 +378,7 @@ export default function CheckOut() {
                     name="shipping_address"
                     placeholder="เลขที่ 85/8 หมู่ 13 "
                     onChange={(e) => handleChange(e)}
+                    value={value.shipping_address}
                     className="block  w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -304,11 +392,7 @@ export default function CheckOut() {
                       name="shipping_province"
                       onChange={(e) => onChangeProvince_shipping(e)}
                     >
-                      {province_shipping.map((item, index) => (
-                        <option key={index} value={item.id}>
-                          {item.name_th}
-                        </option>
-                      ))}
+                      {province_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_province, "function": onChangeProvince_shipping_selected }))}
                     </select>
                   </div>
                 </div>
@@ -325,11 +409,7 @@ export default function CheckOut() {
                       name="shipping_district"
                       onChange={(e) => onChangeDistrict_shipping(e)}
                     >
-                      {district_shipping.map((item, index) => (
-                        <option key={index} value={item.id}>
-                          {item.name_th}
-                        </option>
-                      ))}
+                      {district_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_district, "function": onChangeDistrict_shipping_selected }))}
                     </select>
                   </div>
                 </div>
@@ -347,11 +427,7 @@ export default function CheckOut() {
                       name="shipping_sub_district"
                       onChange={(e) => onChangeSubDistrict_shipping(e)}
                     >
-                      {sub_district_shipping.map((item, index) => (
-                        <option key={index} value={item.id}>
-                          {item.name_th}
-                        </option>
-                      ))}
+                      {sub_district_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_sub_district }))}
                     </select>
                   </div>
                 </div>
@@ -385,6 +461,7 @@ export default function CheckOut() {
                     name="shipping_tel"
                     placeholder="098-888-8888"
                     onChange={(e) => handleChange(e)}
+                    value={value.shipping_tel}
                     className="block  w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -652,7 +729,7 @@ export default function CheckOut() {
           </div>
         </div>
 
-      </div>
-    </form>
+      </div >
+    </form >
   );
 }
