@@ -15,12 +15,12 @@ exports.CartUpdateToProduct = async (req,res) =>{
     console.log("\n\n>>> CartUpdateToProduct: ", carts, "\n\n");
 
     carts.map((item )=>{
-      console.log("====>>>>> product id" , item.product_id);
+      // console.log("====>>>>> product id" , item.product_id);
       const product =  Product.findByPk(item.product_id)
       product.then((productItem) => {
         productItem.update({"product_quantity" : productItem.product_quantity - item.count})
       })
-      console.log("====>>>>> product After") 
+      // console.log("====>>>>> product After") 
       product.then((res) => {
         console.log("Previous: ", res._previousDataValues);
         console.log("Current: ", res.dataValues);
@@ -41,25 +41,25 @@ exports.CartUpdateToProduct = async (req,res) =>{
 
 exports.userCart = async (req, res) => {
   try {
-    console.log("----------------", req.body);
+    // console.log("----------------\n", req.body);
     const { cart } = req.body;
     console.log("\n\n>>> Cart: ", cart, "\n\n");
 
     const new_order_id = get_latest_order_id();
 
-
+    console.log("Before cart[i] Object: ", cart);
     for (let i = 0; i < cart.length; i++) {
       console.log("Cart[", i, "] = ", cart[i]);
       var newCart = await new Order_Detail({
         OID: new_order_id,
-        product_id: cart[i].product_id,
-        product_name: cart[i].product_name,
-        product_detail: cart[i].product_detail,
-        quantity: cart[i].count,
-        cost: cart[i].product_cost,
-        price: cart[i].product_sale,
+        product_id: cart[String(i)].product_id,
+        product_name: cart[String(i)].product_name,
+        product_detail: cart[String(i)].product_detail,
+        quantity: cart[String(i)].count,
+        cost: cart[String(i)].product_cost,
+        price: cart[String(i)].product_sale,
         id: req.user.id,
-        order_id: cart.order_id,
+        order_id: cart[String(i)].order_id,
       }).save();
       console.log("newCart", newCart);
     }

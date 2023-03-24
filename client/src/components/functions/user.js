@@ -30,7 +30,7 @@ export const userCart = async (authtoken, cart) => {
 };
 export const CartUpdateToProduct = async (authtoken, cart) => {
   // TODO: FIXME
-  console.log("userCart - user.js:", cart);
+  console.log("CartUpdateToProduct - user.js:", cart);
   return await axios.put(
     process.env.REACT_APP_API + "/user/CartUpdateToProduct",
     { cart: cart },

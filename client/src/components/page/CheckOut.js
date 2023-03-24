@@ -195,21 +195,30 @@ export default function CheckOut() {
       //   return orderDict;
       // });
 
-      // const cart_with_orderID = {
-      //   ...cart,
-      //   orderDict: orderResponse,
-      //   order_id: orderResponse.then((response) => response.order_id),
-      // };
+      const cart_with_orderID = (item) => {
+        console.log("cart - Checkout.js:", item)
+        console.log("cart_with_orderID - Checkout.js: ", Object.keys(item))
+        Object.keys(item).forEach((key) => {
+          console.log("Check LocalStorage", parseInt(localStorage.getItem("order_id")));
+          item[key].order_id = parseInt(localStorage.getItem("order_id"))
+        });
+        return item;
+      }
 
       // TODO: DELETE
-      // console.log("orderResponse: ", cart_with_orderID);
+      console.log("\n\n\norderResponse: ");
+      console.log(cart);
 
-      CreateOrder(authtoken, value)
-      userCart(authtoken, cart)
-      CartUpdateToProduct(authtoken, cart)
+      CreateOrder(authtoken, value).then((response) => {
+        console.log("CreateOrder - Checkout.js: ");
+        console.log(response.data.order_id);
+        localStorage.setItem("order_id", response.data.order_id)
+      })
+      const new_cart = cart_with_orderID(cart);
+      userCart(authtoken, new_cart)
+      CartUpdateToProduct(authtoken, new_cart)
         .then((res) => {
-          console.log(res);
-          alert("Successfully")
+          console.log("Successfully: ", res);
         })
 
         .catch((error) => {
