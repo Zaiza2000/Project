@@ -8,6 +8,7 @@ const { get_latest_order_id } = require("../utils/order_utiils");
 const { get_latest_requisition_id } = require("../utils/requisition_utiils");
 
 
+//ตัดสต๊อกสินค้า
 exports.CartUpdateToProduct = async (req,res) =>{
   try {
     const carts = req.body.cart;
@@ -27,7 +28,6 @@ exports.CartUpdateToProduct = async (req,res) =>{
 
     })
     
-
     res.json({ 
       message: "CartUpdateToProduct",
     });
@@ -38,15 +38,12 @@ exports.CartUpdateToProduct = async (req,res) =>{
 };
 
 
+
 exports.userCart = async (req, res) => {
   try {
     console.log("----------------", req.body);
     const { cart } = req.body;
     console.log("\n\n>>> Cart: ", cart, "\n\n");
-
-    // let users = await User.findOne(req.body, {
-    //   where: { id: req.params.id },
-    // });
 
     const new_order_id = get_latest_order_id();
 
@@ -67,25 +64,6 @@ exports.userCart = async (req, res) => {
       console.log("newCart", newCart);
     }
 
-    //รวมราคา
-    // let cartTotal = 0;
-    // for (let i = 0; i < cart.length; i++) {
-    //   cartTotal = cartTotal + cart[i].product_sale * cart[i].count;
-    // }
-
-    //ตัดสต๊อกสินค้า
-    // let bulkOption = newCart.map((item) => {
-    // return {
-    //   updateOne :{
-    //     filter : {product_id : item.product_id},
-    //     update : { product_quantity : -item.count }
-    //   }
-    // }
-    // })
-
-    // let product = await Product.bulkWrite(bulkOption, {})
-
-
     res.json({
      
       api_values: newCart,
@@ -97,14 +75,13 @@ exports.userCart = async (req, res) => {
   }
 };
 
+
+
 exports.adminCart = async (req, res) => {
   try {
     const { cartAdmin } = req.body;
-    console.log("================cartAdmin==========",cartAdmin);
-
-    let users = await User.findOne(req.body, {
-      where: { id: req.params.id },
-    });
+    
+    //console.log("================cartAdmin==========",cartAdmin);
 
     const new_requisition_id = get_latest_requisition_id();
 
@@ -120,7 +97,6 @@ exports.adminCart = async (req, res) => {
       }).save();
       console.log("newAdminCart", newAdminCart);
     }
-
     res.json("AdminCart cart OKEY.");
   } catch (error) {
     console.log(error);

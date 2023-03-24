@@ -153,7 +153,7 @@ export default function CheckOut() {
     setValue({
       ...value,
       [e.target.name]: filterDistrict[0].name_th,
-      zipcode_shipping: filterDistrict[0].zip_code,
+      shipping_zipcode: filterDistrict[0].zip_code,
     });
   };
   const onChangeSubDistrict_billing = (e) => {
@@ -163,7 +163,7 @@ export default function CheckOut() {
     setValue({
       ...value,
       [e.target.name]: filterDistrict[0].name_th,
-      zipcode_billing: filterDistrict[0].zip_code,
+      billing_zipcode: filterDistrict[0].zip_code,
     });
   };
 
@@ -231,14 +231,7 @@ export default function CheckOut() {
       <h1 className="text-4xl font-extrabold sm:text-4xl m-20 ">
         สั่งซื้อสินค้า
       </h1>
-      {/* <h2>{user.firstname}</h2>
-      <h2>{user.lastname}</h2>
-      <h2>{user.address}</h2>
-      <h2>{user.sub_district}</h2>
-      <h2>{user.district}</h2>
-      <h2>{user.province}</h2>
-      <h2>{user.zipcode}</h2>
-      <h2>{user.tel}</h2> */}
+      
       <div className="flex space-x-10 m-20">
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Shipping   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/}
 
@@ -366,7 +359,7 @@ export default function CheckOut() {
                       id="grid-zip"
                       type="text"
                       name="shipping_zipcode"
-                      value={value.zipcode_shipping}
+                      value={value.shipping_zipcode}
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
@@ -530,10 +523,10 @@ export default function CheckOut() {
                     </label>
                     <input
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                      id="grid-zip"
+
                       type="text"
                       name="billing_zipcode"
-                      value={value.zipcode_billing}
+                      value={value.billing_zipcode}
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
