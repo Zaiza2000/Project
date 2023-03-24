@@ -249,7 +249,7 @@ export default function CheckOut() {
           <div className="form-check">
             <label className="form-check text-gray-800" for="flexRadioDefault2">
               <div>
-                <input type="radio"></input>
+                <input type="radio" value="address_old" name="address" checked/>
                 ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
                 <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
 
@@ -257,7 +257,7 @@ export default function CheckOut() {
 
                 <h3>เบอร์โทร {user.tel}</h3>
               </div>
-
+              <input type="radio" value="address_new" name="address" checked/>
               ใช้ที่อยู่ใหม่
               <div className="mt-6" >
                 <div className="mb-2">
