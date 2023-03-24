@@ -140,7 +140,7 @@ export default function HistoryRequisition() {
             <div >
               <PDFDownloadLink
 
-                className="bg-blue-200 hover:bg-gray-300 py-3 px-2"
+                className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
                   <RequisitionPDF requisition_pdf={item} localStorage_items={JSON.parse(localStorage.getItem(item.RID))}
                   />
