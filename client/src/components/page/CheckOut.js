@@ -227,7 +227,7 @@ export default function CheckOut() {
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h1 className="text-4xl font-extrabold sm:text-4xl m-20 ">
         สั่งซื้อสินค้า
       </h1>
@@ -250,7 +250,7 @@ export default function CheckOut() {
               </div>
 
               ใช้ที่อยู่ใหม่
-              <form className="mt-6" onSubmit={handleSubmit}>
+              <div className="mt-6" >
                 <div className="mb-2">
                   <label
                     for="text"
@@ -379,12 +379,12 @@ export default function CheckOut() {
                     className="block  w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div className="mt-6">
+                {/* <div className="mt-6">
                   <button className="w-full px-4 py-2 mt-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
                     ยืนยันข้อมูล
                   </button>
-                </div>
-              </form>
+                </div> */}
+              </div>
             </label>
           </div>
         </div>
@@ -411,7 +411,7 @@ export default function CheckOut() {
               for="flexRadioDefault2"
             >
               {/* ใช้ที่อยู่ใหม่ */}
-              <form className="mt-6">
+              <div className="mt-6">
                 <div className="mb-2">
                   <label
                     for="text"
@@ -546,14 +546,14 @@ export default function CheckOut() {
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-              </form>
+              </div>
             </label>
           </div>
         </div>
 
         <div id="checkout" className="flex-1 w-64 ">
           การชำระเงิน
-          <form>
+          <div>
             <div className="form-check">
               <label
                 className="form-check-label inline-block font-semibold text-gray-700"
@@ -599,7 +599,7 @@ export default function CheckOut() {
                 />
               </div>
             </div>
-          </form>
+          </div>
         </div>
 
 
@@ -644,6 +644,6 @@ export default function CheckOut() {
         </div>
 
       </div>
-    </div>
+    </form>
   );
 }
