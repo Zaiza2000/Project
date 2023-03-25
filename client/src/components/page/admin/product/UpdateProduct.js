@@ -98,6 +98,7 @@ export default function UpdateProduct() {
                 className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_cost"
+                min="1"
                 value={values.product_cost}
                 onChange={handleChange}
                 disabled
@@ -118,6 +119,7 @@ export default function UpdateProduct() {
                 className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_sale"
+                min="1"
                 value={values.product_sale}
                 onChange={handleChange}
                 disabled
@@ -177,6 +179,7 @@ export default function UpdateProduct() {
               <input
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
+                min="1"
                 name="product_quantity"
                 value={values.product_quantity}
                 onChange={handleChange}
