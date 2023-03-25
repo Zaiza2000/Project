@@ -45,7 +45,6 @@ export default function LoginPage() {
     login(value)
       .then((res) => {
         //console.log("res.data=>", res.data.token);
-        alert("WELLCOME");
         dispatch({
           type: "LOGIN",
           payload: {

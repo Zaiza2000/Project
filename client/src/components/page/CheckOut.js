@@ -526,10 +526,8 @@ export default function CheckOut() {
           </div> */}
           <div className="form-check">
             <label
-              className="form-check-label text-gray-800"
-              for="flexRadioDefault2"
+              className="form-check-label  text-gray-800"
             >
-              {/* ใช้ที่อยู่ใหม่ */}
               <div className="mt-6">
                 <div className="mb-2">
                   <label

@@ -9,7 +9,7 @@ export default function ProductTableInCart({ item }) {
     const count = e.target.value < 1 ? 1 : e.target.value;
 
     if (count > item.product_quantity) {
-      alert('Max avialable Quantity: ' + item.product_quantity)
+      alert('จำนวนสินค้าไม่ถูกต้อง ' + item.product_quantity)
       return;
     }
 
