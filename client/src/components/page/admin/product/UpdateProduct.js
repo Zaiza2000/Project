@@ -75,7 +75,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 name="product_name"
                 value={values.product_name}
@@ -87,7 +87,7 @@ export default function UpdateProduct() {
           <div className="md:flex md:items-center mb-6 ">
             <div className="md:w-1/3">
               <label
-                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
+                className="block  text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
                 for="inline-full-name"
               >
                 ราคาทุน
@@ -95,7 +95,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_cost"
                 min="1"
@@ -116,7 +116,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="product_sale"
                 min="1"
@@ -137,7 +137,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-gray-200 appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 name="category_id"
                 value={values.category_id}
@@ -158,7 +158,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 name="product_detail"
                 value={values.product_detail}
@@ -177,7 +177,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="number"
                 min="1"
                 name="product_quantity"
@@ -198,7 +198,7 @@ export default function UpdateProduct() {
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type="text"
                 name="product_photo"
                 value={values.product_photo}
