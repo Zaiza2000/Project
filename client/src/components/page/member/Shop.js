@@ -15,7 +15,7 @@ import { listCategory } from "../../functions/category"
 export default function Shop() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
-  const [price, setPrice] = useState([0, 0]);
+  const [price, setPrice] = useState([0, 1200]);
   const [ok, setOk] = useState(false);
   // Category
   const [category, setCategory] = useState([]);
@@ -54,12 +54,12 @@ export default function Shop() {
     }, 300);
     return () => clearTimeout(delay);
   }, [text]);
-  
+
   // ########## load on Slider ##########
-  useEffect(()=>{
-    fetchDataFilter({price}) // [0,0]
-  },[ok]);
-  
+  useEffect(() => {
+    fetchDataFilter({ price }) // [0,0]
+  }, [ok]);
+
   //****Filter*****
   const fetchDataFilter = (arg) => {
     searchFilters(arg).then((res) => {
@@ -69,9 +69,9 @@ export default function Shop() {
   const handlePrice = (value) => {
     setPrice(value);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       setOk(!ok)
-    },300)
+    }, 300)
   };
   const handleCheck = (e) => {
     // ค่าปัจจุบันที่ Check 
@@ -112,14 +112,16 @@ export default function Shop() {
               range
               onChange={handlePrice}
               max={1200} />
+            <div className="flex justify-between text-2xl ">
+              <div>
+                {price[0]}
+              </div>
+              <div>
+                {price[1]}
+              </div>
+            </div>
             <hr />
-            {/* <MultiRangeSlider
-              className=" h-2 appearance-none cursor-pointer"
-              value={price}
-              min={0}
-              max={1000}
-              onChange={(e) => setPrice(e.target.value)}
-            /> */}
+
             <h4 className="text-2xl text-left pt-10 pb-5">ค้นหาตามหมวดหมู่สินค้า</h4>
 
             {category.map((item, index) =>
