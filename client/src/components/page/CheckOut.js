@@ -252,7 +252,8 @@ export default function CheckOut() {
     value["shipping_district"] = user.district;
     value["shipping_province"] = user.province;
     value["shipping_zipcode"] = user.zipcode;
-    setValue({ ...value, shipping_tel: user.tel })
+    value["shipping_tel"] = user.tel;
+    
 
     console.log("After upadte address !");
     console.log(value);
@@ -280,11 +281,14 @@ export default function CheckOut() {
       payment_photo: "",
       id: null,
     })
+
+    setDistrict_shipping([])
+    setSubDistrict_shipping([])
   }
 
   const selected_option = (item, index, option) => {
     if (item.name_th === option["saved_data"]) {
-      if (option["function"]) { option["function"](item.id) }
+      // if (option["function"]) { option["function"](item.id) }
       return (
         <option key={index} value={item.id} selected>
           {item.name_th}
@@ -333,7 +337,32 @@ export default function CheckOut() {
             <label className="form-check text-gray-800" for="flexRadioDefault2">
               <div>
                 <input type="radio" value="address_old" name="address"
-                  onClick={() => { update_address() }}
+                  onClick={() => { 
+                    // TODO: Edit Radio
+                    update_address()
+                    
+                    var temp_province_id;
+                    province_shipping.map((item) => { 
+                      if (item.name_th === value.shipping_province){
+                        temp_province_id = item.id
+                      }
+                    })
+                    onChangeProvince_shipping_selected(temp_province_id)
+                    // console.log("temp_province_id", temp_province_id)
+                    
+                    var temp_district_id;
+                    district_shipping.map((item) => { 
+                      if (item.name_th === value.shipping_district){
+                        temp_district_id = item.id
+                      }
+                    })
+                    onChangeDistrict_shipping_selected(temp_district_id)
+                    // console.log("temp_dictrict_id", temp_district_id)
+                    
+                    console.log("Provice state", province_shipping)
+                    console.log("District state", district_shipping)
+                    console.log("Subdistrict state", sub_district_shipping)
+                  }}
                 />
                 ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
                 <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
@@ -390,7 +419,11 @@ export default function CheckOut() {
                     <select
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       name="shipping_province"
-                      onChange={(e) => onChangeProvince_shipping(e)}
+                      onChange={(e) => {
+                        if (!value.shipping_province){
+                          onChangeProvince_shipping(e)
+                        }
+                      }}
                     >
                       {province_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_province, "function": onChangeProvince_shipping_selected }))}
                     </select>
