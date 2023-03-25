@@ -364,7 +364,7 @@ export default function CheckOut() {
                     console.log("Subdistrict state", sub_district_shipping)
                   }}
                 />
-                ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง
+                ใช้ที่อยู่ที่ลงทะเบียน
                 <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
 
                 <h3>ที่อยู่: {user.address} {user.sub_district} {user.district} {user.province} {user.zipcode}</h3>

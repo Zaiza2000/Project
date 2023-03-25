@@ -63,7 +63,7 @@ export default function CardProductMember({ product }) {
               className="bg-blue-700 hover:bg-blue-400 text-white font-bold py-1 px-2 border rounded"
               onClick={handleAddToCart}
             >
-              เพิ่มลงในรถเข็น
+              เพิ่มลงตะกร้า
             </button>
           </div>
         </div>

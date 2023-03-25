@@ -145,7 +145,7 @@ export default function Shop() {
             </h1>
           )}
 
-          {product.length < 1 && <p>No Product </p>}
+          {product.length < 1 && <p className="text-4xl font-bold text-purple-600">ขออภัย ไม่พบสินค้าสำหรับ "{ text }" </p>}
 
           <div className=" grid grid-cols-3 gap-4">
             {product.map((item, index) => (
