@@ -2,7 +2,7 @@ import "../../App.css";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //function
-import { sighUp } from "../functions/auth";
+import { signUp } from "../functions/auth";
 import {
   listProvince,
   listDistrict,
@@ -110,34 +110,52 @@ export default function SignUpPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log(value);
+    var alert_status;
     if (value.password !== value.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
-    } else if (!value.email) {
+      alert_status = true;
+    }  if (!value.email) {
       alert("กรุณากรอกข้อมูลอีเมล");
-    } else if (!value.firstname) {
+      alert_status = true;
+    }  if (!value.firstname) {
       alert("กรุณากรอกข้อมูลชื่อ");
-    } else if (!value.lastname) {
+      alert_status = true;
+    }  if (!value.lastname) {
       alert("กรุณากรอกข้อมูลนามสกุล");
-    } else if (!value.tel) {
+      alert_status = true;
+    }  if (!value.tel) {
       alert("กรุณากรอกข้อมูลเบอร์โทร");
-    } else if (!value.birthdate) {
+    }  if (!value.birthdate) {
       alert("กรุณากรอกข้อมูลวันเกิด");
-    } else if (!value.username) {
+      alert_status = true;
+    }  if (!value.username) {
       alert("กรุณากรอกข้อมูลชื่อบัญชีผู้ใช้งาน");
-    } else if (!value.password) {
+      alert_status = true;
+    }  if (!value.password) {
       alert("กรุณากรอกข้อมูลรหัสผ่าน");
-    } else if (!value.address) {
+      alert_status = true;
+    }  if (!value.address) {
       alert("กรุณากรอกข้อมูลที่อยู่");
-    } else if (!value.province) {
+      alert_status = true;
+    }  if (!value.province) {
       alert("กรุณากรอกข้อมูลจังหวัด");
-    } else if (!value.sub_district) {
+      alert_status = true;
+    }  if (!value.sub_district) {
       alert("กรุณากรอกข้อมูลตำบล");
-    } else if (!value.district) {
+      alert_status = true;
+    }  if (!value.district) {
       alert("กรุณากรอกข้อมูลอำเภอ");
-    } else if (!value.zipcode) {
+      alert_status = true;
+    }  if (!value.zipcode) {
       alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
-    } else {
-      sighUp(value)
+      alert_status = true;
+    } 
+    
+    if (alert_status){
+
+    }
+    else {
+      signUp(value)
         .then((res) => {
           console.log(res.data);
           alert("ลงทะเบียนสำเร็จ");
@@ -226,7 +244,9 @@ export default function SignUpPage() {
                   id="grid-tel"
                   name="tel"
                   type="text"
-                  placeholder="098-765xxxx"
+                  maxlength="10"
+                  pattern="[0-9]*"
+                  placeholder="098765xxxx"
                   onChange={(e) => handleChange(e)}
                 />
               </div>
@@ -244,6 +264,7 @@ export default function SignUpPage() {
                   id="email"
                   type="email"
                   name="email"
+                  
                   onChange={(e) => handleChange(e)}
                 />
               </div>
@@ -261,6 +282,7 @@ export default function SignUpPage() {
                   id="username"
                   type="text"
                   name="username"
+                  pattern="[A-za-z0-9]*"
                   onChange={(e) => handleChange(e)}
                 />
               </div>
@@ -278,6 +300,8 @@ export default function SignUpPage() {
                   id="grid-password"
                   type="password"
                   name="password"
+                  pattern="[A-za-z0-9]*"
+                  minlength="6"
                   onChange={(e) => handleChange(e)}
                 />
                 {/* <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> */}
@@ -295,6 +319,8 @@ export default function SignUpPage() {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-confirmpassword"
                   type="password"
+                  minlength="6"
+                  pattern="[A-za-z0-9]*"
                   name="confirmPassword"
                   onChange={(e) => handleChange(e)}
                 />
@@ -419,7 +445,7 @@ export default function SignUpPage() {
             {" "}
             มีบัญชีผู้ใช้แล้ว{" "}
             <a
-              href="/login"
+              href="#"
               className="font-medium text-red-600 hover:underline"
             >
               Login

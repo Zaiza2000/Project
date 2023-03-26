@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const sighUp = async (value) =>
+export const signUp = async (value) =>
   await axios.post(process.env.REACT_APP_API + "/createUser", value);
 
 export const login = async (value) =>

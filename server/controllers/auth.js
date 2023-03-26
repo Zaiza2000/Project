@@ -42,7 +42,7 @@ exports.createUser = async (req, res) => {
     console.log(error.name);
     console.log(error);
     if (error.name == "SequelizeUniqueConstraintError") {
-      res.status(500).send("==MySQL Unique Error==");
+      res.status(500).send("==มีชื่อบัญชีผู้ใช้นี้แล้ว==");
     } else {
       res.status(500).send("==Server Error==");
     }
