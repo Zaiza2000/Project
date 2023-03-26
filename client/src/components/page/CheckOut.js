@@ -184,6 +184,8 @@ export default function CheckOut() {
       alert("กรุณากรอกตำบลที่อยู่จัดส่ง");
     } else if (!value.shipping_tel) {
       alert("กรุณากรอกเบอร์โทร");
+    } else if (!value.payment_photo) {
+      alert("กรุณาอัปโหลดไฟล์สลิป");
     } else {
       console.log("Starting");
       const authtoken = user.token;
