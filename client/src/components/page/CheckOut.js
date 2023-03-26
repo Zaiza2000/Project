@@ -212,22 +212,29 @@ export default function CheckOut() {
       console.log("\n\n\norderResponse: ");
       console.log(cart);
 
-      CreateOrder(authtoken, value).then((response) => {
-        console.log("CreateOrder - Checkout.js: ");
-        console.log(response.data.order_id);
-        localStorage.setItem("order_id", response.data.order_id)
-      })
       const new_cart = cart_with_orderID(cart);
-      userCart(authtoken, new_cart)
-      CartUpdateToProduct(authtoken, new_cart)
-        .then((res) => {
-          console.log("Successfully: ", res);
+      if(window.confirm("ยื่นยันการสั่งซื้อ ?")){
+
+
+        CreateOrder(authtoken, value).then((response) => {
+          console.log("CreateOrder - Checkout.js: ");
+          console.log(response.data.order_id);
+          localStorage.setItem("order_id", response.data.order_id)
         })
 
+        userCart(authtoken, new_cart)
+        CartUpdateToProduct(authtoken, new_cart)
+        .then((res) => {
+          console.log("Successfully: ", res);
+          navigate("/member/index/OrderUser")
+        })
         .catch((error) => {
           console.log(error.response.data);
           alert(error.response.data);
         });
+
+      }
+      
     }
   };
 

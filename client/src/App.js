@@ -34,6 +34,7 @@ import UpdateProduct from "./components/page/admin/product/UpdateProduct";
 // Page Member
 import HomeMember from "./components/page/member/HomeMember";
 import Shop from "./components/page/member/Shop";
+import OrderUser from "./components/page/member/OrderUser";
 
 
 //functions
@@ -89,6 +90,7 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/member/index/OrderUser" element={<OrderUser />} />
           <Route path="/checkOut" element={<CheckOut />} />
 
           <Route path="/checkout" element={<CheckOut />} />

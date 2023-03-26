@@ -35,6 +35,26 @@ exports.listOrderDetail = async (req, res) => {
       res.status(500).send("==Server Error (listOrderDetailByOID) ==");
     }
   };
+ 
+  exports.listOrderDetailByUser = async (req, res) => {
+    try {
+      const db = require('../database/db.js')
+      const { QueryTypes } = require('sequelize');
+      const order_detail_list = await db.query(
+        "SELECT "
+        + "OID, id, product_id, product_name, quantity, price, product_detail, order_id, status" 
+        + " FROM `order_detail` WHERE id = " 
+        + req.params.id
+        , { type: QueryTypes.SELECT });
+      console.log("order_detail_list");
+      console.log(order_detail_list);
+      
+      res.send(order_detail_list);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("== Server Error (listOrderDetailByUser) at server contoller ==");
+    }
+  };
 
 
   
