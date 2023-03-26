@@ -15,6 +15,10 @@ export const listOrderDetailByOID = async (authtoken) => {
     });
   };
 
+export const listOrderDetailByUser = async (user_id) => {
+  return await axios.get(process.env.REACT_APP_API + `/listOrderDetailByUser/${user_id}`);
+};
+
 export const getOrderDetail = async (id) => {
   return await axios.get(process.env.REACT_APP_API + "/getOrderDetail/" + id);
 };

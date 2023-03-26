@@ -43,12 +43,13 @@ const {CartUpdateToProduct,userCart,
   adminCart} = require("../controllers/cart.js");
 
 const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
-const { listOrderDetail,getOrderDetail,listOrderDetailByOID } = require("../controllers/order_detail");
+const { listOrderDetail,getOrderDetail,listOrderDetailByOID, listOrderDetailByUser } = require("../controllers/order_detail");
 
 const express = require("express");
 const router = express.Router();
 
 //@Enpoint    http://localhost:8000/api
+
 
 //*************Middleware*************//
 const { auth, adminCheck } = require("../middleware/auth.js");
@@ -63,6 +64,12 @@ router.post("/current-admin", auth, adminCheck, currentUser);
 //**************Admin Cart************//
 router.post("/admin/cart", auth, adminCart);
 
+//**************** User Cart *************//
+router.post("/user/cart", auth, userCart);
+router.put("/user/CartUpdateToProduct", auth, CartUpdateToProduct);
+
+
+
 //*************** API User **************//
 router.get("/listUser", listUser);
 router.get("/getUser/:id", getUser);
@@ -70,11 +77,9 @@ router.post("/login", login);
 router.post("/createUser", createUser);
 router.put("/editUser/:id", editUser);
 router.delete("/deleteUser/:id", deleteUser);
-//**************** Change User ************//
 router.post("/changeRole", changeRole);
-//**************** User Cart *************//
-router.post("/user/cart", auth, userCart);
-router.put("/user/CartUpdateToProduct", auth, CartUpdateToProduct);
+
+
 
 //***************** API Category *************//
 router.get("/listCategory", listCategory);
@@ -84,6 +89,8 @@ router.post("/createCategory", createCategory);
 router.put("/editCategory/:id", editCategory);
 router.delete("/deleteCategory/:id", deleteCategory);
 
+
+
 //****************** API Product **************//
 router.get("/listProduct", listProduct);
 router.get("/getProduct/:id", getProduct);
@@ -91,28 +98,40 @@ router.post("/createProduct", createProduct);
 router.put("/editProduct/:id", editProduct);
 router.delete("/deleteProduct/:id", deleteProduct);
 
+
+
+
 //***************** API Search ****************//
 // http://localhost:8000/api/search/filters
 router.post("/search/filters", searchFilters);
+
+
+
 
 //API Location => location.js//
 router.get("/province", listProvince);
 router.get("/province/:id/district", listDistrict);
 router.get("/district/:id", listSubDistrict);
 
+
 //API Order => order.js//
 router.post("/createOrder", auth, upload, CreateOrder);
-
 router.get("/listOrder", listOrder);
+
+
 
 //API Requisition => requisition_detail.js//
 router.get("/listRequisition", listRequisition);
 router.get("/listRequisitionByRID", listRequisitionByRID);
 router.get("/getRequisition/:id", getRequisition);
 
+
+
 //API order_detail => order_detail.js//
 router.get("/listOrderDetail", listOrderDetail);
 router.get("/listOrderDetailByOID", listOrderDetailByOID);
 router.get("/getOrderDetail/:id", getOrderDetail);
+router.get("/listOrderDetailByUser/:id", listOrderDetailByUser);
+
 
 module.exports = router;

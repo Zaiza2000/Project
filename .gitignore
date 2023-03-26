@@ -3,3 +3,14 @@ client/node_modules
 
 # Uploads files
 client/src/uploads
+
+# Generate OID automation
+server/logs/order_id.log
+
+# Cypress Testcaes node_module
+node_modules
+yarn.lock
+package.json
+package-lock.json
+cypress.config.js
+cypress/

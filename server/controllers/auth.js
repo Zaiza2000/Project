@@ -147,46 +147,6 @@ exports.deleteUser = async (req, res) => {
 
 
 
-//############ Search ################//
-// exports.getSearchCategory = async (req, res) => {
-//   try {
-//     const category_name = req.body
-//     console.log("category_name : " , category_name);
-//     const category = await Category.findAll({
-//       where: { category_name: category_name },
-//     });
-//     res.json(category);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send("==Server Error==");
-//   }
-// };
 
-//############ Search by Roitai ################//
-// const handleQuery = async (req, res, query) => {
-//   let products = await Product.find({ $text: { $search: query } })
-//   .populate("category_name", "product_id product_name product_detail")
-//   res.send(products);
-// }
-// const handlePrice = async (req, res, price) => {
-//   let products = await Product.find({
-//     price:{
-//       $gte:price[0],
-//       $lte:price[1]
-//     }
-//   })
-//   .populate("category_name", "product_id product_name")
-//   res.send(products);
-// }
 
-// exports.searchFilters = async (req, res) => {
-//   const {query, price} = req.body;
-//   if(query){
-//     console.log("Query" ,query);
-//     await handleQuery(req, res, query);
-//   }
-//   if (price !== undefined) {
-//     console.log("price---->", price);
-//     await handlePrice(req, res, price);
-//   }
-// }
+
