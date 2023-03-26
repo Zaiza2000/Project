@@ -1,6 +1,7 @@
 import "../../App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import moment from 'moment';
 //function
 import { signUp } from "../functions/auth";
 import {
@@ -17,6 +18,8 @@ export default function SignUpPage() {
   const [district, setDistrict] = useState([]);
   const [sub_district, setSubDistrict] = useState([]);
   const [zipcode, setZipcode] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
 
   const [value, setValue] = useState({
     firstname: "",
@@ -114,44 +117,44 @@ export default function SignUpPage() {
     if (value.password !== value.confirmPassword) {
       alert("รหัสผ่านไม่ตรงกัน");
       alert_status = true;
-    }  if (!value.email) {
+    } if (!value.email) {
       alert("กรุณากรอกข้อมูลอีเมล");
       alert_status = true;
-    }  if (!value.firstname) {
+    } if (!value.firstname) {
       alert("กรุณากรอกข้อมูลชื่อ");
       alert_status = true;
-    }  if (!value.lastname) {
+    } if (!value.lastname) {
       alert("กรุณากรอกข้อมูลนามสกุล");
       alert_status = true;
-    }  if (!value.tel) {
+    } if (!value.tel) {
       alert("กรุณากรอกข้อมูลเบอร์โทร");
-    }  if (!value.birthdate) {
+    } if (!value.birthdate) {
       alert("กรุณากรอกข้อมูลวันเกิด");
       alert_status = true;
-    }  if (!value.username) {
+    } if (!value.username) {
       alert("กรุณากรอกข้อมูลชื่อบัญชีผู้ใช้งาน");
       alert_status = true;
-    }  if (!value.password) {
+    } if (!value.password) {
       alert("กรุณากรอกข้อมูลรหัสผ่าน");
       alert_status = true;
-    }  if (!value.address) {
+    } if (!value.address) {
       alert("กรุณากรอกข้อมูลที่อยู่");
       alert_status = true;
-    }  if (!value.province) {
+    } if (!value.province) {
       alert("กรุณากรอกข้อมูลจังหวัด");
       alert_status = true;
-    }  if (!value.sub_district) {
+    } if (!value.sub_district) {
       alert("กรุณากรอกข้อมูลตำบล");
       alert_status = true;
-    }  if (!value.district) {
+    } if (!value.district) {
       alert("กรุณากรอกข้อมูลอำเภอ");
       alert_status = true;
-    }  if (!value.zipcode) {
+    } if (!value.zipcode) {
       alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
       alert_status = true;
-    } 
-    
-    if (alert_status){
+    }
+
+    if (alert_status) {
 
     }
     else {
@@ -222,14 +225,17 @@ export default function SignUpPage() {
                 >
                   วันเกิด
                 </label>
+
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="grid-birthdate"
                   name="birthdate"
                   type="date"
-                  // max={}
+                  max={moment().format('YYYY-MM-DD')}
+                  value={moment(selectedDate).format('YYYY-MM-DD')}
                   onChange={(e) => handleChange(e)}
                 />
+
                 {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -264,7 +270,7 @@ export default function SignUpPage() {
                   id="email"
                   type="email"
                   name="email"
-                  
+
                   onChange={(e) => handleChange(e)}
                 />
               </div>
