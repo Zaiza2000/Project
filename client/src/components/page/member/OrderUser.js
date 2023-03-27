@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PDFDownloadLink, PDFPreview, PDFViewer } from '@react-pdf/renderer';
 import ReactPDF from '@react-pdf/renderer';
 //function
-import { listOrderDetailByUser } from "../../functions/order_detail.js";
+import { listOrderDetailByUser, Order_detail_join_Orders } from "../../functions/order_detail.js";
 import MenubarMember from "../../layouts/MenubarMember";
 
 //page -> PDF
@@ -13,26 +13,32 @@ import OrderPDF from "./OrderPDF.js";
 export default function OrderUser() {
   const [orderUser, setOrderUser] = useState([]);
   const [listorderUser, setListOrderUser] = useState([]);
+  const [handle_repeat, set_handle_repeat] = useState(true);
   const { user } = useSelector((state) => ({ ...state }));
 
-  //console.log("user OderUser.js" , user);
   useEffect(() => {
-    var list_OrderUser = [];
+    if (handle_repeat) {
+      set_handle_repeat(false)
+      var list_OrderUser = [];
 
-    listOrderDetailByUser(user.id).then((res) => {
-      var temp = res.data;
-      setListOrderUser(res.data);
+      // const value = JSON.parse(localStorage.getItem("value"))
+      // console.log("value: ", value);
+      Order_detail_join_Orders(user.id).then((res) => {
+        var temp = res.data;
+        setListOrderUser(res.data);
 
-      for (let i = 0; i < temp.length; i++) {
-        if (!list_OrderUser.includes(temp[i].OID)) {
-          list_OrderUser.push(temp[i].OID);
-        //   console.log(list_OrderUser);
+        for (let i = 0; i < temp.length; i++) {
+          if (!list_OrderUser.includes(temp[i].OID)) {
+            list_OrderUser.push(temp[i].OID);
+            //   console.log(list_OrderUser);
+          }
         }
-      }
-      setOrderUser(list_OrderUser);
+        setOrderUser(list_OrderUser);
 
-      
-    });
+
+      });
+    }
+
   }, []);
 
   const tableHead = (
@@ -60,10 +66,12 @@ export default function OrderUser() {
 
       </tr>
     </thead>
+
   );
 
   const tableData_user = (user_id, OID) => {
     return listorderUser.map((inner_item) => {
+      console.log("inner_item:", inner_item);
       if (inner_item.OID === OID) {
         return (
           <tbody>
@@ -86,11 +94,16 @@ export default function OrderUser() {
     });
   };
 
+  console.log("orderUser: ", orderUser);
+
   return (
-    <div>
+    <div className="flex flex-row">
       <MenubarMember />
-      <h1>Order User</h1>
-      <div>
+      {/* <h1>Order User</h1> */}
+      <div className="p-6">
+        <h3 className="text-4xl font-bold text-purple-600">
+          ประวัติการสั่งซื้อ
+        </h3>
         {/* {orderUser} */}
         {orderUser.map((OID) => (
           <div>
@@ -110,7 +123,7 @@ export default function OrderUser() {
 
                 className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
-                <OrderPDF order_pdf={OID} listorderUser={listorderUser}  />
+                  <OrderPDF order_pdf={OID} listorderUser={listorderUser} user={user} />
 
                 }
                 fileName="ใบเสร็จ.pdf">

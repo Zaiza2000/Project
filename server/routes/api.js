@@ -39,11 +39,11 @@ const {
   CreateOrder,
 } = require("../controllers/order.js");
 
-const {CartUpdateToProduct,userCart,
-  adminCart} = require("../controllers/cart.js");
+const { CartUpdateToProduct, userCart,
+  adminCart } = require("../controllers/cart.js");
 
-const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
-const { listOrderDetail,getOrderDetail,listOrderDetailByOID, listOrderDetailByUser ,Order_detail_join_Orders } = require("../controllers/order_detail");
+const { listRequisition, getRequisition, listRequisitionByRID } = require("../controllers/requisition_detail");
+const { listOrderDetail, getOrderDetail, listOrderDetailByOID, listOrderDetailByUser, Order_detail_join_Orders, get_order_detail_by_oid } = require("../controllers/order_detail");
 
 const express = require("express");
 const router = express.Router();
@@ -132,7 +132,8 @@ router.get("/listOrderDetail", listOrderDetail);
 router.get("/listOrderDetailByOID", listOrderDetailByOID);
 router.get("/getOrderDetail/:id", getOrderDetail);
 router.get("/listOrderDetailByUser/:id", listOrderDetailByUser);
-router.get("/Order_detail_join_Orders", listOrderDetailByUser);
+router.get("/Order_detail_join_Orders/:id", Order_detail_join_Orders);
+router.get("/get_order_detail_by_oid/:id&:OID", get_order_detail_by_oid);
 
 
 module.exports = router;
