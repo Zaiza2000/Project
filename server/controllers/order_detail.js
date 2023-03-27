@@ -46,13 +46,34 @@ exports.listOrderDetail = async (req, res) => {
         + " FROM `order_detail` WHERE id = " 
         + req.params.id
         , { type: QueryTypes.SELECT });
-      console.log("order_detail_list");
-      console.log(order_detail_list);
+      // console.log("order_detail_list");
+      // console.log(order_detail_list);
       
       res.send(order_detail_list);
     } catch (err) {
       console.log(err);
       res.status(500).send("== Server Error (listOrderDetailByUser) at server contoller ==");
+    }
+  };
+
+
+  
+//TODO:Fix
+
+  exports.Order_detail_join_Orders = async (req, res) => {
+    try {
+      const db = require('../database/db.js')
+      const { QueryTypes } = require('sequelize');
+      const order_detail_list = await db.query(
+        "SELECT * FROM orders JOIN orders_detail ON orders.order_id = orders_detail.id WHERE (order_id =`392`) ", { type: QueryTypes.SELECT });
+      
+        console.log("order_detail_list");
+      console.log(order_detail_list);
+      
+      res.send(order_detail_list);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("== Server Error (Order_detail_join_Orders) at server contoller ==");
     }
   };
 

@@ -29,6 +29,8 @@ export default function CheckOut() {
   const [file, setFile] = useState([]);
   const [filename, setfilename] = useState("Choose File");
   const navigate = useNavigate();
+  const [createStatus, setCreateStatus] = useState(true);
+  const [order_id_state, set_order_id_state] = useState([])
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
   const [value, setValue] = useState({
@@ -185,53 +187,58 @@ export default function CheckOut() {
     } else if (!value.shipping_tel) {
       alert("กรุณากรอกเบอร์โทร");
     } else {
-      console.log("Starting");
-      const authtoken = user.token;
+      if (createStatus) {
+        console.log("Create Status: ", createStatus);
+        setCreateStatus(false);
+        console.log("================ Starting ================");
+        const authtoken = user.token;
 
-      // const orderResponse = CreateOrder(authtoken, value).then((response) => {
-      //   var orderDict = {};
-      //   for (const [key, value] of Object.entries(response.data)) {
-      //     orderDict[key] = value;
-      //   }
-      //   return orderDict;
-      // });
-
-      const cart_with_orderID = (item) => {
-        console.log("cart - Checkout.js:", item)
-        console.log("cart_with_orderID - Checkout.js: ", Object.keys(item))
-        Object.keys(item).forEach((key) => {
-          console.log("Check LocalStorage", parseInt(localStorage.getItem("order_id")));
-          item[key].order_id = parseInt(localStorage.getItem("order_id"))
-        });
-        return item;
-      }
-
-      // TODO: DELETE
-      console.log("\n\n\norderResponse: ");
-      console.log(cart);
-
-      const new_cart = cart_with_orderID(cart);
-      if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
-
-        CreateOrder(authtoken, value).then((response) => {
-          console.log("CreateOrder - Checkout.js: ");
-          console.log(response.data.order_id);
-          localStorage.setItem("order_id", response.data.order_id)
-        })
-
-        userCart(authtoken, new_cart)
-        CartUpdateToProduct(authtoken, new_cart)
-          .then((res) => {
-            console.log("Successfully: ", res);
-            navigate("/OrderUser")
-          })
-          .catch((error) => {
-            console.log(error.response.data);
-            alert(error.response.data);
+        function cart_with_orderID(item) {
+          console.log("cart - Checkout.js:", item);
+          Object.keys(item).forEach((key) => {
+              console.log(
+                "Check Order ID State: ",
+                parseInt(localStorage.getItem("order_id"))
+              );
+              item[key].order_id = parseInt(localStorage.getItem("order_id"));
           });
+          console.log("cart after - Checkout.js:", item);
+          return item;
+        };
 
+        // TODO: LocalStorage get order_id
+        // if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
+          
+        CreateOrder(authtoken, value)
+          .then((response) => {
+              return response.data.order_id})
+          .then((order_id) => {
+              var new_cart;
+              localStorage.setItem("order_id", order_id);
+              console.log("localStorage.getItem('order_id'): ", localStorage.getItem("order_id"))
+              new_cart = cart_with_orderID(cart);
+              return new_cart})
+          .then((new_cart) => {
+              console.log("localStorage.getItem('order_id'): ", localStorage.getItem("order_id"))
+              userCart(authtoken, new_cart)
+              return new_cart})
+          .then((new_cart) => {
+              CartUpdateToProduct(authtoken, new_cart)
+                .then((res) => {
+                  console.log("Successfully: ", res);
+                  navigate("/OrderUser");
+                })
+              .catch((error) => {
+                console.log(error.response.data);
+                alert(error.response.data);
+              });
+          })
+          
+          
+          
+          // }
+        console.log("================ END ================");
       }
-
     }
   };
 
@@ -242,11 +249,9 @@ export default function CheckOut() {
     }, 0);
   };
 
-
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Update Address Infomation
   // TODO: Now
   const update_address = () => {
-
     console.log("Use same address !");
     console.log(user);
     console.log(value);
@@ -260,10 +265,9 @@ export default function CheckOut() {
     value["shipping_zipcode"] = user.zipcode;
     value["shipping_tel"] = user.tel;
 
-
     console.log("After upadte address !");
     console.log(value);
-  }
+  };
 
   const reset_address = () => {
     setValue({
@@ -286,11 +290,11 @@ export default function CheckOut() {
       tax_id: "",
       payment_photo: "",
       id: null,
-    })
+    });
 
-    setDistrict_shipping([])
-    setSubDistrict_shipping([])
-  }
+    setDistrict_shipping([]);
+    setSubDistrict_shipping([]);
+  };
 
   const selected_option = (item, index, option) => {
     if (item.name_th === option["saved_data"]) {
@@ -299,34 +303,30 @@ export default function CheckOut() {
         <option key={index} value={item.id} selected>
           {item.name_th}
         </option>
-      )
+      );
     } else {
       return (
         <option key={index} value={item.id}>
           {item.name_th}
         </option>
-      )
+      );
     }
-  }
+  };
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Update List Options
   const onChangeProvince_shipping_selected = (province_id) => {
     // console.log("onChangeProvince_shipping_selected: Done");
-    listDistrict(province_id)
-      .then((res) => {
-        setDistrict_shipping(res.data);
-      })
+    listDistrict(province_id).then((res) => {
+      setDistrict_shipping(res.data);
+    });
   };
-
 
   const onChangeDistrict_shipping_selected = (district_id) => {
     // console.log("onChangeDistrict_shipping_selected: Done");
-    listSubDistrict(district_id)
-      .then((res) => {
-        setSubDistrict_shipping(res.data);
-      })
+    listSubDistrict(district_id).then((res) => {
+      setSubDistrict_shipping(res.data);
+    });
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -342,44 +342,55 @@ export default function CheckOut() {
           <div className="form-check">
             <label className="form-check text-gray-800" for="flexRadioDefault2">
               <div>
-                <input type="radio" value="address_old" name="address"
+                <input
+                  type="radio"
+                  value="address_old"
+                  name="address"
                   onClick={() => {
                     // TODO: Edit Radio
-                    update_address()
+                    update_address();
 
                     var temp_province_id;
                     province_shipping.map((item) => {
                       if (item.name_th === value.shipping_province) {
-                        temp_province_id = item.id
+                        temp_province_id = item.id;
                       }
-                    })
-                    onChangeProvince_shipping_selected(temp_province_id)
+                    });
+                    onChangeProvince_shipping_selected(temp_province_id);
                     // console.log("temp_province_id", temp_province_id)
 
                     var temp_district_id;
                     district_shipping.map((item) => {
                       if (item.name_th === value.shipping_district) {
-                        temp_district_id = item.id
+                        temp_district_id = item.id;
                       }
-                    })
-                    onChangeDistrict_shipping_selected(temp_district_id)
+                    });
+                    onChangeDistrict_shipping_selected(temp_district_id);
                     // console.log("temp_dictrict_id", temp_district_id)
 
-                    console.log("Provice state", province_shipping)
-                    console.log("District state", district_shipping)
-                    console.log("Subdistrict state", sub_district_shipping)
+                    console.log("Provice state", province_shipping);
+                    console.log("District state", district_shipping);
+                    console.log("Subdistrict state", sub_district_shipping);
                   }}
                 />
                 ใช้ที่อยู่ที่ลงทะเบียน
-                <h3>ชื่อ: {user.firstname} {user.lastname}</h3>
-
-                <h3>ที่อยู่: {user.address} {user.sub_district} {user.district} {user.province} {user.zipcode}</h3>
-
+                <h3>
+                  ชื่อ: {user.firstname} {user.lastname}
+                </h3>
+                <h3>
+                  ที่อยู่: {user.address} {user.sub_district} {user.district}{" "}
+                  {user.province} {user.zipcode}
+                </h3>
                 <h3>เบอร์โทร {user.tel}</h3>
               </div>
-              <input type="radio" value="address_new" name="address" onClick={reset_address} />
+              <input
+                type="radio"
+                value="address_new"
+                name="address"
+                onClick={reset_address}
+              />
               ใช้ที่อยู่ใหม่
-              <div className="mt-6" >
+              <div className="mt-6">
                 <div className="mb-2">
                   <label
                     for="text"
@@ -427,11 +438,16 @@ export default function CheckOut() {
                       name="shipping_province"
                       onChange={(e) => {
                         if (!value.shipping_province) {
-                          onChangeProvince_shipping(e)
+                          onChangeProvince_shipping(e);
                         }
                       }}
                     >
-                      {province_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_province, "function": onChangeProvince_shipping_selected }))}
+                      {province_shipping.map((item, index) =>
+                        selected_option(item, index, {
+                          saved_data: value.shipping_province,
+                          function: onChangeProvince_shipping_selected,
+                        })
+                      )}
                     </select>
                   </div>
                 </div>
@@ -448,7 +464,12 @@ export default function CheckOut() {
                       name="shipping_district"
                       onChange={(e) => onChangeDistrict_shipping(e)}
                     >
-                      {district_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_district, "function": onChangeDistrict_shipping_selected }))}
+                      {district_shipping.map((item, index) =>
+                        selected_option(item, index, {
+                          saved_data: value.shipping_district,
+                          function: onChangeDistrict_shipping_selected,
+                        })
+                      )}
                     </select>
                   </div>
                 </div>
@@ -466,16 +487,17 @@ export default function CheckOut() {
                       name="shipping_sub_district"
                       onChange={(e) => onChangeSubDistrict_shipping(e)}
                     >
-                      {sub_district_shipping.map((item, index) => selected_option(item, index, { "saved_data": value.shipping_sub_district }))}
+                      {sub_district_shipping.map((item, index) =>
+                        selected_option(item, index, {
+                          saved_data: value.shipping_sub_district,
+                        })
+                      )}
                     </select>
                   </div>
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
-                    <label
-                      className="block font-semibold text-gray-800"
-                      for=""
-                    >
+                    <label className="block font-semibold text-gray-800" for="">
                       รหัสไปรษณีย์
                     </label>
                     <input
@@ -516,10 +538,7 @@ export default function CheckOut() {
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Billing   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,<<<<<<<<<<<<<<<<<<*/}
         <div id="checkout" className="flex-1 w-64 ">
           ที่อยู่ในการออกใบเสร็จ
-          <label
-            for="text"
-            className="block font-semibold text-gray-800"
-          >
+          <label for="text" className="block font-semibold text-gray-800">
             <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
           </label>
           {/* <div className="form-check ">
@@ -531,9 +550,7 @@ export default function CheckOut() {
             </label>
           </div> */}
           <div className="form-check">
-            <label
-              className="form-check-label  text-gray-800"
-            >
+            <label className="form-check-label  text-gray-800">
               <div className="mt-6">
                 <div className="mb-2">
                   <label
@@ -558,10 +575,7 @@ export default function CheckOut() {
                   />
                 </div>
                 <div className="mb-2">
-                  <label
-                    for=""
-                    className="block  font-semibold text-gray-800"
-                  >
+                  <label for="" className="block  font-semibold text-gray-800">
                     ที่อยู่
                   </label>
                   <textarea
@@ -574,10 +588,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
-                    <label
-                      className="block font-semibold text-gray-800"
-                      for=""
-                    >
+                    <label className="block font-semibold text-gray-800" for="">
                       จังหวัด
                     </label>
                     <select
@@ -595,10 +606,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
-                    <label
-                      className="block font-semibold text-gray-800"
-                      for=""
-                    >
+                    <label className="block font-semibold text-gray-800" for="">
                       อำเภอ
                     </label>
                     <select
@@ -617,10 +625,7 @@ export default function CheckOut() {
 
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
-                    <label
-                      className="block font-semibold text-gray-800"
-                      for=""
-                    >
+                    <label className="block font-semibold text-gray-800" for="">
                       ตำบล
                     </label>
                     <select
@@ -646,7 +651,6 @@ export default function CheckOut() {
                     </label>
                     <input
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-
                       type="text"
                       name="billing_zipcode"
                       value={value.billing_zipcode}
@@ -699,17 +703,18 @@ export default function CheckOut() {
                     setFile(e.target.files[0]);
                   }}
                 />
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   for="large_size"
-                  htmlFor="customfile">{filename}</label>
+                  htmlFor="customfile"
+                >
+                  {filename}
+                </label>
                 {/* <lable htmlFor="customfile">{filename}</lable> */}
               </div>
 
               <div className="mt-15">
-                <label
-                  for="text"
-                  className="block font-semibold text-gray-800"
-                >
+                <label for="text" className="block font-semibold text-gray-800">
                   หมายเลขประจำตัวผู้เสียภาษี
                   <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
                 </label>
@@ -724,7 +729,6 @@ export default function CheckOut() {
             </div>
           </div>
         </div>
-
 
         <div id="checkout" className="flex-1 w-64 ">
           ยืนยันการสั่งซื้อ
@@ -757,7 +761,6 @@ export default function CheckOut() {
                 </div>
               </dl>
             </div>
-
           </div>
           <div className="mt-6">
             <button className="w-full px-4 py-2 mt-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
@@ -765,8 +768,7 @@ export default function CheckOut() {
             </button>
           </div>
         </div>
-
-      </div >
-    </form >
+      </div>
+    </form>
   );
 }

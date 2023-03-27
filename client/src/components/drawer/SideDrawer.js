@@ -24,14 +24,15 @@ export default function SideDrawer({ item }) {
     const handleSaveOrder = () => {
         // code
         alert("CheckOut Order");
-        userCart(user.token, cart)
-            .then((res) => {
-                console.log(res);
-                navigate("/checkout");
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        navigate("/checkout");
+        // userCart(user.token, cart)
+        //     .then((res) => {
+        //         console.log(res);
+        //         navigate("/checkout");
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
     };
     const handleChangeCount = (e) => {
         const count = e.target.value < 1 ? 1 : e.target.value;

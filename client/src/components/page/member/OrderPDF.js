@@ -8,6 +8,8 @@ import {
 } from "@react-pdf/renderer";
 import fontDev from "./THSarabun.ttf";
 
+
+
 // Register font
 Font.register({ family: "THSarabun", src: fontDev });
 
@@ -67,8 +69,9 @@ const styles = StyleSheet.create({
 });
 
 export default function OrderPDF({ order_pdf, listorderUser }) {
-  console.log("order_pdf >> PDF: ");
-  console.log(order_pdf);
+
+  //console.log("order_pdf >> PDF: ");
+  //console.log(order_pdf);
 
   const OrderPDFData = () => {
     return listorderUser.map((inner_item) => {

@@ -47,14 +47,15 @@ export default function SingleProductCard({ product }) {
   const handleSaveOrder = () => {
     // code
     alert("CheckOut Order");
-    userCart(user.token, cart)
-      .then((res) => {
-        console.log(res);
-        navigate("/checkout");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    navigate("/checkout");
+    // userCart(user.token, cart)
+    //   .then((res) => {
+    //     console.log(res);
+    //     navigate("/checkout");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (

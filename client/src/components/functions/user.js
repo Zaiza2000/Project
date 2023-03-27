@@ -17,7 +17,7 @@ export const deleteUser = async (id) => {
 };
 export const userCart = async (authtoken, cart) => {
   // TODO: Delete
-  console.log("userCart - user.js:", cart);
+  console.log("userCart - client/fun/user.js:", cart);
   return await axios.post(
     process.env.REACT_APP_API + "/user/cart",
     { cart: cart },

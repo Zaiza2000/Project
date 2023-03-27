@@ -17,7 +17,7 @@ export const CreateOrder = async (authtoken, values) => {
     formData.append(key, value);
   }
 
-  console.log(">>>> Auth: ", authtoken);
+  //console.log(">>>> Auth: ", authtoken);
   let result = await axios.post(
     process.env.REACT_APP_API + "/createOrder",
     formData,

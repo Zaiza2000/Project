@@ -43,7 +43,7 @@ const {CartUpdateToProduct,userCart,
   adminCart} = require("../controllers/cart.js");
 
 const { listRequisition ,getRequisition,listRequisitionByRID } = require("../controllers/requisition_detail");
-const { listOrderDetail,getOrderDetail,listOrderDetailByOID, listOrderDetailByUser } = require("../controllers/order_detail");
+const { listOrderDetail,getOrderDetail,listOrderDetailByOID, listOrderDetailByUser ,Order_detail_join_Orders } = require("../controllers/order_detail");
 
 const express = require("express");
 const router = express.Router();
@@ -132,6 +132,7 @@ router.get("/listOrderDetail", listOrderDetail);
 router.get("/listOrderDetailByOID", listOrderDetailByOID);
 router.get("/getOrderDetail/:id", getOrderDetail);
 router.get("/listOrderDetailByUser/:id", listOrderDetailByUser);
+router.get("/Order_detail_join_Orders", listOrderDetailByUser);
 
 
 module.exports = router;

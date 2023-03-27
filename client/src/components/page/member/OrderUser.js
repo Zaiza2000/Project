@@ -15,7 +15,7 @@ export default function OrderUser() {
   const [listorderUser, setListOrderUser] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
 
-  console.log("user OderUser.js" , user);
+  //console.log("user OderUser.js" , user);
   useEffect(() => {
     var list_OrderUser = [];
 
@@ -30,6 +30,8 @@ export default function OrderUser() {
         }
       }
       setOrderUser(list_OrderUser);
+
+      
     });
   }, []);
 
