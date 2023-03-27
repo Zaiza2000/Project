@@ -81,8 +81,8 @@ exports.login = async (req, res) => {
         if (error) throw error;
         res.json({ token, payload });
       });
-    } else {
-      return res.status(400).send("User not found!!!");
+    }else {
+      return res.status(400).send("Username หรือ Password ไม่ถูกต้อง \n ตรวจสอบอีกครั้ง");
     }
   } catch (error) {
     console.log(error);

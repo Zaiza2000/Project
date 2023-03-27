@@ -5,7 +5,6 @@ import { login } from "../functions/auth.js";
 //redux
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import Navbar from "../layouts/Navbar";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
