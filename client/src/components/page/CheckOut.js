@@ -213,7 +213,6 @@ export default function CheckOut() {
       const new_cart = cart_with_orderID(cart);
       if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
 
-
         CreateOrder(authtoken, value).then((response) => {
           console.log("CreateOrder - Checkout.js: ");
           console.log(response.data.order_id);
@@ -224,7 +223,7 @@ export default function CheckOut() {
         CartUpdateToProduct(authtoken, new_cart)
           .then((res) => {
             console.log("Successfully: ", res);
-            navigate("/member/index/OrderUser")
+            navigate("/OrderUser")
           })
           .catch((error) => {
             console.log(error.response.data);

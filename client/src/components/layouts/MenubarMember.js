@@ -16,18 +16,13 @@ export default function MenubarMember() {
                 fill="currentColor"
                 d="M10 1a7 7 0 110 14v-1.5c1.469 0 2.85-.572 3.889-1.611S15.5 9.469 15.5 8c0-1.469-.572-2.85-1.611-3.889S11.469 2.5 10 2.5c-1.469 0-2.85.572-3.889 1.611A5.455 5.455 0 004.591 7H7.5L4 11 .5 7h2.571A7.001 7.001 0 0110 1zm3 6v2H9V4h2v3z"
               /></svg>
-              <Link to="/user/history" className="ml-3">ประวัติการซื้อ</Link>
+              <Link to="/OrderUser" className="ml-3">ประวัติการซื้อ</Link>
             </li>
             <li className="flex flex-row">
               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 4v-.5a3.5 3.5 0 10-7 0V4H1v10a2 2 0 002 2h10a2 2 0 002-2V4h-3.5zM8 1a2.5 2.5 0 012.5 2.5V4h-5v-.5A2.5 2.5 0 018 1zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132z" /></svg>
               <Link to="/user/wishlist" className="ml-3"> สินค้าที่สนใจ</Link>
             </li>
-            {/* <li className="flex flex-row">
-              <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75  group-hover:text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1.5A.5.5 0 01.5 1H2a.5.5 0 01.485.379L2.89 3H14.5a.5.5 0 01.491.592l-1.5 8A.5.5 0 0113 12H4a.5.5 0 01-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 01-.5-.5zM5 12a2 2 0 100 4 2 2 0 000-4zm7 0a2 2 0 100 4 2 2 0 000-4zm-7 1a1 1 0 110 2 1 1 0 010-2zm7 0a1 1 0 110 2 1 1 0 010-2z" />
-              </svg>
-              <Link to="/user/cart" className="ml-3"> ตะกร้าของฉัน</Link>
-            </li> */}
+           
 
           </ul>
         </div>

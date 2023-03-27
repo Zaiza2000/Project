@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { PDFDownloadLink, PDFPreview, PDFViewer } from '@react-pdf/renderer';
+import ReactPDF from '@react-pdf/renderer';
 //function
 import { listOrderDetailByUser } from "../../functions/order_detail.js";
 import MenubarMember from "../../layouts/MenubarMember";
 
+//page -> PDF
+import OrderPDF from "./OrderPDF.js";
+
+
 export default function OrderUser() {
   const [orderUser, setOrderUser] = useState([]);
   const [listorderUser, setListOrderUser] = useState([]);
+  const { user } = useSelector((state) => ({ ...state }));
 
+  console.log("user OderUser.js" , user);
   useEffect(() => {
     var list_OrderUser = [];
 
-    listOrderDetailByUser(80).then((res) => {
+    listOrderDetailByUser(user.id).then((res) => {
       var temp = res.data;
       setListOrderUser(res.data);
 
@@ -43,12 +52,10 @@ export default function OrderUser() {
           จำนวน
         </th>
         <th scope="col" className="px-6 py-3">
-          ราคาขาย
+          ราคา
         </th>
 
-        <th scope="col" className="px-6 py-3">
-          ราคาต้นทุน
-        </th>
+
       </tr>
     </thead>
   );
@@ -70,7 +77,6 @@ export default function OrderUser() {
               <td className="px-6 py-4">{inner_item.product_detail}</td>
               <td className="px-6 py-4">{inner_item.quantity}</td>
               <td className="px-6 py-4">{inner_item.price}</td>
-              <td className="px-6 py-4">{inner_item.cost}</td>
             </tr>
           </tbody>
         );
@@ -88,8 +94,31 @@ export default function OrderUser() {
           <div>
             <table className="w-full text-sm text-left text-black bg-blue-400 ">
               {tableHead}
-              {tableData_user(89, OID)}
+              {tableData_user(user.id, OID)}
             </table>
+            <br></br>
+
+            <div >
+
+              {/* <PDFPreview>
+                <OrderPDF order_pdf={OID} />
+              </PDFPreview> */}
+
+              <PDFDownloadLink
+
+                className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
+                document={
+                <OrderPDF order_pdf={OID} listorderUser={listorderUser}  />
+
+                }
+                fileName="ใบเสร็จ.pdf">
+                <button >
+                  ดาวน์โหลดใบเสร็จ PDF
+                </button>
+
+              </PDFDownloadLink>
+
+            </div>
             <br></br>
           </div>
         ))}
