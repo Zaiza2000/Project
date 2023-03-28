@@ -8,7 +8,7 @@ import MenubarMember from "../../layouts/MenubarMember";
 
 //page -> PDF
 import OrderPDF from "./OrderPDF.js";
-
+import VatPDF from "./VatPDF";
 
 export default function OrderUser() {
   const [orderUser, setOrderUser] = useState([]);
@@ -151,6 +151,20 @@ export default function OrderUser() {
                 fileName="ใบเสร็จ.pdf">
                 <button >
                   ดาวน์โหลดใบเสร็จ PDF
+                </button>
+              </PDFDownloadLink>
+            </div>
+            <div className="pt-6 pb-6">
+              <PDFDownloadLink
+
+                className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
+                document={
+                 <VatPDF order_pdf={OID} listorderUser={listorderUser} user={user} />
+                 
+                }
+                fileName="ใบเสร็จ.pdf">
+                <button >
+                  ดาวน์โหลดใบกำกับภาษี PDF
                 </button>
               </PDFDownloadLink>
             </div>
