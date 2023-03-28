@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   },
   invoiceNoContainer: {
     flexDirection: 'row',
-    marginTop: 36,
     justifyContent: 'flex-end'
   },
   invoiceDateContainer: {
@@ -51,11 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   invoiceDate: {
-    fontSize: 12,
-    fontStyle: 'bold',
+    fontSize: 10,
+    // fontStyle: 'bold',
   },
   label: {
-    width: 60
+    fontFamily: "THSarabun",
+  },
+  date: {
+    script: 'AFDate_FormatEx("mm/dd/yy")'
   },
   section: {
     margin: 10,
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
   },
 
   tableCol: {
-    width: "10%",
+    width: "20%",
     borderStyle: "solid",
     borderWidth: 0.5,
 
@@ -125,11 +127,10 @@ const styles = StyleSheet.create({
     fontFamily: "THSarabun",
   },
   reportTitle: {
-    color: '#61dafb',
     letterSpacing: 4,
     fontSize: 25,
     textAlign: 'center',
-    textTransform: 'uppercase',
+    fontFamily: "THSarabun",
   }
 });
 
@@ -169,9 +170,17 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
           <Text>ที่อยู่: {billing.billing_address} {billing.billing_sub_district}</Text>
           <Text>{billing.billing_district} {billing.billing_province} {billing.billing_zipcode} </Text>
           <Text>เบอร์โทร {billing.billing_tel} </Text>
-          <Text>{billing.createdAt}</Text>
-
+          {/* <Text>{billing.createdAt}</Text> */}
         </View>
+      )
+    })
+  }
+  const dateTime = () => {
+    console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1));
+    const billing_address_one = listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1)
+    return billing_address_one.map((billing) => {
+      return (
+          <Text style={styles.date}>{billing.createdAt}</Text>
       )
     })
   }
@@ -223,31 +232,27 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
     <Document>
       <Page size="A4" style={styles.page}
       >
-
-        {/* <View style={styles.section}>
-          <Text>OID : {order_pdf}</Text>
-        </View> */}
         <Image style={styles.logo} src={"https://scontent.fbkk18-2.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cCtvlt3PX1YAX9reaWW&_nc_ht=scontent.fbkk18-2.fna&oh=00_AfDRlxZhIaNzRfbu0lqHMGy7iHqhnFvMwHvIf_v5K2WBOw&oe=64286505"} />
 
         <View style={styles.header}>
-          <Text style={styles.reportTitle}>ใบเสร็จ</Text>
+          <Text style={styles.header}>ใบเสร็จ</Text>
         </View>
         <View style={styles.invoiceNoContainer}>
-          <Text style={styles.label}>Invoice No:</Text>
+          <Text style={styles.label}>เลขที่ใบเสร็จ : </Text>
           <Text style={styles.invoiceDate}>{order_pdf}</Text>
+         
         </View >
-        {/* 
-        <View>
-          {Order_biller()}
-        </View> */}
+        <View style={styles.invoiceNoContainer}>
+          <Text style={styles.label}>วันที่ : </Text>
+          <Text style={styles.invoiceDate}>{dateTime()}</Text>
+        </View >
+
 
         <View style={styles.headerContainer}>
           <Text style={styles.billTo}>Bill To:</Text>
           {billingAddress()}
         </View>
-        {/* <View style={styles.header}>
-          <Text>ที่อยู่ในการออกใบเสร็จ</Text>
-        </View> */}
+    
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
@@ -268,7 +273,7 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
           </View>
         </View>
         <View>{OrderPDFData()}</View>
-        <View style={styles.total}>
+        <View style={styles.header}>
           <Text>
             ราคารวม {getTotal()}
           </Text>
