@@ -693,7 +693,7 @@ export default function CheckOut() {
                 <p>ปรีชาพานิชย์ 043-3-77946-0</p>
               </div>
               <div>
-                {/* <img src={require("../../uploads/file-1678978441539.jpg")} /> */}
+                <img src={"https://scontent.fbkk18-2.fna.fbcdn.net/v/t1.15752-9/334910878_930587868361066_8570669306536249133_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=yo_N1wMtqskAX-B7Dkd&_nc_ht=scontent.fbkk18-2.fna&oh=03_AdTZbk2f_r3sYtBaav9RWSilftM8pA7aVZg9GCWjFrXk_w&oe=644A8F15"} />
                 <input
                   id="photo"
                   type="file"
