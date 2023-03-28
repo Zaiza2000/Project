@@ -68,10 +68,32 @@ export default function OrderUser() {
     </thead>
 
   );
+  const getTotal = (user_id, OID) => {
+    const total_price = listorderUser.reduce((total_price, inner_item) => {
+      if (inner_item.OID === OID) {
+        // console.log("inner_item.price: ", (inner_item.price * inner_item.quantity), "\ninner_item.quantity: ", inner_item.quantity + "\ntotal:", total);
+        return total_price + (inner_item.price * inner_item.quantity);
+      } else {
+        return total_price
+      }
+    }, 0)
+
+    // console.log("Total price: ", total_price, "\nTotal price type: ", typeof total_price);
+    console.log("====== END: getTotal(user_id, OID) ======");
+    return total_price;
+  };
+  // const getAddressBilling = (user_id, OID) => {
+  //   return listorderUser.map((inner_item) => {
+  //     console.log("billing address: ", inner_item.billing_address);
+  //     if (inner_item.OID === OID) {
+  //       return inner_item.billing_address
+  //     }
+  //   })
+  // }
 
   const tableData_user = (user_id, OID) => {
     return listorderUser.map((inner_item) => {
-      console.log("inner_item:", inner_item);
+      // console.log("inner_item:", inner_item);
       if (inner_item.OID === OID) {
         return (
           <tbody>
@@ -87,6 +109,7 @@ export default function OrderUser() {
               <td className="px-6 py-4">{inner_item.product_detail}</td>
               <td className="px-6 py-4">{inner_item.quantity}</td>
               <td className="px-6 py-4">{inner_item.price}</td>
+              <td className="px-6 py-4">{inner_item.total}</td>
             </tr>
           </tbody>
         );
@@ -100,41 +123,37 @@ export default function OrderUser() {
     <div className="flex flex-row">
       <MenubarMember />
       {/* <h1>Order User</h1> */}
-      <div className="p-6">
+      <div className="p-10">
         <h3 className="text-4xl font-bold text-purple-600">
           ประวัติการสั่งซื้อ
         </h3>
         {/* {orderUser} */}
+        {/* {getAddressBilling()} */}
+
         {orderUser.map((OID) => (
-          <div>
+          <div className="">
             <table className="w-full text-sm text-left text-black bg-blue-400 ">
               {tableHead}
               {tableData_user(user.id, OID)}
             </table>
-            <br></br>
 
-            <div >
+            <div className="w-full   text-sm  text-black bg-blue-100 ">
+              <div className="jutiify-between">ราคารวม {getTotal(user.id, OID)} บาท</div>
+            </div>
 
-              {/* <PDFPreview>
-                <OrderPDF order_pdf={OID} />
-              </PDFPreview> */}
-
+            <div className="pt-6 pb-6">
               <PDFDownloadLink
 
                 className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
                   <OrderPDF order_pdf={OID} listorderUser={listorderUser} user={user} />
-
                 }
                 fileName="ใบเสร็จ.pdf">
                 <button >
                   ดาวน์โหลดใบเสร็จ PDF
                 </button>
-
               </PDFDownloadLink>
-
             </div>
-            <br></br>
           </div>
         ))}
       </div>

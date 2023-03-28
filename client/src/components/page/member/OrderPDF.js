@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   Font,
+  Image,
 } from "@react-pdf/renderer";
 import fontDev from "./THSarabun.ttf";
 import React, { useState, useEffect } from "react";
@@ -17,7 +18,44 @@ Font.register({ family: "THSarabun", src: fontDev });
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "white",
+    fontFamily: 'Helvetica',
+    fontSize: 11,
+    paddingTop: 30,
+    paddingLeft: 60,
+    paddingRight: 60,
+    lineHeight: 1.5,
+    flexDirection: 'column',
+  },
+  logo: {
+    width: 74,
+    height: 66,
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  headerContainer: {
+    marginTop: 36,
+    fontFamily: "THSarabun",
+  },
+  billTo: {
+    marginTop: 20,
+    paddingBottom: 3,
+    fontFamily: 'Helvetica-Oblique'
+  },
+  invoiceNoContainer: {
+    flexDirection: 'row',
+    marginTop: 36,
+    justifyContent: 'flex-end'
+  },
+  invoiceDateContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  invoiceDate: {
+    fontSize: 12,
+    fontStyle: 'bold',
+  },
+  label: {
+    width: 60
   },
   section: {
     margin: 10,
@@ -75,11 +113,30 @@ const styles = StyleSheet.create({
     fontFamily: "THSarabun",
     fontSize: 13,
   },
+  total: {
+    width: '15%',
+    textAlign: 'right',
+    paddingRight: 8,
+    fontFamily: "THSarabun",
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    marginTop: 24,
+    fontFamily: "THSarabun",
+  },
+  reportTitle: {
+    color: '#61dafb',
+    letterSpacing: 4,
+    fontSize: 25,
+    textAlign: 'center',
+    textTransform: 'uppercase',
+  }
 });
 
 export default function OrderPDF({ order_pdf, listorderUser, user }) {
   const [handle_repeat, set_handle_repeat] = useState(true);
   const [billing_address, set_billing_address] = useState([])
+  // const [billing_address_status, set_billing_address_status] = useState(true)
 
   useEffect(() => {
     get_order_detail_by_oid(user.id, order_pdf).then((res) => {
@@ -103,18 +160,39 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
   // }
 
   const billingAddress = () => {
-    return listorderUser.map((billing) => {
-      if (billing.OID === order_pdf) {
-        return (<View>
-          <Text style={styles.h1}>{billing.billing_firstname}{billing.billing_lastname}</Text>
+    console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1));
+    const billing_address_one = listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1)
+    return billing_address_one.map((billing) => {
+      return (
+        <View>
+          <Text>ชื่อ: {billing.billing_firstname} {billing.billing_lastname}</Text>
+          <Text>ที่อยู่: {billing.billing_address} {billing.billing_sub_district}</Text>
+          <Text>{billing.billing_district} {billing.billing_province} {billing.billing_zipcode} </Text>
+          <Text>เบอร์โทร {billing.billing_tel} </Text>
+          <Text>{billing.createdAt}</Text>
+
         </View>
-        )
-      }
+      )
     })
   }
+  const getTotal = () => {
+    const total_price = listorderUser.reduce((total_price, inner_item) => {
+      if (inner_item.OID === order_pdf) {
+        return total_price + (inner_item.price * inner_item.quantity);
+      } else {
+        console.log("total price: ", total_price)
+        return total_price
+      }
+
+    }, 0)
+    // console.log("====== END: getTotal(user_id, OID) ======");
+    return total_price;
+  };
+
   const OrderPDFData = () => {
     return listorderUser.map((inner_item) => {
       if (inner_item.OID === order_pdf) {
+
         return (
 
           <View style={styles.tableRow}>
@@ -143,27 +221,33 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
+      <Page size="A4" style={styles.page}
+      >
+
+        {/* <View style={styles.section}>
           <Text>OID : {order_pdf}</Text>
-        </View>
+        </View> */}
+        <Image style={styles.logo} src={"https://scontent.fbkk18-2.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cCtvlt3PX1YAX9reaWW&_nc_ht=scontent.fbkk18-2.fna&oh=00_AfDRlxZhIaNzRfbu0lqHMGy7iHqhnFvMwHvIf_v5K2WBOw&oe=64286505"} />
 
         <View style={styles.header}>
-          <Text>ใบเสร็จ</Text>
+          <Text style={styles.reportTitle}>ใบเสร็จ</Text>
         </View>
-{/* 
+        <View style={styles.invoiceNoContainer}>
+          <Text style={styles.label}>Invoice No:</Text>
+          <Text style={styles.invoiceDate}>{order_pdf}</Text>
+        </View >
+        {/* 
         <View>
           {Order_biller()}
         </View> */}
 
-        <View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.billTo}>Bill To:</Text>
           {billingAddress()}
         </View>
-        <View style={styles.header}>
-          <Text>ที่อยู่ในการออกใบเสร็จ
-            {/* {billingAddress.billing_firstname} */}
-          </Text>
-        </View>
+        {/* <View style={styles.header}>
+          <Text>ที่อยู่ในการออกใบเสร็จ</Text>
+        </View> */}
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
@@ -184,6 +268,11 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
           </View>
         </View>
         <View>{OrderPDFData()}</View>
+        <View style={styles.total}>
+          <Text>
+            ราคารวม {getTotal()}
+          </Text>
+        </View>
       </Page>
     </Document>
   );
