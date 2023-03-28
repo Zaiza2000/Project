@@ -721,6 +721,8 @@ export default function CheckOut() {
                 <input
                   type="text"
                   name="tax_id"
+                  maxlength="13"
+                  pattern="[0-9]*"
                   placeholder="1234567890111"
                   onChange={(e) => handleChange(e)}
                   className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
