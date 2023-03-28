@@ -7,6 +7,7 @@ import { Badge } from "antd";
 import {
   DownOutlined,
   UserOutlined,
+  HistoryOutlined
 } from "@ant-design/icons";
 // Router
 import { Link, useNavigate } from "react-router-dom";
@@ -142,7 +143,12 @@ export default function Navbar() {
                           <Link to="/admin/index"><UserOutlined /></Link>
 
                         ) : (
-                          <Link to="/member/index"><UserOutlined /></Link>
+                          <div>
+                            <Link className="pr-[40px]" to="/OrderUser"><HistoryOutlined /></Link>
+                            <Link to="/member/index"><UserOutlined /></Link>
+
+                          </div>
+
                         )
                       }
                       <div onClick={logout}>
