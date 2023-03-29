@@ -520,6 +520,8 @@ export default function CheckOut() {
                   <input
                     type="text"
                     name="shipping_tel"
+                    maxlength="10"
+                    pattern="[0-9]*"
                     placeholder="098-888-8888"
                     onChange={(e) => handleChange(e)}
                     value={value.shipping_tel}
@@ -668,6 +670,8 @@ export default function CheckOut() {
                   <input
                     type="text"
                     name="billing_tel"
+                    maxlength="10"
+                    pattern="[0-9]*"
                     placeholder="098-888-8888"
                     onChange={(e) => handleChange(e)}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"

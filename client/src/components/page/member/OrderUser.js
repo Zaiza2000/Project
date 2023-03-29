@@ -90,7 +90,25 @@ export default function OrderUser() {
   //     }
   //   })
   // }
-
+  const getPaymentPhoto = (user_id, OID) => {
+    console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === OID).slice(-1));
+    const payment_photo = listorderUser.filter((inner_item) => inner_item.OID === OID).slice(-1)
+    return payment_photo.map((payment) => {
+      return (
+        <img src={payment.payment_photo} />
+      )
+    })
+  }
+  // const getPaymentPhoto = (user_id, OID) => {
+  //   return listorderUser.map((inner_item) => {
+  //     // console.log("inner_item:", inner_item);
+  //     if (inner_item.OID === OID) {
+  //       return (
+  //            <img src={inner_item.payment_photo} />
+  //       );
+  //     }
+  //   });
+  // };
   const tableData_user = (user_id, OID) => {
     return listorderUser.map((inner_item) => {
       // console.log("inner_item:", inner_item);
@@ -139,6 +157,8 @@ export default function OrderUser() {
 
             <div className="w-full   text-sm  text-black bg-blue-100 ">
               <div className="jutiify-between">ราคารวม {getTotal(user.id, OID)} บาท</div>
+              {/* <div className="jutiify-between">หลักฐานการโอนเงิน {getPaymentPhoto(user.id, OID)} </div>
+              <img src="file-1680064457430.jpg" /> */}
             </div>
 
             <div className="pt-6 pb-6">

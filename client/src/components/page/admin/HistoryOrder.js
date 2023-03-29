@@ -118,7 +118,7 @@ export default function HistoryOrder() {
         <td className="px-6 py-4">{inner_item.quantity}</td>
         <td className="px-6 py-4">{inner_item.price}</td>
         <td className="px-6 py-4">{inner_item.cost}</td>
-
+        {/* <td className="px-6 py-4" > <img src={inner_item.payment_photo} alt=""/></td> */}
       </tr>
     </tbody>
    ))}
