@@ -68,7 +68,8 @@ export default function CreateProduct() {
         loadData();
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error.response.data);
+          alert(error.response.data);
       });
   };
 

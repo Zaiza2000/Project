@@ -1,7 +1,6 @@
 const Product = require("../models/Product.js");
 const Category = require("../models/Category.js");
 
-
 //############ Product.js ################//
 exports.listProduct = async (req, res) => {
   try {
@@ -32,8 +31,13 @@ exports.createProduct = async (req, res) => {
       message: "Product successfully",
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).send("==Server Error==");
+    console.log(Object.keys(error))
+    
+    if (error.parent.errno === 1062) {
+      res.status(500).send("==มีสินค้าในระบบอยู่แล้ว==");
+    } else {
+      res.status(500).send("==Server Error==");
+    }
   }
 };
 
@@ -67,7 +71,6 @@ exports.deleteProduct = async (req, res) => {
 
 //############ Search  ################
 
-
 const handleQuery = async (req, res) => {
   try {
     const product_name = req.body;
@@ -78,16 +81,16 @@ const handleQuery = async (req, res) => {
         [Op.or]: [
           {
             product_name: {
-              [Op.substring]: [product_name.query]
-            }
+              [Op.substring]: [product_name.query],
+            },
           },
           {
             product_detail: {
-              [Op.substring]: [product_detail.query]
-            }
-          }
-        ]
-      }
+              [Op.substring]: [product_detail.query],
+            },
+          },
+        ],
+      },
     });
     res.json(products);
   } catch (error) {
@@ -104,20 +107,20 @@ const handlePrice = async (req, res, price) => {
         product_sale: {
           [Op.gte]: product_sale.price[0],
           [Op.lte]: product_sale.price[1],
-        }
-      }
+        },
+      },
     });
     res.json(products);
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");
   }
-}
+};
 const handleCategory = async (req, res, category) => {
   try {
     const category_id = req.body;
     const products = await Product.findAll({
-      where: { category_id: category_id.category }
+      where: { category_id: category_id.category },
     });
     res.json(products);
   } catch (error) {
