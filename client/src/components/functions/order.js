@@ -7,6 +7,7 @@ export const listOrder = async (authtoken) => {
     },
   });
 };
+
 export const CreateOrder = async (authtoken, values) => {
   console.log("CreateOrder - order.js: ", values);
   const file = document.querySelector("#photo").files[0];
@@ -28,4 +29,8 @@ export const CreateOrder = async (authtoken, values) => {
     }
   );
   return result;
+};
+
+export const changeStatus = async (values) => {
+  return await axios.post(process.env.REACT_APP_API + "/changeStatus", values);
 };
