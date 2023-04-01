@@ -62,3 +62,18 @@ exports.CreateOrder = async (req, res) => {
       .send("==CreateOrder Server Error in order.js at line 37 ==");
   }
 };
+
+//TODO: status orders
+exports.changeStatus = async (req, res) => {
+  try {
+    const order = await Order.update(req.body, {
+      where: { order_id: req.body.order_id },
+    });
+    res.send(order);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("==Server Error (changeStatus-> controllers/order)==");
+  }
+};
+
+

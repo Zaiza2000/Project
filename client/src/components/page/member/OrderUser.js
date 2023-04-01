@@ -62,6 +62,9 @@ export default function OrderUser() {
         <th scope="col" className="px-6 py-3">
           ราคา
         </th>
+        <th scope="col" className="px-6 py-3">
+          สถานะ
+        </th>
 
 
       </tr>
@@ -127,6 +130,7 @@ export default function OrderUser() {
               <td className="px-6 py-4">{inner_item.product_detail}</td>
               <td className="px-6 py-4">{inner_item.quantity}</td>
               <td className="px-6 py-4">{inner_item.price}</td>
+              <td className="px-6 py-4">{inner_item.status}</td>
               <td className="px-6 py-4">{inner_item.total}</td>
             </tr>
           </tbody>

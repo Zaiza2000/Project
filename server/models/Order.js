@@ -22,6 +22,7 @@ const Order = db.define("orders", {
   tax_id: { type: DataTypes.STRING },
   payment_photo: { type: DataTypes.STRING },
   id: { type: DataTypes.INTEGER, foreignKey: true },
+  status: { type: DataTypes.STRING },
 });
 
 Order.associste = (module) => {

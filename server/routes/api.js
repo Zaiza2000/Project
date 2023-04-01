@@ -37,6 +37,7 @@ const {
   getOrderbyUser,
   getOrder,
   CreateOrder,
+  changeStatus,
 } = require("../controllers/order.js");
 
 const { CartUpdateToProduct, userCart,
@@ -117,6 +118,8 @@ router.get("/district/:id", listSubDistrict);
 //API Order => order.js//
 router.post("/createOrder", auth, upload, CreateOrder);
 router.get("/listOrder", listOrder);
+router.put("/changeStatus", changeStatus);
+
 
 
 
