@@ -52,6 +52,7 @@ export default function CheckOut() {
     billing_zipcode: "",
     tax_id: "",
     payment_photo: "",
+    status: "รอการตรวจสอบ",
     id: null,
   });
 
@@ -289,6 +290,7 @@ export default function CheckOut() {
       billing_zipcode: "",
       tax_id: "",
       payment_photo: "",
+      status: "รอการตรวจสอบ",
       id: null,
     });
 

@@ -168,7 +168,7 @@ export default function HistoryOrder() {
             </table>
             <br></br>
             <div>
-              <Select
+              <Select className="w-48"
                 value={item.status}
                 onChange={(e) => handleChangeStatus(e, item.order_id)}
               >
