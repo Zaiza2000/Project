@@ -31,6 +31,16 @@ export const CreateOrder = async (authtoken, values) => {
   return result;
 };
 
+
 export const changeStatus = async (values) => {
   return await axios.post(process.env.REACT_APP_API + "/changeStatus", values);
+};
+export const Order_status = async (values) => {
+  // console.log("API Status: ", values);
+  return await axios.post(process.env.REACT_APP_API + "/Order_status", values);
+};
+
+export const Order_status_by_OID = async (OID) => {
+  // console.log("API Status: ", values);
+  return await axios.post(process.env.REACT_APP_API + `/Order_status/${OID}`);
 };

@@ -38,6 +38,8 @@ const {
   getOrder,
   CreateOrder,
   changeStatus,
+  Order_status,
+  Order_status_by_OID
 } = require("../controllers/order.js");
 
 const { CartUpdateToProduct, userCart,
@@ -119,7 +121,8 @@ router.get("/district/:id", listSubDistrict);
 router.post("/createOrder", auth, upload, CreateOrder);
 router.get("/listOrder", listOrder);
 router.post("/changeStatus", changeStatus);
-
+router.post("/Order_status", Order_status);
+router.post("/Order_status/:OID", Order_status_by_OID);
 
 
 

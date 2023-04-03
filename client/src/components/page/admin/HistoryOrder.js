@@ -9,7 +9,9 @@ import {
   getOrderDetail,
 } from "../../functions/order_detail.js";
 import {
-  changeStatus
+  changeStatus,
+  Order_status,
+  Order_status_by_OID
 } from "../../functions/order.js";
 
 //layout
@@ -17,6 +19,7 @@ import MenubarAdmin from "../../layouts/MenubarAdmin";
 
 export default function HistoryOrder() {
   const [orderDetail, setOrderDetail] = useState([]);
+  const [orderStatus, setOrderStatus] = useState({});
 
   useEffect(() => {
     function get_has_run_status() {
@@ -39,6 +42,18 @@ export default function HistoryOrder() {
         item.listOfOID = res.data;
         localStorage.setItem(item.OID, JSON.stringify(item.listOfOID));
       });
+
+      // TODO: load order status
+      Order_status_by_OID(item.OID).then((order) => {
+        console.log("order order_status_by_OID => ", order.data.values().next().value);
+        const order_status = order.data.values().next().value;
+
+        orderStatus[order_status.OID] = order_status.status;
+      
+        const new_dict = {}
+        Object.assign(new_dict, orderStatus)
+        setOrderStatus(new_dict)
+      })
     };
 
     async function get_loadData() {
@@ -56,6 +71,9 @@ export default function HistoryOrder() {
     //console.log("requisition => ", requisition);
     show_log();
     get_loadData();
+    // load_OrderStatus();
+
+    Order_status_by_OID("OID000157")
   }, []);
 
   // TODO: Logging datae time to console
@@ -133,13 +151,42 @@ export default function HistoryOrder() {
     ));
   };
 
-  const roleData = ["รอการตรวจสอบ", "กำลังจัดส่ง"];
+  const roleData = ["รอการตรวจสอบ", "กำลังตรวจสอบข้อมูล", "กำลังจัดส่ง"];
 
-  const handleChangeStatus = (e, id) => {
+  const load_roleData = (id, item) => {
     let values = {
       order_id: id,
-      status: e,
+    }
+    
+    console.log("item: ", id, item);
+
+    // TODO: Get order object
+    const order_status = Order_status(values)
+    order_status.then((order) => {
+      console.log("Order status", order.data.values().next().value.status);
+      return order.data.values().next().value.status
+    }).then((status) => {
+      orderStatus[item.OID] = status;
+      
+      const new_dict = {}
+      Object.assign(new_dict, orderStatus)
+      setOrderStatus(new_dict)
+    })
+    
+    return orderStatus[values.order_id];
+  }
+
+  const handleChangeStatus = (e, id, OID) => {
+    let values = {
+      order_id: id,
+      status: e
     };
+
+    orderStatus[OID] = e;
+    const new_dict = {}
+    Object.assign(new_dict, orderStatus)
+    setOrderStatus(new_dict)
+
     //console.log("values" ,values)
     changeStatus(values)
       .then((res) => {
@@ -160,28 +207,30 @@ export default function HistoryOrder() {
           ประวัติการสั่งซื้อของลูกค้า
         </h3>
 
-        {orderDetail.map((item, index) => (
+        {orderDetail.map((item, index) => {
+          return (
           <div className="">
             <table className="w-full text-sm text-left text-black bg-blue-400 ">
               {tableHead}
               {tableData(item)}
             </table>
             <br></br>
+            {/* <h5 className="text-center">OrderStatus: {orderStatus[item.OID]}</h5> */}
             <div>
               <Select className="w-48"
-                value={item.status}
-                onChange={(e) => handleChangeStatus(e, item.order_id)}
+                value={orderStatus[item.OID]}
+                onChange={(e) => handleChangeStatus(e, item.listOfOID.values().next().value.order_id, item.OID)}
               >
-                {roleData.map((item, index) => (
-                  <Select.Option value={item} key={index}>
-                    {item.status}
+                {roleData.map((item_option, index) => (
+                  <Select.Option value={item_option} key={index}>
+                    {item_option.status}
                   </Select.Option>
                 ))}
               </Select>
             </div>
             <br></br>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   );
