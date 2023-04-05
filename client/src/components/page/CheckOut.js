@@ -342,7 +342,7 @@ export default function CheckOut() {
         <div id="checkout" className="flex-1 w-64 ">
           ที่อยู่สำหรับจัดส่งสินค้า
           <div className="form-check">
-            <label className="form-check text-gray-800" for="flexRadioDefault2">
+            <label className="form-check text-gray-800" >
               <div>
                 <input
                   type="radio"
@@ -395,7 +395,7 @@ export default function CheckOut() {
               <div className="mt-6">
                 <div className="mb-2">
                   <label
-                    for="text"
+                    
                     className="block  font-semibold text-gray-800"
                   >
                     ชื่อ
@@ -457,7 +457,7 @@ export default function CheckOut() {
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
                       className="block  font-semibold text-gray-800"
-                      for=""
+                      
                     >
                       อำเภอ
                     </label>
@@ -480,7 +480,7 @@ export default function CheckOut() {
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
                       className="block  font-semibold text-gray-800"
-                      for=""
+                      
                     >
                       ตำบล
                     </label>
@@ -499,7 +499,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
-                    <label className="block font-semibold text-gray-800" for="">
+                    <label className="block font-semibold text-gray-800" >
                       รหัสไปรษณีย์
                     </label>
                     <input
@@ -514,7 +514,7 @@ export default function CheckOut() {
                 </div>
                 <div className="mb-2">
                   <label
-                    for="telephone"
+                    
                     className="block font-semibold text-gray-800"
                   >
                     เบอร์โทรศัพท์
@@ -522,7 +522,7 @@ export default function CheckOut() {
                   <input
                     type="text"
                     name="shipping_tel"
-                    maxlength="10"
+                    maxLength="10"
                     pattern="[0-9]*"
                     placeholder="098-888-8888"
                     onChange={(e) => handleChange(e)}
@@ -530,11 +530,7 @@ export default function CheckOut() {
                     className="block  w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                {/* <div className="mt-6">
-                  <button className="w-full px-4 py-2 mt-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
-                    ยืนยันข้อมูล
-                  </button>
-                </div> */}
+                
               </div>
             </label>
           </div>
@@ -542,23 +538,16 @@ export default function CheckOut() {
         {/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Billing   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,<<<<<<<<<<<<<<<<<<*/}
         <div id="checkout" className="flex-1 w-64 ">
           ที่อยู่ในการออกใบเสร็จ
-          <label for="text" className="block font-semibold text-gray-800">
+          <label  className="block font-semibold text-gray-800">
             <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
           </label>
-          {/* <div className="form-check ">
-            <label
-              className="form-check-label inline-block text-gray-800"
-              for="flexRadioDefault1"
-            >
-               ใช้ที่อยู่เดียวกับที่อยู่ในการจัดส่ง 
-            </label>
-          </div> */}
+          
           <div className="form-check">
             <label className="form-check-label  text-gray-800">
               <div className="mt-6">
                 <div className="mb-2">
                   <label
-                    for="text"
+                    
                     className="block  font-semibold text-gray-800"
                   >
                     ชื่อ
@@ -579,7 +568,7 @@ export default function CheckOut() {
                   />
                 </div>
                 <div className="mb-2">
-                  <label for="" className="block  font-semibold text-gray-800">
+                  <label  className="block  font-semibold text-gray-800">
                     ที่อยู่
                   </label>
                   <textarea
@@ -592,7 +581,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full px-3 mb-6 md:mb-0">
-                    <label className="block font-semibold text-gray-800" for="">
+                    <label className="block font-semibold text-gray-800" >
                       จังหวัด
                     </label>
                     <select
@@ -610,7 +599,7 @@ export default function CheckOut() {
                 </div>
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
-                    <label className="block font-semibold text-gray-800" for="">
+                    <label className="block font-semibold text-gray-800" >
                       อำเภอ
                     </label>
                     <select
@@ -629,7 +618,7 @@ export default function CheckOut() {
 
                 <div className="-mx-3 mb-2">
                   <div className="w-full  px-3 mb-6 md:mb-0">
-                    <label className="block font-semibold text-gray-800" for="">
+                    <label className="block font-semibold text-gray-800" >
                       ตำบล
                     </label>
                     <select
@@ -649,7 +638,7 @@ export default function CheckOut() {
                   <div className="w-full px-3 mb-6 md:mb-0">
                     <label
                       className="block  font-semibold text-gray-800"
-                      for=""
+                     
                     >
                       รหัสไปรษณีย์
                     </label>
@@ -664,7 +653,7 @@ export default function CheckOut() {
                 </div>
                 <div className="mb-2">
                   <label
-                    for="telephone"
+                   
                     className="block  font-semibold text-gray-800"
                   >
                     เบอร์โทรศัพท์
@@ -672,7 +661,7 @@ export default function CheckOut() {
                   <input
                     type="text"
                     name="billing_tel"
-                    maxlength="10"
+                    maxLength="10"
                     pattern="[0-9]*"
                     placeholder="098-888-8888"
                     onChange={(e) => handleChange(e)}
@@ -690,7 +679,7 @@ export default function CheckOut() {
             <div className="form-check">
               <label
                 className="form-check-label inline-block font-semibold text-gray-700"
-                for="flexRadioDefault1"
+                
               >
                 ลูกค้าต้องทำการโอนเงิน พร้อมอัปโหลดรูปภาพหลักฐานการโอนเงิน
               </label>
@@ -711,23 +700,23 @@ export default function CheckOut() {
                 />
                 <label
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  for="large_size"
+                  
                   htmlFor="customfile"
                 >
                   {filename}
                 </label>
-                {/* <lable htmlFor="customfile">{filename}</lable> */}
+            
               </div>
 
               <div className="mt-15">
-                <label for="text" className="block font-semibold text-gray-800">
+                <label className="block font-semibold text-gray-800">
                   หมายเลขประจำตัวผู้เสียภาษี
                   <p className="text-xs text-gray-600">**ไม่ระบุก็ได้**</p>
                 </label>
                 <input
                   type="text"
                   name="tax_id"
-                  maxlength="13"
+                  maxLength="13"
                   pattern="[0-9]*"
                   placeholder="1234567890111"
                   onChange={(e) => handleChange(e)}

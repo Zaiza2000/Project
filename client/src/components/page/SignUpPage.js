@@ -197,7 +197,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-first-name"
+                 
                 >
                   ชื่อ
                 </label>
@@ -215,7 +215,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-last-name"
+                 
                 >
                   นามสกุล
                 </label>
@@ -235,7 +235,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-first-name"
+                  
                 >
                   วันเกิด
                 </label>
@@ -256,7 +256,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-last-name"
+                  
                 >
                   เบอร์โทร
                 </label>
@@ -265,7 +265,7 @@ export default function SignUpPage() {
                   id="grid-tel"
                   name="tel"
                   type="text"
-                  maxlength="10"
+                  maxLength="10"
                   pattern="[0-9]*"
                   placeholder="098765xxxx"
                   onChange={(e) => handleChange(e)}
@@ -277,7 +277,7 @@ export default function SignUpPage() {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-email"
+                  
                 >
                   อีเมล
                 </label>
@@ -295,7 +295,7 @@ export default function SignUpPage() {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-email"
+                  
                 >
                   ชื่อบัญชีผู้ใช้งาน
                 </label>
@@ -314,7 +314,7 @@ export default function SignUpPage() {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-password"
+                  
                 >
                   รหัสผ่าน
                 </label>
@@ -324,7 +324,7 @@ export default function SignUpPage() {
                   type="password"
                   name="password"
                   pattern="[A-za-z0-9]*"
-                  minlength="6"
+                  minLength="6"
                   onChange={(e) => handleChange(e)}
                   required
                 />
@@ -335,7 +335,7 @@ export default function SignUpPage() {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-password"
+                  
                 >
                   ยืนยันรหัสผ่าน
                 </label>
@@ -343,7 +343,7 @@ export default function SignUpPage() {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-confirmpassword"
                   type="password"
-                  minlength="6"
+                  minLength="6"
                   pattern="[A-za-z0-9]*"
                   name="confirmPassword"
                   onChange={(e) => handleChange(e)}
@@ -356,7 +356,7 @@ export default function SignUpPage() {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-password"
+                 
                 >
                   ที่อยู่
                 </label>
@@ -375,7 +375,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for=""
+                  
                 >
                   จังหวัด
                 </label>
@@ -396,7 +396,7 @@ export default function SignUpPage() {
                 <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for=""
+                    
                   >
                     อำเภอ
                   </label>
@@ -420,7 +420,7 @@ export default function SignUpPage() {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for=""
+                  
                 >
                   ตำบล
                 </label>
@@ -441,7 +441,7 @@ export default function SignUpPage() {
                 <div className="w-64 md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for=""
+                    
                   >
                     รหัสไปรษณีย์
                   </label>
