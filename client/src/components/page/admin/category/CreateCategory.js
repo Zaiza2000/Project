@@ -82,7 +82,7 @@ export default function CreateCategory() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                  
                 >
                   รหัสประเภทของสินค้า
                 </label>
@@ -101,7 +101,7 @@ export default function CreateCategory() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                 
                 >
                   ชื่อประเภทของสินค้า
                 </label>
@@ -120,7 +120,7 @@ export default function CreateCategory() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                 
                 >
                   รายละเอียดประเภทสินค้า
                 </label>
@@ -152,26 +152,26 @@ export default function CreateCategory() {
             <table className="mt-10 w-full text-l text-left text-gray-900 ">
               <thead className="text-l text-gray-700 uppercase bg-blue-200 ">
                 <tr>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" className="px-10 py-3">
                     Category ID
                   </th>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" className="px-10 py-3">
                     {" "}
                     Name
                   </th>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" className="px-10 py-3">
                     {" "}
                     Detail
                   </th>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" className="px-10 py-3">
                     {" "}
                     CreatedAt
                   </th>
-                  <th scope="col" class="px-10 py-3">
+                  <th scope="col" className="px-10 py-3">
                     {" "}
                     UpdateAt
                   </th>
-                  <th scope="col" class="px-16 py-3">
+                  <th scope="col" className="px-16 py-3">
                     {" "}
                     Actions
                   </th>
@@ -179,7 +179,7 @@ export default function CreateCategory() {
               </thead>
               <tbody className="block md:table-row-group">
                 {category.map((item) => (
-                  <tr class="bg-white border-b hover:bg-gray-50 ">
+                  <tr className="bg-white border-b hover:bg-gray-50 ">
                     <td className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold"></span>
                       {item.category_id}

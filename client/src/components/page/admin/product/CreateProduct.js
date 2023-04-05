@@ -85,7 +85,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                 
                 >
                   ชื่อสินค้า
                 </label>
@@ -104,7 +104,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                
                 >
                   ราคาทุน
                 </label>
@@ -124,7 +124,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                  
                 >
                   ราคาขาย
                 </label>
@@ -144,7 +144,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                 
                 >
                   รายละเอียด
                 </label>
@@ -163,7 +163,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                
                 >
                   จำนวนสินค้า
                 </label>
@@ -183,7 +183,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                  
                 >
                   Photo (URL)
                 </label>
@@ -202,7 +202,7 @@ export default function CreateProduct() {
               <div className="md:w-1/3">
                 <label
                   className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  for="inline-full-name"
+                 
                 >
                   รหัสประเภทของสินค้า
                 </label>

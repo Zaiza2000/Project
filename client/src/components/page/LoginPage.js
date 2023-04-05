@@ -82,7 +82,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="mt-6">
             <div className="mb-2">
               <label
-                for="text"
+               
                 className="block text-sm font-semibold text-gray-800"
               >
                 Username
@@ -96,7 +96,7 @@ export default function LoginPage() {
             </div>
             <div className="mb-2">
               <label
-                for="password"
+                
                 className="block text-sm font-semibold text-gray-800"
               >
                 Password

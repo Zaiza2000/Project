@@ -103,7 +103,7 @@ export default function AdminSideDrawer(item) {
                                             {/* <p className="text-gray-500"> {item.count} ชิ้น </p> */}
                                             <div className="flex items-center justify-end flex-1 gap-2">
                                                 <form>
-                                                    <label for="Line3Qty" class="sr-only"> Quantity </label>
+                                                    <label  class="sr-only"> Quantity </label>
 
                                                     <input
                                                         onChange={handleChangeCount}
