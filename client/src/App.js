@@ -49,7 +49,7 @@ import AdminRoutes from "./components/routes/AdminRoutes";
 import CheckOut from "./components/page/CheckOut";
 // Drawer
 import SideDrawer from "./components/drawer/SideDrawer";
-import AdminSideDrawer from "./components/drawer/AdminSideDrawer";
+
 function App() {
   const dispatch = useDispatch();
 

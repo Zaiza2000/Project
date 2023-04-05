@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     fontFamily: "THSarabun",
   },
   billTo: {
-    marginTop: 20,
+    
     paddingBottom: 3,
     fontFamily: 'Helvetica-Oblique'
   },
@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   //ใบเสร็จ
   header: {
     textAlign: "center",
-    margin: 20,
     fontFamily: "THSarabun",
     fontSize: 23,
     textDecoration: "underline",
@@ -235,10 +234,10 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
         <Image style={styles.logo} src={"https://scontent.fbkk18-2.fna.fbcdn.net/v/t39.30808-6/271791862_4906494072748391_4394616534573215469_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cCtvlt3PX1YAX9reaWW&_nc_ht=scontent.fbkk18-2.fna&oh=00_AfDRlxZhIaNzRfbu0lqHMGy7iHqhnFvMwHvIf_v5K2WBOw&oe=64286505"} />
 
         <View style={styles.header}>
-          <Text style={styles.header}>ใบเสร็จ</Text>
+          <Text style={styles.header}>ใบคำสั่งซื่อ</Text>
         </View>
         <View style={styles.invoiceNoContainer}>
-          <Text style={styles.label}>เลขที่ใบเสร็จ : </Text>
+          <Text style={styles.label}>เลขที่ใบสั่งซื้อ : </Text>
           <Text style={styles.invoiceDate}>{order_pdf}</Text>
          
         </View >

@@ -166,20 +166,21 @@ export default function OrderUser() {
             </div>
 
             <div className="pt-6 pb-6">
+              {/* <button className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg" >
+                ดูใบสั่งซื้อ
+              </button> */}
               <PDFDownloadLink
 
-                className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
+                className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg mr-2"
                 document={
                   <OrderPDF order_pdf={OID} listorderUser={listorderUser} user={user} />
                 }
-                fileName="ใบเสร็จ.pdf">
+                fileName="ใบสั่งซื้อ.pdf">
                 <button >
-                  ดาวน์โหลดใบเสร็จ PDF
+                  ดาวน์โหลดใบสั่งซื้อ PDF
                 </button>
               </PDFDownloadLink>
-            </div>
-            <div className="pt-6 pb-6">
-              <PDFDownloadLink
+               <PDFDownloadLink
 
                 className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
@@ -192,6 +193,7 @@ export default function OrderUser() {
                 </button>
               </PDFDownloadLink>
             </div>
+           
           </div>
         ))}
       </div>
