@@ -466,7 +466,7 @@ export default function SignUpPage() {
                         </a> */}
             <div className="mt-6">
               <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-purple-600">
-                <Link to="/login">สมัครสมาชิก</Link>
+                <Link to="#">สมัครสมาชิก</Link>
               </button>
             </div>
           </form>
@@ -474,7 +474,7 @@ export default function SignUpPage() {
           <p className="mt-8 text-xs font-light text-center text-gray-700">
             {" "}
             มีบัญชีผู้ใช้แล้ว{" "}
-            <a href="#" className="font-medium text-red-600 hover:underline">
+            <a href="/login" className="font-medium text-red-600 hover:underline">
               Login
             </a>
           </p>
