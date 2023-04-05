@@ -1,7 +1,7 @@
 import "../../App.css";
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import moment from 'moment';
+import moment from "moment";
 //function
 import { signUp } from "../functions/auth";
 import {
@@ -20,7 +20,6 @@ export default function SignUpPage() {
   const [zipcode, setZipcode] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-
   const [value, setValue] = useState({
     firstname: "",
     lastname: "",
@@ -35,7 +34,7 @@ export default function SignUpPage() {
     district: "",
     province: "",
     zipcode: "",
-    role: "",
+    role: "member",
   });
 
   useEffect(() => {
@@ -112,66 +111,79 @@ export default function SignUpPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(value);
-    var alert_status;
-    if (value.password !== value.confirmPassword) {
-      alert("รหัสผ่านไม่ตรงกัน");
-      alert_status = true;
-    } if (!value.email) {
-      alert("กรุณากรอกข้อมูลอีเมล");
-      alert_status = true;
-    } if (!value.firstname) {
-      alert("กรุณากรอกข้อมูลชื่อ");
-      alert_status = true;
-    } if (!value.lastname) {
-      alert("กรุณากรอกข้อมูลนามสกุล");
-      alert_status = true;
-    } if (!value.tel) {
-      alert("กรุณากรอกข้อมูลเบอร์โทร");
-    } if (!value.birthdate) {
-      alert("กรุณากรอกข้อมูลวันเกิด");
-      alert_status = true;
-    } if (!value.username) {
-      alert("กรุณากรอกข้อมูลชื่อบัญชีผู้ใช้งาน");
-      alert_status = true;
-    } if (!value.password) {
-      alert("กรุณากรอกข้อมูลรหัสผ่าน");
-      alert_status = true;
-    } if (!value.address) {
-      alert("กรุณากรอกข้อมูลที่อยู่");
-      alert_status = true;
-    } if (!value.province) {
-      alert("กรุณากรอกข้อมูลจังหวัด");
-      alert_status = true;
-    } if (!value.sub_district) {
-      alert("กรุณากรอกข้อมูลตำบล");
-      alert_status = true;
-    } if (!value.district) {
-      alert("กรุณากรอกข้อมูลอำเภอ");
-      alert_status = true;
-    } if (!value.zipcode) {
-      alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
-      alert_status = true;
-    }
-
-    if (alert_status) {
-
-    }
-    else {
-      signUp(value)
-        .then((res) => {
-          console.log(res.data);
-          alert("ลงทะเบียนสำเร็จ");
-          navigate("/login");
-        })
-
-        .catch((error) => {
-          console.log(error.response.data);
-          alert(error.response.data);
-        });
-    }
+    signUp(value)
+      .then((res) => {
+        console.log(res.data);
+        alert("ลงทะเบียนสำเร็จ");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        alert(error.response.data);
+      });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   var alert_status;
+  //   if (value.password !== value.confirmPassword) {
+  //     alert("รหัสผ่านไม่ตรงกัน");
+  //     alert_status = true;
+  //   } if (!value.email) {
+  //     alert("กรุณากรอกข้อมูลอีเมล");
+  //     alert_status = true;
+  //   } if (!value.firstname) {
+  //     alert("กรุณากรอกข้อมูลชื่อ");
+  //     alert_status = true;
+  //   } if (!value.lastname) {
+  //     alert("กรุณากรอกข้อมูลนามสกุล");
+  //     alert_status = true;
+  //   } if (!value.tel) {
+  //     alert("กรุณากรอกข้อมูลเบอร์โทร");
+  //   } if (!value.birthdate) {
+  //     alert("กรุณากรอกข้อมูลวันเกิด");
+  //     alert_status = true;
+  //   } if (!value.username) {
+  //     alert("กรุณากรอกข้อมูลชื่อบัญชีผู้ใช้งาน");
+  //     alert_status = true;
+  //   } if (!value.password) {
+  //     alert("กรุณากรอกข้อมูลรหัสผ่าน");
+  //     alert_status = true;
+  //   } if (!value.address) {
+  //     alert("กรุณากรอกข้อมูลที่อยู่");
+  //     alert_status = true;
+  //   } if (!value.province) {
+  //     alert("กรุณากรอกข้อมูลจังหวัด");
+  //     alert_status = true;
+  //   } if (!value.sub_district) {
+  //     alert("กรุณากรอกข้อมูลตำบล");
+  //     alert_status = true;
+  //   } if (!value.district) {
+  //     alert("กรุณากรอกข้อมูลอำเภอ");
+  //     alert_status = true;
+  //   } if (!value.zipcode) {
+  //     alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
+  //     alert_status = true;
+  //   }
+
+  //   if (alert_status) {
+
+  //   }
+  //   else {
+  //     signUp(value)
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         alert("ลงทะเบียนสำเร็จ");
+  //         navigate("/login");
+  //       })
+
+  //       .catch((error) => {
+  //         console.log(error.response.data);
+  //         alert(error.response.data);
+  //       });
+  //   }
+  // };
 
   return (
     <div className="App">
@@ -196,6 +208,7 @@ export default function SignUpPage() {
                   name="firstname"
                   placeholder="สมหญิง"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
                 {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
               </div>
@@ -214,6 +227,7 @@ export default function SignUpPage() {
                   name="lastname"
                   placeholder="วาเลนติโน"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -231,9 +245,10 @@ export default function SignUpPage() {
                   id="grid-birthdate"
                   name="birthdate"
                   type="date"
-                  max={moment().format('YYYY-MM-DD')}
-                  value={moment(selectedDate).format('YYYY-MM-DD')}
+                  max={moment().format("YYYY-MM-DD")}
+                  value={moment(selectedDate).format("YYYY-MM-DD")}
                   onChange={(e) => handleChange(e)}
+                  required
                 />
 
                 {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
@@ -254,6 +269,7 @@ export default function SignUpPage() {
                   pattern="[0-9]*"
                   placeholder="098765xxxx"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -270,8 +286,8 @@ export default function SignUpPage() {
                   id="email"
                   type="email"
                   name="email"
-
                   onChange={(e) => handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -290,6 +306,7 @@ export default function SignUpPage() {
                   name="username"
                   pattern="[A-za-z0-9]*"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -309,6 +326,7 @@ export default function SignUpPage() {
                   pattern="[A-za-z0-9]*"
                   minlength="6"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
                 {/* <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> */}
               </div>
@@ -329,6 +347,7 @@ export default function SignUpPage() {
                   pattern="[A-za-z0-9]*"
                   name="confirmPassword"
                   onChange={(e) => handleChange(e)}
+                  required
                 />
                 {/* <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p> */}
               </div>
@@ -348,6 +367,7 @@ export default function SignUpPage() {
                   name="address"
                   placeholder="88/8 หมู่ 8 "
                   onChange={(e) => handleChange(e)}
+                  required
                 />
               </div>
             </div>
@@ -360,6 +380,7 @@ export default function SignUpPage() {
                   จังหวัด
                 </label>
                 <select
+                  required
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   name="province"
                   onChange={(e) => onChangeProvince(e)}
@@ -380,6 +401,7 @@ export default function SignUpPage() {
                     อำเภอ
                   </label>
                   <select
+                    required
                     className="appearance-none block w-64 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     name="district"
                     onChange={(e) => onChangeDistrict(e)}
@@ -403,6 +425,7 @@ export default function SignUpPage() {
                   ตำบล
                 </label>
                 <select
+                  required
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   name="sub_district"
                   onChange={(e) => onChangeSubDistrict(e)}
@@ -429,6 +452,7 @@ export default function SignUpPage() {
                     name="zipcode"
                     value={value.zipcode}
                     onChange={(e) => handleChange(e)}
+                    required
                   />
                 </div>
               </div>
@@ -450,10 +474,7 @@ export default function SignUpPage() {
           <p className="mt-8 text-xs font-light text-center text-gray-700">
             {" "}
             มีบัญชีผู้ใช้แล้ว{" "}
-            <a
-              href="#"
-              className="font-medium text-red-600 hover:underline"
-            >
+            <a href="#" className="font-medium text-red-600 hover:underline">
               Login
             </a>
           </p>

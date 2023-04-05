@@ -20,6 +20,7 @@ import MenubarAdmin from "../../layouts/MenubarAdmin";
 export default function HistoryOrder() {
   const [orderDetail, setOrderDetail] = useState([]);
   const [orderStatus, setOrderStatus] = useState({});
+  const [orderImages, setOrderImages] = useState({});
 
   useEffect(() => {
     function get_has_run_status() {
@@ -43,16 +44,26 @@ export default function HistoryOrder() {
         localStorage.setItem(item.OID, JSON.stringify(item.listOfOID));
       });
 
+
       // TODO: load order status
       Order_status_by_OID(item.OID).then((order) => {
         console.log("order order_status_by_OID => ", order.data.values().next().value);
         const order_status = order.data.values().next().value;
 
         orderStatus[order_status.OID] = order_status.status;
+
+        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/src", "../../..");
+
       
-        const new_dict = {}
-        Object.assign(new_dict, orderStatus)
-        setOrderStatus(new_dict)
+        const new_dict_status = {}
+        Object.assign(new_dict_status, orderStatus)
+        setOrderStatus(new_dict_status)
+        console.log("+++++++ new_dict_status ==> " , new_dict_status);
+
+        const new_dict_photo = {}
+        Object.assign(new_dict_photo, orderImages)
+        setOrderImages(new_dict_photo)
+        console.log("********new_dict_photo ==> " , new_dict_photo);
       })
     };
 
@@ -67,13 +78,10 @@ export default function HistoryOrder() {
         await loadData();
       }
     }
-
-    //console.log("requisition => ", requisition);
     show_log();
     get_loadData();
-    // load_OrderStatus();
 
-    Order_status_by_OID("OID000157")
+   
   }, []);
 
   // TODO: Logging datae time to console
@@ -187,7 +195,6 @@ export default function HistoryOrder() {
     Object.assign(new_dict, orderStatus)
     setOrderStatus(new_dict)
 
-    //console.log("values" ,values)
     changeStatus(values)
       .then((res) => {
         console.log("res.data =>", res.data);
@@ -215,7 +222,18 @@ export default function HistoryOrder() {
               {tableData(item)}
             </table>
             <br></br>
-            {/* <h5 className="text-center">OrderStatus: {orderStatus[item.OID]}</h5> */}
+            <p>{orderImages[item.OID]}</p>
+            
+            {/* <img src={orderImages[item.OID]} /> */}
+            
+            {/* <img src={require("../../../uploads/file-1680698025257.jpg")} /> */}
+            {/* <img src="../../../uploads/file-1680698025257.jpg" /> */}
+
+
+            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}            
+            <img src={orderImages[item.OID] ? (orderImages[item.OID]) : '../../../uploads/file-1680698025257.jpg'} />
+
+
             <div>
               <Select className="w-48"
                 value={orderStatus[item.OID]}
@@ -229,6 +247,7 @@ export default function HistoryOrder() {
               </Select>
             </div>
             <br></br>
+            
           </div>
         )})}
       </div>
