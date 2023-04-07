@@ -12,6 +12,8 @@ import {
   deleteProduct,
 } from "../../../../components/functions/product";
 
+import { searchFilters } from "../../../functions/product";
+
 const initialstate = {
   product_name: "",
   product_cost: "",
@@ -25,7 +27,8 @@ const initialstate = {
 export default function CreateProduct() {
   const [values, setValues] = useState(initialstate);
   const [product, setProduct] = useState([]);
-
+  const [category, setCategory] = useState([]);
+  const [categorySelect, setCategorySelect] = useState([]);
   useEffect(() => {
     loadData();
   }, []);
@@ -39,7 +42,11 @@ export default function CreateProduct() {
         console.log(err);
       });
   };
-
+  const fetchDataFilter = (arg) => {
+    searchFilters(arg).then((res) => {
+      setProduct(res.data)
+    });
+  };
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -59,9 +66,26 @@ export default function CreateProduct() {
         });
     }
   };
+  const handleCheck = (e) => {
+    // ค่าปัจจุบันที่ Check 
+    let inCheck = e.target.value
+    // ค่าเดิมของ Check 
+    let inState = [...categorySelect]
 
+    let findCheck = inState.indexOf(inCheck)
+    if (findCheck === -1) {
+      inState.push(inCheck)
+    } else {
+      inState.splice(findCheck, 1)
+    }
+    setCategorySelect(inState)
+    fetchDataFilter({ category: inState })
+    if (inState.length < 1) {
+      loadData()
+    }
+  }
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     createProduct(values)
       .then((res) => {
         alert("Insert Product success");
@@ -69,7 +93,7 @@ export default function CreateProduct() {
       })
       .catch((error) => {
         console.log(error.response.data);
-          alert(error.response.data);
+        alert(error.response.data);
       });
   };
 
@@ -83,15 +107,13 @@ export default function CreateProduct() {
           <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ชื่อสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_name"
@@ -102,15 +124,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ราคาทุน
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -122,15 +142,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ราคาขาย
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -142,15 +160,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   รายละเอียด
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_detail"
@@ -161,15 +177,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   จำนวนสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -181,15 +195,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   Photo (URL)
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_photo"
@@ -200,28 +212,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   รหัสประเภทของสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
-                {/* <select
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  name="category_id"
-                  value={values.category_id}
-                  onChange={handleChange}
-                >
-                  <option value="1">[1] ชุดแต่งH2C</option>
-                  <option value="2">[2] แบตเตอรี่</option>
-                  <option value="3">[3] ไส้กรอง</option>
-                  <option value="4">[4] หัวเทียน</option>
-                  <option value="5">[5] โซ่สเตอร์</option>
-                </select> */}
-
-<input
+                <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -230,6 +227,26 @@ export default function CreateProduct() {
                   onChange={handleChange}
                 />
               </div>
+
+              {/* <button data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">รหัสประเภทของสินค้า</button>
+              <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                  </li>
+                </ul>
+              </div> */}
+
+
             </div>
 
             <div className="md:flex md:items-center">
@@ -267,9 +284,7 @@ export default function CreateProduct() {
                   <th scope="col" className="px-6 py-3">
                     รายระเอียด
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    
-                  </th>
+                  <th scope="col" className="px-6 py-3"></th>
                   <th scope="col" className="px-14 py-3">
                     Actions
                   </th>

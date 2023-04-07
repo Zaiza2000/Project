@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
-// import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
+
 
 //function
 import {
-  listOrderDetail,
   listOrderDetailByOID,
   getOrderDetail,
 } from "../../functions/order_detail.js";
@@ -52,7 +51,7 @@ export default function HistoryOrder() {
 
         orderStatus[order_status.OID] = order_status.status;
 
-        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/src", "../../..");
+        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/public", "");
 
       
         const new_dict_status = {}
@@ -153,7 +152,7 @@ export default function HistoryOrder() {
           <td className="px-6 py-4">{inner_item.quantity}</td>
           <td className="px-6 py-4">{inner_item.price}</td>
           <td className="px-6 py-4">{inner_item.cost}</td>
-          {/* <td className="px-6 py-4" > <img src={inner_item.payment_photo} alt=""/></td> */}
+          
         </tr>
       </tbody>
     ));
@@ -222,7 +221,8 @@ export default function HistoryOrder() {
               {tableData(item)}
             </table>
             <br></br>
-            <p>{orderImages[item.OID]}</p>
+            
+            {/* <p>{orderImages[item.OID]}</p> */}
             
             {/* <img src={orderImages[item.OID]} /> */}
             
@@ -230,8 +230,15 @@ export default function HistoryOrder() {
             {/* <img src="../../../uploads/file-1680698025257.jpg" /> */}
 
 
-            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}            
-            <img src={orderImages[item.OID] ? (orderImages[item.OID]) : '../../../uploads/file-1680698025257.jpg'} />
+            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}        
+
+            <img src={
+              // console.log("orderImages[item.OID]: ", orderImages[item.OID] !== undefined)
+              orderImages[item.OID] !== undefined ? orderImages[item.OID] : 'uploads/not-image.jpg'
+              // require(orderImages[item.OID] ? '../../../uploads/file-1680861534999.jpg' : '../../../uploads/not-image.jpg')
+              // require(orderImages[item.OID] === "lk;l;" ? (orderImages[item.OID]) : '../../../uploads/file-1680861534999.jpg')
+              } className="h-full w-60 rounded-md object-cover mx-auto mb-4 border-dashed border-2 border-sky-400"
+              />
 
 
             <div>

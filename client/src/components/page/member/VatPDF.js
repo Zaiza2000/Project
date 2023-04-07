@@ -10,7 +10,7 @@ import {
 import fontDev from "./THSarabun.ttf";
 import React, { useState, useEffect } from "react";
 import { get_order_detail_by_oid } from "../../functions/order_detail.js";
-import { resolveOnChange } from "antd/es/input/Input";
+
 
 
 // Register font
@@ -135,9 +135,7 @@ const styles = StyleSheet.create({
 });
 
 export default function VatPDF({ order_pdf, listorderUser, user }) {
-    const [handle_repeat, set_handle_repeat] = useState(true);
     const [billing_address, set_billing_address] = useState([])
-    // const [billing_address_status, set_billing_address_status] = useState(true)
 
     useEffect(() => {
         get_order_detail_by_oid(user.id, order_pdf).then((res) => {
@@ -145,20 +143,7 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
         })
     }, [])
 
-    // const Order_biller = () => {
-    //   set_handle_repeat(false)
-    //   console.log("billing_address: ", billing_address);
-    //   billing_address.map((inner_item) => (
-    //     <View classs="PDF">
-    //       <View>
-    //         <Text style={styles.Text}>{billing_address.billing_firstname}</Text>
-    //       </View>
-    //       <View>
-    //         <Text style={styles.Text}>{billing_address.billing_lastname}</Text>
-    //       </View>
-    //     </View>
-    //   ))
-    // }
+
 
     const billingAddress = () => {
         console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1));
@@ -207,7 +192,19 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
         // console.log("====== END: getTotal(user_id, OID) ======");
         return total_price;
     };
+    // const getVat = () => {
+    //     const total_price = listorderUser.reduce((total_price, inner_item) => {
+    //         if (inner_item.OID === order_pdf) {
+    //             return total_price + (inner_item.price * inner_item.quantity);
+    //         } else {
+    //             console.log("total price: ", total_price)
+    //             return total_price
+    //         }
 
+    //     }, 0)
+    //     // console.log("====== END: getTotal(user_id, OID) ======");
+    //     return total_price;
+    // };
     const OrderPDFData = () => {
         return listorderUser.map((inner_item) => {
             if (inner_item.OID === order_pdf) {
