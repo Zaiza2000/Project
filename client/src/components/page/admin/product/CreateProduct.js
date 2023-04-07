@@ -12,6 +12,8 @@ import {
   deleteProduct,
 } from "../../../../components/functions/product";
 
+import { searchFilters } from "../../../functions/product";
+
 const initialstate = {
   product_name: "",
   product_cost: "",
@@ -25,7 +27,8 @@ const initialstate = {
 export default function CreateProduct() {
   const [values, setValues] = useState(initialstate);
   const [product, setProduct] = useState([]);
-
+  const [category, setCategory] = useState([]);
+  const [categorySelect, setCategorySelect] = useState([]);
   useEffect(() => {
     loadData();
   }, []);
@@ -39,7 +42,11 @@ export default function CreateProduct() {
         console.log(err);
       });
   };
-
+  const fetchDataFilter = (arg) => {
+    searchFilters(arg).then((res) => {
+      setProduct(res.data)
+    });
+  };
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -59,7 +66,24 @@ export default function CreateProduct() {
         });
     }
   };
+  const handleCheck = (e) => {
+    // ค่าปัจจุบันที่ Check 
+    let inCheck = e.target.value
+    // ค่าเดิมของ Check 
+    let inState = [...categorySelect]
 
+    let findCheck = inState.indexOf(inCheck)
+    if (findCheck === -1) {
+      inState.push(inCheck)
+    } else {
+      inState.splice(findCheck, 1)
+    }
+    setCategorySelect(inState)
+    fetchDataFilter({ category: inState })
+    if (inState.length < 1) {
+      loadData()
+    }
+  }
   const handleSubmit = (e) => {
     // e.preventDefault();
     createProduct(values)
@@ -203,6 +227,26 @@ export default function CreateProduct() {
                   onChange={handleChange}
                 />
               </div>
+
+              {/* <button data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">รหัสประเภทของสินค้า</button>
+              <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                  </li>
+                </ul>
+              </div> */}
+
+
             </div>
 
             <div className="md:flex md:items-center">

@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
 
 export default function VatPDF({ order_pdf, listorderUser, user }) {
     const [billing_address, set_billing_address] = useState([])
-    
 
     useEffect(() => {
         get_order_detail_by_oid(user.id, order_pdf).then((res) => {
@@ -144,7 +143,7 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
         })
     }, [])
 
-    
+
 
     const billingAddress = () => {
         console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === order_pdf).slice(-1));
@@ -193,7 +192,19 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
         // console.log("====== END: getTotal(user_id, OID) ======");
         return total_price;
     };
+    // const getVat = () => {
+    //     const total_price = listorderUser.reduce((total_price, inner_item) => {
+    //         if (inner_item.OID === order_pdf) {
+    //             return total_price + (inner_item.price * inner_item.quantity);
+    //         } else {
+    //             console.log("total price: ", total_price)
+    //             return total_price
+    //         }
 
+    //     }, 0)
+    //     // console.log("====== END: getTotal(user_id, OID) ======");
+    //     return total_price;
+    // };
     const OrderPDFData = () => {
         return listorderUser.map((inner_item) => {
             if (inner_item.OID === order_pdf) {

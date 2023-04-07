@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
 //function
-import {  Order_detail_join_Orders } from "../../functions/order_detail.js";
+import { Order_detail_join_Orders } from "../../functions/order_detail.js";
 
 
 //page -> PDF
 import OrderPDF from "./OrderPDF.js";
-import VatPDF from "./VatPDF";
+import VatPDF from "./VatPDF.js";
+// import VatPDF from "./VatPDF";
 
 export default function OrderUser() {
   const [orderUser, setOrderUser] = useState([]);
@@ -85,9 +86,9 @@ export default function OrderUser() {
     console.log("====== END: getTotal(user_id, OID) ======");
     return total_price;
   };
-  
-  
-  
+
+
+
   const tableData_user = (user_id, OID) => {
     return listorderUser.map((inner_item) => {
       // console.log("inner_item:", inner_item);
@@ -156,20 +157,22 @@ export default function OrderUser() {
                   ดาวน์โหลดใบสั่งซื้อ PDF
                 </button>
               </PDFDownloadLink>
-               <PDFDownloadLink
+
+            </div>
+            <div className="pt-6 pb-6">
+              <PDFDownloadLink
 
                 className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
-                 <VatPDF order_pdf={OID} listorderUser={listorderUser} user={user} />
-                 
+                  <VatPDF order_pdf={OID} listorderUser={listorderUser} user={user}/>
                 }
-                fileName="ใบเสร็จ.pdf">
+                fileName="ใบกำกับภาษี.pdf">
                 <button >
                   ดาวน์โหลดใบกำกับภาษี PDF
                 </button>
               </PDFDownloadLink>
-            </div>
-           
+            </div >
+
           </div>
         ))}
       </div>
