@@ -51,7 +51,7 @@ export default function HistoryOrder() {
 
         orderStatus[order_status.OID] = order_status.status;
 
-        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/src", "../../..");
+        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/public", "");
 
       
         const new_dict_status = {}
@@ -232,7 +232,13 @@ export default function HistoryOrder() {
 
             {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}        
 
-            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : '../../../uploads/file-1680698025257.jpg'} /> */}
+            <img src={
+              // console.log("orderImages[item.OID]: ", orderImages[item.OID] !== undefined)
+              orderImages[item.OID] !== undefined ? orderImages[item.OID] : 'uploads/not-image.jpg'
+              // require(orderImages[item.OID] ? '../../../uploads/file-1680861534999.jpg' : '../../../uploads/not-image.jpg')
+              // require(orderImages[item.OID] === "lk;l;" ? (orderImages[item.OID]) : '../../../uploads/file-1680861534999.jpg')
+              } className="h-full w-60 rounded-md object-cover mx-auto mb-4 border-dashed border-2 border-sky-400"
+              />
 
 
             <div>
