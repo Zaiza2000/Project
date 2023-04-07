@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { PDFDownloadLink, PDFPreview, PDFViewer } from '@react-pdf/renderer';
-import ReactPDF from '@react-pdf/renderer';
+import {  useSelector } from "react-redux";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+
 //function
-import { listOrderDetailByUser, Order_detail_join_Orders } from "../../functions/order_detail.js";
-import MenubarMember from "../../layouts/MenubarMember";
+import {  Order_detail_join_Orders } from "../../functions/order_detail.js";
+
 
 //page -> PDF
 import OrderPDF from "./OrderPDF.js";
@@ -85,33 +85,9 @@ export default function OrderUser() {
     console.log("====== END: getTotal(user_id, OID) ======");
     return total_price;
   };
-  // const getAddressBilling = (user_id, OID) => {
-  //   return listorderUser.map((inner_item) => {
-  //     console.log("billing address: ", inner_item.billing_address);
-  //     if (inner_item.OID === OID) {
-  //       return inner_item.billing_address
-  //     }
-  //   })
-  // }
-  const getPaymentPhoto = (user_id, OID) => {
-    console.log("listorderUser: ", listorderUser.filter((inner_item) => inner_item.OID === OID).slice(-1));
-    const payment_photo = listorderUser.filter((inner_item) => inner_item.OID === OID).slice(-1)
-    return payment_photo.map((payment) => {
-      return (
-        <img src={payment.payment_photo} />
-      )
-    })
-  }
-  // const getPaymentPhoto = (user_id, OID) => {
-  //   return listorderUser.map((inner_item) => {
-  //     // console.log("inner_item:", inner_item);
-  //     if (inner_item.OID === OID) {
-  //       return (
-  //            <img src={inner_item.payment_photo} />
-  //       );
-  //     }
-  //   });
-  // };
+  
+  
+  
   const tableData_user = (user_id, OID) => {
     return listorderUser.map((inner_item) => {
       // console.log("inner_item:", inner_item);

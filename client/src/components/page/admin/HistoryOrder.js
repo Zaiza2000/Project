@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
-// import { PDFDownloadLink,PDFPreview  } from '@react-pdf/renderer';
+
 
 //function
 import {
-  listOrderDetail,
   listOrderDetailByOID,
   getOrderDetail,
 } from "../../functions/order_detail.js";
@@ -153,7 +152,7 @@ export default function HistoryOrder() {
           <td className="px-6 py-4">{inner_item.quantity}</td>
           <td className="px-6 py-4">{inner_item.price}</td>
           <td className="px-6 py-4">{inner_item.cost}</td>
-          {/* <td className="px-6 py-4" > <img src={inner_item.payment_photo} alt=""/></td> */}
+          
         </tr>
       </tbody>
     ));
@@ -222,7 +221,8 @@ export default function HistoryOrder() {
               {tableData(item)}
             </table>
             <br></br>
-            <p>{orderImages[item.OID]}</p>
+            
+            {/* <p>{orderImages[item.OID]}</p> */}
             
             {/* <img src={orderImages[item.OID]} /> */}
             
@@ -230,8 +230,9 @@ export default function HistoryOrder() {
             {/* <img src="../../../uploads/file-1680698025257.jpg" /> */}
 
 
-            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}            
-            <img src={orderImages[item.OID] ? (orderImages[item.OID]) : '../../../uploads/file-1680698025257.jpg'} />
+            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}        
+
+            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : '../../../uploads/file-1680698025257.jpg'} /> */}
 
 
             <div>

@@ -61,7 +61,7 @@ export default function CreateProduct() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     createProduct(values)
       .then((res) => {
         alert("Insert Product success");
@@ -69,7 +69,7 @@ export default function CreateProduct() {
       })
       .catch((error) => {
         console.log(error.response.data);
-          alert(error.response.data);
+        alert(error.response.data);
       });
   };
 
@@ -83,15 +83,13 @@ export default function CreateProduct() {
           <form onSubmit={handleSubmit} className=" mr-[10%] mt-10  ">
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ชื่อสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_name"
@@ -102,15 +100,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ราคาทุน
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -122,15 +118,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   ราคาขาย
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -142,15 +136,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   รายละเอียด
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_detail"
@@ -161,15 +153,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   จำนวนสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -181,15 +171,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                  
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   Photo (URL)
                 </label>
               </div>
               <div className="md:w-2/3">
                 <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="product_photo"
@@ -200,28 +188,13 @@ export default function CreateProduct() {
             </div>
             <div className="md:flex md:items-center mb-6 ">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10"
-                 
-                >
+                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-10">
                   รหัสประเภทของสินค้า
                 </label>
               </div>
               <div className="md:w-2/3">
-                {/* <select
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  name="category_id"
-                  value={values.category_id}
-                  onChange={handleChange}
-                >
-                  <option value="1">[1] ชุดแต่งH2C</option>
-                  <option value="2">[2] แบตเตอรี่</option>
-                  <option value="3">[3] ไส้กรอง</option>
-                  <option value="4">[4] หัวเทียน</option>
-                  <option value="5">[5] โซ่สเตอร์</option>
-                </select> */}
-
-<input
+                <input
+                  required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   min="1"
@@ -267,9 +240,7 @@ export default function CreateProduct() {
                   <th scope="col" className="px-6 py-3">
                     รายระเอียด
                   </th>
-                  <th scope="col" className="px-6 py-3">
-                    
-                  </th>
+                  <th scope="col" className="px-6 py-3"></th>
                   <th scope="col" className="px-14 py-3">
                     Actions
                   </th>

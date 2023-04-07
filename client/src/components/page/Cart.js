@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ProductTableInCart from "../card/ProductTableInCart";
 // function
-// import { userCart } from "../functions/user";
+
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -15,18 +15,7 @@ export default function Cart() {
       return currenValue + nextValue.count * nextValue.product_sale;
     }, 0);
   };
-  // const handleSaveOrder = () => {
-  //   // code
-  //   alert("CheckOut Order");
-  //   userCart(user.token, cart)
-  //     .then((res) => {
-  //       // console.log(res);
-  //       navigate("/checkout");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+ 
   const handleSaveOrder = () => {
     // code
     navigate("/checkout");

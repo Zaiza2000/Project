@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { json, Link } from "react-router-dom";
 import "../../App.css";
-import Navbar from "../layouts/Navbar";
+
 import CardProductMember from "../card/CardProductMember";
 //function
 import { listProduct } from "../functions/product";

@@ -1,5 +1,5 @@
 import "../../App.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 //function
@@ -10,7 +10,6 @@ import {
   listSubDistrict,
 } from "../functions/location";
 
-// import axios from "axios";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -123,67 +122,7 @@ export default function SignUpPage() {
       });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   var alert_status;
-  //   if (value.password !== value.confirmPassword) {
-  //     alert("รหัสผ่านไม่ตรงกัน");
-  //     alert_status = true;
-  //   } if (!value.email) {
-  //     alert("กรุณากรอกข้อมูลอีเมล");
-  //     alert_status = true;
-  //   } if (!value.firstname) {
-  //     alert("กรุณากรอกข้อมูลชื่อ");
-  //     alert_status = true;
-  //   } if (!value.lastname) {
-  //     alert("กรุณากรอกข้อมูลนามสกุล");
-  //     alert_status = true;
-  //   } if (!value.tel) {
-  //     alert("กรุณากรอกข้อมูลเบอร์โทร");
-  //   } if (!value.birthdate) {
-  //     alert("กรุณากรอกข้อมูลวันเกิด");
-  //     alert_status = true;
-  //   } if (!value.username) {
-  //     alert("กรุณากรอกข้อมูลชื่อบัญชีผู้ใช้งาน");
-  //     alert_status = true;
-  //   } if (!value.password) {
-  //     alert("กรุณากรอกข้อมูลรหัสผ่าน");
-  //     alert_status = true;
-  //   } if (!value.address) {
-  //     alert("กรุณากรอกข้อมูลที่อยู่");
-  //     alert_status = true;
-  //   } if (!value.province) {
-  //     alert("กรุณากรอกข้อมูลจังหวัด");
-  //     alert_status = true;
-  //   } if (!value.sub_district) {
-  //     alert("กรุณากรอกข้อมูลตำบล");
-  //     alert_status = true;
-  //   } if (!value.district) {
-  //     alert("กรุณากรอกข้อมูลอำเภอ");
-  //     alert_status = true;
-  //   } if (!value.zipcode) {
-  //     alert("กรุณากรอกข้อมูลรหัสไปรษณีย์");
-  //     alert_status = true;
-  //   }
-
-  //   if (alert_status) {
-
-  //   }
-  //   else {
-  //     signUp(value)
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         alert("ลงทะเบียนสำเร็จ");
-  //         navigate("/login");
-  //       })
-
-  //       .catch((error) => {
-  //         console.log(error.response.data);
-  //         alert(error.response.data);
-  //       });
-  //   }
-  // };
+  
 
   return (
     <div className="App">

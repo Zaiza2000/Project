@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 //Card
 import AdminProductCard from "../../card/AdminProductCard";
 //function
@@ -10,10 +10,7 @@ import MenubarAdmin from "../../layouts/MenubarAdmin";
 export default function Requisition() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState([]);
-  const { cartAdmin, user } = useSelector((state) => ({ ...state }));
-
-  console.log("cartAdmin", cartAdmin);
-  console.log("Admin", user);
+  
 
   useEffect(() => {
     loadData();
@@ -51,15 +48,7 @@ export default function Requisition() {
           <h1>.</h1>
         )}
 
-        {/* Show Product Cart */}
-        {/* <div className="">
-          {cartAdmin.map((item, index) => (
-            <div key={index} className="">
-              {item.product_name} x {item.count}
-              <hr />
-            </div>
-          ))}
-        </div> */}
+        
 
         {/* Data Product */}
         <div className="">
@@ -94,16 +83,7 @@ export default function Requisition() {
 
               </tr>
             </thead>
-            {/* <tbody className="block md:table-row-group">
-              {product.map((item, index) => (
-                <tr className="bg-white border-b  hover:bg-gray-50 ">
-                  <td key={index} className="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                    <AdminProductCard product={item} />
-                  </td>
-                </tr>
-
-              ))}
-            </tbody> */}
+           
             {tableData()}
           </table>
         </div>

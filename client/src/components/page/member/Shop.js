@@ -1,9 +1,8 @@
 // import Search from "antd/es/transfer/search";
-import MultiRangeSlider from "multi-range-slider-react";
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // antd
-import { Checkbox, Slider } from "antd";
+import {  Slider } from "antd";
 
 //Card
 import CardProductMember from "../../card/CardProductMember";
@@ -58,7 +57,7 @@ export default function Shop() {
   // ########## load on Slider ##########
   useEffect(() => {
     fetchDataFilter({ price }) // [0,0]
-  }, [ok]);
+  }, [price]);
 
   //****Filter*****
   const fetchDataFilter = (arg) => {

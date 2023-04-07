@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
-import { Fragment } from "react";
-import { Radio } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
 
 // import img2 from "../../uploads/file-1678978441539.jpg";
 
@@ -14,7 +12,7 @@ import {
   listDistrict,
   listSubDistrict,
 } from "../functions/location";
-import { Col } from "antd";
+
 
 export default function CheckOut() {
   const { cart, user } = useSelector((state) => ({ ...state }));
@@ -30,7 +28,7 @@ export default function CheckOut() {
   const [filename, setfilename] = useState("Choose File");
   const navigate = useNavigate();
   const [createStatus, setCreateStatus] = useState(true);
-  const [order_id_state, set_order_id_state] = useState([])
+  // const [order_id_state, set_order_id_state] = useState([])
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
   const [value, setValue] = useState({
@@ -173,21 +171,6 @@ export default function CheckOut() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!value.shipping_firstname) {
-      alert("กรุณากรอกชื่อ");
-    } else if (!value.shipping_lastname) {
-      alert("กรุณากรอกนามสกุล");
-    } else if (!value.shipping_address) {
-      alert("กรุณากรอกที่อยู่จัดส่ง");
-    } else if (!value.shipping_province) {
-      alert("กรุณากรอกจังหวัดที่อยู่จัดส่ง");
-    } else if (!value.shipping_district) {
-      alert("กรุณากรอกอำเภอที่อยู่จัดส่ง");
-    } else if (!value.shipping_sub_district) {
-      alert("กรุณากรอกตำบลที่อยู่จัดส่ง");
-    } else if (!value.shipping_tel) {
-      alert("กรุณากรอกเบอร์โทร");
-    } else {
       if (createStatus) {
         console.log("Create Status: ", createStatus);
         setCreateStatus(false);
@@ -208,8 +191,9 @@ export default function CheckOut() {
         };
 
         // TODO: LocalStorage get order_id
-        // if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
-          
+
+        if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
+
         CreateOrder(authtoken, value)
           .then((response) => {
               return response.data.order_id})
@@ -234,14 +218,89 @@ export default function CheckOut() {
                 alert(error.response.data);
               });
           })
+        }
+        
           
           
           
-          // }
+          
         console.log("================ END ================");
       }
-    }
+    
   };
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!value.shipping_firstname) {
+  //     alert("กรุณากรอกชื่อ");
+  //   } else if (!value.shipping_lastname) {
+  //     alert("กรุณากรอกนามสกุล");
+  //   } else if (!value.shipping_address) {
+  //     alert("กรุณากรอกที่อยู่จัดส่ง");
+  //   } else if (!value.shipping_province) {
+  //     alert("กรุณากรอกจังหวัดที่อยู่จัดส่ง");
+  //   } else if (!value.shipping_district) {
+  //     alert("กรุณากรอกอำเภอที่อยู่จัดส่ง");
+  //   } else if (!value.shipping_sub_district) {
+  //     alert("กรุณากรอกตำบลที่อยู่จัดส่ง");
+  //   } else if (!value.shipping_tel) {
+  //     alert("กรุณากรอกเบอร์โทร");
+  //   } else {
+  //     if (createStatus) {
+  //       console.log("Create Status: ", createStatus);
+  //       setCreateStatus(false);
+  //       console.log("================ Starting ================");
+  //       const authtoken = user.token;
+
+  //       function cart_with_orderID(item) {
+  //         console.log("cart - Checkout.js:", item);
+  //         Object.keys(item).forEach((key) => {
+  //             console.log(
+  //               "Check Order ID State: ",
+  //               parseInt(localStorage.getItem("order_id"))
+  //             );
+  //             item[key].order_id = parseInt(localStorage.getItem("order_id"));
+  //         });
+  //         console.log("cart after - Checkout.js:", item);
+  //         return item;
+  //       };
+
+  //       // TODO: LocalStorage get order_id
+  //       // if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
+          
+  //       CreateOrder(authtoken, value)
+  //         .then((response) => {
+  //             return response.data.order_id})
+  //         .then((order_id) => {
+  //             var new_cart;
+  //             localStorage.setItem("order_id", order_id);
+  //             console.log("localStorage.getItem('order_id'): ", localStorage.getItem("order_id"))
+  //             new_cart = cart_with_orderID(cart);
+  //             return new_cart})
+  //         .then((new_cart) => {
+  //             console.log("localStorage.getItem('order_id'): ", localStorage.getItem("order_id"))
+  //             userCart(authtoken, new_cart)
+  //             return new_cart})
+  //         .then((new_cart) => {
+  //             CartUpdateToProduct(authtoken, new_cart)
+  //               .then((res) => {
+  //                 console.log("Successfully: ", res);
+  //                 navigate("/OrderUser");
+  //               })
+  //             .catch((error) => {
+  //               console.log(error.response.data);
+  //               alert(error.response.data);
+  //             });
+  //         })
+          
+          
+          
+  //         // }
+  //       console.log("================ END ================");
+  //     }
+  //   }
+  // };
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order_detail <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
   const getTotal = () => {
@@ -401,6 +460,7 @@ export default function CheckOut() {
                     ชื่อ
                   </label>
                   <input
+                  required
                     type="text"
                     name="shipping_firstname"
                     placeholder="ชื่อ"
@@ -409,6 +469,7 @@ export default function CheckOut() {
                     className="block  w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                   <input
+                  required
                     type="text"
                     name="shipping_lastname"
                     placeholder="นามสกุล"
@@ -422,6 +483,7 @@ export default function CheckOut() {
                     ที่อยู่
                   </label>
                   <textarea
+                  required
                     type="text"
                     name="shipping_address"
                     placeholder="เลขที่ 85/8 หมู่ 13 "
@@ -436,6 +498,7 @@ export default function CheckOut() {
                       จังหวัด
                     </label>
                     <select
+                    required
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       name="shipping_province"
                       onChange={(e) => {
@@ -462,6 +525,7 @@ export default function CheckOut() {
                       อำเภอ
                     </label>
                     <select
+                    required
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       name="shipping_district"
                       onChange={(e) => onChangeDistrict_shipping(e)}
@@ -485,6 +549,7 @@ export default function CheckOut() {
                       ตำบล
                     </label>
                     <select
+                    required
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       name="shipping_sub_district"
                       onChange={(e) => onChangeSubDistrict_shipping(e)}
@@ -503,6 +568,7 @@ export default function CheckOut() {
                       รหัสไปรษณีย์
                     </label>
                     <input
+                    required
                       className="block w-full px-4 py-2 mt-2 bg-white border rounded-md focus:border-red-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       id="grid-zip"
                       type="text"
@@ -520,6 +586,7 @@ export default function CheckOut() {
                     เบอร์โทรศัพท์
                   </label>
                   <input
+                  required
                     type="text"
                     name="shipping_tel"
                     maxLength="10"
@@ -690,6 +757,7 @@ export default function CheckOut() {
               <div>
                 <img src={"https://scontent.fbkk18-2.fna.fbcdn.net/v/t1.15752-9/334910878_930587868361066_8570669306536249133_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=yo_N1wMtqskAX-B7Dkd&_nc_ht=scontent.fbkk18-2.fna&oh=03_AdTZbk2f_r3sYtBaav9RWSilftM8pA7aVZg9GCWjFrXk_w&oe=644A8F15"} />
                 <input
+                required
                   id="photo"
                   type="file"
                   name="file"

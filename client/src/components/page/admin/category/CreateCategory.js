@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //page
 import MenubarAdmin from "../../../layouts/MenubarAdmin";
-import NavbarLogin from "../../../layouts/NavbarLogin";
+
 //function
 import {
   createCategory,
@@ -89,6 +89,7 @@ export default function CreateCategory() {
               </div>
               <div className="md:w-2/3">
                 <input
+                required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="number"
                   name="category_id"
@@ -108,6 +109,7 @@ export default function CreateCategory() {
               </div>
               <div className="md:w-2/3">
                 <input
+                required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="category_name"
@@ -127,6 +129,7 @@ export default function CreateCategory() {
               </div>
               <div className="md:w-2/3">
                 <input
+                required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   type="text"
                   name="category_detail"

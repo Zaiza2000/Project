@@ -1,9 +1,0 @@
-    {billing.billing_lastname}
-    {billing.billing_tel}
-    {billing.billing_address}
-    {billing.billing_sub_district}
-    {billing.billing_district}
-    {billing.billing_province}
-    {billing.billing_zipcode}
-    {billing.tax_id}
-    {billing.billing_firstname}

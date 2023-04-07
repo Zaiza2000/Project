@@ -1,11 +1,10 @@
 
 import React, { useEffect, useState } from "react";
-import { PDFDownloadLink, PDFPreview } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 //function
 import {
   getRequisition,
-  listRequisition,
   listRequisitionByRID,
 } from "../../functions/requisition.js";
 

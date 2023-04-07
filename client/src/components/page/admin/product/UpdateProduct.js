@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 //page
 import MenubarAdmin from "../../../layouts/MenubarAdmin";
-import NavbarLogin from "../../../layouts/NavbarLogin";
+
 //function
 import { editProduct, getProduct } from "../../../functions/product";
 
