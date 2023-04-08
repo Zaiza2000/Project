@@ -12,6 +12,7 @@ import {
   listDistrict,
   listSubDistrict,
 } from "../functions/location";
+import ModalLoading from "../modal/ModalLoading";
 
 
 export default function CheckOut() {
@@ -28,6 +29,7 @@ export default function CheckOut() {
   const [filename, setfilename] = useState("Choose File");
   const navigate = useNavigate();
   const [createStatus, setCreateStatus] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   // const [order_id_state, set_order_id_state] = useState([])
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
@@ -171,6 +173,7 @@ export default function CheckOut() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
       if (createStatus) {
         console.log("Create Status: ", createStatus);
         setCreateStatus(false);
@@ -211,13 +214,14 @@ export default function CheckOut() {
               CartUpdateToProduct(authtoken, new_cart)
                 .then((res) => {
                   console.log("Successfully: ", res);
-                  navigate("/OrderUser");
+                  navigate("/shop");
                 })
               .catch((error) => {
                 console.log(error.response.data);
                 alert(error.response.data);
               });
           })
+          
         }
         
           
@@ -228,7 +232,7 @@ export default function CheckOut() {
       }
     
   };
-
+  if (isLoading) return <ModalLoading/>;
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
