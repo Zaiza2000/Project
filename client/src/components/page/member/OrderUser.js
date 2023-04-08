@@ -9,6 +9,7 @@ import { Order_detail_join_Orders } from "../../functions/order_detail.js";
 //page -> PDF
 import OrderPDF from "./OrderPDF.js";
 import VatPDF from "./VatPDF.js";
+import OrderVatPDF from "./OrderVatPDF.js"
 // import VatPDF from "./VatPDF";
 
 export default function OrderUser() {
@@ -164,7 +165,8 @@ export default function OrderUser() {
 
                 className="bg-blue-200 hover:bg-gray-300 py-3 px-2 rounded-lg"
                 document={
-                  <VatPDF order_pdf={OID} listorderUser={listorderUser} user={user}/>
+                  <OrderVatPDF order_pdf={OID} listorderUser={listorderUser} user={user}/>
+                  // <VatPDF order_pdf={OID} listorderUser={listorderUser} user={user}/>
                 }
                 fileName="ใบกำกับภาษี.pdf">
                 <button >

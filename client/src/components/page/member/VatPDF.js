@@ -189,7 +189,7 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
             }
 
         }, 0)
-        // console.log("====== END: getTotal(user_id, OID) ======");
+        //  console.log("====== END: getTotal(user_id, OID) ======");
         return total_price;
     };
     // const getVat = () => {
@@ -243,7 +243,7 @@ export default function VatPDF({ order_pdf, listorderUser, user }) {
                     <Text style={styles.header}>ใบกำกับภาษี</Text>
                 </View>
                 <View style={styles.invoiceNoContainer}>
-                    <Text style={styles.label}>เลขที่ใบเสร็จ : </Text>
+                    <Text style={styles.label}>เลขที่ใบสั่งซื้อ : </Text>
                     <Text style={styles.invoiceDate}>{order_pdf}</Text>
 
                 </View >
