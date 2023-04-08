@@ -13,6 +13,10 @@ import {
 } from "../../../../components/functions/product";
 
 import { searchFilters } from "../../../functions/product";
+import {
+  listCategory,
+  getCategory,
+} from "../../../../components/functions/category";
 
 const initialstate = {
   product_name: "",
@@ -29,8 +33,10 @@ export default function CreateProduct() {
   const [product, setProduct] = useState([]);
   const [category, setCategory] = useState([]);
   const [categorySelect, setCategorySelect] = useState([]);
+
   useEffect(() => {
     loadData();
+    listCategory().then(res => setCategory(res.data))
   }, []);
 
   const loadData = () => {
@@ -41,6 +47,14 @@ export default function CreateProduct() {
       .catch((err) => {
         console.log(err);
       });
+
+    getCategory()
+      .then((res) => {
+        setCategory(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   };
   const fetchDataFilter = (arg) => {
     searchFilters(arg).then((res) => {
@@ -66,24 +80,7 @@ export default function CreateProduct() {
         });
     }
   };
-  const handleCheck = (e) => {
-    // ค่าปัจจุบันที่ Check 
-    let inCheck = e.target.value
-    // ค่าเดิมของ Check 
-    let inState = [...categorySelect]
 
-    let findCheck = inState.indexOf(inCheck)
-    if (findCheck === -1) {
-      inState.push(inCheck)
-    } else {
-      inState.splice(findCheck, 1)
-    }
-    setCategorySelect(inState)
-    fetchDataFilter({ category: inState })
-    if (inState.length < 1) {
-      loadData()
-    }
-  }
   const handleSubmit = (e) => {
     // e.preventDefault();
     createProduct(values)
@@ -216,7 +213,7 @@ export default function CreateProduct() {
                   รหัสประเภทของสินค้า
                 </label>
               </div>
-              <div className="md:w-2/3">
+              {/* <div className="md:w-2/3">
                 <input
                   required
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
@@ -226,27 +223,27 @@ export default function CreateProduct() {
                   value={values.category_id}
                   onChange={handleChange}
                 />
-              </div>
-
-              {/* <button data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">รหัสประเภทของสินค้า</button>
-              <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
-                <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                  </li>
-                </ul>
               </div> */}
+              <div className="md:w-2/3">
+                <select
+                  required
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  name="category_id"
+                  onChange={handleChange}
+                  value={values.category_id}
+                  label="เลือกประเภทสินค้า"
+                >
+                  {category.map((item, index) =>
+                    <option value={item.category_id}>
+                      {item.category_id} {item.category_name}
+                    </option>
+                  )}
 
 
+                  {/* <label for="default-checkbox" className="ml-2 text-xl">{values.category_name}</label> */}
+
+                </select>
+              </div>
             </div>
 
             <div className="md:flex md:items-center">
