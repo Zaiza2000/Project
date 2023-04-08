@@ -194,6 +194,20 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
     return total_price;
   };
 
+  const getVatTotal = () => {
+    const total_price = listorderUser.reduce((total_price, inner_item) => {
+      if (inner_item.OID === order_pdf) {
+        return (total_price + (inner_item.price * inner_item.quantity) * 0.07);
+      } else {
+        console.log("total price: ", total_price)
+        return total_price
+      }
+
+    }, 0)
+    // console.log("====== END: getTotal(user_id, OID) ======");
+    return total_price;
+  };
+
   const OrderPDFData = () => {
     return listorderUser.map((inner_item) => {
       if (inner_item.OID === order_pdf) {
@@ -269,15 +283,22 @@ export default function OrderPDF({ order_pdf, listorderUser, user }) {
           </View>
         </View>
         <View>{OrderPDFData()}</View>
-        <View style={styles.header}>
+        <View style={styles.h1}>
           <Text>
-            ราคารวม {getTotal()}
+            ราคาสินค้า {getTotal().toFixed(2)-getVatTotal()}
+          </Text>
+          <Text>
+            ภาษี {getVatTotal().toFixed(2)}
+          </Text>
+
+          <Text>
+            ราคารวม {getTotal().toFixed(2)}
           </Text>
         </View>
         <View style={styles.h1}>
           <Text>
             ลงชื่อ........................................ผู้รับสินค้า {" "}{" "}{" "}
-            
+
           </Text>
         </View>
       </Page>
