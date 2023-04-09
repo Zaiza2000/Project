@@ -1,5 +1,7 @@
 const DataTypes = require("sequelize");
 const db = require("../database/db.js");
+const bcrypt = require('bcrypt');
+const router = require("../routes/api.js");
 
 const User = db.define("users", {
   firstname: { type: DataTypes.STRING },
@@ -17,6 +19,21 @@ const User = db.define("users", {
   role: { type: DataTypes.STRING },
 });
 
+// router.post = async  (next) =>  {
+//   try {
+//     console.log("call before saving a user")
+//   } catch (error){
+//     next(error)
+//   }
+// }
+
+// exports.User = async  (next) =>  {
+//   try {
+//     console.log("call after saving a user")
+//   } catch (error){
+//     next(error)
+//   }
+// }
 // User.associate = (models) => {
 //   User.hasMany(models.OrderDetail, {
 //     onDelete: "RESTRICT",

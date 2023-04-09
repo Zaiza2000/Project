@@ -3,7 +3,7 @@ const User = require("../models/User.js");
 const Category = require("../models/Category.js");
 const Product = require("../models/Product.js");
 
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../database/db.js");
 
@@ -33,7 +33,23 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    await User.create(req.body);
+    const salt = await bcrypt.genSalt(10);
+    var user = {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: await bcrypt.hash(req.body.password, salt),
+      birthdate: req.body.birthdate,
+      tel: req.body.tel,
+      username: req.body.username,
+      address: req.body.address,
+      sub_district: req.body.sub_district,
+      district: req.body.district,
+      province: req.body.province,
+      zipcode: req.body.zipcode,
+      role: req.body.role,
+    };
+    created_user = await User.create(user);
     res.json({
       message: "Registor successfully",
     });
@@ -53,37 +69,45 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
     var user = await User.findOne({
-      where: { username: username, password: password },
+      where: { username: username },
     });
+
     if (user) {
-      // console.log(user.username);
-      // console.log(username);
-      // res.send("Hello Login!");
+      const password_valid = await bcrypt.compare(
+        password,
+        user.password
+      );
+
 
       //Payload
-      const payload = {
-        user: {
-          id: user.id,
-          username: user.username,
-          role: user.role,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          address: user.address,
-          sub_district: user.sub_district,
-          district: user.district,
-          province: user.province,
-          zipcode: user.zipcode,
-          tel: user.tel,
-        },
-      };
+
       //Generate Token
-      jwt.sign(payload, "jwtSecret", { expiresIn: 3600 }, (error, token) => {
-        if (error) throw error;
-        res.json({ token, payload });
-      });
-    }else {
-      return res.status(400).send("Username หรือ Password ไม่ถูกต้อง \n ตรวจสอบอีกครั้ง");
+      if (password_valid) {
+        const payload = {
+          user: {
+            id: user.id,
+            username: user.username,
+            role: user.role,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            address: user.address,
+            sub_district: user.sub_district,
+            district: user.district,
+            province: user.province,
+            zipcode: user.zipcode,
+            tel: user.tel,
+          },
+        };
+  
+        jwt.sign(payload, "jwtSecret", { expiresIn: 3600 }, (error, token) => {
+          if (error) throw error;
+          res.json({ token, payload });
+        });
+      } else {
+        return res.status(400).send("Username หรือ Password ไม่ถูกต้อง \n ตรวจสอบอีกครั้ง");
+      }
     }
+
   } catch (error) {
     console.log(error);
     res.status(500).send("==Server Error==");

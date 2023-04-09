@@ -2,6 +2,7 @@ import "../../App.css";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
+import bcrypt from 'bcryptjs'
 //function
 import { signUp } from "../functions/auth";
 import {
