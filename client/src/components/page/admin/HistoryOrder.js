@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 
-
 //function
 import {
   listOrderDetailByOID,
@@ -10,7 +9,7 @@ import {
 import {
   changeStatus,
   Order_status,
-  Order_status_by_OID
+  Order_status_by_OID,
 } from "../../functions/order.js";
 
 //layout
@@ -19,6 +18,7 @@ import MenubarAdmin from "../../layouts/MenubarAdmin";
 export default function HistoryOrder() {
   const [orderDetail, setOrderDetail] = useState([]);
   const [orderStatus, setOrderStatus] = useState({});
+  const [orderTotal, setOrderTotal] = useState({});
   const [orderImages, setOrderImages] = useState({});
 
   useEffect(() => {
@@ -43,27 +43,38 @@ export default function HistoryOrder() {
         localStorage.setItem(item.OID, JSON.stringify(item.listOfOID));
       });
 
-
       // TODO: load order status
       Order_status_by_OID(item.OID).then((order) => {
-        console.log("order order_status_by_OID => ", order.data.values().next().value);
+        console.log(
+          "order order_status_by_OID => ",
+          order.data.values().next().value
+        );
         const order_status = order.data.values().next().value;
 
         orderStatus[order_status.OID] = order_status.status;
 
-        orderImages[order_status.OID] = order_status.payment_photo.replace("../client/public", "");
+        orderTotal[order_status.OID] = order_status.total_price;
 
-      
-        const new_dict_status = {}
-        Object.assign(new_dict_status, orderStatus)
-        setOrderStatus(new_dict_status)
-        console.log("+++++++ new_dict_status ==> " , new_dict_status);
+        orderImages[order_status.OID] = order_status.payment_photo.replace(
+          "../client/public",
+          ""
+        );
 
-        const new_dict_photo = {}
-        Object.assign(new_dict_photo, orderImages)
-        setOrderImages(new_dict_photo)
-        console.log("********new_dict_photo ==> " , new_dict_photo);
-      })
+        const new_dict_status = {};
+        Object.assign(new_dict_status, orderStatus);
+        setOrderStatus(new_dict_status);
+        console.log("+++++++ new_dict_status ==> ", new_dict_status);
+
+        const new_dict_total = {};
+        Object.assign(new_dict_total, orderTotal);
+        setOrderTotal(new_dict_total);
+        console.log("@@@@ new_dict_total ==> ", new_dict_total);
+
+        const new_dict_photo = {};
+        Object.assign(new_dict_photo, orderImages);
+        setOrderImages(new_dict_photo);
+        console.log("********new_dict_photo ==> ", new_dict_photo);
+      });
     };
 
     async function get_loadData() {
@@ -79,8 +90,6 @@ export default function HistoryOrder() {
     }
     show_log();
     get_loadData();
-
-   
   }, []);
 
   // TODO: Logging datae time to console
@@ -152,7 +161,6 @@ export default function HistoryOrder() {
           <td className="px-6 py-4">{inner_item.quantity}</td>
           <td className="px-6 py-4">{inner_item.price}</td>
           <td className="px-6 py-4">{inner_item.cost}</td>
-          
         </tr>
       </tbody>
     ));
@@ -163,41 +171,42 @@ export default function HistoryOrder() {
   const load_roleData = (id, item) => {
     let values = {
       order_id: id,
-    }
-    
+    };
+
     console.log("item: ", id, item);
 
     // TODO: Get order object
-    const order_status = Order_status(values)
-    order_status.then((order) => {
-      console.log("Order status", order.data.values().next().value.status);
-      return order.data.values().next().value.status
-    }).then((status) => {
-      orderStatus[item.OID] = status;
-      
-      const new_dict = {}
-      Object.assign(new_dict, orderStatus)
-      setOrderStatus(new_dict)
-    })
-    
+    const order_status = Order_status(values);
+    order_status
+      .then((order) => {
+        console.log("Order status", order.data.values().next().value.status);
+        return order.data.values().next().value.status;
+      })
+      .then((status) => {
+        orderStatus[item.OID] = status;
+
+        const new_dict = {};
+        Object.assign(new_dict, orderStatus);
+        setOrderStatus(new_dict);
+      });
+
     return orderStatus[values.order_id];
-  }
+  };
 
   const handleChangeStatus = (e, id, OID) => {
     let values = {
       order_id: id,
-      status: e
+      status: e,
     };
 
     orderStatus[OID] = e;
-    const new_dict = {}
-    Object.assign(new_dict, orderStatus)
-    setOrderStatus(new_dict)
+    const new_dict = {};
+    Object.assign(new_dict, orderStatus);
+    setOrderStatus(new_dict);
 
     changeStatus(values)
       .then((res) => {
         console.log("res.data =>", res.data);
-        
       })
       .catch((err) => {
         console.log(err.response);
@@ -215,48 +224,51 @@ export default function HistoryOrder() {
 
         {orderDetail.map((item, index) => {
           return (
-          <div className="">
-            <table className="w-full text-sm text-left text-black bg-blue-400 ">
-              {tableHead}
-              {tableData(item)}
-            </table>
-            <br></br>
-            
-            {/* <p>{orderImages[item.OID]}</p> */}
-            
-            {/* <img src={orderImages[item.OID]} /> */}
-            
-            {/* <img src={require("../../../uploads/file-1680698025257.jpg")} /> */}
-            {/* <img src="../../../uploads/file-1680698025257.jpg" /> */}
+            <div className="">
+              <table className="w-full text-sm text-left text-black bg-blue-400 ">
+                {tableHead}
+                {tableData(item)}
+              </table>
+              <br></br>
 
+              <div className="h-full w-60 rounded-md object-cover mx-auto mb-4 border-dashed border-2 border-sky-400">
+                <p>ราคารวม : {orderTotal[item.OID]}</p>
+              </div>
 
-            {/* <img src={orderImages[item.OID] ? (orderImages[item.OID]) : orderImages[item.OID]}/> */}        
+              <br></br>
 
-            <img src={
-              // console.log("orderImages[item.OID]: ", orderImages[item.OID] !== undefined)
-              orderImages[item.OID] !== undefined ? orderImages[item.OID] : 'uploads/not-image.jpg'
-              // require(orderImages[item.OID] ? '../../../uploads/file-1680861534999.jpg' : '../../../uploads/not-image.jpg')
-              // require(orderImages[item.OID] === "lk;l;" ? (orderImages[item.OID]) : '../../../uploads/file-1680861534999.jpg')
-              } className="h-full w-60 rounded-md object-cover mx-auto mb-4 border-dashed border-2 border-sky-400"
+              <img
+                src={
+                  orderImages[item.OID] !== undefined
+                    ? orderImages[item.OID]
+                    : "uploads/not-image.jpg"
+                }
+                className="h-full w-60 rounded-md object-cover mx-auto mb-4 border-dashed border-2 border-sky-400"
               />
 
-
-            <div>
-              <Select className="w-48"
-                value={orderStatus[item.OID]}
-                onChange={(e) => handleChangeStatus(e, item.listOfOID.values().next().value.order_id, item.OID)}
-              >
-                {roleData.map((item_option, index) => (
-                  <Select.Option value={item_option} key={index}>
-                    {item_option.status}
-                  </Select.Option>
-                ))}
-              </Select>
+              <div>
+                <Select
+                  className="w-48"
+                  value={orderStatus[item.OID]}
+                  onChange={(e) =>
+                    handleChangeStatus(
+                      e,
+                      item.listOfOID.values().next().value.order_id,
+                      item.OID
+                    )
+                  }
+                >
+                  {roleData.map((item_option, index) => (
+                    <Select.Option value={item_option} key={index}>
+                      {item_option.status}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
+              <br></br>
             </div>
-            <br></br>
-            
-          </div>
-        )})}
+          );
+        })}
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ export default function CheckOut() {
   const [createStatus, setCreateStatus] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   // const [order_id_state, set_order_id_state] = useState([])
+  const [total, setTotal] = useState(0)
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> order <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
   const [value, setValue] = useState({
@@ -54,11 +55,13 @@ export default function CheckOut() {
     payment_photo: "",
     status: "รอการตรวจสอบ",
     id: null,
+    total_price : null
   });
 
   useEffect(() => {
     //code
     loadData();
+    setTotal(getTotal());
   }, []);
 
   const handleChange = (e) => {
@@ -196,6 +199,8 @@ export default function CheckOut() {
         // TODO: LocalStorage get order_id
 
         if (window.confirm("ยืนยันการสั่งซื้อ ?")) {
+
+          value["total_price"] = total;
 
         CreateOrder(authtoken, value)
           .then((response) => {
@@ -826,7 +831,8 @@ export default function CheckOut() {
                 <hr />
                 <div className="flex justify-between !text-base font-medium">
                   <dt>รวม</dt>
-                  <dd>{getTotal()}</dd>
+                  <dd>{total}</dd>
+                  
                 </div>
               </dl>
             </div>
