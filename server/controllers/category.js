@@ -31,7 +31,11 @@ exports.createCategory = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send("==Server Error==");
+    if (error.parent.errno === 1062) {
+      res.status(500).send("==มีประเภทสินค้าในระบบอยู่แล้ว==");
+    } else {
+      res.status(500).send("==Server Error==");
+    }
   }
 };
 

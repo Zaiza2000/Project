@@ -82,7 +82,7 @@ export default function CreateProduct() {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     createProduct(values)
       .then((res) => {
         alert("Insert Product success");
